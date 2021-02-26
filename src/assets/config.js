@@ -1,0 +1,1 @@
+export const API_URL = 'http://cccalendar.pro:8080/api';
