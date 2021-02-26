@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import Home from '../views/pages/Home';
 import About from '../views/pages/About';
 import NotFound from '../views/pages/NotFound';
+import GoogleAuth from '../views/users/GoogleAuth';
 
 Vue.use(VueRouter);
 
@@ -17,6 +18,10 @@ const routes = [{
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: About
+}, {
+    path: '/auth/google',
+    name: 'Signin with Google',
+    component: GoogleAuth
 }, {
     path: '/404',
     alias: '*',
