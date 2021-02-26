@@ -15,6 +15,12 @@ const actions = {
         commit('setLoginUrl', response.data.url);
         // console.log(response.data.url);
     },
+    async fetchGoogleCallback(query) {
+        console.log(query);
+        // const response = await axios.get(API_URL + '/auth/google/callback');
+        // commit('setLoginUrl', response.data.url);
+        // console.log(response.data.url);
+    },
 };
 
 const mutations = {
