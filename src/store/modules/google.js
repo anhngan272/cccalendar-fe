@@ -19,10 +19,9 @@ const actions = {
         // console.log(response.data.url);
     },
     async fetchGoogleCallback({ commit }, query) {
-        console.log(query);
         const response = await axios.get(API_URL + '/auth/google/callback' + query);
         commit('setUser', response.data.user);
-        console.log(response.data);
+        // console.log(response);
     },
 };
 

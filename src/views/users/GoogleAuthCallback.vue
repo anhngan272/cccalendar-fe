@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <div class="col-md-6 pt-4" data-aos="fade-up">
       <h2>Google Callback</h2>
-      <h3>{{ user.name }}</h3>
+      <!-- <h3>{{ user.name }}</h3> -->
     </div>
   </div>
 </template>
