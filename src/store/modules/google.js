@@ -38,13 +38,13 @@ const actions = {
 
 const mutations = {
     setLoginUrl: (state, loginUrl) => (state.loginUrl = loginUrl),
-    setUser: (state, user) => (state.user = user),
     loginSuccess: (state, payload) => {
+        const data = {...payload };
         state.authError = null;
-        state.currentUser = {...payload };
+        state.currentUser = data.user;
 
-        setAuthorization(state.currentUser.access_token);
-        Vue.$cookies.set('user', JSON.stringify(state.currentUser), state.currentUser.expires_in, COOKIE_PATH);
+        setAuthorization(data.access_token);
+        Vue.$cookies.set('user', JSON.stringify(state.currentUser), data.expires_in, COOKIE_PATH);
 
         router.push({ path: '/' });
     },
