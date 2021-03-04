@@ -22,8 +22,7 @@ const routes = [{
 }, {
     path: '/about',
     name: 'About',
-    component: About,
-    meta: { requiresAuth: true }
+    component: About
 }, {
     path: '/login',
     name: 'GoogleLogin',

@@ -1,22 +1,33 @@
 <template>
   <div id="app">
     <main class="main-content">
-      <div class="container-fluid photos">
-        <div class="my-content">
-          <router-view />
-        </div>
-      </div>
+      <Header />
+
+      <router-view />
+
+      <Footer />
     </main>
   </div>
 </template>
 
 <script>
+import Footer from "./components/layouts/Footer.vue";
+import Header from "./components/layouts/Header.vue";
+
 export default {
   name: "app",
+  components: {
+    Footer,
+    Header,
+  },
 };
 </script>
 
-<style>
+<style scoped>
+.main-content {
+  /* position: relative;
+  min-height: 100vh; */
+}
 a {
   outline: none;
 }
