@@ -3,8 +3,8 @@ import VueRouter from 'vue-router';
 import Home from '../views/pages/Home';
 import About from '../views/pages/About';
 import NotFound from '../views/pages/NotFound';
-import GoogleAuth from '../views/users/GoogleAuth';
-import GoogleAuthCallback from '../views/users/GoogleAuthCallback';
+import GoogleLogin from '../views/users/GoogleLogin';
+import GoogleCallback from '../views/users/GoogleCallback';
 
 Vue.use(VueRouter);
 
@@ -24,13 +24,13 @@ const routes = [{
     name: 'About',
     component: About
 }, {
-    path: '/login/google',
-    name: 'Signin with Google',
-    component: GoogleAuth
+    path: '/login',
+    name: 'GoogleLogin',
+    component: GoogleLogin
 }, {
     path: '/auth/google',
-    name: 'Signin with Google - Callback',
-    component: GoogleAuthCallback
+    name: 'GoogleCallback',
+    component: GoogleCallback
 }];
 
 const router = new VueRouter({

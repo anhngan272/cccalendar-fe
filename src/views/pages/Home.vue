@@ -3,7 +3,7 @@
     <div class="col-md-6 pt-4" data-aos="fade-up">
       <h2 class="text-white mb-4">Home</h2>
       <h3 v-if="user != null">{{ user.name }}</h3>
-      <router-link to="/login/google" v-else>Login</router-link>
+      <router-link :to="{ name: 'GoogleLogin' }" v-else>Login</router-link>
     </div>
   </div>
 </template>

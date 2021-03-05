@@ -1,17 +1,24 @@
 import Vue from 'vue';
 import axios from 'axios';
-import store from '../store';
 import VueCookies from 'vue-cookies';
 import { setAuthorization } from '@/helpers/auth';
 
 Vue.use(VueCookies);
 
+/**
+ * Get cookie
+ * @param {string} cname - The name of the cookie.
+ * @return {*} The value of the cookie.
+ */
 const getCookie = (cname) => {
     return Vue.$cookies.get(cname);
 }
 
+/**
+ * Set cookie
+ */
 const setCookie = (key, value, expireTimes, path, domain, secure, sameSite) => {
-    return Vue.$cookies.set(key, value, expireTimes, path, domain, secure, sameSite);
+    Vue.$cookies.set(key, value, expireTimes, path, domain, secure, sameSite);
 }
 
 const checkCookie = (cname) => {
@@ -24,8 +31,12 @@ const checkCookie = (cname) => {
     }
 }
 
-// check if logged in
-const initialize = (router) => {
+/**
+ * Check if route require logged in user.
+ * @param {*} store 
+ * @param {*} router 
+ */
+const initialize = (store, router) => {
     router.beforeEach((to, from, next) => {
         const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
         const currentUser = getCookie('user');
@@ -34,9 +45,9 @@ const initialize = (router) => {
 
         // if route require login and user not logged in yet
         if (requiresAuth && !currentUser) {
+            next('/login');
+        } else if (to.path == '/login' && currentUser) { // if user already logged in
             next('/');
-        } else if (to.path == '/' && currentUser) {
-            next('/albums');
         } else {
             next();
         }
