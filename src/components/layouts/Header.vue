@@ -72,7 +72,7 @@ body {
     text-align: left;
   }
 
-  .header-right {
+  >>> .header-right {
     float: none;
   }
 }
