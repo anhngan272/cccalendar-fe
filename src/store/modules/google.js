@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { API_URL, COOKIE_PATH } from '@/assets/config';
 import { setAuthorization, getUser } from '@/helpers/auth';
-import { setCookie } from '@/helpers';
+import { setCookie, removeCookie } from '@/helpers';
 import router from '@/router';
 
 const user = getUser();
@@ -30,6 +30,9 @@ const actions = {
         commit('loginSuccess', response.data);
         // console.log(response);
     },
+    async logout({ commit }) {
+        commit('logout');
+    }
 };
 
 const mutations = {
@@ -42,11 +45,15 @@ const mutations = {
         setAuthorization(data.access_token);
         setCookie('user', JSON.stringify(state.currentUser), data.expires_in, COOKIE_PATH);
 
-        router.push({ path: '/' });
+        router.push({ name: 'Home' });
     },
     loginFailed(state, payload) {
         state.authError = payload.message;
     },
+    logout: (state) => {
+        removeCookie('user');
+        state.currentUser = null;
+    }
 };
 
 export default {

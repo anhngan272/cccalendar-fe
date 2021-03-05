@@ -21,6 +21,13 @@ const setCookie = (key, value, expireTimes, path, domain, secure, sameSite) => {
     Vue.$cookies.set(key, value, expireTimes, path, domain, secure, sameSite);
 }
 
+/**
+ * Remove cookie
+ */
+const removeCookie = (keyName, path, domain) => {
+    Vue.$cookies.remove(keyName, path, domain);
+}
+
 const checkCookie = (cname) => {
     let cvalue = getCookie(cname);
     if (cvalue != "") {
@@ -41,7 +48,7 @@ const initialize = (store, router) => {
         const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
         const currentUser = getCookie('user');
 
-        console.log(currentUser);
+        // console.log(currentUser);
 
         // if route require login and user not logged in yet
         if (requiresAuth && !currentUser) {
@@ -56,7 +63,7 @@ const initialize = (store, router) => {
     axios.interceptors.response.use(null, (error) => {
         if (error.resposne.status == 401) {
             store.commit('logout');
-            router.push('/login');
+            router.push({ name: 'GoogleLogin' });
         }
 
         return Promise.reject(error);
@@ -67,4 +74,4 @@ const initialize = (store, router) => {
     }
 }
 
-export { setCookie, getCookie, checkCookie, initialize };
+export { setCookie, getCookie, checkCookie, initialize, removeCookie };

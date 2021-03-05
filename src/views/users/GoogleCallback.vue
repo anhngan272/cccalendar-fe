@@ -2,13 +2,12 @@
   <div class="row justify-content-center">
     <div class="col-md-6 pt-4" data-aos="fade-up">
       <h2>Google Callback</h2>
-      <!-- <h3>{{ user.name }}</h3> -->
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   name: "GoogleAuthCallback",
@@ -16,9 +15,7 @@ export default {
   methods: {
     ...mapActions(["fetchGoogleCallback"]),
   },
-  computed: {
-    ...mapGetters({ user: "getUser" }),
-  },
+  computed: {},
   created() {
     this.fetchGoogleCallback(window.location.search);
   },
