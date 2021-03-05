@@ -1,8 +1,21 @@
+import Vue from 'vue';
 import axios from 'axios';
 import store from '../store';
+import VueCookies from 'vue-cookies';
+import { setAuthorization } from '@/helpers/auth';
+
+Vue.use(VueCookies);
+
+const getCookie = (cname) => {
+    return Vue.$cookies.get(cname);
+}
+
+const setCookie = (key, value, expireTimes, path, domain, secure, sameSite) => {
+    return Vue.$cookies.set(key, value, expireTimes, path, domain, secure, sameSite);
+}
 
 const checkCookie = (cname) => {
-    let cvalue = Vue.$cookies.get(cname);
+    let cvalue = getCookie(cname);
     if (cvalue != "") {
         // Cookie exists
         console.log(cname + " = " + cvalue);
@@ -43,4 +56,4 @@ const initialize = (router) => {
     }
 }
 
-export { toast, setCookie, getCookie, checkCookie, initialize };
+export { setCookie, getCookie, checkCookie, initialize };

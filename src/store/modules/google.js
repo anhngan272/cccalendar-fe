@@ -1,12 +1,8 @@
-import Vue from 'vue';
-import VueCookies from 'vue-cookies';
 import axios from 'axios';
 import { API_URL, COOKIE_PATH } from '@/assets/config';
-import { setAuthorization } from '@/helpers/auth';
-import { getUser } from '@/helpers/auth';
+import { setAuthorization, getUser } from '@/helpers/auth';
+import { setCookie } from '@/helpers';
 import router from '@/router';
-
-Vue.use(VueCookies);
 
 const user = getUser();
 
@@ -44,7 +40,7 @@ const mutations = {
         state.currentUser = data.user;
 
         setAuthorization(data.access_token);
-        Vue.$cookies.set('user', JSON.stringify(state.currentUser), data.expires_in, COOKIE_PATH);
+        setCookie('user', JSON.stringify(state.currentUser), data.expires_in, COOKIE_PATH);
 
         router.push({ path: '/' });
     },

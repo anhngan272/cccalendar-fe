@@ -1,11 +1,8 @@
-import Vue from 'vue';
 import axios from 'axios';
-import VueCookies from 'vue-cookies';
-
-Vue.use(VueCookies);
+import { getCookie } from '@/helpers';
 
 export function getUser() {
-    return Vue.$cookies.get('user');
+    return getCookie('user');
 }
 
 export function setAuthorization(token) {
