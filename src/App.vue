@@ -21,11 +21,7 @@ export default {
 };
 </script>
 
-<style scoped>
-.main-content {
-  /* position: relative;
-  min-height: 100vh; */
-}
+<style>
 a {
   outline: none;
 }

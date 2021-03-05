@@ -3,6 +3,12 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import { initialize } from "@/helpers";
+import { loadProgressBar } from "axios-progress-bar";
+import "axios-progress-bar/dist/nprogress.css";
+
+/* axios-progress-bar */
+const config = { showSpinner: false };
+loadProgressBar(config);
 
 initialize(store, router);
 
