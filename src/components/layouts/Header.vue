@@ -28,18 +28,18 @@ export default {
   box-sizing: border-box;
 }
 
-body {
+>>> body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.header {
+>>> .header {
   overflow: hidden;
   background-color: #fff;
   padding: 5px 10px;
 }
 
-.header a {
+>>> .header a {
   float: left;
   color: #808080;
   text-align: center;
@@ -53,16 +53,16 @@ body {
   margin-left: 10px;
 }
 
-.header a:hover {
+>>> .header a:hover {
   background-color: #ddd;
   color: black;
 }
 
-.router-link-exact-active:not(#logo) {
+>>> .router-link-exact-active:not(#logo) {
   color: black !important;
 }
 
-.header-right {
+>>> .header-right {
   float: right;
 }
 
@@ -73,7 +73,7 @@ body {
     text-align: left;
   }
 
-  .header-right {
+  >>> .header-right {
     float: none;
   }
 }
