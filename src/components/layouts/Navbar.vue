@@ -3,16 +3,14 @@
     <!-- if user logged in -->
     <template v-if="user != null">
       <router-link to="#">{{ user.name }}</router-link>
-      <input
-        id="btn-logout"
-        type="button"
-        @click="confirmLogout"
-        value="LOGOUT"
-      />
+      <a href="#" id="btn-logout" role="button" @click="confirmLogout">SIGN OUT</a>
     </template>
     <!-- else -->
+
     <router-link :to="{ name: 'GoogleLogin' }" v-else>SIGN IN</router-link>
+    
     <router-link to="/about">ABOUT</router-link>
+
   </div>
 </template>
 
