@@ -9,7 +9,7 @@
 
     <router-link :to="{ name: 'GoogleLogin' }" v-else>SIGN IN</router-link>
     
-    <router-link to="/about">ABOUT</router-link>
+    <!-- <router-link to="/about">ABOUT</router-link> -->
 
   </div>
 </template>
