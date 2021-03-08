@@ -6,5 +6,5 @@ export function getUser() {
 }
 
 export function setAuthorization(token) {
-    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    axios.defaults.headers.common["Authorization"] = `${token}`;
 }

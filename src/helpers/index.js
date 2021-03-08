@@ -39,7 +39,7 @@ const checkCookie = (cname) => {
 }
 
 const setAcceptHeader = (type) => {
-    axios.defaults.headers.common["Accept"] = type;
+    axios.defaults.headers.common["Accept"] = `${type}`;
 }
 
 /**
