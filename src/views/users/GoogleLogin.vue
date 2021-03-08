@@ -19,6 +19,9 @@
               />
               Sign in with Google
             </a>
+            <p class="text-danger small mt-3" v-if="authError">
+              {{ authError }}
+            </p>
           </div>
         </div>
       </div>
@@ -38,6 +41,7 @@ export default {
   computed: {
     ...mapGetters({
       loginUrl: "getLoginUrl",
+      authError: "getAuthError",
     }),
   },
   created() {

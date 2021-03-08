@@ -26,8 +26,17 @@ const actions = {
         // console.log(response.data.url);
     },
     async fetchGoogleCallback({ commit }, query) {
-        const response = await axios.get(API_URL + '/auth/google/callback' + query);
-        commit('loginSuccess', response.data);
+        if (!query.includes('error')) {
+            const response = await axios.get(API_URL + '/auth/google/callback' + query);
+            commit('loginSuccess', response.data);
+        } else {
+            let error = query.split('error=')[1];
+            error = error.replace('_', ' ');
+            error = error.charAt(0).toUpperCase() + error.slice(1);
+
+            const errorMessage = 'Failed to login: ' + error;
+            commit('loginFailed', errorMessage);
+        }
         // console.log(response);
     },
     async logout({ commit }) {
@@ -47,8 +56,10 @@ const mutations = {
 
         router.push({ name: 'Home' });
     },
-    loginFailed(state, payload) {
-        state.authError = payload.message;
+    loginFailed(state, errorMessage) {
+        state.authError = errorMessage;
+
+        router.push({ name: 'GoogleLogin' });
     },
     logout: (state) => {
         removeCookie('user');
