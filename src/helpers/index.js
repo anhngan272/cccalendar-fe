@@ -38,6 +38,10 @@ const checkCookie = (cname) => {
     }
 }
 
+const setAcceptHeader = (type) => {
+    axios.defaults.headers.common["Accept"] = type;
+}
+
 /**
  * Check if route require logged in user.
  * @param {*} store 
@@ -69,9 +73,11 @@ const initialize = (store, router) => {
         return Promise.reject(error);
     });
 
-    if (store.getCurrentUser) {
-        setAuthorization(store.getCurrentUser.access_token);
+    if (getCookie('access_token')) {
+        setAuthorization(getCookie('access_token'));
     }
+
+    setAcceptHeader('application/json');
 }
 
 export { setCookie, getCookie, checkCookie, initialize, removeCookie };

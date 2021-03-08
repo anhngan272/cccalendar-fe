@@ -29,6 +29,7 @@ const actions = {
         if (!query.includes('error')) {
             const response = await axios.get(API_URL + '/auth/google/callback' + query);
             commit('loginSuccess', response.data);
+            // console.log(response);
         } else {
             let error = query.split('error=')[1];
             error = error.replace('_', ' ');
@@ -37,7 +38,6 @@ const actions = {
             const errorMessage = 'Failed to login: ' + error;
             commit('loginFailed', errorMessage);
         }
-        // console.log(response);
     },
     async logout({ commit }) {
         commit('logout');
@@ -53,6 +53,7 @@ const mutations = {
 
         setAuthorization(data.access_token);
         setCookie('user', JSON.stringify(state.currentUser), data.expires_in, COOKIE_PATH);
+        setCookie('access_token', data.access_token, data.expires_in, COOKIE_PATH);
 
         router.push({ name: 'Home' });
     },
@@ -63,6 +64,7 @@ const mutations = {
     },
     logout: (state) => {
         removeCookie('user');
+        removeCookie('access_token');
         state.currentUser = null;
     }
 };
