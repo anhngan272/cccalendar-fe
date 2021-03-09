@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card">
-        <div class="card-header text-center font-weight-bold">SIGN-IN</div>
+        <div class="card-header text-center font-weight-bold">{{$t('login.signin')}}</div>
         <div class="card-body">
           <div class="text-center">
             <a
@@ -17,7 +17,7 @@
                 alt="Google sign-in"
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
               />
-              Sign in with Google
+              {{$t('login.signin_google')}}
             </a>
             <p class="text-danger small mt-3" v-if="authError">
               {{ authError }}

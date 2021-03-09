@@ -5,6 +5,7 @@ import store from './store';
 import { initialize } from "@/helpers";
 import { loadProgressBar } from "axios-progress-bar";
 import "axios-progress-bar/dist/nprogress.css";
+import i18n from './lang/i18n.js'
 
 /* axios-progress-bar */
 const config = { showSpinner: false };
@@ -14,8 +15,11 @@ initialize(store, router);
 
 Vue.config.productionTip = false
 
-new Vue({
+const app = new Vue({
+    i18n,
     router,
     store,
     render: h => h(App)
 }).$mount('#app')
+
+export default app

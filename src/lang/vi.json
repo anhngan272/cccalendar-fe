@@ -1,0 +1,40 @@
+{
+    "common": {
+      "select_lang": "Ngôn ngữ",
+      "logo": "LOGO",
+      "author": "CodingCats",
+      "copyrights": "Bản quyền 2021 Mọi quyền được bảo lưu bởi "
+    },
+    "homepage": {
+      "title": {
+        "web_name": "CCCalendar",
+        "title": "Quản lý thời khóa biểu của bạn như một chuyên gia"
+      },
+      "intro": {
+        "calendar": {
+          "title": "Calendar",
+          "text": "Google Calendar giúp bạn đồng bộ hóa lịch của mình trên nhiều thiết bị ."
+        },
+        "note": {
+          "title": "Note",
+          "text": "Ghi chú lại các kế hoạch và công việc của bạn để bạn không phải bỏ lỡ điều gì."
+        },
+        "organizer": {
+          "title": "Organizer",
+          "text": "Quản lý các ghi chú và sự kiện của bạn nhằm nâng cao hiệu suất làm việc."
+        }
+      }
+    },
+    "about_page": {
+      "text": "Xin chào! Chúng tôi là Coding Cats"
+    },
+    "notfound_page": {
+      "text": "Không tìm thấy trang"
+    },
+    "login": {
+      "signin": "Đăng nhập",
+      "signout": "Đăng xuất",
+      "signin_google": "Đăng nhập bằng tài khoản google",
+      "signin_loading": "Đang đăng nhập..."
+    }
+  }

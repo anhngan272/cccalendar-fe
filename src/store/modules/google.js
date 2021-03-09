@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_URL, COOKIE_PATH } from '@/assets/config';
+import { API_URL, COOKIE_PATH } from '@/assets/config_example';
 import { setAuthorization, getUser } from '@/helpers/auth';
 import { setCookie, removeCookie } from '@/helpers';
 import router from '@/router';

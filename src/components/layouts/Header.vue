@@ -1,21 +1,25 @@
 <template>
   <div>
     <div class="header">
-      <router-link to="/" id="logo">LOGO</router-link>
+      <!-- <router-link to="/" id="logo">{{ $t('common.logo') }}</router-link> -->
+      <a :href="$router.resolve({name:'Home'}).href">{{ $t('common.logo') }}</a>
       
       <Navbar />
+      
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import Navbar from "@/components/layouts/Navbar";
+import Navbar from "@/components/layouts/Navbar"
+
 
 export default {
   name: "Header",
   components: {
     Navbar,
+    
   },
   computed: {
     ...mapGetters({ user: "getCurrentUser" }),

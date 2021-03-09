@@ -1,8 +1,7 @@
 <template>
   <div class="copyright-text">
-    <p class="">
-      Copyright &copy; 2021 All Rights Reserved by
-      <a href="/about">CodingCats</a>.
+    <p class="">{{ $t('common.copyrights') }}
+      <a :href="$router.resolve({name:'About'}).href" >{{ $t("common.author") }}</a>.
     </p>
   </div>
 </template>

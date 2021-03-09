@@ -1,7 +1,7 @@
 <template>
   <div class="row justify-content-center">
     <div class="col-md-6 pt-4" data-aos="fade-up">
-      <h2>Signing in...</h2>
+      <h2>{{$t('login.signin_loading')}}</h2>
     </div>
   </div>
 </template>

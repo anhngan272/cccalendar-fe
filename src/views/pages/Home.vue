@@ -1,32 +1,31 @@
 <template>
   <div class="home-container">
-    <h2 class="">CCCalendar</h2>
-    <h4>Manage Your Schedule Like A Pro</h4>
+    <h2 class="">{{$t('homepage.title.web_name')}}</h2>
+    <h4>{{$t('homepage.title.title')}}</h4>
     <div class="site">
       <div class="container center">
         <div class="row">
           <div class="col-sm-6 col-md-4">
             <i class="fa fa-calendar"></i>
-            <h4 class=""><i>Calendar</i></h4>
+            <h4 class=""><i>{{$t('homepage.intro.calendar.title')}}</i></h4>
             <p class="">
-              Google Calendar lets you sync your calendar across multiple
-              devices.
+              {{$t('homepage.intro.calendar.text')}}
             </p>
           </div>
 
           <div class="col-sm-6 col-md-4">
             <i class="fa fa-clipboard"></i>
-            <h4><i>Note</i></h4>
+            <h4><i>{{$t('homepage.intro.note.title')}}</i></h4>
             <p class="">
-              Keep note of your plan or taskes so you won't miss a thing.
+              {{$t('homepage.intro.note.text')}}
             </p>
           </div>
 
           <div class="col-sm-6 col-md-4">
             <i class="fa fa-cogs"></i>
-            <h4><i>Organizer</i></h4>
+            <h4><i>{{$t('homepage.intro.organizer.title')}}</i></h4>
             <p class="">
-              Keep all your notes and events organized for best performance.
+              {{$t('homepage.intro.organizer.text')}}
             </p>
           </div>
         </div>
