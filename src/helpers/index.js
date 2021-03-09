@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import axios from 'axios';
 import VueCookies from 'vue-cookies';
-import { setAuthorization } from '@/helpers/auth';
+import { setAuthorization, isLoggedIn } from '@/helpers/auth';
 
 Vue.use(VueCookies);
 
@@ -50,14 +50,13 @@ const setAcceptHeader = (type) => {
 const initialize = (store, router) => {
     router.beforeEach((to, from, next) => {
         const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
-        const currentUser = getCookie('user');
 
         // console.log(currentUser);
 
         // if route require login and user not logged in yet
-        if (requiresAuth && !currentUser) {
+        if (requiresAuth && !isLoggedIn()) {
             next('/login');
-        } else if (to.path == '/login' && currentUser) { // if user already logged in
+        } else if (to.path == '/login' && isLoggedIn()) { // if user already logged in
             next('/');
         } else {
             next();
@@ -65,7 +64,7 @@ const initialize = (store, router) => {
     });
 
     axios.interceptors.response.use(null, (error) => {
-        if (error.resposne.status == 401) {
+        if (error.response.status == 401) {
             store.commit('logout');
             router.push({ name: 'GoogleLogin' });
         }
