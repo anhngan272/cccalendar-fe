@@ -12,7 +12,7 @@ const messages = {
   };
 
   const i18n = new VueI18n({
-    locale: 'vi',
+    locale: localStorage.getItem('curLang')|| 'vi',
     messages,
   });
 
