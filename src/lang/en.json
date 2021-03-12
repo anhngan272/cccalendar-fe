@@ -1,9 +1,9 @@
 {
     "common": {
-      "select_lang": "Language",
+      "select_lang": "US",
       "logo": "LOGO",
       "author": "CodingCats",
-      "copyrights": "Copyright &copy; 2021 All Rights Reserved by "
+      "copyrights": "Copyright © 2021 All Rights Reserved by "
     },
     "homepage": {
       "title": {

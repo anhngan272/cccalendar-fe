@@ -2,24 +2,23 @@
   <div>
     <div class="header">
       <!-- <router-link to="/" id="logo">{{ $t('common.logo') }}</router-link> -->
-      <a :href="$router.resolve({name:'Home'}).href">{{ $t('common.logo') }}</a>
-      
+      <a :href="$router.resolve({ name: 'Home' }).href">{{
+        $t("common.logo")
+      }}</a>
+
       <Navbar />
-      
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import Navbar from "@/components/layouts/Navbar"
-
+import Navbar from "@/components/layouts/Navbar";
 
 export default {
   name: "Header",
   components: {
     Navbar,
-    
   },
   computed: {
     ...mapGetters({ user: "getCurrentUser" }),
@@ -38,9 +37,10 @@ export default {
 }
 
 >>> .header {
-  overflow: hidden;
+  /* overflow: hidden; */
   background-color: #fff;
   padding: 5px 10px;
+  margin-bottom: 200px;
 }
 
 >>> .header a {

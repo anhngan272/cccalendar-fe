@@ -1,23 +1,17 @@
 <template>
   <div class="header-right">
     <!-- if user logged in -->
-
+    <LangSwitch />
     <template v-if="user != null">
-      <!-- <router-link to="#">{{ user.name }}</router-link> -->
       <a :href="$router.resolve({ name: '' }).href">{{ user.name }}</a>
       <a href="#" id="btn-logout" role="button" @click="confirmLogout">{{
         $t("login.signout")
       }}</a>
     </template>
     <!-- else -->
-
-    <!-- <router-link :to="{ name: 'GoogleLogin' }" v-else>{{ $t('login.signin') }}</router-link> -->
-    <a :href="$router.resolve({ name: 'GoogleLogin' }).href">{{
+    <a :href="$router.resolve({ name: 'GoogleLogin' }).href" v-else>{{
       $t("login.signin")
     }}</a>
-
-    <!-- <router-link to="/about">ABOUT</router-link> -->
-    <LangSwitch />
   </div>
 </template>
 
