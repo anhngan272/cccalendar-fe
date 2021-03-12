@@ -2,7 +2,10 @@
   <div class="langSwitch">
     <!-- <img src="@/assets/vietnam.png" alt="" v-if="flag" />
     <img src="@/assets/united-states.png" alt="" v-else /> -->
-    <img :src="require(`@/assets/${this.$i18n.locale}.png`)" alt="">
+    <img
+      :src="require(`@/assets/${this.$i18n.locale}.png`)"
+      :alt="this.$i18n.locale"
+    />
     <select v-model="$i18n.locale" @change.prevent="callSetLangActions">
       <option v-for="(lang, i) in langs" :key="`lang-${i}`" :value="lang.value">
         {{ lang.text }}
@@ -40,7 +43,6 @@ export default {
       }
       this.$store.dispatch("setLang", event.target.value);
     },
-
   },
 };
 </script>
@@ -60,11 +62,11 @@ select {
 }
 img {
   height: 25px;
-  margin-right:5px;
+  margin-right: 5px;
   /* margin-top: 5px; */
   margin-bottom: 5px;
 }
-.langSwitch{
+.langSwitch {
   display: inline-block;
   /* float: left; */
 }
