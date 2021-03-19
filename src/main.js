@@ -7,6 +7,25 @@ import { loadProgressBar } from "axios-progress-bar";
 import "axios-progress-bar/dist/nprogress.css";
 import i18n from './lang/i18n.js'
 
+// Ant Design
+import { Button, Input, FormModel, Radio, Select, Switch, Checkbox, DatePicker, Tabs, LocaleProvider, TimePicker, Icon, Form, Calendar, Alert } from 'ant-design-vue';
+import 'ant-design-vue/dist/antd.css';
+Vue.use(FormModel);
+Vue.use(Input);
+Vue.use(Radio);
+Vue.use(Select);
+Vue.use(Button);
+Vue.use(Switch);
+Vue.use(Checkbox);
+Vue.use(DatePicker);
+Vue.use(Tabs);
+Vue.use(LocaleProvider)
+Vue.use(TimePicker)
+Vue.use(Icon)
+Vue.use(Form)
+Vue.use(Calendar)
+Vue.use(Alert)
+
 /* axios-progress-bar */
 const config = { showSpinner: false };
 loadProgressBar(config);

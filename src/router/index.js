@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/pages/Home';
 import About from '../views/pages/About';
+import CalendarView from '../views/pages/CalendarView';
 import NotFound from '../views/pages/NotFound';
 import GoogleLogin from '../views/users/GoogleLogin';
 import GoogleCallback from '../views/users/GoogleCallback';
@@ -31,7 +32,11 @@ const routes = [{
     path: '/auth/google',
     name: 'GoogleCallback',
     component: GoogleCallback
-}];
+}, {
+    path: '/calendar',
+    name: 'CalendarView',
+    component: CalendarView
+},];
 
 const router = new VueRouter({
     mode: 'history',

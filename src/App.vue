@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header />
-    <main class="main-content container">
+    <main class="">
       <router-view />
     </main>
     <Footer />
@@ -21,7 +21,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 a {
   outline: none;
 }

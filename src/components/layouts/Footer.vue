@@ -1,7 +1,11 @@
 <template>
   <div class="copyright-text">
-    <p class="">{{ $t('common.copyrights') }}
-      <a :href="$router.resolve({name:'About'}).href" >{{ $t("common.author") }}</a>.
+    <p class="">
+      {{ $t("common.copyrights") }}
+      <a :href="$router.resolve({ name: 'About' }).href">{{
+        $t("common.author")
+      }}</a
+      >.
     </p>
   </div>
 </template>
@@ -22,9 +26,10 @@ a:hover {
   text-decoration: none;
 }
 .copyright-text {
+  clear: both;
   margin-top: 10px;
   bottom: 0;
-  position: absolute;
+  position: flex;
   text-align: center;
   width: 100%;
   color: #808080;

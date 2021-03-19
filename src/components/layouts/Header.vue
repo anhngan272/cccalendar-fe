@@ -5,6 +5,7 @@
       <a :href="$router.resolve({ name: 'Home' }).href">{{
         $t("common.logo")
       }}</a>
+      <a :href="$router.resolve({ name: 'CalendarView' }).href"> Calendar</a>
 
       <Navbar />
     </div>
