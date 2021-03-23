@@ -35,7 +35,8 @@ export default {
 .calendar {
   width: 60%;
   float: left;
-  height: 70%;
+  height: 70vh;
+  overflow-y: scroll;
 }
 .tabForm {
   width: 39%;
