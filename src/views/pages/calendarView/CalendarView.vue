@@ -2,7 +2,7 @@
   <div class="calendarView">
     <div class="tabForm">
       <!-- <TabForm /> -->
-      <CardForm/>
+      <CardForm />
     </div>
     <div class="calendar">
       <Calendar />
@@ -28,14 +28,14 @@ export default {
 </script>
 
 <style scoped>
-.calendarView{
+.calendarView {
   /* clear: both; */
   /* margin-top: 200px; */
 }
 .calendar {
   width: 60%;
   float: left;
-  height: 70vh;
+  height: 76vh;
   overflow-y: scroll;
 }
 .tabForm {

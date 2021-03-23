@@ -11,11 +11,9 @@
         width: '100%',
         border: '1px solid #d9d9d9',
         borderRadius: '4px',
-        height:'700px'
       }"
     >
       <a-calendar
-      
         :value="value"
         @select="onSelect"
         @panelChange="onPanelChange"

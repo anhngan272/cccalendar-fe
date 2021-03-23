@@ -1,5 +1,5 @@
 <template>
- <div>
+  <div>
     <div class="head">
       <a :href="$router.resolve({ name: 'Home' }).href">{{
         $t("common.logo")
@@ -40,7 +40,7 @@ export default {
   background: #fff;
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
 }
 >>> .head a {
   vertical-align: middle;
@@ -68,5 +68,4 @@ export default {
 >>> .router-link-exact-active:not(#logo) {
   color: black !important;
 }
-
 </style>

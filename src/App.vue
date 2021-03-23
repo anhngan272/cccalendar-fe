@@ -1,26 +1,16 @@
 <template>
   <div id="app">
-    
     <Header />
-    <!-- <div class="main">
-      <router-view />
-    </div> -->
-
-    <!-- <Footer /> -->
-
     <a-layout id="components-layout-demo-top" class="layout">
-    <!-- <a-layout-header>
-      <Header/>
-    </a-layout-header> -->
-    <a-layout-content >
-      <div :style="{ background: '#fff', padding: '24px', minHeight: '75vh',  }">
-        <router-view />
-      </div>
-    </a-layout-content>
-    <a-layout-footer style="text-align: center">
-      <Footer/>
-    </a-layout-footer>
-  </a-layout>
+      <a-layout-content :style="{ background: '#fff' }">
+        <div :style="{ padding: '24px', height: '80vh' }">
+          <router-view />
+        </div>
+      </a-layout-content>
+      <a-layout-footer style="text-align: center; background: #fff">
+        <Footer />
+      </a-layout-footer>
+    </a-layout>
   </div>
 </template>
 
