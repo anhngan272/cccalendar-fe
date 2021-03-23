@@ -44,16 +44,20 @@
     </a-form-model-item>
     <a-form-model-item label="Description" prop="description">
       <a-input v-model="form.description" type="textarea" />
+      <ThemeColor />
     </a-form-model-item>
     <a-form-model-item :wrapper-col="{ span: 14, offset: 4 }">
       <a-button type="primary" @click="onSubmit"> Create </a-button>
-      <a-button type="danger" style="margin-left: 10px" @click="resetForm"> Reset </a-button>
+      <a-button type="danger" style="margin-left: 10px" @click="resetForm">
+        Reset
+      </a-button>
     </a-form-model-item>
   </a-form-model>
 </template>
 <script>
 import moment from "moment";
 import DynamicItem from "./DynamicItem.vue";
+import ThemeColor from "./ThemeColor.vue";
 
 export default {
   name: "EventForm",
@@ -90,6 +94,7 @@ export default {
   },
   components: {
     DynamicItem,
+    ThemeColor,
   },
   created() {
     // alert(moment(new Date()).format("DD/MM/YYYY"))
