@@ -8,6 +8,7 @@
       >.
     </p>
   </div>
+  
 </template>
 
 <script>
@@ -25,13 +26,13 @@ a:hover {
   color: #58b1ec;
   text-decoration: none;
 }
-.copyright-text {
+/* .copyright-text {
   clear: both;
   margin-top: 10px;
   bottom: 0;
-  position: flex;
+  position: absolute;
   text-align: center;
   width: 100%;
   color: #808080;
-}
+} */
 </style>

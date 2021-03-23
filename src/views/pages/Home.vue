@@ -6,8 +6,10 @@
       <div class="container center">
         <div class="row">
           <div class="col-sm-6 col-md-4">
+            <a :href="$router.resolve({ name: 'CalendarView' }).href">
             <i class="fa fa-calendar"></i>
             <h4 class=""><i>{{$t('homepage.intro.calendar.title')}}</i></h4>
+            </a>
             <p class="">
               {{$t('homepage.intro.calendar.text')}}
             </p>

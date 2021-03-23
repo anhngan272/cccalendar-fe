@@ -2,7 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/pages/Home';
 import About from '../views/pages/About';
-import CalendarView from '../views/pages/CalendarView';
+import CalendarView from '../views/pages/calendarView/CalendarView';
 import NotFound from '../views/pages/NotFound';
 import GoogleLogin from '../views/users/GoogleLogin';
 import GoogleCallback from '../views/users/GoogleCallback';

@@ -51,4 +51,7 @@ export default {
 </script>
 
 <style scoped>
+body{
+  background: pink;
+}
 </style>

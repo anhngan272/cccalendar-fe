@@ -61,8 +61,8 @@ img {
   margin-right: 5px;
 }
 .langSwitch {
-  display: block;
-  float: left;
+  display: inline-block;
+  /* float: left; */
   /* float: left; */
 }
 
@@ -79,8 +79,8 @@ img {
 }
 
 .dropdown {
-  position: relative;
-  display: inline-block;
+  /* position: relative; */
+  /* display: inline-block; */
 }
 
 .dropdown-content {
@@ -100,7 +100,7 @@ img {
   /* padding: 12px 16px; */
   padding: 5px;
   text-decoration: none;
-  display: block;
+  /* display: block; */
 }
 
 .dropdown-content div:hover {

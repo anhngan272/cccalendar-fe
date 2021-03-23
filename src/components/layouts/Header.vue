@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <div class="header">
-      <!-- <router-link to="/" id="logo">{{ $t('common.logo') }}</router-link> -->
+ <div>
+    <div class="head">
       <a :href="$router.resolve({ name: 'Home' }).href">{{
         $t("common.logo")
       }}</a>
       <a :href="$router.resolve({ name: 'CalendarView' }).href"> Calendar</a>
-
       <Navbar />
     </div>
   </div>
@@ -37,18 +35,18 @@ export default {
   font-family: Arial, Helvetica, sans-serif;
 }
 
->>> .header {
-  /* overflow: hidden; */
-  background-color: #fff;
-  padding: 5px 10px;
-  margin-bottom: 200px;
+>>> .head {
+  padding: 5px;
+  background: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
 }
-
->>> .header a {
-  float: left;
-  color: #808080;
+>>> .head a {
+  vertical-align: middle;
   text-align: center;
-  padding: 12px;
+  padding: 15px;
+  color: #808080;
   text-decoration: none;
   letter-spacing: 1px;
   font-weight: bold;
@@ -58,28 +56,17 @@ export default {
   margin-left: 10px;
 }
 
->>> .header a:hover {
+>>> .head a:hover {
   background-color: #ddd;
   color: black;
+}
+
+>>> .header-right {
+  margin-left: auto;
 }
 
 >>> .router-link-exact-active:not(#logo) {
   color: black !important;
 }
 
->>> .header-right {
-  float: right;
-}
-
-@media screen and (max-width: 500px) {
-  .header a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-
-  >>> .header-right {
-    float: none;
-  }
-}
 </style>

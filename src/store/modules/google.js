@@ -47,7 +47,7 @@ const actions = {
 const mutations = {
     setLoginUrl: (state, loginUrl) => (state.loginUrl = loginUrl),
     loginSuccess: (state, payload) => {
-        const data = {...payload };
+        const data = { ...payload };
         state.authError = null;
         state.currentUser = data.user;
 
@@ -66,6 +66,8 @@ const mutations = {
         removeCookie('user');
         removeCookie('access_token');
         state.currentUser = null;
+
+        router.push({ name: 'GoogleLogin' })
     }
 };
 
