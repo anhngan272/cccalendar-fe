@@ -24,12 +24,12 @@
             <a-badge :color="item.color" :text="item.content" />
           </li>
         </ul>
-        <template slot="monthCellRender" slot-scope="value">
+        <!-- <template slot="monthCellRender" slot-scope="value">
           <div v-if="getMonthData(value)" class="notes-month">
             <section>{{ getMonthData(value) }}</section>
             <span>Backlog number</span>
           </div>
-        </template>
+        </template> -->
       </a-calendar>
     </div>
   </div>
@@ -53,17 +53,24 @@ export default {
     };
   },
   methods: {
+    test() {
+      alert("ok");
+    },
     onSelect(value) {
       this.value = value;
       this.selectedValue = value;
+      // console.log(value)
+      this.test();
     },
     onPanelChange(value) {
       this.value = value;
+      console.log(value);
+      //  alert("ok")
     },
     getListData(value) {
       let listData;
       switch (value.date()) {
-        case 8:
+        case 25:
           listData = [
             { color: this.badgeColor.red, content: "This is warning event." },
             { color: this.badgeColor.green, content: "This is usual event." },
@@ -91,7 +98,7 @@ export default {
     },
 
     getMonthData(value) {
-      if (value.month() === 8) {
+      if (value.month() === 0) {
         return 1394;
       }
     },

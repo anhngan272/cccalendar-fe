@@ -15,13 +15,16 @@
             rules: [
               {
                 required: true,
-                whitespace: true,
-                message: 'Please input passenger\'s name or delete this field.',
+                message: 'Please input attendee\'s gmail or delete this field.',
+              },
+              {
+                type: 'email',
+                message: 'The input is not valid E-mail!',
               },
             ],
           },
         ]"
-        placeholder="passenger name"
+        placeholder="Attendee Gmail"
         style="width: 60%; margin-right: 8px; margin-left: 5px"
       />
       <a-icon
