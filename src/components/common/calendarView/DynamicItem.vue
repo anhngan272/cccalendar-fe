@@ -1,5 +1,5 @@
 <template>
-  <a-form :form="form" @submit="handleSubmit">
+  <a-form :form="form" @submit.prevent="onSubmitItem">
     <a-form-item
       :wrapperCol="{}"
       v-for="(k, index) in form.getFieldValue('keys')"
@@ -15,16 +15,16 @@
             rules: [
               {
                 required: true,
-                message: 'Please input attendee\'s gmail or delete this field.',
+                message: 'Please input attendee\'s email or delete this field.',
               },
               {
                 type: 'email',
-                message: 'The input is not valid E-mail!',
+                message: 'The input is invalid Email format.',
               },
             ],
           },
         ]"
-        placeholder="Attendee Gmail"
+        placeholder="Attendee Email"
         style="width: 60%; margin-right: 8px; margin-left: 5px"
       />
       <a-icon
@@ -41,7 +41,21 @@
       </a-button>
     </a-form-item>
     <a-form-item v-bind="formItemLayoutWithOutLabel">
-      <a-button type="primary" html-type="submit"> Submit </a-button>
+      <a-button
+        type="primary"
+        html-type="submit"
+        :disabled="form.getFieldValue('keys').length === 0"
+      >
+        Submit
+      </a-button>
+      <a-button
+        style="margin-left: 10px"
+        type="danger"
+        @click="resetForm"
+        :disabled="form.getFieldValue('keys').length === 0"
+      >
+        Reset
+      </a-button>
     </a-form-item>
   </a-form>
 </template>
@@ -50,8 +64,10 @@
 let id = 0;
 export default {
   name: "DynamicItem",
+  props: ["item", "submit"],
   data() {
     return {
+      items: [],
       formItemLayout: {
         labelCol: {
           xs: { span: 24 },
@@ -104,20 +120,22 @@ export default {
           });
         }
       });
-      // can use data-binding to set
-      // important! notify form to detect changes
+    },
+    resetForm() {
+      this.form.resetFields();
     },
 
-    handleSubmit(e) {
-      e.preventDefault();
+    onSubmitItem() {
+      var items = [];
       this.form.validateFields((err, values) => {
+        const { keys, names } = values;
         if (!err) {
-          const { keys, names } = values;
-          console.log("Received values of form: ", values);
-          console.log(
-            "Merged values:",
-            keys.map((key) => names[key])
-          );
+          keys.map((key) => items.push(names[key]));
+          this.items = items;
+          this.$emit("attendeesPicked", this.items);
+          this.$emit("attendeesSubmit", true);
+        } else {
+          this.$emit("attendeesSubmit", false);
         }
       });
     },

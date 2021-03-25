@@ -46,13 +46,19 @@
       <a-switch v-model="form.wholeDay" @change="isWholeDay" />
     </a-form-model-item>
     <a-form-model-item label="Attendees" prop="description">
-      <DynamicItem />
+      <DynamicItem
+        ref="getAttendees"
+        :item="form.attendees"
+        :submit="form.attendeesSubmit"
+        @attendeesPicked="setAttendees"
+        @attendeesSubmit="attendeesSubmit"
+      />
     </a-form-model-item>
     <a-form-model-item label="Description" prop="description">
       <a-input v-model="form.description" type="textarea" />
     </a-form-model-item>
     <a-form-model-item label="Theme" prop="description">
-      <ThemeColor />
+      <ThemeColor :color="form.colorId" @colorPicked="selectColor" />
     </a-form-model-item>
     <a-form-model-item :wrapper-col="{ span: 14, offset: 4 }">
       <a-button type="primary" @click="onSubmit"> Create </a-button>
@@ -84,6 +90,9 @@ export default {
         time2: moment("13:00", "HH:mm"),
         description: "",
         wholeDay: false,
+        attendees: [],
+        attendeesSubmit: Boolean,
+        colorId: "",
         allowClear: false,
       },
 
@@ -95,9 +104,6 @@ export default {
             trigger: "submit",
           },
         ],
-        // date1: [
-        //   { required: true, message: "Please pick a date", trigger: "change" },
-        // ],
       },
     };
   },
@@ -110,9 +116,29 @@ export default {
   },
   methods: {
     moment,
+    attendeesSubmit(bool) {
+      this.form = {
+        ...this.form,
+        attendeesSubmit: bool,
+      };
+    },
+    setAttendees(items) {
+      this.form = {
+        ...this.form,
+        attendees: items,
+      };
+    },
+    selectColor(color) {
+      this.form = {
+        ...this.form,
+        colorId: color,
+      };
+    },
     onSubmit() {
+      this.$refs.getAttendees.onSubmitItem();
+
       this.$refs.ruleForm.validate((valid) => {
-        if (valid) {
+        if (valid && this.form.attendeesSubmit) {
           alert("submit!");
         } else {
           console.log("error submit!!");
@@ -146,6 +172,7 @@ export default {
     },
     resetForm() {
       this.$refs.ruleForm.resetFields();
+      this.$refs.getAttendees.resetForm();
       this.form.time1 = moment("12:00", "HH:mm");
       this.form.time2 = moment("13:00", "HH:mm");
     },
