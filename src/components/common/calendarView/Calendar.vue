@@ -98,7 +98,7 @@ export default {
     },
 
     getMonthData(value) {
-      if (value.month() === 0) {
+      if (value.month() === 8) {
         return 1394;
       }
     },

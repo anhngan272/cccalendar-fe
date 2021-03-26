@@ -11,29 +11,29 @@
     </a-form-model-item>
     <a-form-model-item label="Date" required prop="date1">
       <a-date-picker
-        :allowClear="this.form.allowClear"
+        :allowClear="this.allowClear"
         v-model="form.date1"
         format="DD-MM-YYYY"
         @change="changeStartDate"
       />
       <a-date-picker
-        :allowClear="this.form.allowClear"
-        v-show="this.form.wholeDay"
+        :allowClear="this.allowClear"
+        v-show="this.form.isWholeDay"
         v-model="form.date2"
         format="DD-MM-YYYY"
         @change="changeEndDate"
         :disabled-date="disabledDate"
       />
-      <div :wrapper-col="{ span: 28, offset: 4 }" v-show="!this.form.wholeDay">
+      <div :wrapper-col="{ span: 28, offset: 4 }" v-show="!this.form.isWholeDay">
         <a-time-picker
-          :allowClear="this.form.allowClear"
+          :allowClear="this.allowClear"
           v-model="form.time1"
           format="HH:mm"
           :default-value="moment('12:00', 'HH:mm')"
           @change="changeStartTime"
         />
         <a-time-picker
-          :allowClear="this.form.allowClear"
+          :allowClear="this.allowClear"
           v-model="form.time2"
           format="HH:mm"
           style="margin-left: 10px"
@@ -42,14 +42,14 @@
         />
       </div>
     </a-form-model-item>
-    <a-form-model-item label="Whole Day" prop="wholeDay">
-      <a-switch v-model="form.wholeDay" @change="isWholeDay" />
+    <a-form-model-item label="Whole Day" prop="isWholeDay">
+      <a-switch v-model="form.isWholeDay" @change="isWholeDay" />
     </a-form-model-item>
     <a-form-model-item label="Attendees" prop="description">
       <DynamicItem
         ref="getAttendees"
         :item="form.attendees"
-        :submit="form.attendeesSubmit"
+        :submit="form.attendeesSubmited"
         @attendeesPicked="setAttendees"
         @attendeesSubmit="attendeesSubmit"
       />
@@ -81,19 +81,19 @@ export default {
       labelCol: { span: 4 },
       wrapperCol: { span: 14 },
       other: "",
+      allowClear: false,
       form: {
         title: "",
-        // date1: undefined,
         date1: moment(new Date()),
         date2: moment(new Date()),
         time1: moment("12:00", "HH:mm"),
         time2: moment("13:00", "HH:mm"),
         description: "",
-        wholeDay: false,
+        isWholeDay: false,
         attendees: [],
-        attendeesSubmit: Boolean,
+        attendeesSubmited: Boolean,
         colorId: "",
-        allowClear: false,
+        
       },
 
       rules: {
@@ -119,7 +119,7 @@ export default {
     attendeesSubmit(bool) {
       this.form = {
         ...this.form,
-        attendeesSubmit: bool,
+        attendeesSubmited: bool,
       };
     },
     setAttendees(items) {
@@ -138,7 +138,7 @@ export default {
       this.$refs.getAttendees.onSubmitItem();
 
       this.$refs.ruleForm.validate((valid) => {
-        if (valid && this.form.attendeesSubmit) {
+        if (valid && this.form.attendeesSubmited) {
           alert("submit!");
         } else {
           console.log("error submit!!");
@@ -185,14 +185,14 @@ export default {
     isWholeDay() {
       this.form.date2 = this.form.date1;
     },
-    changeStartDate(value) {
+    changeStartDate() {
       this.form.date2 = this.form.date1;
 
-      alert(value);
+      // alert(value);
     },
     changeEndDate(value) {
       this.form.date2 = value;
-      alert(value);
+      // alert(value);
     },
     changeStartTime() {
       const hour = this.form.time1.hour();
