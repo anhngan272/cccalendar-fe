@@ -1,7 +1,6 @@
 <template>
   <div class="calendarView">
     <div class="tabForm">
-      <!-- <TabForm /> -->
       <CardForm />
     </div>
     <div class="calendar">
@@ -11,7 +10,6 @@
 </template>
 
 <script>
-// import TabForm from "@/components/common/calendarView/TabForm";
 import Calendar from "@/components/common/calendarView/Calendar";
 import CardForm from "@/components/common/calendarView/CardForm";
 export default {
@@ -20,7 +18,6 @@ export default {
     return {};
   },
   components: {
-    // TabForm,
     Calendar,
     CardForm,
   },

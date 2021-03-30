@@ -8,7 +8,12 @@
         :key="index"
       >
         <label>
-          <input type="radio" name="color" :value="theme" />
+          <input
+            type="radio"
+            name="color"
+            :value="theme"
+            :checked="theme == '#ff3e30'"
+          />
           <span class="swatch" :style="{ 'background-color': theme }"></span>
         </label>
       </div>

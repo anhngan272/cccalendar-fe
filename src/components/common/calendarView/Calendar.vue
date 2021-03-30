@@ -1,129 +1,182 @@
-<template>
-  <div class="wrap">
-    <a-alert
-      :message="`You selected date: ${
-        selectedValue && selectedValue.format('DD-MM-YYYY')
-      }`"
-    />
-
-    <div
-      :style="{
-        display: 'inline-block',
-        width: '100%',
-        border: '1px solid #d9d9d9',
-        borderRadius: '4px',
-      }"
-    >
-      <a-calendar
-        :value="value"
-        @select="onSelect"
-        @panelChange="onPanelChange"
-      >
-        <ul slot="dateCellRender" slot-scope="value" class="events">
-          <li v-for="item in getListData(value)" :key="item.content">
-            <a-badge :color="item.color" :text="item.content" />
-          </li>
-        </ul>
-        <!-- <template slot="monthCellRender" slot-scope="value">
-          <div v-if="getMonthData(value)" class="notes-month">
-            <section>{{ getMonthData(value) }}</section>
-            <span>Backlog number</span>
-          </div>
-        </template> -->
-      </a-calendar>
-    </div>
-  </div>
-</template>
-
 <script>
-import moment from "moment";
+import FullCalendar from "@fullcalendar/vue";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import { INITIAL_EVENTS, createEventId } from "@/assets/event-utils";
+import vi from "@fullcalendar/core/locales/vi";
+
 export default {
-  name: "Calendar",
-  data() {
+  components: {
+    FullCalendar, // make the <FullCalendar> tag available
+  },
+
+  data: function () {
     return {
-      value: moment(new Date()),
-      selectedValue: moment(new Date()),
-      // value1: moment("2017-01-25"),
-      badgeColor: {
-        red: "#ff3e30",
-        blue: "#176bef",
-        yellow: "#f7b529",
-        green: "#179b52",
+      calendarOptions: {
+        locale: vi,
+        plugins: [
+          dayGridPlugin,
+          timeGridPlugin,
+          interactionPlugin, // needed for dateClick
+        ],
+        headerToolbar: {
+          left: "prev,next",
+          center: "title",
+          right: "dayGridMonth,timeGridWeek",
+        },
+        initialView: "dayGridMonth",
+        initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
+        editable: true,
+        selectable: true,
+        selectMirror: true,
+        dayMaxEvents: true,
+        weekends: true,
+        select: this.handleDateSelect,
+        eventClick: this.handleEventClick,
+        eventsSet: this.handleEvents,
+        eventDisplay: "block",
+        //  timeFormat: 'h:mm',
+        /* you can update a remote database when these fire:
+        eventAdd:
+        eventChange:
+        eventRemove:
+        */
       },
+      currentEvents: [],
     };
   },
+
   methods: {
-    test() {
-      alert("ok");
-    },
-    onSelect(value) {
-      this.value = value;
-      this.selectedValue = value;
-      // console.log(value)
-      this.test();
-    },
-    onPanelChange(value) {
-      this.value = value;
-      console.log(value);
-      //  alert("ok")
-    },
-    getListData(value) {
-      let listData;
-      switch (value.date()) {
-        case 25:
-          listData = [
-            { color: this.badgeColor.red, content: "This is warning event." },
-            { color: this.badgeColor.green, content: "This is usual event." },
-          ];
-          break;
-        case 10:
-          listData = [
-            { color: this.badgeColor.blue, content: "This is warning event." },
-            { color: this.badgeColor.yellow, content: "This is usual event." },
-            { color: this.badgeColor.yellow, content: "This is error event." },
-          ];
-          break;
-        case 15:
-          listData = [
-            { color: this.badgeColor.blue, content: "This is warning event" },
-            {
-              color: this.badgeColor.red,
-              content: "This is very long usual event。。....",
-            },
-          ];
-          break;
-        default:
-      }
-      return listData || [];
+    handleWeekendsToggle() {
+      this.calendarOptions.weekends = !this.calendarOptions.weekends; // update a property
     },
 
-    getMonthData(value) {
-      if (value.month() === 8) {
-        return 1394;
+    handleDateSelect(selectInfo) {
+      let title = prompt("Please enter a new title for your event");
+      let calendarApi = selectInfo.view.calendar;
+
+      calendarApi.unselect(); // clear date selection
+
+      if (title) {
+        calendarApi.addEvent({
+          id: createEventId(),
+          title,
+          start: selectInfo.startStr,
+          end: selectInfo.endStr,
+          allDay: selectInfo.allDay,
+        });
       }
+    },
+
+    handleEventClick(clickInfo) {
+      if (
+        confirm(
+          `Are you sure you want to delete the event '${clickInfo.event.title}'`
+        )
+      ) {
+        clickInfo.event.remove();
+      }
+    },
+
+    handleEvents(events) {
+      this.currentEvents = events;
     },
   },
 };
 </script>
 
-<style scoped>
-.events {
-  list-style: none;
+<template>
+  <div class="demo-app">
+    <div class="">
+      <!-- <div class='demo-app-sidebar-section'>
+        <h2>Instructions</h2>
+        <ul>
+          <li>Select dates and you will be prompted to create a new event</li>
+          <li>Drag, drop, and resize events</li>
+          <li>Click an event to delete it</li>
+        </ul>
+      </div> -->
+      <!-- <div class='demo-app-sidebar-section'>
+        <label>
+          <input
+            type='checkbox'
+            :checked='calendarOptions.weekends'
+            @change='handleWeekendsToggle'
+          />
+          toggle weekends
+        </label>
+      </div> -->
+      <!-- <div class='demo-app-sidebar-section'>
+        <h2>All Events ({{ currentEvents.length }})</h2>
+        <ul>
+          <li v-for='event in currentEvents' :key='event.id'>
+            <b>{{ event.startStr }}</b>
+            <i>{{ event.title }}</i>
+          </li>
+        </ul>
+      </div> -->
+    </div>
+    <div class="demo-app-main">
+      <FullCalendar class="demo-app-calendar" :options="calendarOptions">
+        <template v-slot:eventContent="arg">
+          <b>{{ arg.timeText }}</b>
+          <b
+            ><i>{{ arg.event.title }}</i></b
+          >
+        </template>
+      </FullCalendar>
+    </div>
+  </div>
+</template>
+
+<style lang='css'>
+h2 {
   margin: 0;
+  font-size: 16px;
+}
+
+ul {
+  margin: 0;
+  padding: 0 0 0 1.5em;
+}
+
+li {
+  margin: 1.5em 0;
   padding: 0;
 }
-.events .ant-badge-status {
-  overflow: hidden;
-  white-space: nowrap;
-  width: 100%;
-  text-overflow: ellipsis;
-  font-size: 12px;
+
+b {
+  /* used for event dates/times */
+  margin-right: 3px;
 }
-.notes-month {
-  text-align: center;
-  font-size: 28px;
+
+.demo-app {
+  display: flex;
+  min-height: 100%;
+  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+  font-size: 14px;
 }
-.notes-month section {
-  font-size: 28px;
+
+.demo-app-sidebar {
+  width: 300px;
+  line-height: 1.5;
+  background: #eaf9ff;
+  border-right: 1px solid #d3e2e8;
+}
+
+.demo-app-sidebar-section {
+  padding: 2em;
+}
+
+.demo-app-main {
+  flex-grow: 1;
+  padding: 2em;
+}
+
+.fc {
+  /* the calendar root */
+  /* max-width: 1100px; */
+  margin: 0 auto;
 }
 </style>

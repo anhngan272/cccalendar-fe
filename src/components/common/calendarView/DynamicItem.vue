@@ -18,8 +18,8 @@
                 message: 'Please input attendee\'s email or delete this field.',
               },
               {
-                type: 'email',
-                message: 'The input is invalid Email format.',
+                // type: 'email',
+                //message: 'The input is invalid Email format.',
               },
             ],
           },
@@ -40,7 +40,7 @@
         <a-icon type="plus" /> Add field
       </a-button>
     </a-form-item>
-    <a-form-item v-bind="formItemLayoutWithOutLabel">
+    <!-- <a-form-item v-bind="formItemLayoutWithOutLabel">
       <a-button
         type="primary"
         html-type="submit"
@@ -56,7 +56,7 @@
       >
         Reset
       </a-button>
-    </a-form-item>
+    </a-form-item> -->
   </a-form>
 </template>
 
@@ -129,9 +129,17 @@ export default {
       var items = [];
       this.form.validateFields((err, values) => {
         const { keys, names } = values;
+
         if (!err) {
           keys.map((key) => items.push(names[key]));
           this.items = items;
+          for (var i = 0; i < items.length - 1; i++) {
+            for (var j = i + 1; j < items.length; j++) {
+              if (items[i] == items[j]) {
+                items.splice(j, 1);
+              }
+            }
+          }
           this.$emit("attendeesPicked", this.items);
           this.$emit("attendeesSubmit", true);
         } else {

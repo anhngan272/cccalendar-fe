@@ -9,56 +9,57 @@
     <a-form-model-item label="Title" prop="title">
       <a-input v-model="form.title" ref="title" />
     </a-form-model-item>
-    <a-form-model-item label="Date" required prop="date1">
+    <a-form-model-item label="Begin" required prop="date1">
       <a-date-picker
+        inputReadOnly
         :allowClear="this.allowClear"
         v-model="form.date1"
         format="DD-MM-YYYY"
         @change="changeStartDate"
       />
-      <a-date-picker
+      <a-time-picker
+        prop="time1"
+        inputReadOnly
         :allowClear="this.allowClear"
-        v-show="this.form.isWholeDay"
+        v-model="form.time1"
+        format="HH:mm"
+        :default-value="moment('12:00', 'HH:mm')"
+        @change="changeStartTime"
+        style="margin-left: 15px"
+      />
+    </a-form-model-item>
+    <a-form-model-item label="End" prop="date2">
+      <a-date-picker
+        inputReadOnly
+        :allowClear="this.allowClear"
         v-model="form.date2"
         format="DD-MM-YYYY"
-        @change="changeEndDate"
         :disabled-date="disabledDate"
       />
-      <div :wrapper-col="{ span: 28, offset: 4 }" v-show="!this.form.isWholeDay">
-        <a-time-picker
-          :allowClear="this.allowClear"
-          v-model="form.time1"
-          format="HH:mm"
-          :default-value="moment('12:00', 'HH:mm')"
-          @change="changeStartTime"
-        />
-        <a-time-picker
-          :allowClear="this.allowClear"
-          v-model="form.time2"
-          format="HH:mm"
-          style="margin-left: 10px"
-          :disabledHours="disabledHours"
-          :disabledMinutes="disabledMinutes"
-        />
-      </div>
+      <a-time-picker
+        inputReadOnly
+        :allowClear="this.allowClear"
+        v-model="form.time2"
+        format="HH:mm"
+        style="margin-left: 15px"
+        :disabledHours="disabledHours"
+        :disabledMinutes="disabledMinutes"
+      />
     </a-form-model-item>
-    <a-form-model-item label="Whole Day" prop="isWholeDay">
-      <a-switch v-model="form.isWholeDay" @change="isWholeDay" />
-    </a-form-model-item>
-    <a-form-model-item label="Attendees" prop="description">
+    <a-form-model-item label="Attendees" prop="attendees">
       <DynamicItem
         ref="getAttendees"
         :item="form.attendees"
         :submit="form.attendeesSubmited"
         @attendeesPicked="setAttendees"
-        @attendeesSubmit="attendeesSubmit"
+        @attendeesSubmit="setAttendeesSubmit"
       />
     </a-form-model-item>
     <a-form-model-item label="Description" prop="description">
       <a-input v-model="form.description" type="textarea" />
     </a-form-model-item>
-    <a-form-model-item label="Theme" prop="description">
-      <ThemeColor :color="form.colorId" @colorPicked="selectColor" />
+    <a-form-model-item label="Theme" prop="colorId">
+      <ThemeColor :color="form.colorId" @colorPicked="setColor" />
     </a-form-model-item>
     <a-form-model-item :wrapper-col="{ span: 14, offset: 4 }">
       <a-button type="primary" @click="onSubmit"> Create </a-button>
@@ -79,7 +80,7 @@ export default {
   data() {
     return {
       labelCol: { span: 4 },
-      wrapperCol: { span: 14 },
+      wrapperCol: { span: 15 },
       other: "",
       allowClear: false,
       form: {
@@ -89,11 +90,9 @@ export default {
         time1: moment("12:00", "HH:mm"),
         time2: moment("13:00", "HH:mm"),
         description: "",
-        isWholeDay: false,
         attendees: [],
         attendeesSubmited: Boolean,
-        colorId: "",
-        
+        colorId: "#ff3e30",
       },
 
       rules: {
@@ -111,12 +110,10 @@ export default {
     DynamicItem,
     ThemeColor,
   },
-  created() {
-    // alert(moment(new Date()).format("DD/MM/YYYY"))
-  },
+  created() {},
   methods: {
     moment,
-    attendeesSubmit(bool) {
+    setAttendeesSubmit(bool) {
       this.form = {
         ...this.form,
         attendeesSubmited: bool,
@@ -128,7 +125,7 @@ export default {
         attendees: items,
       };
     },
-    selectColor(color) {
+    setColor(color) {
       this.form = {
         ...this.form,
         colorId: color,
@@ -182,17 +179,11 @@ export default {
       this.form.start = dateStrings[0];
       this.form.end = dateStrings[1];
     },
-    isWholeDay() {
-      this.form.date2 = this.form.date1;
-    },
-    changeStartDate() {
-      this.form.date2 = this.form.date1;
-
-      // alert(value);
-    },
-    changeEndDate(value) {
-      this.form.date2 = value;
-      // alert(value);
+    changeStartDate(value) {
+      if (this.form.date2.date() < value.date()) {
+        this.form.date2 = value;
+      }
+      // console.log(value.toISOString().replace(/T.*$/, ''))
     },
     changeStartTime() {
       const hour = this.form.time1.hour();
@@ -203,3 +194,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+>>> .ant-form-item {
+  margin-bottom: 10px;
+}
+</style>
