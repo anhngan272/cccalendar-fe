@@ -6,7 +6,7 @@
 
 <script>
 export default {
-name:'Diary'
+name:'DiaryEntries'
 }
 </script>
 

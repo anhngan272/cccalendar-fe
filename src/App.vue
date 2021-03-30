@@ -7,7 +7,7 @@
           <router-view />
         </div>
       </a-layout-content>
-      <a-layout-footer style="text-align: center; background: #fff">
+      <a-layout-footer style="text-align: center; background: #fff;">
         <Footer />
       </a-layout-footer>
     </a-layout>
