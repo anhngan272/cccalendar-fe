@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import Home from '../views/pages/Home';
 import About from '../views/pages/About';
 import CalendarView from '../views/pages/calendarView/CalendarView';
+import DiaryView from '../views/pages/diaryView/DiaryView';
 import NotFound from '../views/pages/NotFound';
 import GoogleLogin from '../views/users/GoogleLogin';
 import GoogleCallback from '../views/users/GoogleCallback';
@@ -39,6 +40,11 @@ const routes = [{
     // meta: {
     //     requiresAuth: true,
     //   },
+    component: CalendarView
+}, {
+    path: '/diary',
+    name: 'DiaryView',
+    component: DiaryView
 },];
 
 const router = new VueRouter({

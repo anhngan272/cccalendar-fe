@@ -5,6 +5,7 @@
         ><img src="@/assets/cccalendar_logo.png" style="height: 30px"
       /></a>
       <a :href="$router.resolve({ name: 'CalendarView' }).href"> Calendar</a>
+      <a :href="$router.resolve({ name: 'DiaryView' }).href"> Diary</a>
       <Navbar />
     </div>
   </div>
