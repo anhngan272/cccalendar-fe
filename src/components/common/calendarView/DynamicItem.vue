@@ -18,8 +18,8 @@
                 message: 'Please input attendee\'s email or delete this field.',
               },
               {
-                // type: 'email',
-                //message: 'The input is invalid Email format.',
+                type: 'email',
+                message: 'The input is invalid Email format.',
               },
             ],
           },
@@ -64,7 +64,7 @@
 let id = 0;
 export default {
   name: "DynamicItem",
-  props: ["item", "submit"],
+  props: ["attendees", "submit"],
   data() {
     return {
       items: [],
@@ -132,7 +132,7 @@ export default {
 
         if (!err) {
           keys.map((key) => items.push(names[key]));
-          this.items = items;
+
           for (var i = 0; i < items.length - 1; i++) {
             for (var j = i + 1; j < items.length; j++) {
               if (items[i] == items[j]) {
@@ -140,7 +140,8 @@ export default {
               }
             }
           }
-          this.$emit("attendeesPicked", this.items);
+          this.attendees = items;
+          this.$emit("attendeesPicked", this.attendees);
           this.$emit("attendeesSubmit", true);
         } else {
           this.$emit("attendeesSubmit", false);

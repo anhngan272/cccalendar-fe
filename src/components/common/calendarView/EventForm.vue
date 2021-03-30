@@ -49,17 +49,20 @@
     <a-form-model-item label="Attendees" prop="attendees">
       <DynamicItem
         ref="getAttendees"
-        :item="form.attendees"
+        :attendees="form.attendees"
         :submit="form.attendeesSubmited"
         @attendeesPicked="setAttendees"
         @attendeesSubmit="setAttendeesSubmit"
       />
     </a-form-model-item>
+    <a-form-model-item label="Tags" prop="tag">
+      <TagPicker :tags="form.tags" @tagsPicked="setTags" />
+    </a-form-model-item>
     <a-form-model-item label="Description" prop="description">
       <a-input v-model="form.description" type="textarea" />
     </a-form-model-item>
     <a-form-model-item label="Theme" prop="colorId">
-      <ThemeColor :color="form.colorId" @colorPicked="setColor" />
+      <ThemePicker :color="form.colorId" @colorPicked="setColor" />
     </a-form-model-item>
     <a-form-model-item :wrapper-col="{ span: 14, offset: 4 }">
       <a-button type="primary" @click="onSubmit"> Create </a-button>
@@ -73,7 +76,8 @@
 <script>
 import moment from "moment";
 import DynamicItem from "./DynamicItem.vue";
-import ThemeColor from "./ThemeColor.vue";
+import ThemePicker from "./ThemePicker.vue";
+import TagPicker from "./TagPicker.vue";
 
 export default {
   name: "EventForm",
@@ -91,6 +95,7 @@ export default {
         time2: moment("13:00", "HH:mm"),
         description: "",
         attendees: [],
+        tags: [],
         attendeesSubmited: Boolean,
         colorId: "#ff3e30",
       },
@@ -108,21 +113,28 @@ export default {
   },
   components: {
     DynamicItem,
-    ThemeColor,
+    ThemePicker,
+    TagPicker,
   },
   created() {},
   methods: {
     moment,
+    setTags(tags) {
+      this.form = {
+        ...this.form,
+        tags: tags,
+      };
+    },
     setAttendeesSubmit(bool) {
       this.form = {
         ...this.form,
         attendeesSubmited: bool,
       };
     },
-    setAttendees(items) {
+    setAttendees(attendees) {
       this.form = {
         ...this.form,
-        attendees: items,
+        attendees: attendees,
       };
     },
     setColor(color) {
