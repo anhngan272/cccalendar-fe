@@ -1,32 +1,31 @@
 <template>
   <div>
     <div class="diary">
-      <DiaryEntries/>
+      <DiaryEntries />
     </div>
   </div>
 </template>
 
 <script>
-import DiaryEntries from '@/components/common/diaryView/DiaryEntries'
+import DiaryEntries from "@/components/common/diaryView/DiaryEntries";
 export default {
-name:'DiaryView',
-components:{
+  name: "DiaryView",
+  components: {
     DiaryEntries,
-}
-}
+  },
+};
 </script>
 
 <style scoped>
-.diary{
-height: 88vh;
-background: white;
-overflow: scroll;
+.diary {
+  height: 88vh;
+  background: white;
+  overflow: scroll;
 }
 
-.editor{
-height: 42vh;
-width: 100%;
-background: pink;
+.editor {
+  height: 42vh;
+  width: 100%;
+  background: pink;
 }
-
 </style>
