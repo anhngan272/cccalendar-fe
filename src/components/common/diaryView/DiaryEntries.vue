@@ -8,11 +8,10 @@
       />
     </div>
     <div>
-
-    <ListView />
+      <ListView />
     </div>
     <div class="addBtn">
-      <TextEditor ref="textEditor"/>
+      <TextEditor ref="textEditor" />
       <a role="button" @click="addDiary" href="#" class="float">
         <i class="fa fa-plus my-float"></i>
       </a>
@@ -33,14 +32,14 @@ export default {
   },
   components: {
     ListView,
-    TextEditor
+    TextEditor,
   },
   methods: {
     onSearch(value) {
       console.log(value);
     },
     addDiary() {
-      this.$refs.textEditor.showModal()
+      this.$refs.textEditor.showModal();
       // alert("add diary");
     },
   },
@@ -54,7 +53,6 @@ export default {
   top: 0;
   padding: 20px;
   z-index: 1;
-
 }
 
 body {

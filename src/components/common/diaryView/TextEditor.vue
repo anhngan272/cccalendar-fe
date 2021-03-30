@@ -37,7 +37,7 @@
       </a-form-model-item>
 
       <a-form-model-item
-        style="height:50vh"
+        style="height: 50vh"
         prop="content"
         :wrapper-col="{ span: 24, offset: 1 }"
       >
@@ -128,7 +128,7 @@ export default {
     },
     resetForm() {
       this.$refs.form.resetFields();
-      this.form.time=moment.utc("12:00", "HH:mm")
+      this.form.time = moment.utc("12:00", "HH:mm");
       console.log("reset");
     },
     handleImageAdded: function (file, Editor, cursorLocation, resetUploader) {
