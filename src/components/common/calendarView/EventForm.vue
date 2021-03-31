@@ -74,10 +74,12 @@
   </a-form-model>
 </template>
 <script>
+import { mapActions } from "vuex";
 import moment from "moment";
 import DynamicItem from "./DynamicItem.vue";
 import ThemePicker from "./ThemePicker.vue";
 import TagPicker from "./TagPicker.vue";
+// import { INITIAL_EVENTS, createEventId } from "@/assets/event-utils";
 
 export default {
   name: "EventForm",
@@ -89,15 +91,22 @@ export default {
       allowClear: false,
       form: {
         title: "",
-        date1: moment(new Date()),
-        date2: moment(new Date()),
-        time1: moment("12:00", "HH:mm"),
-        time2: moment("13:00", "HH:mm"),
+        date1: moment(new Date()).add(7, "hours"),
+        date2: moment(new Date()).add(7, "hours"),
+        time1: moment.utc("12:00", "HH:mm"),
+        time2: moment.utc("13:00", "HH:mm"),
+        start: null,
+        end: null,
         description: "",
         attendees: [],
         tags: [],
         attendeesSubmited: Boolean,
         colorId: "#ff3e30",
+      },
+      event: {
+        title: "",
+        start: null,
+        end: null,
       },
 
       rules: {
@@ -118,6 +127,7 @@ export default {
   },
   created() {},
   methods: {
+    ...mapActions(["setEvent"]),
     moment,
     setTags(tags) {
       this.form = {
@@ -143,11 +153,28 @@ export default {
         colorId: color,
       };
     },
+    timeFormat(type, value) {
+      switch (type) {
+        case "date":
+          return value.toISOString().replace(/T.*$/, "");
+        case "time":
+          return value.toISOString().substring(10, 16);
+      }
+    },
     onSubmit() {
       this.$refs.getAttendees.onSubmitItem();
 
       this.$refs.ruleForm.validate((valid) => {
         if (valid && this.form.attendeesSubmited) {
+          this.form.start =
+            this.timeFormat("date", this.form.date1) +
+            this.timeFormat("time", this.form.time1);
+          this.form.end =
+            this.timeFormat("date", this.form.date2) +
+            this.timeFormat("time", this.form.time2);
+          this.setEvent(this.form);
+          this.$emit("addEvent");
+
           alert("submit!");
         } else {
           console.log("error submit!!");
@@ -182,8 +209,8 @@ export default {
     resetForm() {
       this.$refs.ruleForm.resetFields();
       this.$refs.getAttendees.resetForm();
-      this.form.time1 = moment("12:00", "HH:mm");
-      this.form.time2 = moment("13:00", "HH:mm");
+      this.form.time1 = moment.utc("12:00", "HH:mm");
+      this.form.time2 = moment.utc("13:00", "HH:mm");
     },
     onChange(dates, dateStrings) {
       console.log("From: ", dates[0], ", to: ", dates[1]);

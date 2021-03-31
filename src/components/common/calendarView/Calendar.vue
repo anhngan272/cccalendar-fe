@@ -53,6 +53,7 @@ export default {
     },
 
     handleDateSelect(selectInfo) {
+      console.log(selectInfo);
       let title = prompt("Please enter a new title for your event");
       let calendarApi = selectInfo.view.calendar;
 
@@ -118,7 +119,11 @@ export default {
       </div> -->
     </div>
     <div class="demo-app-main">
-      <FullCalendar class="demo-app-calendar" :options="calendarOptions">
+      <FullCalendar
+        ref="calendar"
+        class="demo-app-calendar"
+        :options="calendarOptions"
+      >
         <template v-slot:eventContent="arg">
           <b>{{ arg.timeText }}</b>
           <b
