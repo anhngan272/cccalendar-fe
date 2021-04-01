@@ -13,7 +13,17 @@ export default {
 
   data: function () {
     return {
+      date:null,
+      visible: false,
       calendarOptions: {
+        customButtons: {
+          datepicker: {
+            text: "select a date",
+            click: () => {
+              this.showModal()
+            },
+          },
+        },
         locale: vi,
         plugins: [
           dayGridPlugin,
@@ -21,7 +31,7 @@ export default {
           interactionPlugin, // needed for dateClick
         ],
         headerToolbar: {
-          left: "prev,next",
+          left: "prev,next datepicker",
           center: "title",
           right: "dayGridMonth,timeGridWeek",
         },
@@ -48,6 +58,14 @@ export default {
   },
 
   methods: {
+    showModal() {
+      this.visible = true;
+    },
+    handleOk() {
+      var date = this.date.toISOString().replace(/T.*$/, "")
+      this.$refs.calendar.getApi().changeView('dayGridMonth', date)
+      this.visible = false;
+    },
     handleWeekendsToggle() {
       this.calendarOptions.weekends = !this.calendarOptions.weekends; // update a property
     },
@@ -131,6 +149,14 @@ export default {
           >
         </template>
       </FullCalendar>
+       <a-modal v-model="visible" title="Basic Modal" @ok="handleOk">
+      <a-date-picker
+        inputReadOnly
+        placeholder="select"
+        v-model="date"
+        format="DD-MM-YYYY"
+      />
+    </a-modal>
     </div>
   </div>
 </template>

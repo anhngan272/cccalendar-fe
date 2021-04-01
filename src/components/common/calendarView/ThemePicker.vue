@@ -2,21 +2,21 @@
   <div class="color-main">
     <a-select
       label-in-value
-      :default-value="{ key: '#ff3e30' }"
-      style="width: 200px"
+      :default-value="{ key: '#039BE5' }"
+      style="width: 100%"
       @change="selectColor"
     >
-      <a-select-option value="#ff3e30">
+      <a-select-option value="#039BE5">
         <span
           style="
             border-radius: 4px;
             margin-right: 5px;
-            color: #ff3e30;
-            background-color: #ff3e30;
+            color: #039BE5;
+            background-color: #039BE5;
           "
           ><b>col</b></span
         >
-        <span style="color: #ff3e30"><b>red</b></span>
+        <span style="color: #039BE5"><b>Pacific Blue</b></span>
       </a-select-option>
       <a-select-option
         v-for="(colorId, index) in colors.id"
@@ -44,8 +44,8 @@ export default {
     return {
       // colors: ["#ff3e30", "#176bef", "#f7b529", "#179b52"],
       colors: {
-        color: ["blue", "yellow", "green"],
-        id: ["#176bef", "#f7b529", "#179b52"],
+        color: ["Tomato Red","Silver Pink", "Orange", "Banana","Light Green","Basil","Blueberry","Lavender","Grape","Smoky Gray"],
+        id: ["#D50000","#E67C73", "#F4511E", "#F6BF26","#33B679","#0B8043","#3F51B5","#7986CB","#8E24AA","#616161"],
       },
     };
   },

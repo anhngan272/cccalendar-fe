@@ -101,7 +101,7 @@ export default {
         attendees: [],
         tags: [],
         attendeesSubmited: Boolean,
-        colorId: "#ff3e30",
+        colorId: "#039BE5",
       },
       event: {
         title: "",
