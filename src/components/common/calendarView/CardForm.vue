@@ -1,7 +1,7 @@
 <template>
   <div>
     <a-card title="Add Event">
-      <EventForm @addEvent="addEvent" />
+      <EventForm />
     </a-card>
   </div>
 </template>
@@ -10,11 +10,7 @@
 import EventForm from "./EventForm.vue";
 export default {
   name: "CardForm",
-  methods: {
-    addEvent() {
-      this.$emit("addEvent");
-    },
-  },
+  methods: {},
   components: {
     EventForm,
   },

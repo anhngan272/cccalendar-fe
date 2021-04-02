@@ -1,7 +1,7 @@
 <template>
   <div class="calendarView">
     <div class="tabForm">
-      <CardForm @addEvent="addEvent" />
+      <CardForm />
     </div>
     <div class="calendar">
       <Calendar ref="calendarWrap" />
@@ -16,19 +16,7 @@ import Calendar from "@/components/common/calendarView/Calendar";
 import CardForm from "@/components/common/calendarView/CardForm";
 export default {
   name: "CalendarView",
-  methods: {
-    addEvent() {
-      // console.log(this.$refs.cal.$refs.calendar.getApi().prev())
-      this.$refs.calendarWrap.$refs.calendar.getApi().addEvent({
-        title: this.event.title,
-        start: this.event.start,
-        end: this.event.end,
-        textColor: "#fff",
-        backgroundColor: this.event.colorId,
-        allDay: false,
-      });
-    },
-  },
+  methods: {},
   data() {
     return {};
   },

@@ -3,24 +3,34 @@ import FullCalendar from "@fullcalendar/vue";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import { INITIAL_EVENTS, createEventId } from "@/assets/event-utils";
+import EventModal from "@/components/common/calendarView/EventModal";
+// import { createEventId } from "@/store/modules/calendarEvent/";
 import vi from "@fullcalendar/core/locales/vi";
+import { mapGetters } from "vuex";
+import moment from "moment";
 
 export default {
   components: {
     FullCalendar, // make the <FullCalendar> tag available
+    EventModal,
   },
 
   data: function () {
     return {
-      date:null,
-      visible: false,
+      date: moment(new Date()).add(7, "hours"),
+      modal1: false,
+      modal2: false,
+      eventModal: {
+        title: "title",
+        text: "something",
+      },
+      eventModalDescription: "hello",
       calendarOptions: {
         customButtons: {
           datepicker: {
             text: "select a date",
             click: () => {
-              this.showModal()
+              this.showModal();
             },
           },
         },
@@ -36,9 +46,10 @@ export default {
           right: "dayGridMonth,timeGridWeek",
         },
         initialView: "dayGridMonth",
-        initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
+        // initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
+
         editable: true,
-        selectable: true,
+        // selectable: true,
         selectMirror: true,
         dayMaxEvents: true,
         weekends: true,
@@ -56,46 +67,46 @@ export default {
       currentEvents: [],
     };
   },
+  computed: {
+    ...mapGetters(["getEvents"]),
+  },
 
   methods: {
+    moment,
     showModal() {
-      this.visible = true;
+      this.modal1 = true;
     },
     handleOk() {
-      var date = this.date.toISOString().replace(/T.*$/, "")
-      this.$refs.calendar.getApi().changeView('dayGridMonth', date)
-      this.visible = false;
+      var date = this.date.toISOString().replace(/T.*$/, "");
+      this.$refs.calendar.getApi().changeView("dayGridMonth", date);
+      this.modal1 = false;
     },
     handleWeekendsToggle() {
       this.calendarOptions.weekends = !this.calendarOptions.weekends; // update a property
     },
 
     handleDateSelect(selectInfo) {
-      console.log(selectInfo);
-      let title = prompt("Please enter a new title for your event");
-      let calendarApi = selectInfo.view.calendar;
+      // console.log(selectInfo);
+      // let title = prompt("Please enter a new title for your event");
+      // let calendarApi = selectInfo.view.calendar;
 
-      calendarApi.unselect(); // clear date selection
+      // calendarApi.unselect(); // clear date selection
 
-      if (title) {
-        calendarApi.addEvent({
-          id: createEventId(),
-          title,
-          start: selectInfo.startStr,
-          end: selectInfo.endStr,
-          allDay: selectInfo.allDay,
-        });
-      }
+      var event = {
+        // calendarApi.addEvent({
+        title: "haha",
+        start: selectInfo.startStr,
+        end: selectInfo.endStr,
+        allDay: true,
+      };
+      this.$store.commit("addEvent", event);
+      console.log(this.EVENTS);
     },
 
     handleEventClick(clickInfo) {
-      if (
-        confirm(
-          `Are you sure you want to delete the event '${clickInfo.event.title}'`
-        )
-      ) {
-        clickInfo.event.remove();
-      }
+      this.modal2 = true;
+      this.eventModal = clickInfo.event;
+      this.eventModalDescription = clickInfo.event.extendedProps.description;
     },
 
     handleEvents(events) {
@@ -140,7 +151,7 @@ export default {
       <FullCalendar
         ref="calendar"
         class="demo-app-calendar"
-        :options="calendarOptions"
+        :options="{ ...calendarOptions, events: getEvents }"
       >
         <template v-slot:eventContent="arg">
           <b>{{ arg.timeText }}</b>
@@ -149,14 +160,15 @@ export default {
           >
         </template>
       </FullCalendar>
-       <a-modal v-model="visible" title="Basic Modal" @ok="handleOk">
-      <a-date-picker
-        inputReadOnly
-        placeholder="select"
-        v-model="date"
-        format="DD-MM-YYYY"
-      />
-    </a-modal>
+      <a-modal v-model="modal1" title="Select a date" @ok="handleOk">
+        <a-date-picker
+          inputReadOnly
+          placeholder="select"
+          v-model="date"
+          format="DD-MM-YYYY"
+        />
+      </a-modal>
+      <EventModal :description="eventModalDescription" :event="eventModal" />
     </div>
   </div>
 </template>

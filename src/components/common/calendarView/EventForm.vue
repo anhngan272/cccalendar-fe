@@ -173,7 +173,17 @@ export default {
             this.timeFormat("date", this.form.date2) +
             this.timeFormat("time", this.form.time2);
           this.setEvent(this.form);
-          this.$emit("addEvent");
+          // this.$emit("addEvent");
+          var event = {
+            title: this.form.title,
+            start: this.form.start,
+            end: this.form.end,
+            description: this.form.description,
+            backgroundColor: this.form.colorId,
+            textColor: "#fff",
+            allDay: false,
+          };
+          this.$store.commit("addEvent", event);
 
           alert("submit!");
         } else {
