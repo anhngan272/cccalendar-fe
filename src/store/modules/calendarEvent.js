@@ -18,49 +18,42 @@ const state = {
         // attendees: [],
         // colorId: "",
     },
-    events: [
-        {
-            id: 0,
-            title: 'Event 1',
-            backgroundColor: '#ff3e30',
-            textColor: '#fff',
-            description: "hello world",
-            attendees: ["n", 'h'],
-            start: new Date('2021-04-21').toISOString().replace(/T.*$/, '') + 'T12:00',
-            allDay: false,
-        },
-    ],
+    events: [{
+        id: 0,
+        title: 'Event 1',
+        backgroundColor: '#ff3e30',
+        textColor: '#fff',
+        description: "hello world",
+        attendees: ["n", 'h'],
+        start: new Date('2021-04-21').toISOString().replace(/T.*$/, '') + 'T12:00',
+        allDay: false,
+    }, ],
 }
 
 const getters = {
-    // getTitle: state => state.title,
-    // getDate1: state => state.date1,
-    // getDate2: state => state.date2,
-    // getTime1: state => state.time1,
-    // getTime2: state => state.time2,
-    // getDescription: state => state.description,
-    // getIsWholeDay: state => state.isWholeDay,
-    // getAttendees: state => state.attendees,
-    // getAttendeesSubmit: state => state.attendeesSubmited,
-    // getColorId: state => state.colorId,
-    // getEvent: state => state.event
     getEvents: state => state.events
 }
 
 const actions = {
     async fetchEvents({ commit }) {
-        const response = await axios.get(API_URL + '/calendar')
-        commit('setEvents', response.data)
-    },
-    setEvent({ commit }, event) {
+        const response = await axios.get(API_URL + '/calendar');
 
-        commit('setEvent', event)
+        if (response.status === 200) {
+            commit('setEvents', response.data);
+        }
+        // console.log(response.data);
+    },
+    async addEvent({ commit }, event) {
+        const response = await axios.post(API_URL + '/calendar', event);
+
+        if (response.status === 200) {
+            commit('addEvent', event);
+        }
     },
 }
 
 const mutations = {
     setEvents: (state, events) => (state.events = events),
-    setEvent: (state, event) => (state.event = event),
     addEvent: (state, event) => {
         state.events.push(event)
     }
@@ -73,4 +66,3 @@ export default {
     actions,
     mutations
 };
-

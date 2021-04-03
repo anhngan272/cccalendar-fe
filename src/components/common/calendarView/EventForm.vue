@@ -127,7 +127,7 @@ export default {
   },
   created() {},
   methods: {
-    ...mapActions(["setEvent"]),
+    ...mapActions(["addEvent"]),
     moment,
     setTags(tags) {
       this.form = {
@@ -158,7 +158,7 @@ export default {
         case "date":
           return value.toISOString().replace(/T.*$/, "");
         case "time":
-          return value.toISOString().substring(10, 16);
+          return value.toISOString().substring(11, 16);
       }
     },
     onSubmit() {
@@ -168,11 +168,12 @@ export default {
         if (valid && this.form.attendeesSubmited) {
           this.form.start =
             this.timeFormat("date", this.form.date1) +
+            " " +
             this.timeFormat("time", this.form.time1);
           this.form.end =
             this.timeFormat("date", this.form.date2) +
+            " " +
             this.timeFormat("time", this.form.time2);
-          this.setEvent(this.form);
           // this.$emit("addEvent");
           var event = {
             title: this.form.title,
@@ -182,8 +183,11 @@ export default {
             backgroundColor: this.form.colorId,
             textColor: "#fff",
             allDay: false,
+            attendees: [],
           };
-          this.$store.commit("addEvent", event);
+          console.log(event);
+          this.addEvent(event);
+          // this.$store.commit("addEvent", event);
 
           alert("submit!");
         } else {

@@ -6,7 +6,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import EventModal from "@/components/common/calendarView/EventModal";
 // import { createEventId } from "@/store/modules/calendarEvent/";
 import vi from "@fullcalendar/core/locales/vi";
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import moment from "moment";
 
 export default {
@@ -26,6 +26,7 @@ export default {
       },
       eventModalDescription: "hello",
       calendarOptions: {
+        eventColor: "#039BE5", // Pacific Blue
         customButtons: {
           datepicker: {
             text: "select a date",
@@ -67,11 +68,14 @@ export default {
       currentEvents: [],
     };
   },
+  created() {
+    this.fetchEvents();
+  },
   computed: {
     ...mapGetters(["getEvents"]),
   },
-
   methods: {
+    ...mapActions(["fetchEvents"]),
     moment,
     showModal() {
       this.modal1 = true;
