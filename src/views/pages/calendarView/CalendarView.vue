@@ -5,13 +5,11 @@
     </div>
     <div class="calendar">
       <Calendar ref="calendarWrap" />
-      <!-- {{event}} -->
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 import Calendar from "@/components/common/calendarView/Calendar";
 import CardForm from "@/components/common/calendarView/CardForm";
 export default {
@@ -24,28 +22,21 @@ export default {
     Calendar,
     CardForm,
   },
-  computed: {
-    ...mapGetters({
-      event: "getEvent",
-    }),
-  },
+  computed: {},
 };
 </script>
 
 <style scoped>
 .calendarView {
-  /* clear: both; */
-  /* margin-top: 200px; */
 }
 .calendar {
-  width: 60%;
+  width: 67%;
   float: left;
   height: 76vh;
   overflow-y: scroll;
 }
 .tabForm {
-  width: 39%;
+  width: 32%;
   float: right;
-  /* border-left: 0.5px solid black; */
 }
 </style>

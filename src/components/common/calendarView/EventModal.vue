@@ -1,15 +1,18 @@
  <template>
   <a-modal v-model="$parent.modal2" :title="event.title" @ok="handleOk">
-    <div>{{ description }}</div>
+    <div>Start: {{ event.start }}</div>
+    <div>End: {{ event.end }}</div>
+    <div>Description: {{ eventModalExtend.description }}</div>
+    <div>Attendees: {{ eventModalExtend.attendees }}</div>
+    <div>Tags : {{ event.tags }}</div>
   </a-modal>
 </template>
  
  <script>
-// import { mapGetters } from "vuex";
 export default {
   name: "EventModal",
   props: {
-    description: String,
+    eventModalExtend: Object,
     event: Object,
   },
   data() {
@@ -23,7 +26,7 @@ export default {
     },
   },
   computed: {
-    // ...mapGetters(["getEvents"]),
+    
   },
 };
 </script>

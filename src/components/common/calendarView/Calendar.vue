@@ -4,7 +4,6 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import EventModal from "@/components/common/calendarView/EventModal";
-// import { createEventId } from "@/store/modules/calendarEvent/";
 import vi from "@fullcalendar/core/locales/vi";
 import { mapActions, mapGetters } from "vuex";
 import moment from "moment";
@@ -20,11 +19,8 @@ export default {
       date: moment(new Date()).add(7, "hours"),
       modal1: false,
       modal2: false,
-      eventModal: {
-        title: "title",
-        text: "something",
-      },
-      eventModalDescription: "hello",
+      eventModal: {},
+      eventModalExtend: {},
       calendarOptions: {
         eventColor: "#039BE5", // Pacific Blue
         customButtons: {
@@ -47,8 +43,6 @@ export default {
           right: "dayGridMonth,timeGridWeek",
         },
         initialView: "dayGridMonth",
-        // initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
-
         editable: true,
         // selectable: true,
         selectMirror: true,
@@ -90,27 +84,13 @@ export default {
     },
 
     handleDateSelect(selectInfo) {
-      // console.log(selectInfo);
-      // let title = prompt("Please enter a new title for your event");
-      // let calendarApi = selectInfo.view.calendar;
-
-      // calendarApi.unselect(); // clear date selection
-
-      var event = {
-        // calendarApi.addEvent({
-        title: "haha",
-        start: selectInfo.startStr,
-        end: selectInfo.endStr,
-        allDay: true,
-      };
-      this.$store.commit("addEvent", event);
-      console.log(this.EVENTS);
+      console.log(selectInfo);
     },
 
     handleEventClick(clickInfo) {
       this.modal2 = true;
       this.eventModal = clickInfo.event;
-      this.eventModalDescription = clickInfo.event.extendedProps.description;
+      this.eventModalExtend = clickInfo.event.extendedProps;
     },
 
     handleEvents(events) {
@@ -122,35 +102,7 @@ export default {
 
 <template>
   <div class="demo-app">
-    <div class="">
-      <!-- <div class='demo-app-sidebar-section'>
-        <h2>Instructions</h2>
-        <ul>
-          <li>Select dates and you will be prompted to create a new event</li>
-          <li>Drag, drop, and resize events</li>
-          <li>Click an event to delete it</li>
-        </ul>
-      </div> -->
-      <!-- <div class='demo-app-sidebar-section'>
-        <label>
-          <input
-            type='checkbox'
-            :checked='calendarOptions.weekends'
-            @change='handleWeekendsToggle'
-          />
-          toggle weekends
-        </label>
-      </div> -->
-      <!-- <div class='demo-app-sidebar-section'>
-        <h2>All Events ({{ currentEvents.length }})</h2>
-        <ul>
-          <li v-for='event in currentEvents' :key='event.id'>
-            <b>{{ event.startStr }}</b>
-            <i>{{ event.title }}</i>
-          </li>
-        </ul>
-      </div> -->
-    </div>
+    <div class=""></div>
     <div class="demo-app-main">
       <FullCalendar
         ref="calendar"
@@ -172,7 +124,7 @@ export default {
           format="DD-MM-YYYY"
         />
       </a-modal>
-      <EventModal :description="eventModalDescription" :event="eventModal" />
+      <EventModal :eventModalExtend="eventModalExtend" :event="eventModal" />
     </div>
   </div>
 </template>
@@ -223,7 +175,6 @@ b {
 
 .fc {
   /* the calendar root */
-  /* max-width: 1100px; */
   margin: 0 auto;
 }
 </style>

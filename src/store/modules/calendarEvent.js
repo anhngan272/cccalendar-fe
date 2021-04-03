@@ -1,36 +1,27 @@
 import axios from 'axios';
 import { API_URL } from '@/assets/config';
-// import moment from 'moment'
-// let eventGuid = 0
-// let todayStr = new Date().toISOString().replace(/T.*$/, '') // YYYY-MM-DD of today
-// export function createEventId() {
-//     return String(eventGuid++)
-//   }
+let eventGuid = 0
+export function createEventId() {
+    return String(eventGuid++)
+}
 const state = {
-    event: {
-        // title: "hello",
-        // date1: moment(new Date()),
-        // date2: moment(new Date()),
-        // time1: moment("12:00", "HH:mm"),
-        // time2: moment("13:00", "HH:mm"),
-        // description: "",
-        // isWholeDay: false,
-        // attendees: [],
-        // colorId: "",
-    },
+    event: {},
     events: [{
-        id: 0,
+        id: createEventId(),
         title: 'Event 1',
         backgroundColor: '#ff3e30',
         textColor: '#fff',
         description: "hello world",
         attendees: ["n", 'h'],
+        tags: ['event', 'work'],
         start: new Date('2021-04-21').toISOString().replace(/T.*$/, '') + 'T12:00',
+        end: new Date('2021-04-21').toISOString().replace(/T.*$/, '') + 'T12:00',
         allDay: false,
-    }, ],
+    },],
 }
 
 const getters = {
+    getEvent: state => state.event,
     getEvents: state => state.events
 }
 
@@ -41,7 +32,6 @@ const actions = {
         if (response.status === 200) {
             commit('setEvents', response.data);
         }
-        // console.log(response.data);
     },
     async addEvent({ commit }, event) {
         const response = await axios.post(API_URL + '/calendar', event);

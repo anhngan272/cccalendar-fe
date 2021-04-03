@@ -35,7 +35,10 @@ const routes = [{
 }, {
     path: '/calendar',
     name: 'CalendarView',
-    component: CalendarView
+    component: CalendarView,
+    // meta: {
+    //     requiresAuth: true,
+    //   },
 },];
 
 const router = new VueRouter({

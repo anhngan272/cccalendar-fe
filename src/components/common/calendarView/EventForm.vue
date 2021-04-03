@@ -1,6 +1,7 @@
 <template>
   <a-form-model
     ref="ruleForm"
+    labelAlign="left"
     :model="form"
     :rules="rules"
     :label-col="labelCol"
@@ -79,14 +80,14 @@ import moment from "moment";
 import DynamicItem from "./DynamicItem.vue";
 import ThemePicker from "./ThemePicker.vue";
 import TagPicker from "./TagPicker.vue";
-// import { INITIAL_EVENTS, createEventId } from "@/assets/event-utils";
+import { createEventId } from "@/store/modules/calendarEvent/";
 
 export default {
   name: "EventForm",
   data() {
     return {
       labelCol: { span: 4 },
-      wrapperCol: { span: 15 },
+      wrapperCol: { span: 20 },
       other: "",
       allowClear: false,
       form: {
@@ -174,8 +175,10 @@ export default {
             this.timeFormat("date", this.form.date2) +
             " " +
             this.timeFormat("time", this.form.time2);
-          // this.$emit("addEvent");
+
+          //create event object
           var event = {
+            id: createEventId(),
             title: this.form.title,
             start: this.form.start,
             end: this.form.end,
@@ -185,9 +188,10 @@ export default {
             allDay: false,
             attendees: [],
           };
-          console.log(event);
+          // console.log(event);
+
+          //call vuex store action to add event
           this.addEvent(event);
-          // this.$store.commit("addEvent", event);
 
           alert("submit!");
         } else {
@@ -236,7 +240,6 @@ export default {
       if (this.form.date2.date() < value.date()) {
         this.form.date2 = value;
       }
-      // console.log(value.toISOString().replace(/T.*$/, ''))
     },
     changeStartTime() {
       const hour = this.form.time1.hour();
