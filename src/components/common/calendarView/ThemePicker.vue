@@ -10,11 +10,13 @@
         <label>
           <span class="tooltiptext">{{ colors.name[index] }}</span>
           <input
+            :id="theme"
             class="tooltip"
             type="radio"
             name="color"
             :value="theme"
-            :checked="theme == '#039BE5'"
+            :checked="defaultId == '#039BE5'"
+            v-model="defaultId"
           />
           <span class="swatch" :style="{ 'background-color': theme }"></span>
         </label>
@@ -29,6 +31,7 @@ export default {
   props: ["color"],
   data() {
     return {
+      defaultId: "#039BE5",
       colors: {
         name: [
           "Pacific Blue",
@@ -62,6 +65,10 @@ export default {
   methods: {
     selectColor(color) {
       this.$emit("colorPicked", color);
+    },
+    resetForm() {
+      this.defaultId = "#039BE5";
+      this.$emit("colorPicked", this.defaultId);
     },
   },
 };

@@ -7,11 +7,34 @@
       v-bind="index === 0 ? formItemLayout : formItemLayoutWithOutLabel"
       :required="false"
     >
-      <a-input
+    <!-- <a-select
+        mode="tags"
+        style="width: 100%"
+        placeholder="Enter Attendee"
+        @change="handleChange"
         v-decorator="[
           `names[${k}]`,
           {
-            validateTrigger: ['change', 'blur', 'add'],
+            rules: [
+              {
+                type: 'email',
+                message: 'wrong format!',
+                trigger:'change'
+              },
+            ],
+          },
+        ]"
+      > 
+      </a-select>-->
+      
+      
+      <a-select
+      mode="tags"
+      @change="handleChange"
+        v-decorator="[
+          `names[${k}]`,
+          {
+            validateTrigger: ['change', 'blur'],
             rules: [
               {
                 required: true,
@@ -25,8 +48,8 @@
           },
         ]"
         placeholder="Attendee Email"
-        style="width: 60%; margin-right: 8px; margin-left: 5px"
-      />
+        style="width: 80%; margin-right: 8px; margin-left: 5px"
+      ></a-select>
       <a-icon
         v-if="form.getFieldValue('keys').length >= 1"
         class="dynamic-delete-button"
@@ -35,12 +58,13 @@
         @click="() => remove(k)"
       />
     </a-form-item>
-    <a-form-item v-bind="formItemLayout">
+    <a-form-item v-bind="formItemLayout"
+     v-if="form.getFieldValue('keys').length == 0">
       <a-button type="dashed" style="width: 70%; margin-left: 5px" @click="add">
         <a-icon type="plus" /> Add field
       </a-button>
     </a-form-item>
-    <!-- <a-form-item v-bind="formItemLayoutWithOutLabel">
+    <a-form-item v-bind="formItemLayoutWithOutLabel">
       <a-button
         type="primary"
         html-type="submit"
@@ -56,7 +80,7 @@
       >
         Reset
       </a-button>
-    </a-form-item> -->
+    </a-form-item>
   </a-form>
 </template>
 
@@ -64,7 +88,7 @@
 let id = 0;
 export default {
   name: "DynamicItem",
-  props: ["attendees", "submit"],
+  props: ["item", "submit"],
   data() {
     return {
       items: [],
@@ -99,13 +123,11 @@ export default {
       if (keys.length === 0) {
         return;
       }
-
       // can use data-binding to set
       form.setFieldsValue({
         keys: keys.filter((key) => key !== k),
       });
     },
-
     add() {
       const { form } = this;
       // can use data-binding to get
@@ -124,24 +146,30 @@ export default {
     resetForm() {
       this.form.resetFields();
     },
+    handleChange(value) {
+        this.form.setFieldsValue({'names[0]':value})
 
+       console.log(this.form.getFieldValue('names[0]'))
+      //this.form.setFieldsValue({ attendee: value });
+    //   console.log(this.form.getFieldValue("attendee").length);
+      //   const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/;
+      // if (!value.match(emailRegex)) console.log(`selected ${value}`);
+      this.form.validateFields((err, values) => {
+          // console.log('error', err);
+        if (!err) {
+          console.log('Received values of form: ', values);
+          // this.$emit("attendeePicked", values);
+        } 
+      });
+    },
     onSubmitItem() {
       var items = [];
       this.form.validateFields((err, values) => {
         const { keys, names } = values;
-
         if (!err) {
           keys.map((key) => items.push(names[key]));
-
-          for (var i = 0; i < items.length - 1; i++) {
-            for (var j = i + 1; j < items.length; j++) {
-              if (items[i] == items[j]) {
-                items.splice(j, 1);
-              }
-            }
-          }
-          this.attendees = items;
-          this.$emit("attendeesPicked", this.attendees);
+          this.items = items;
+          this.$emit("attendeesPicked", this.items);
           this.$emit("attendeesSubmit", true);
         } else {
           this.$emit("attendeesSubmit", false);

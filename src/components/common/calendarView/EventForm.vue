@@ -19,7 +19,6 @@
         @change="changeStartDate"
       />
       <a-time-picker
-        prop="time1"
         inputReadOnly
         :allowClear="this.allowClear"
         v-model="form.time1"
@@ -48,22 +47,25 @@
       />
     </a-form-model-item>
     <a-form-model-item label="Attendees" prop="attendees">
-      <DynamicItem
-        ref="getAttendees"
-        :attendees="form.attendees"
-        :submit="form.attendeesSubmited"
-        @attendeesPicked="setAttendees"
-        @attendeesSubmit="setAttendeesSubmit"
+      <AttendeePicker
+        ref="attendeePicker"
+        @attendeePicked="setAttendees"
+        :attendeeSubmited="form.attendeeSubmited"
+        @attendeeSubmited="setAttendeeSubmit"
       />
     </a-form-model-item>
     <a-form-model-item label="Tags" prop="tag">
-      <TagPicker :tags="form.tags" @tagsPicked="setTags" />
+      <TagPicker ref="tagPicker" :tags="form.tags" @tagsPicked="setTags" />
     </a-form-model-item>
     <a-form-model-item label="Description" prop="description">
       <a-input v-model="form.description" type="textarea" />
     </a-form-model-item>
     <a-form-model-item label="Theme" prop="colorId">
-      <ThemePicker :color="form.colorId" @colorPicked="setColor" />
+      <ThemePicker
+        ref="colorPicker"
+        :color="form.colorId"
+        @colorPicked="setColor"
+      />
     </a-form-model-item>
     <a-form-model-item :wrapper-col="{ span: 14, offset: 4 }">
       <a-button type="primary" @click="onSubmit"> Create </a-button>
@@ -77,7 +79,8 @@
 <script>
 import { mapActions } from "vuex";
 import moment from "moment";
-import DynamicItem from "./DynamicItem.vue";
+// import DynamicItem from "./DynamicItem.vue";
+import AttendeePicker from "./AttendeePicker.vue";
 import ThemePicker from "./ThemePicker.vue";
 import TagPicker from "./TagPicker.vue";
 import { createEventId } from "@/store/modules/calendarEvent/";
@@ -101,7 +104,7 @@ export default {
         description: "",
         attendees: [],
         tags: [],
-        attendeesSubmited: Boolean,
+        attendeeSubmited: Boolean,
         colorId: "#039BE5",
       },
       event: {
@@ -122,9 +125,10 @@ export default {
     };
   },
   components: {
-    DynamicItem,
+    // DynamicItem,
     ThemePicker,
     TagPicker,
+    AttendeePicker,
   },
   created() {},
   methods: {
@@ -136,10 +140,10 @@ export default {
         tags: tags,
       };
     },
-    setAttendeesSubmit(bool) {
+    setAttendeeSubmit(bool) {
       this.form = {
         ...this.form,
-        attendeesSubmited: bool,
+        attendeeSubmited: bool,
       };
     },
     setAttendees(attendees) {
@@ -163,8 +167,6 @@ export default {
       }
     },
     onSubmit() {
-      this.$refs.getAttendees.onSubmitItem();
-
       this.$refs.ruleForm.validate((valid) => {
         if (valid && this.form.attendeesSubmited) {
           this.form.start =
@@ -226,9 +228,12 @@ export default {
     },
     resetForm() {
       this.$refs.ruleForm.resetFields();
-      this.$refs.getAttendees.resetForm();
+      this.$refs.attendeePicker.resetForm();
+      this.$refs.tagPicker.resetForm();
+      this.$refs.colorPicker.resetForm();
       this.form.time1 = moment.utc("12:00", "HH:mm");
       this.form.time2 = moment.utc("13:00", "HH:mm");
+      this.colorId = "#039BE5";
     },
     onChange(dates, dateStrings) {
       console.log("From: ", dates[0], ", to: ", dates[1]);

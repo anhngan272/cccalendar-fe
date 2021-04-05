@@ -1,0 +1,71 @@
+<template>
+  <a-form :form="form">
+    <a-form-item :validate-status="status" :help="help">
+      <a-select
+        mode="tags"
+        style="width: 100%"
+        placeholder="Enter Attendee"
+        @change="handleChange"
+        v-decorator="['attendee']"
+      >
+      </a-select>
+      <!-- <a-button type="danger" style="margin-left: 10px" @click="resetForm">
+        Reset
+      </a-button> -->
+    </a-form-item>
+  </a-form>
+</template>
+<script>
+export default {
+  name: "AttendeePicker",
+  prop: ["attendeeSubmited"],
+  data() {
+    return {
+      isEmail: false,
+      isEmpty: true,
+      status: "",
+      help: "",
+    };
+  },
+  beforeCreate() {
+    this.form = this.$form.createForm(this, { name: "attendeePicker" });
+    this.form.getFieldDecorator("attendee", {
+      initialValue: [],
+      preserve: true,
+    });
+  },
+  methods: {
+    resetForm() {
+      this.isEmpty = true;
+      this.status = "";
+      this.help = "";
+      this.form.resetFields();
+      this.$emit("attendeeSubmited", true);
+    },
+    handleChange(values) {
+      var emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if (values.length == 0) {
+        this.isEmpty = true;
+        this.status = "";
+        this.help = "";
+      } else {
+        this.isEmpty = false;
+        for (let i = 0; i < values.length; i++) {
+          if (!emailPattern.test(values[i])) {
+            this.status = "error";
+            this.help = values[i] + " is not a valid email";
+            this.$emit("attendeeSubmited", false);
+            return;
+          } else {
+            this.status = "";
+            this.help = "";
+          }
+        }
+
+        this.$emit("attendeePicked", values);
+        this.$emit("attendeeSubmited", true);
+      }
+    },
+  },
+};
+</script>
