@@ -31,6 +31,18 @@
     "notfound_page": {
       "text": "Không tìm thấy trang"
     },
+    "diary_page": {
+      "title":"Nhật ký",
+      "searchPlaceholder": "Nhập từ khóa tìm kiếm",
+      "addDiaryBtn":"Thêm nhật ký",
+      "addDiaryModal":{
+        "header":"Thêm nhật ký",
+        "title":"Tiêu đề",
+        "date":"Ngày giờ",
+        "resetBtn":"Cài lại",
+        "cancelBtn":"Hủy"
+      }
+    },
     "login": {
       "signin": "Đăng nhập",
       "signout": "Đăng xuất",

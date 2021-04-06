@@ -31,6 +31,18 @@
     "notfound_page": {
       "text": "Page Not Found"
     },
+    "diary_page": {
+      "title":"Diary",
+      "searchPlaceholder": "Input Search Text",
+      "addDiaryBtn":"Add diary",
+      "addDiaryModal":{
+        "header":"Add Diary",
+        "title":"Title",
+        "date":"Date Time",
+        "resetBtn":"Reset",
+        "cancelBtn":"Cancel"
+      }
+    },
     "login": {
       "signin": "SIGN IN",
       "signout": "SIGN OUT",

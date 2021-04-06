@@ -2,7 +2,7 @@
   <div>
     <div class="header">
       <a-input-search
-        placeholder="input search text"
+        :placeholder="$t('diary_page.searchPlaceholder')"
         style="width: 40%"
         @search="onSearch"
       />
@@ -16,7 +16,7 @@
         <i class="fa fa-plus my-float"></i>
       </a>
       <div class="label-container">
-        <div class="label-text">Add Diary</div>
+        <div class="label-text">{{$t('diary_page.addDiaryBtn')}}</div>
       </div>
     </div>
   </div>
@@ -28,7 +28,9 @@ import TextEditor from "./TextEditor";
 export default {
   name: "DiaryEntries",
   data() {
-    return {};
+    return {
+      
+    };
   },
   components: {
     ListView,

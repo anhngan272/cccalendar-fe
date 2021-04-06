@@ -1,10 +1,11 @@
 <template>
   <a-modal
     v-model="visible"
-    title="Add Diary"
+    :title="$t('diary_page.addDiaryModal.header')"
     @ok="handleOk"
     :bodyStyle="modaleStyle"
     :centered="true"
+    :cancelText="$t('diary_page.addDiaryModal.cancelBtn')"
     width="90vw"
   >
     <a-form-model
@@ -16,11 +17,11 @@
       :wrapper-col="wrapperCol"
       style="width:80vw;"
     >
-      <a-form-model-item label="Title" prop="title" >
+      <a-form-model-item :label="$t('diary_page.addDiaryModal.title')" prop="title" >
         <a-input v-model="form.title" ref="title" />
       </a-form-model-item>
 
-      <a-form-model-item label="Date Time" prop="date">
+      <a-form-model-item :label="$t('diary_page.addDiaryModal.date')" prop="date">
         <a-date-picker
           inputReadOnly
           :allowClear="false"
@@ -53,7 +54,7 @@
       </a-form-model-item>
       <a-form-model-item :wrapper-col="{ span: 14, offset: 12 }">
         <a-button type="danger" style="margin-left: 10px" @click="resetForm">
-          Reset
+          {{$t('diary_page.addDiaryModal.resetBtn')}}
         </a-button>
       </a-form-model-item>
     </a-form-model>
