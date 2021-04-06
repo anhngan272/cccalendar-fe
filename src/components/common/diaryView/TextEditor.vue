@@ -14,8 +14,9 @@
       :rules="rules"
       :label-col="labelCol"
       :wrapper-col="wrapperCol"
+      style="width:80vw;"
     >
-      <a-form-model-item label="Title" prop="title">
+      <a-form-model-item label="Title" prop="title" >
         <a-input v-model="form.title" ref="title" />
       </a-form-model-item>
 
@@ -84,7 +85,7 @@ export default {
         height: "80vh",
         width: "900px",
       },
-      labelCol: { span: 4 },
+      labelCol: { span: 2,offset:2 },
       wrapperCol: { span: 20 },
 
       rules: {
