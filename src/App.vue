@@ -3,7 +3,7 @@
     <Header />
     <a-layout id="components-layout-demo-top" class="layout">
       <a-layout-content :style="{ background: '#fff' }">
-        <div :style="{ padding: '24px', height: '80vh' }">
+        <div :style="{ padding: '5px 24px', height: '80vh' }">
           <router-view />
         </div>
       </a-layout-content>

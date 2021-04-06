@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <a-modal v-model="visible" title="Basic Modal" @ok="handleOk">
     <vue-editor id="editor" useCustomImageHandler @imageAdded="handleImageAdded" v-model="htmlForEditor"> </vue-editor>
-  </div>
+  </a-modal>
 </template>
 
 <script>
@@ -15,11 +15,19 @@ components: {
 
   data() {
     return {
-      htmlForEditor: ""
+      htmlForEditor: "",
+      visible:false,
     };
   },
 
   methods: {
+    showModal() {
+      this.visible = true;
+    },
+    handleOk(e) {
+      console.log(e);
+      this.visible = false;
+    },
     handleImageAdded: function(file, Editor, cursorLocation, resetUploader) {
       // An example of using FormData
       // NOTE: Your key could be different such as:
