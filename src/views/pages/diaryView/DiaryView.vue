@@ -1,4 +1,4 @@
-<template>
+S<template>
   <div>
     <div class="diary">
       <DiaryEntries />
