@@ -1,23 +1,26 @@
 <template>
   <div class="langSwitch">
-    <div class="dropdown">
-      <div class="dropbtn">
-        <img :src="require(`@/assets/${this.$i18n.locale}.png`)" alt="" />
-        {{ $t("common.select_lang") }} &#9660;
-      </div>
-      <div class="dropdown-content">
-        <div
-          style="cursor: pointer"
-          @click="callSetLangActions"
-          v-for="(lang, i) in langs"
-          :key="`lang-${i}`"
-          :value="lang.value"
-        >
-          <img :src="require(`@/assets/${lang.value}.png`)" alt="" />
-          {{ lang.text }}
+    <a-dropdown :trigger="['click', 'hover']">
+      <a-menu slot="overlay">
+        <div class="dropdown-content">
+          <div
+            style="cursor: pointer"
+            @click="callSetLangActions"
+            v-for="(lang, i) in langs"
+            :key="`lang-${i}`"
+            :value="lang.value"
+          >
+            <img :src="require(`@/assets/${lang.value}.png`)" alt="" />
+            {{ lang.text }}
+          </div>
         </div>
-      </div>
-    </div>
+      </a-menu>
+      <a-button size="large" class="dropBtn">
+        <img :src="require(`@/assets/${this.$i18n.locale}.png`)" alt="" />
+        {{ $t("common.select_lang") }}
+        <a-icon :style="{ fontSize: '15px' }" type="down" />
+      </a-button>
+    </a-dropdown>
   </div>
 </template>
 
@@ -58,61 +61,40 @@ export default {
 <style scoped>
 img {
   height: 25px;
-  margin-right: 5px;
+  margin-right: 10px;
+  display: inline-block;
 }
 .langSwitch {
   display: inline-block;
-  /* float: left; */
-  /* float: left; */
 }
 
-.dropbtn {
-  background-color: white;
-  color: #808080;
-  padding: 12px;
-  font-size: 15px;
-  border: none;
-  cursor: pointer;
-  line-height: 25px;
-  border-radius: 4px;
+.dropBtn {
+  display: flex;
+  align-items: center;
   font-weight: bold;
-}
-
-.dropdown {
-  /* position: relative; */
-  /* display: inline-block; */
+  font-size: 15px;
+  border: 1 px solid #808080;
 }
 
 .dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
   width: 100%;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  z-index: 2;
   font-weight: bold;
-  margin-right: 10px;
-  text-align: center;
+  line-height: 25px;
+  font-size: 15px;
   color: #808080;
+  background: white;
 }
 
 .dropdown-content div {
-  /* padding: 12px 16px; */
   padding: 5px;
   text-decoration: none;
-  /* display: block; */
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
 
 .dropdown-content div:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-.dropdown:hover .dropbtn {
   background-color: #ddd;
   color: black;
 }

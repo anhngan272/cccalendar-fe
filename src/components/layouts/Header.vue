@@ -1,7 +1,9 @@
 <template>
   <div>
     <div class="head">
-      <a :href="$router.resolve({ name: 'Home' }).href"><img src="@/assets/cccalendar_logo.png" style="height:30px;"/></a>
+      <a :href="$router.resolve({ name: 'Home' }).href"
+        ><img src="@/assets/cccalendar_logo.png" style="height: 30px"
+      /></a>
       <a :href="$router.resolve({ name: 'CalendarView' }).href"> Calendar</a>
       <Navbar />
     </div>
@@ -61,6 +63,8 @@ export default {
 
 >>> .header-right {
   margin-left: auto;
+  display: flex;
+  align-items: center;
 }
 
 >>> .router-link-exact-active:not(#logo) {
