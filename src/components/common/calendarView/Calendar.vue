@@ -52,6 +52,8 @@ export default {
         eventClick: this.handleEventClick,
         eventsSet: this.handleEvents,
         eventDisplay: "block",
+        showNonCurrentDates:false,
+        fixedWeekCount:false,
         //  timeFormat: 'h:mm',
         /* you can update a remote database when these fire:
         eventAdd:
@@ -129,7 +131,7 @@ export default {
   </div>
 </template>
 
-<style lang='css'>
+<style scoped>
 h2 {
   margin: 0;
   font-size: 16px;
@@ -170,7 +172,7 @@ b {
 
 .demo-app-main {
   flex-grow: 1;
-  padding: 2em;
+  padding:0 1em;
 }
 
 .fc {
