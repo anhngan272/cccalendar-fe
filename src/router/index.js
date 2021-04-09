@@ -40,12 +40,11 @@ const routes = [{
     // meta: {
     //     requiresAuth: true,
     //   },
-    component: CalendarView
 }, {
     path: '/diary',
     name: 'DiaryView',
     component: DiaryView
-},];
+}, ];
 
 const router = new VueRouter({
     mode: 'history',

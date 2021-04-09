@@ -16,7 +16,7 @@
         :allowClear="this.allowClear"
         v-model="form.date1"
         format="DD-MM-YYYY"
-        @change="changeStartDate"
+        @change="changeDateTime"
       />
       <a-time-picker
         inputReadOnly
@@ -24,7 +24,7 @@
         v-model="form.time1"
         format="HH:mm"
         :default-value="moment('12:00', 'HH:mm')"
-        @change="changeStartTime"
+        @change="changeDateTime"
         style="margin-left: 15px"
       />
     </a-form-model-item>
@@ -49,13 +49,13 @@
     <a-form-model-item label="Attendees" prop="attendees">
       <AttendeePicker
         ref="attendeePicker"
+        :eventAttendees="form.attendees"
         @attendeePicked="setAttendees"
-        :attendeeSubmited="form.attendeeSubmited"
         @attendeeSubmited="setAttendeeSubmit"
       />
     </a-form-model-item>
     <a-form-model-item label="Tags" prop="tag">
-      <TagPicker ref="tagPicker" :tags="form.tags" @tagsPicked="setTags" />
+      <TagPicker ref="tagPicker" :eventTags="form.tags" @tagsPicked="setTags" />
     </a-form-model-item>
     <a-form-model-item label="Description" prop="description">
       <a-input v-model="form.description" type="textarea" />
@@ -68,7 +68,10 @@
       />
     </a-form-model-item>
     <a-form-model-item :wrapper-col="{ span: 14, offset: 4 }">
-      <a-button type="primary" @click="onSubmit"> Create </a-button>
+      <a-button type="primary" @click="onSubmit" v-if="isUpdate != true">
+        Create
+      </a-button>
+      <a-button type="primary" @click="onUpdateEvent" v-else> Update </a-button>
       <a-button type="danger" style="margin-left: 10px" @click="resetForm">
         Reset
       </a-button>
@@ -79,7 +82,6 @@
 <script>
 import { mapActions } from "vuex";
 import moment from "moment";
-// import DynamicItem from "./DynamicItem.vue";
 import AttendeePicker from "./AttendeePicker.vue";
 import ThemePicker from "./ThemePicker.vue";
 import TagPicker from "./TagPicker.vue";
@@ -87,32 +89,34 @@ import { createEventId } from "@/store/modules/calendarEvent/";
 
 export default {
   name: "EventForm",
+  props: {
+    updateEventModalExtend: Object,
+    updateEventInfo: Object,
+    isUpdate: Boolean,
+    eventTags: Array,
+    eventAttendees: Array,
+  },
   data() {
     return {
       labelCol: { span: 4 },
       wrapperCol: { span: 20 },
       other: "",
+      isValidated: false,
       allowClear: false,
       form: {
         title: "",
         date1: moment(new Date()).add(7, "hours"),
         date2: moment(new Date()).add(7, "hours"),
         time1: moment.utc("12:00", "HH:mm"),
-        time2: moment.utc("13:00", "HH:mm"),
+        time2: moment.utc("13:30", "HH:mm"),
         start: null,
         end: null,
         description: "",
         attendees: [],
         tags: [],
-        attendeeSubmited: Boolean,
+        attendeeSubmited: true,
         colorId: "#039BE5",
       },
-      event: {
-        title: "",
-        start: null,
-        end: null,
-      },
-
       rules: {
         title: [
           {
@@ -125,15 +129,67 @@ export default {
     };
   },
   components: {
-    // DynamicItem,
     ThemePicker,
     TagPicker,
     AttendeePicker,
   },
-  created() {},
+  created() {
+    if (this.isUpdate == true) {
+      this.form.title = this.updateEventInfo.title;
+      this.form.date1 = moment(this.updateEventInfo.start);
+      this.form.time1 = moment(this.updateEventInfo.start);
+      this.form.date2 = moment(this.updateEventInfo.end);
+      this.form.time2 = moment(this.updateEventInfo.end);
+      this.form.attendees = this.eventAttendees;
+      this.form.tags = this.eventTags;
+      this.form.description = this.updateEventModalExtend.description;
+      this.form.colorId = this.updateEventInfo.backgroundColor;
+      // console.log(this.form.attendees);
+    }
+  },
   methods: {
-    ...mapActions(["addEvent"]),
+    ...mapActions(["addEvent", "updateEvent"]),
     moment,
+    onUpdateEvent() {
+      this.validateForm();
+      if (this.isValidated == true) {
+        this.form.start =
+          this.timeFormat("date", this.form.date1) +
+          " " +
+          this.timeFormat("time", this.form.time1);
+        this.form.end =
+          this.timeFormat("date", this.form.date2) +
+          " " +
+          this.timeFormat("time", this.form.time2);
+
+        const start = moment(this.form.start)
+          .add(7, "hours")
+          .format("YYYY-MM-DD HH:mm");
+        const end = moment(this.form.end)
+          .add(7, "hours")
+          .format("YYYY-MM-DD HH:mm");
+        //create event object
+        var event = {
+          id: this.updateEventInfo.id,
+          title: this.form.title,
+          start: start,
+          end: end,
+          description: this.form.description,
+          backgroundColor: this.form.colorId,
+          textColor: "#fff",
+          allDay: false,
+          attendees: this.form.attendees,
+          tags: this.form.tags,
+        };
+
+        //call vuex store action to update event
+        this.updateEvent(event);
+        this.$emit("updated");
+      } else {
+        console.log("error update!!");
+        return false;
+      }
+    },
     setTags(tags) {
       this.form = {
         ...this.form,
@@ -166,41 +222,50 @@ export default {
           return value.toISOString().substring(11, 16);
       }
     },
-    onSubmit() {
+    validateForm() {
       this.$refs.ruleForm.validate((valid) => {
-        if (valid && this.form.attendeesSubmited) {
-          this.form.start =
-            this.timeFormat("date", this.form.date1) +
-            " " +
-            this.timeFormat("time", this.form.time1);
-          this.form.end =
-            this.timeFormat("date", this.form.date2) +
-            " " +
-            this.timeFormat("time", this.form.time2);
-
-          //create event object
-          var event = {
-            id: createEventId(),
-            title: this.form.title,
-            start: this.form.start,
-            end: this.form.end,
-            description: this.form.description,
-            backgroundColor: this.form.colorId,
-            textColor: "#fff",
-            allDay: false,
-            attendees: [],
-          };
-          // console.log(event);
-
-          //call vuex store action to add event
-          this.addEvent(event);
-
-          alert("submit!");
+        if (valid && this.form.attendeeSubmited) {
+          alert("ok!");
+          this.isValidated = true;
         } else {
-          console.log("error submit!!");
-          return false;
+          console.log("error validate!!");
+          this.isValidated = false;
         }
       });
+    },
+    onSubmit() {
+      this.validateForm();
+      if (this.isValidated == true) {
+        this.form.start =
+          this.timeFormat("date", this.form.date1) +
+          " " +
+          this.timeFormat("time", this.form.time1);
+        this.form.end =
+          this.timeFormat("date", this.form.date2) +
+          " " +
+          this.timeFormat("time", this.form.time2);
+
+        //create event object
+        var event = {
+          id: createEventId(),
+          title: this.form.title,
+          start: this.form.start,
+          end: this.form.end,
+          description: this.form.description,
+          backgroundColor: this.form.colorId,
+          textColor: "#fff",
+          allDay: false,
+          attendees: this.form.attendees,
+          tags: this.form.tags,
+        };
+        console.log(event);
+
+        //call vuex store action to add event
+        this.addEvent(event);
+      } else {
+        console.log("error submit!!");
+        return false;
+      }
     },
     disabledDate(current) {
       // Can not select days before today and today
@@ -220,7 +285,7 @@ export default {
       var minutes = [];
 
       if (hour == this.form.time1.hour()) {
-        for (j = 0; j <= this.form.time1.minute(); j++) {
+        for (j = 0; j < this.form.time1.minute(); j++) {
           minutes.push(j);
         }
       }
@@ -232,24 +297,26 @@ export default {
       this.$refs.tagPicker.resetForm();
       this.$refs.colorPicker.resetForm();
       this.form.time1 = moment.utc("12:00", "HH:mm");
-      this.form.time2 = moment.utc("13:00", "HH:mm");
+      this.form.time2 = moment.utc("13:30", "HH:mm");
       this.colorId = "#039BE5";
     },
-    onChange(dates, dateStrings) {
-      console.log("From: ", dates[0], ", to: ", dates[1]);
-      console.log("From: ", dateStrings[0], ", to: ", dateStrings[1]);
-      this.form.start = dateStrings[0];
-      this.form.end = dateStrings[1];
-    },
-    changeStartDate(value) {
-      if (this.form.date2.date() < value.date()) {
+    changeDateTime(value) {
+      // console.log(this.form.time1.toISOString())
+      //Make sure end date is after or same as start date
+      if (this.form.date2.isBefore(value)) {
         this.form.date2 = value;
       }
-    },
-    changeStartTime() {
-      const hour = this.form.time1.hour();
-      if (this.form.time1.hour() > this.form.time2.hour()) {
-        this.form.time2 = moment(hour + 1, "HH:mm");
+      //If start date is same as end date then end time must be after start time (default set 30m after start time)
+      if (
+        this.form.date2.format("YYYY-MM-DD") ==
+        this.form.date1.format("YYYY-MM-DD")
+      ) {
+        if (
+          this.form.time1.isAfter(this.form.time2) ||
+          this.form.time1.isSame(this.form.time2)
+        ) {
+          this.form.time2 = this.form.time1.clone().add(30, "minutes");
+        }
       }
     },
   },

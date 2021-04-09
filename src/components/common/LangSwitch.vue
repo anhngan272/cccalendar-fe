@@ -1,7 +1,7 @@
 <template>
   <div class="langSwitch">
     <a-dropdown :trigger="['click', 'hover']">
-      <a-menu slot="overlay">
+      <template slot="overlay">
         <div class="dropdown-content">
           <div
             style="cursor: pointer"
@@ -14,7 +14,7 @@
             {{ lang.text }}
           </div>
         </div>
-      </a-menu>
+      </template>
       <a-button size="large" class="dropBtn">
         <img :src="require(`@/assets/${this.$i18n.locale}.png`)" alt="" />
         {{ $t("common.select_lang") }}

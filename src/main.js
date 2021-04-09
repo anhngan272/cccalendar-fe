@@ -8,7 +8,7 @@ import "axios-progress-bar/dist/nprogress.css";
 import i18n from './lang/i18n.js'
 
 // Ant Design
-import { Dropdown, Modal, List, Badge, Layout, Button, Input, FormModel, Radio, Select, Switch, Checkbox, DatePicker, Tabs, LocaleProvider, TimePicker, Icon, Form, Calendar, Alert, Card } from 'ant-design-vue';
+import { Popconfirm, Dropdown, Modal, List, Badge, Layout, Button, Input, FormModel, Radio, Select, Switch, Checkbox, DatePicker, Tabs, LocaleProvider, TimePicker, Icon, Form, Calendar, Alert, Card } from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
 Vue.use(FormModel);
 Vue.use(Input);
@@ -31,6 +31,7 @@ Vue.use(Badge)
 Vue.use(List)
 Vue.use(Modal)
 Vue.use(Dropdown)
+Vue.use(Popconfirm)
 
 /* axios-progress-bar */
 const config = { showSpinner: false };

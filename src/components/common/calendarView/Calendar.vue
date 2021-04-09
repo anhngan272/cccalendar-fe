@@ -4,7 +4,6 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import EventModal from "@/components/common/calendarView/EventModal";
-import vi from "@fullcalendar/core/locales/vi";
 import { mapActions, mapGetters } from "vuex";
 import moment from "moment";
 
@@ -16,7 +15,7 @@ export default {
 
   data: function () {
     return {
-      date: moment(new Date()).add(7, "hours"),
+      date: moment(new Date()),
       modal1: false,
       modal2: false,
       eventModal: {},
@@ -31,7 +30,6 @@ export default {
             },
           },
         },
-        locale: vi,
         plugins: [
           dayGridPlugin,
           timeGridPlugin,
@@ -40,7 +38,7 @@ export default {
         headerToolbar: {
           left: "prev,next datepicker",
           center: "title",
-          right: "dayGridMonth,timeGridWeek",
+          right: "dayGridMonth,timeGridWeek,listMonth",
         },
         initialView: "dayGridMonth",
         editable: true,
@@ -52,8 +50,8 @@ export default {
         eventClick: this.handleEventClick,
         eventsSet: this.handleEvents,
         eventDisplay: "block",
-        showNonCurrentDates:false,
-        fixedWeekCount:false,
+        showNonCurrentDates: false,
+        fixedWeekCount: false,
         //  timeFormat: 'h:mm',
         /* you can update a remote database when these fire:
         eventAdd:
@@ -76,6 +74,10 @@ export default {
     showModal() {
       this.modal1 = true;
     },
+    today() {
+      this.date = moment(new Date());
+      this.handleOk();
+    },
     handleOk() {
       var date = this.date.toISOString().replace(/T.*$/, "");
       this.$refs.calendar.getApi().changeView("dayGridMonth", date);
@@ -94,7 +96,12 @@ export default {
       this.eventModal = clickInfo.event;
       this.eventModalExtend = clickInfo.event.extendedProps;
     },
-
+    updateEvent() {
+      const updatedEvent = this.$refs.calendar
+        .getApi()
+        .getEventById(this.eventModal.id);
+      updatedEvent.setProp("title", "haha");
+    },
     handleEvents(events) {
       this.currentEvents = events;
     },
@@ -109,7 +116,11 @@ export default {
       <FullCalendar
         ref="calendar"
         class="demo-app-calendar"
-        :options="{ ...calendarOptions, events: getEvents }"
+        :options="{
+          ...calendarOptions,
+          events: getEvents,
+          locale: this.$i18n.locale,
+        }"
       >
         <template v-slot:eventContent="arg">
           <b>{{ arg.timeText }}</b>
@@ -118,15 +129,26 @@ export default {
           >
         </template>
       </FullCalendar>
-      <a-modal v-model="modal1" title="Select a date" @ok="handleOk">
+      <a-modal v-model="modal1" title="Select date" @ok="handleOk">
+        <div style="margin-bottom: 10px">
+          Select a date to show the events in the month of that date
+        </div>
         <a-date-picker
           inputReadOnly
+          :allowClear="false"
           placeholder="select"
           v-model="date"
           format="DD-MM-YYYY"
         />
+        <a-button style="margin-left: 10px" type="primary" @click="today()"
+          >Today</a-button
+        >
       </a-modal>
-      <EventModal :eventModalExtend="eventModalExtend" :event="eventModal" />
+      <EventModal
+        @update="updateEvent"
+        :eventModalExtend="eventModalExtend"
+        :event="eventModal"
+      />
     </div>
   </div>
 </template>
@@ -172,7 +194,7 @@ b {
 
 .demo-app-main {
   flex-grow: 1;
-  padding:0 1em;
+  padding: 0 1em;
 }
 
 .fc {

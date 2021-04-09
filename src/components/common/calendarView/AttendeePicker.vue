@@ -9,16 +9,15 @@
         v-decorator="['attendee']"
       >
       </a-select>
-      <!-- <a-button type="danger" style="margin-left: 10px" @click="resetForm">
-        Reset
-      </a-button> -->
     </a-form-item>
   </a-form>
 </template>
 <script>
 export default {
   name: "AttendeePicker",
-  prop: ["attendeeSubmited"],
+  props: {
+    eventAttendees: Array,
+  },
   data() {
     return {
       isEmail: false,
@@ -26,6 +25,10 @@ export default {
       status: "",
       help: "",
     };
+  },
+  created() {
+    //set event attendees
+    this.form.setFieldsValue({ attendee: this.eventAttendees });
   },
   beforeCreate() {
     this.form = this.$form.createForm(this, { name: "attendeePicker" });
@@ -46,6 +49,7 @@ export default {
       var emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       if (values.length == 0) {
         this.isEmpty = true;
+        this.$emit("attendeeSubmited", true);
         this.status = "";
         this.help = "";
       } else {
