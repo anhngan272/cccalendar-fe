@@ -4,19 +4,19 @@
       <div
         class="color"
         @click="selectColor(theme)"
-        v-for="(theme, index) in colors.id"
+        v-for="(theme, index) in colors"
         :key="index"
       >
         <label>
-          <span class="tooltiptext">{{ colors.name[index] }}</span>
+          <span class="tooltiptext">{{ colors[index].name }}</span>
           <input
             class="tooltip"
             type="radio"
             name="color"
-            :value="theme"
-            :checked="color == theme"
+            :value="theme.background"
+            :checked="color == theme.colorId"
           />
-          <span class="swatch" :style="{ 'background-color': theme }"></span>
+          <span class="swatch" :style="{ 'background-color': theme.background }"></span>
         </label>
       </div>
     </div>
@@ -24,45 +24,83 @@
 </template>
 
 <script>
+
 export default {
   name: "ThemePicker",
   props: ["color"],
   data() {
     return {
-      colors: {
-        name: [
-          "Pacific Blue",
-          "Tomato Red",
-          "Silver Pink",
-          "Orange",
-          "Banana",
-          "Light Green",
-          "Basil",
-          "Blueberry",
-          "Lavender",
-          "Grape",
-          "Smoky Gray",
-        ],
-        id: [
-          "#039BE5",
-          "#D50000",
-          "#E67C73",
-          "#F4511E",
-          "#F6BF26",
-          "#33B679",
-          "#0B8043",
-          "#3F51B5",
-          "#7986CB",
-          "#8E24AA",
-          "#616161",
-        ],
-      },
+      colors: [{
+        "colorId": 1,
+        "name": "Lavender",
+        "background": "#a4bdfc",
+        "foreground": "#1d1d1d"
+    },
+    {
+        "colorId": 2,
+        "name": "Sage",
+        "background": "#7ae7bf",
+        "foreground": "#1d1d1d"
+    },
+    {
+        "colorId": 3,
+        "name": "Grape",
+        "background": "#dbadff",
+        "foreground": "#1d1d1d"
+    },
+    {
+        "colorId": 4,
+        "name": "Flamingo",
+        "background": "#ff887c",
+        "foreground": "#1d1d1d"
+    },
+    {
+        "colorId": 5,
+        "name": "Banana",
+        "background": "#fbd75b",
+        "foreground": "#1d1d1d"
+    },
+    {
+        "colorId": 6,
+        "name": "Tangerine",
+        "background": "#ffb878",
+        "foreground": "#1d1d1d"
+    },
+    {
+        "colorId": 7,
+        "name": "Peacock",
+        "background": "#46d6db",
+        "foreground": "#1d1d1d"
+    },
+    {
+        "colorId": 8,
+        "name": "Graphite",
+        "background": "#e1e1e1",
+        "foreground": "#1d1d1d"
+    },
+    {
+        "colorId": 9,
+        "name": "Blueberry",
+        "background": "#5484ed",
+        "foreground": "#1d1d1d"
+    },
+    {
+        "colorId": 10,
+        "name": "Basil",
+        "background": "#51b749",
+        "foreground": "#1d1d1d"
+    },
+    {
+        "colorId": 11,
+        "name": "Tomato",
+        "background": "#dc2127",
+        "foreground": "#1d1d1d"
+    }],
     };
   },
-  created() {},
   methods: {
     selectColor(color) {
-      this.$emit("colorPicked", color);
+      this.$emit("colorPicked", color.colorId);
     },
     resetForm() {
       this.defaultId = "#039BE5";

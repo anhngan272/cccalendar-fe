@@ -2,6 +2,7 @@
 import FullCalendar from "@fullcalendar/vue";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
+import listPlugin from "@fullcalendar/list";
 import interactionPlugin from "@fullcalendar/interaction";
 import EventModal from "@/components/common/calendarView/EventModal";
 import { mapActions, mapGetters } from "vuex";
@@ -34,6 +35,7 @@ export default {
           dayGridPlugin,
           timeGridPlugin,
           interactionPlugin, // needed for dateClick
+          listPlugin
         ],
         headerToolbar: {
           left: "prev,next datepicker",

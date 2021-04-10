@@ -66,11 +66,19 @@ const actions = {
             commit('addEvent', event);
         }
     },
-    deleteEvent({ commit }, eventId) {
-        commit('deleteEvent', eventId);
+    async deleteEvent({ commit }, eventId) {
+        const response = await axios.delete(API_URL + `/calendar/${eventId}`);
+
+        if (response.status === 200) {
+            commit('deleteEvent', eventId);
+        }
     },
-    updateEvent({ commit }, event) {
-        commit('updateEvent', event);
+    async updateEvent({ commit }, event) {
+        const response = await axios.put(API_URL + `/calendar/${event.id}`, event);
+
+        if (response.status === 200) {
+            commit('updateEvent', event);
+        }
     }
 }
 

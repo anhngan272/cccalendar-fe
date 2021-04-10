@@ -115,7 +115,7 @@ export default {
         attendees: [],
         tags: [],
         attendeeSubmited: true,
-        colorId: "#039BE5",
+        colorId: "7",
       },
       rules: {
         title: [
