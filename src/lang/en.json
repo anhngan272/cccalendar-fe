@@ -1,52 +1,69 @@
 {
-    "common": {
-      "select_lang": "US",
-      "logo": "LOGO",
-      "author": "CodingCats",
-      "copyrights": "Copyright © 2021 All Rights Reserved by "
+  "common": {
+    "select_lang": "US",
+    "logo": "LOGO",
+    "author": "CodingCats",
+    "copyrights": "Copyright © 2021 All Rights Reserved by "
+  },
+  "homepage": {
+    "title": {
+      "web_name": "CCCalendar",
+      "title": "Manage Your Schedule Like A Pro"
     },
-    "homepage": {
-      "title": {
-        "web_name": "CCCalendar",
-        "title": "Manage Your Schedule Like A Pro"
+    "intro": {
+      "calendar": {
+        "title": "Calendar",
+        "text": "Google Calendar lets you sync your calendar across multiple devices."
       },
-      "intro": {
-        "calendar": {
-          "title": "Calendar",
-          "text": "Google Calendar lets you sync your calendar across multiple devices."
-        },
-        "note": {
-          "title": "Note",
-          "text": "Keep note of your plan or taskes so you won't miss a thing."
-        },
-        "organizer": {
-          "title": "Organizer",
-          "text": "Keep all your notes and events organized for best performance."
-        }
+      "note": {
+        "title": "Note",
+        "text": "Keep note of your plan or taskes so you won't miss a thing."
+      },
+      "organizer": {
+        "title": "Organizer",
+        "text": "Keep all your notes and events organized for best performance."
       }
-    },
-    "about_page": {
-      "text": "Hey There! We're Coding Cats"
-    },
-    "notfound_page": {
-      "text": "Page Not Found"
-    },
-    "diary_page": {
-      "title":"Diary",
-      "searchPlaceholder": "Input Search Text",
-      "addDiaryBtn":"Add diary",
-      "addDiaryModal":{
-        "header":"Add Diary",
-        "title":"Title",
-        "date":"Date Time",
-        "resetBtn":"Reset",
-        "cancelBtn":"Cancel"
-      }
-    },
-    "login": {
-      "signin": "SIGN IN",
-      "signout": "SIGN OUT",
-      "signin_google": "Sign in with Google",
-      "signin_loading": "Signing in..."
     }
+  },
+  "about_page": {
+    "text": "Hey There! We're Coding Cats"
+  },
+  "notfound_page": {
+    "text": "Page Not Found"
+  },
+  "diary_page": {
+    "title": "Diary",
+    "searchPlaceholder": "Input Search Text",
+    "addDiaryBtn": "Add diary",
+    "addDiaryModal": {
+      "header": "Add Diary",
+      "title": "Title",
+      "date": "Date Time",
+      "resetBtn": "Reset",
+      "cancelBtn": "Cancel"
+    }
+  },
+  "calendar_page": {
+    "title": "Calendar",
+    "calendar": {
+      "month": "Month",
+      "week": "Week",
+      "list": "Schedule"
+    },
+    "create_event": "Create new event",
+    "addDiaryBtn": "Add diary",
+    "addDiaryModal": {
+      "header": "Add Diary",
+      "title": "Title",
+      "date": "Date Time",
+      "resetBtn": "Reset",
+      "cancelBtn": "Cancel"
+    }
+  },
+  "login": {
+    "signin": "SIGN IN",
+    "signout": "SIGN OUT",
+    "signin_google": "Sign in with Google",
+    "signin_loading": "Signing in..."
   }
+}

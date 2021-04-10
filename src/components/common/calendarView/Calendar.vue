@@ -37,13 +37,18 @@ export default {
           interactionPlugin, // needed for dateClick
           listPlugin
         ],
+        buttonText:{
+            month: this.$i18n.t("calendar_page.calendar.month"),
+            week: this.$i18n.t("calendar_page.calendar.week"),
+            listMonth: this.$i18n.t("calendar_page.calendar.list"),
+        },
         headerToolbar: {
           left: "prev,next datepicker",
           center: "title",
           right: "dayGridMonth,timeGridWeek,listMonth",
         },
         initialView: "dayGridMonth",
-        editable: true,
+        editable: false,
         // selectable: true,
         selectMirror: true,
         dayMaxEvents: true,

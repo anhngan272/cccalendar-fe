@@ -100,7 +100,7 @@ export default {
   },
   methods: {
     selectColor(color) {
-      this.$emit("colorPicked", color.colorId);
+      this.$emit("colorPicked", color.colorId,color.background);
     },
     resetForm() {
       this.defaultId = "#039BE5";

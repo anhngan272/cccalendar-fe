@@ -116,6 +116,7 @@ export default {
         tags: [],
         attendeeSubmited: true,
         colorId: "7",
+        backgroundColor: "46d6db",
       },
       rules: {
         title: [
@@ -143,7 +144,8 @@ export default {
       this.form.attendees = this.eventAttendees;
       this.form.tags = this.eventTags;
       this.form.description = this.updateEventModalExtend.description;
-      this.form.colorId = this.updateEventInfo.backgroundColor;
+      this.form.colorId = this.updateEventModalExtend.colorId;
+      this.form.backgroundColor = this.updateEventInfo.backgroundColor;
       // console.log(this.form.attendees);
     }
   },
@@ -175,7 +177,8 @@ export default {
           start: start,
           end: end,
           description: this.form.description,
-          backgroundColor: this.form.colorId,
+          backgroundColor: this.form.backgroundColor,
+          colorId: this.form.colorId,
           textColor: "#fff",
           allDay: false,
           attendees: this.form.attendees,
@@ -208,10 +211,11 @@ export default {
         attendees: attendees,
       };
     },
-    setColor(color) {
+    setColor(colorId,backgroundColor) {
       this.form = {
         ...this.form,
-        colorId: color,
+        colorId: colorId,
+        backgroundColor: backgroundColor
       };
     },
     timeFormat(type, value) {

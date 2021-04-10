@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a-card title="Add Event">
+    <a-card :title="$t('calendar_page.create_event')">
       <EventForm />
     </a-card>
   </div>

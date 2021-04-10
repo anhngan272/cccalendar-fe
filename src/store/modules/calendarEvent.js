@@ -7,42 +7,42 @@ export function createEventId() {
 const state = {
     event: {},
     events: [
-        {
-            id: createEventId(),
-            title: 'Event 1',
-            backgroundColor: '#D50000',
-            textColor: '#fff',
-            description: "hello world",
-            attendees: ["ngannnnnnnn@gmail.com", 'huy@gmail.com'],
-            tags: ['event', 'work'],
-            start: new Date('2021-04-21').toISOString().replace(/T.*$/, '') + 'T01:00',
-            end: new Date('2021-04-23').toISOString().replace(/T.*$/, '') + 'T01:01',
-            allDay: false,
-        },
-        {
-            id: createEventId(),
-            title: 'Event 2',
-            backgroundColor: '#D50000',
-            textColor: '#fff',
-            description: "hello world",
-            attendees: ["ngannnnnnnn@gmail.com", 'huy@gmail.com'],
-            tags: ['event', 'work'],
-            start: new Date('2021-04-21').toISOString().replace(/T.*$/, '') + 'T12:30',
-            end: new Date('2021-04-21').toISOString().replace(/T.*$/, '') + 'T13:00',
-            allDay: false,
-        },
-        {
-            id: createEventId(),
-            title: 'Event 3',
-            backgroundColor: '#D50000',
-            textColor: '#fff',
-            description: "hello world",
-            attendees: ["ngannnnnnnn@gmail.com", 'huy@gmail.com'],
-            tags: ['event', 'work'],
-            start: new Date('2021-04-22').toISOString().replace(/T.*$/, '') + 'T12:30',
-            end: new Date('2021-04-22').toISOString().replace(/T.*$/, '') + 'T13:00',
-            allDay: false,
-        },
+        // {
+        //     id: createEventId(),
+        //     title: 'Event 1',
+        //     backgroundColor: '#D50000',
+        //     textColor: '#fff',
+        //     description: "hello world",
+        //     attendees: ["ngannnnnnnn@gmail.com", 'huy@gmail.com'],
+        //     tags: ['event', 'work'],
+        //     start: new Date('2021-04-21').toISOString().replace(/T.*$/, '') + 'T01:00',
+        //     end: new Date('2021-04-23').toISOString().replace(/T.*$/, '') + 'T01:01',
+        //     allDay: false,
+        // },
+        // {
+        //     id: createEventId(),
+        //     title: 'Event 2',
+        //     backgroundColor: '#D50000',
+        //     textColor: '#fff',
+        //     description: "hello world",
+        //     attendees: ["ngannnnnnnn@gmail.com", 'huy@gmail.com'],
+        //     tags: ['event', 'work'],
+        //     start: new Date('2021-04-21').toISOString().replace(/T.*$/, '') + 'T12:30',
+        //     end: new Date('2021-04-21').toISOString().replace(/T.*$/, '') + 'T13:00',
+        //     allDay: false,
+        // },
+        // {
+        //     id: createEventId(),
+        //     title: 'Event 3',
+        //     backgroundColor: '#D50000',
+        //     textColor: '#fff',
+        //     description: "hello world",
+        //     attendees: ["ngannnnnnnn@gmail.com", 'huy@gmail.com'],
+        //     tags: ['event', 'work'],
+        //     start: new Date('2021-04-22').toISOString().replace(/T.*$/, '') + 'T12:30',
+        //     end: new Date('2021-04-22').toISOString().replace(/T.*$/, '') + 'T13:00',
+        //     allDay: false,
+        // },
     ],
 }
 
@@ -94,6 +94,7 @@ const mutations = {
     updateEvent: (state, event) => {
         const eventIndex = state.events.findIndex(e => e.id === event.id)
         state.events.splice(eventIndex, 1, event)
+        console.log(event)
     }
 }
 

@@ -53,6 +53,7 @@
       }}
     </div>
     <div>Description: {{ eventModalExtend.description }}</div>
+    <!-- <div>color: {{ eventModalExtend }}</div> -->
     <div>color: {{ event.backgroundColor }}</div>
     <div>
       Attendees:
