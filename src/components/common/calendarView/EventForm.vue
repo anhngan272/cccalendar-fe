@@ -7,10 +7,10 @@
     :label-col="labelCol"
     :wrapper-col="wrapperCol"
   >
-    <a-form-model-item label="Title" prop="title">
+    <a-form-model-item :label="$t('calendar_page.event_form.title')" prop="title">
       <a-input v-model="form.title" ref="title" />
     </a-form-model-item>
-    <a-form-model-item label="Begin" required prop="date1">
+    <a-form-model-item :label="$t('calendar_page.event_form.begin')" required prop="date1">
       <a-date-picker
         inputReadOnly
         :allowClear="this.allowClear"
@@ -28,7 +28,7 @@
         style="margin-left: 15px"
       />
     </a-form-model-item>
-    <a-form-model-item label="End" prop="date2">
+    <a-form-model-item :label="$t('calendar_page.event_form.end')" prop="date2">
       <a-date-picker
         inputReadOnly
         :allowClear="this.allowClear"
@@ -46,7 +46,7 @@
         :disabledMinutes="disabledMinutes"
       />
     </a-form-model-item>
-    <a-form-model-item label="Attendees" prop="attendees">
+    <a-form-model-item :label="$t('calendar_page.event_form.attendees')" prop="attendees">
       <AttendeePicker
         ref="attendeePicker"
         :eventAttendees="form.attendees"
@@ -54,13 +54,13 @@
         @attendeeSubmited="setAttendeeSubmit"
       />
     </a-form-model-item>
-    <a-form-model-item label="Tags" prop="tag">
+    <a-form-model-item :label="$t('calendar_page.event_form.tags')" prop="tag">
       <TagPicker ref="tagPicker" :eventTags="form.tags" @tagsPicked="setTags" />
     </a-form-model-item>
-    <a-form-model-item label="Description" prop="description">
+    <a-form-model-item :label="$t('calendar_page.event_form.description')" prop="description">
       <a-input v-model="form.description" type="textarea" />
     </a-form-model-item>
-    <a-form-model-item label="Theme" prop="colorId">
+    <a-form-model-item :label="$t('calendar_page.event_form.theme')" prop="colorId">
       <ThemePicker
         ref="colorPicker"
         :color="form.colorId"
@@ -69,14 +69,16 @@
     </a-form-model-item>
     <a-form-model-item :wrapper-col="{ span: 14, offset: 4 }">
       <a-button type="primary" @click="onSubmit" v-if="isUpdate != true">
-        Create
+        {{$t('calendar_page.event_form.create_btn')}}
       </a-button>
-      <a-button type="primary" @click="onUpdateEvent" v-else> Update </a-button>
+      <a-button type="primary" @click="onUpdateEvent" v-else>
+         {{$t('calendar_page.event_form.update_btn')}}
+         </a-button>
       <a-button type="danger" style="margin-left: 10px" @click="resetForm">
-        Reset
+        {{$t('calendar_page.event_form.reset_btn')}}
       </a-button>
     </a-form-model-item>
-    <code>{{ form }}</code>
+    <!-- <code>{{ form }}</code> -->
   </a-form-model>
 </template>
 <script>

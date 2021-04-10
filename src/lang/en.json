@@ -34,9 +34,9 @@
   "diary_page": {
     "title": "Diary",
     "searchPlaceholder": "Input Search Text",
-    "addDiaryBtn": "Add diary",
+    "addDiaryBtn": "Create new diary",
     "addDiaryModal": {
-      "header": "Add Diary",
+      "header": "Create new Diary",
       "title": "Title",
       "date": "Date Time",
       "resetBtn": "Reset",
@@ -50,14 +50,40 @@
       "week": "Week",
       "list": "Schedule"
     },
-    "create_event": "Create new event",
-    "addDiaryBtn": "Add diary",
-    "addDiaryModal": {
-      "header": "Add Diary",
+    "create_event": "Create new Event",
+    "event_form": {
       "title": "Title",
-      "date": "Date Time",
-      "resetBtn": "Reset",
-      "cancelBtn": "Cancel"
+      "begin": "Begin",
+      "end": "End",
+      "attendees": "Attendees",
+      "select_attendees": "Enter Attendee",
+      "attendees_help": " is not a valid email",
+      "tags": "Tags",
+      "select_tags": "Select Tag",
+      "description": "Description",
+      "theme": "Theme",
+      "theme_name": {
+        "lavender": "Lavender",
+        "sage": "Sage",
+        "grape": "Grape",
+        "flamingo": "Flamingo",
+        "banana": "Banana",
+        "tangerine": "Tangerine",
+        "peacock": "Peacock",
+        "graphite": "Graphite",
+        "blueberry": "Blueberry",
+        "basil": "Basil",
+        "tomato": "Tomato"
+      },
+      "create_btn": "Create",
+      "update_btn": "Update",
+      "edit_header": "Edit Event",
+      "edit_btn": "Edit",
+      "reset_btn": "Reset",
+      "delete_btn": "Delete",
+      "delete_confirm": "Are you sure delete this event?",
+      "delete_ok": "Yes",
+      "delete_cancel": "Cancel"
     }
   },
   "login": {

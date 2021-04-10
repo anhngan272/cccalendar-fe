@@ -4,8 +4,12 @@
       <a :href="$router.resolve({ name: 'Home' }).href"
         ><img src="@/assets/cccalendar_logo.png" style="height: 30px"
       /></a>
-      <a :href="$router.resolve({ name: 'CalendarView' }).href"> Calendar</a>
-      <a :href="$router.resolve({ name: 'DiaryView' }).href"> {{$t('diary_page.title')}}</a>
+      <a :href="$router.resolve({ name: 'CalendarView' }).href">
+        {{ $t("calendar_page.title") }}</a
+      >
+      <a :href="$router.resolve({ name: 'DiaryView' }).href">
+        {{ $t("diary_page.title") }}</a
+      >
       <Navbar />
     </div>
   </div>

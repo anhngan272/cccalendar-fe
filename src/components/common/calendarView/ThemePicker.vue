@@ -32,67 +32,67 @@ export default {
     return {
       colors: [{
         "colorId": 1,
-        "name": "Lavender",
+        "name": this.$i18n.t('calendar_page.event_form.theme_name.lavender'),
         "background": "#a4bdfc",
         "foreground": "#1d1d1d"
     },
     {
         "colorId": 2,
-        "name": "Sage",
+        "name": this.$i18n.t('calendar_page.event_form.theme_name.sage'),
         "background": "#7ae7bf",
         "foreground": "#1d1d1d"
     },
     {
         "colorId": 3,
-        "name": "Grape",
+        "name": this.$i18n.t('calendar_page.event_form.theme_name.grape'),
         "background": "#dbadff",
         "foreground": "#1d1d1d"
     },
     {
         "colorId": 4,
-        "name": "Flamingo",
+        "name": this.$i18n.t('calendar_page.event_form.theme_name.flamingo'),
         "background": "#ff887c",
         "foreground": "#1d1d1d"
     },
     {
         "colorId": 5,
-        "name": "Banana",
+        "name": this.$i18n.t('calendar_page.event_form.theme_name.banana'),
         "background": "#fbd75b",
         "foreground": "#1d1d1d"
     },
     {
         "colorId": 6,
-        "name": "Tangerine",
+        "name": this.$i18n.t('calendar_page.event_form.theme_name.tangerine'),
         "background": "#ffb878",
         "foreground": "#1d1d1d"
     },
     {
         "colorId": 7,
-        "name": "Peacock",
+        "name": this.$i18n.t('calendar_page.event_form.theme_name.peacock'),
         "background": "#46d6db",
         "foreground": "#1d1d1d"
     },
     {
         "colorId": 8,
-        "name": "Graphite",
+        "name": this.$i18n.t('calendar_page.event_form.theme_name.graphite'),
         "background": "#e1e1e1",
         "foreground": "#1d1d1d"
     },
     {
         "colorId": 9,
-        "name": "Blueberry",
+        "name": this.$i18n.t('calendar_page.event_form.theme_name.blueberry'),
         "background": "#5484ed",
         "foreground": "#1d1d1d"
     },
     {
         "colorId": 10,
-        "name": "Basil",
+        "name": this.$i18n.t('calendar_page.event_form.theme_name.basil'),
         "background": "#51b749",
         "foreground": "#1d1d1d"
     },
     {
         "colorId": 11,
-        "name": "Tomato",
+        "name": this.$i18n.t('calendar_page.event_form.theme_name.tomato'),
         "background": "#dc2127",
         "foreground": "#1d1d1d"
     }],

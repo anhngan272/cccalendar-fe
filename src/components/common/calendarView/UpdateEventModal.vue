@@ -3,7 +3,7 @@
     :destroyOnClose="true"
     width="35vw"
     v-model="updateModal"
-    title="Update Event"
+    :title="$t('calendar_page.event_form.edit_header')"
     @ok="handleOk"
   >
     <EventForm

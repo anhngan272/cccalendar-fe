@@ -1,52 +1,95 @@
 {
-    "common": {
-      "select_lang": "VN",
-      "logo": "LOGO",
-      "author": "CodingCats",
-      "copyrights": "Bản quyền © 2021 Mọi quyền được bảo lưu bởi "
+  "common": {
+    "select_lang": "VN",
+    "logo": "LOGO",
+    "author": "CodingCats",
+    "copyrights": "Bản quyền © 2021 Mọi quyền được bảo lưu bởi "
+  },
+  "homepage": {
+    "title": {
+      "web_name": "CCCalendar",
+      "title": "Quản lý thời khóa biểu của bạn như một chuyên gia"
     },
-    "homepage": {
-      "title": {
-        "web_name": "CCCalendar",
-        "title": "Quản lý thời khóa biểu của bạn như một chuyên gia"
+    "intro": {
+      "calendar": {
+        "title": "Calendar",
+        "text": "Google Calendar giúp bạn đồng bộ hóa lịch của mình trên nhiều thiết bị ."
       },
-      "intro": {
-        "calendar": {
-          "title": "Calendar",
-          "text": "Google Calendar giúp bạn đồng bộ hóa lịch của mình trên nhiều thiết bị ."
-        },
-        "note": {
-          "title": "Note",
-          "text": "Ghi chú lại các kế hoạch và công việc của bạn để bạn không phải bỏ lỡ điều gì."
-        },
-        "organizer": {
-          "title": "Organizer",
-          "text": "Quản lý các ghi chú và sự kiện của bạn nhằm nâng cao hiệu suất làm việc."
-        }
+      "note": {
+        "title": "Note",
+        "text": "Ghi chú lại các kế hoạch và công việc của bạn để bạn không phải bỏ lỡ điều gì."
+      },
+      "organizer": {
+        "title": "Organizer",
+        "text": "Quản lý các ghi chú và sự kiện của bạn nhằm nâng cao hiệu suất làm việc."
       }
-    },
-    "about_page": {
-      "text": "Xin chào! Chúng tôi là Coding Cats"
-    },
-    "notfound_page": {
-      "text": "Không tìm thấy trang"
-    },
-    "diary_page": {
-      "title":"Nhật ký",
-      "searchPlaceholder": "Nhập từ khóa tìm kiếm",
-      "addDiaryBtn":"Thêm nhật ký",
-      "addDiaryModal":{
-        "header":"Thêm nhật ký",
-        "title":"Tiêu đề",
-        "date":"Ngày giờ",
-        "resetBtn":"Cài lại",
-        "cancelBtn":"Hủy"
-      }
-    },
-    "login": {
-      "signin": "Đăng nhập",
-      "signout": "Đăng xuất",
-      "signin_google": "Đăng nhập bằng tài khoản google",
-      "signin_loading": "Đang đăng nhập..."
     }
+  },
+  "about_page": {
+    "text": "Xin chào! Chúng tôi là Coding Cats"
+  },
+  "notfound_page": {
+    "text": "Không tìm thấy trang"
+  },
+  "diary_page": {
+    "title": "Nhật ký",
+    "searchPlaceholder": "Nhập từ khóa tìm kiếm",
+    "addDiaryBtn": "Thêm nhật ký",
+    "addDiaryModal": {
+      "header": "Thêm nhật ký",
+      "title": "Tiêu đề",
+      "date": "Ngày giờ",
+      "resetBtn": "Làm mới",
+      "cancelBtn": "Hủy"
+    }
+  },
+  "calendar_page": {
+    "title": "Lịch",
+    "calendar": {
+      "month": "Tháng",
+      "week": "Tuần",
+      "list": "Lịch biểu"
+    },
+    "create_event": "Tạo sự kiện mới",
+    "event_form": {
+      "title": "Tiêu đề",
+      "begin": "Bắt đầu",
+      "end": "Kết thúc",
+      "attendees": "Khách",
+      "select_attendees": "Nhập thêm khách",
+      "attendees_help": " không phải là một email hợp lệ",
+      "tags": "Thẻ",
+      "select_tags": "Thêm thẻ",
+      "description": "Miêu tả",
+      "theme": "Chủ đề",
+      "theme_name": {
+        "lavender": "Màu Lavender",
+        "sage": "Màu Sage",
+        "grape": "Màu Nho",
+        "flamingo": "Màu Hồng Hạc",
+        "banana": "Màu Chuối",
+        "tangerine": "Màu Quả Quýt",
+        "peacock": "Màu Peacock",
+        "graphite": "Màu Than Chì",
+        "blueberry": "Màu Việt Quất",
+        "basil": "Màu Húng Quế",
+        "tomato": "Màu Cà Chua"
+      },
+      "create_btn": "Tạo sự kiện",
+      "update_btn": "Cập nhật",
+      "edit_header": "Chỉnh sửa sự kiện",
+      "edit_btn": "Chỉnh sửa",
+      "reset_btn": "Làm mới",
+      "delete_btn": "Xóa",
+      "delete_confirm": "Bạn có chắc chắn xóa sự kiện này không?",
+      "delete_ok": "Ok",
+      "delete_cancel": "Hủy"
+    }
+  },
+  "login": {
+    "signin": "Đăng nhập",
+    "signout": "Đăng xuất",
+    "signin_google": "Đăng nhập bằng tài khoản google",
+    "signin_loading": "Đang đăng nhập..."
   }
+}

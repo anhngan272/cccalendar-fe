@@ -4,7 +4,7 @@
       <a-select
         mode="tags"
         style="width: 100%"
-        placeholder="Enter Attendee"
+        :placeholder="$t('calendar_page.event_form.select_attendees')"
         @change="handleChange"
         v-decorator="['attendee']"
       >
@@ -57,7 +57,7 @@ export default {
         for (let i = 0; i < values.length; i++) {
           if (!emailPattern.test(values[i])) {
             this.status = "error";
-            this.help = values[i] + " is not a valid email";
+            this.help = '"' + values[i] + '"' + this.$i18n.t('calendar_page.event_form.attendees_help');
             this.$emit("attendeeSubmited", false);
             return;
           } else {

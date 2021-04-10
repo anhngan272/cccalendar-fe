@@ -4,7 +4,7 @@
       <a-select
         mode="tags"
         style="width: 100%"
-        placeholder="Select tag"
+        :placeholder="$t('calendar_page.event_form.select_tags')"
         @change="handleChange"
         v-decorator="['tag']"
       >

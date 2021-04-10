@@ -10,13 +10,15 @@
     <div slot="footer" style="text-align: left">
       <div style="text-align: left">
         <a-popconfirm
-          title="Are you sure delete this task?"
+          :title="$t('calendar_page.event_form.delete_confirm')"
           placement="top"
-          ok-text="Yes"
-          cancel-text="Cancel"
+          :ok-text="$t('calendar_page.event_form.delete_ok')"
+          :cancel-text="$t('calendar_page.event_form.delete_cancel')"
           @confirm="handleDelete"
         >
-          <a-button key="delete" type="danger"> Delete </a-button>
+          <a-button key="delete" type="danger">
+            {{ $t("calendar_page.event_form.delete_btn") }}
+          </a-button>
         </a-popconfirm>
         <a-button
           key="delete"
@@ -24,7 +26,7 @@
           class="updateBtn"
           @click="showUpdateModal"
         >
-          Update
+          {{ $t("calendar_page.event_form.edit_btn") }}
         </a-button>
       </div>
       <a-button key="ok" type="primary" @click="handleOk"> Ok </a-button>
@@ -37,7 +39,7 @@
     />
 
     <div>
-      Start:
+      <b>{{ $t("calendar_page.event_form.begin") }}: </b>
       {{
         moment(event.start)
           .locale(this.$i18n.locale)
@@ -45,18 +47,20 @@
       }}
     </div>
     <div>
-      End:
+      <b>{{ $t("calendar_page.event_form.end") }}: </b>
       {{
         moment(event.end)
           .locale(this.$i18n.locale)
           .format("HH:mm a dddd DD-MM-yyyy")
       }}
     </div>
-    <div>Description: {{ eventModalExtend.description }}</div>
-    <!-- <div>color: {{ eventModalExtend }}</div> -->
-    <div>color: {{ event.backgroundColor }}</div>
     <div>
-      Attendees:
+      <b>{{ $t("calendar_page.event_form.description") }}: </b>
+      {{ eventModalExtend.description }}
+    </div>
+    <!-- <div>color: {{ eventModalExtend }}</div> -->
+    <div>
+      <b>{{ $t("calendar_page.event_form.attendees") }}: </b>
       <div class="attendeeWrapper">
         <span v-for="(attendee, i) in eventModalExtend.attendees" :key="i"
           >{{ attendee }}
@@ -64,8 +68,15 @@
       </div>
     </div>
     <div class="tags">
-      Tags:
+      <b>{{ $t("calendar_page.event_form.tags") }}: </b>
       <span v-for="(tag, i) in eventModalExtend.tags" :key="i">#{{ tag }}</span>
+    </div>
+    <div>
+      <b>{{ $t("calendar_page.event_form.theme") }}: </b>
+      <div
+        :style="{ background: event.backgroundColor }"
+        style="display: inline-block; margin-left: 5px"
+      ></div>
     </div>
   </a-modal>
 </template>
