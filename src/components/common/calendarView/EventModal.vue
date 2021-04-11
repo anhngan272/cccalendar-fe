@@ -7,29 +7,26 @@
     @ok="handleOk"
     width="30vw"
   >
-    <div slot="footer" style="text-align: left">
-      <div style="text-align: left">
+    <div slot="footer">
+      <div style="text-align: center">
         <a-popconfirm
           :title="$t('calendar_page.event_form.delete_confirm')"
           placement="top"
-          :ok-text="$t('calendar_page.event_form.delete_ok')"
-          :cancel-text="$t('calendar_page.event_form.delete_cancel')"
+          :ok-text="$t('calendar_page.event_form.ok_btn')"
+          :cancel-text="$t('calendar_page.event_form.cancel_btn')"
           @confirm="handleDelete"
         >
           <a-button key="delete" type="danger">
             {{ $t("calendar_page.event_form.delete_btn") }}
           </a-button>
         </a-popconfirm>
-        <a-button
-          key="delete"
-          type="primary"
-          class="updateBtn"
-          @click="showUpdateModal"
-        >
+        <a-button key="delete" type="primary" @click="showUpdateModal">
           {{ $t("calendar_page.event_form.edit_btn") }}
         </a-button>
+        <a-button key="ok" type="primary" @click="handleOk">
+          {{ $t("calendar_page.event_form.ok_btn") }}
+        </a-button>
       </div>
-      <a-button key="ok" type="primary" @click="handleOk"> Ok </a-button>
     </div>
     <UpdateEventModal
       ref="updateEventModal"
@@ -143,6 +140,14 @@ export default {
   /* opacity: 0.35; */
 }
 .updateBtn:hover {
+  background: #28a745;
+  opacity: 0.8;
+}
+.updateBtn::after {
+  background: #28a745;
+  opacity: 0.8;
+}
+.updateBtn::selection {
   background: #28a745;
   opacity: 0.8;
 }

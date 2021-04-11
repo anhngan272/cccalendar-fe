@@ -82,8 +82,8 @@
       "reset_btn": "Reset",
       "delete_btn": "Delete",
       "delete_confirm": "Are you sure delete this event?",
-      "delete_ok": "Yes",
-      "delete_cancel": "Cancel"
+      "ok_btn": "Ok",
+      "cancel_btn": "Cancel"
     }
   },
   "login": {

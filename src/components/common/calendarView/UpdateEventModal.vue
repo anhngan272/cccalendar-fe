@@ -5,6 +5,8 @@
     v-model="updateModal"
     :title="$t('calendar_page.event_form.edit_header')"
     @ok="handleOk"
+    centered
+    footer=""
   >
     <EventForm
       ref="updateEventForm"
@@ -12,6 +14,7 @@
       :updateEventModalExtend="updateEventModalExtend"
       :updateEventInfo="updateEvent"
       @updated="handleUpdated"
+      @cancel="updateModal = false"
       :eventTags="updateEventModalExtend.tags"
       :eventAttendees="updateEventModalExtend.attendees"
     />
