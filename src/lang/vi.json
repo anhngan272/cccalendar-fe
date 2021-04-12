@@ -12,11 +12,11 @@
     },
     "intro": {
       "calendar": {
-        "title": "Calendar",
-        "text": "Google Calendar giúp bạn đồng bộ hóa lịch của mình trên nhiều thiết bị ."
+        "title": "Lịch",
+        "text": "Liên kết với Google Calendar nhằm giúp bạn đồng bộ hóa lịch của mình trên nhiều thiết bị ."
       },
-      "note": {
-        "title": "Note",
+      "diary": {
+        "title": "Nhật ký",
         "text": "Ghi chú lại các kế hoạch và công việc của bạn để bạn không phải bỏ lỡ điều gì."
       },
       "organizer": {
@@ -48,11 +48,13 @@
     "calendar": {
       "month": "Tháng",
       "week": "Tuần",
-      "list": "Lịch biểu"
+      "list": "Lịch biểu",
+      "select_date": "Chọn một ngày để hiển thị các sự kiện trong tháng của ngày đó"
     },
     "create_event": "Tạo sự kiện mới",
     "event_form": {
       "title": "Tiêu đề",
+      "title_help": "Hãy nhập tiêu đề sự kiện",
       "begin": "Bắt đầu",
       "end": "Kết thúc",
       "attendees": "Khách",
@@ -63,17 +65,17 @@
       "description": "Miêu tả",
       "theme": "Chủ đề",
       "theme_name": {
-        "lavender": "Màu Lavender",
-        "sage": "Màu Sage",
-        "grape": "Màu Nho",
-        "flamingo": "Màu Hồng Hạc",
-        "banana": "Màu Chuối",
-        "tangerine": "Màu Quả Quýt",
-        "peacock": "Màu Peacock",
-        "graphite": "Màu Than Chì",
-        "blueberry": "Màu Việt Quất",
-        "basil": "Màu Húng Quế",
-        "tomato": "Màu Cà Chua"
+        "lavender": "Lavender",
+        "sage": "Sage",
+        "grape": "Nho",
+        "flamingo": "Hồng Hạc",
+        "banana": "Chuối",
+        "tangerine": "Quýt",
+        "peacock": "Peacock",
+        "graphite": "Than Chì",
+        "blueberry": "Việt Quất",
+        "basil": "Húng Quế",
+        "tomato": "Cà Chua"
       },
       "create_btn": "Tạo sự kiện",
       "update_btn": "Cập nhật",
@@ -83,7 +85,9 @@
       "delete_btn": "Xóa",
       "delete_confirm": "Bạn có chắc chắn xóa sự kiện này không?",
       "ok_btn": "Ok",
-      "cancel_btn": "Hủy"
+      "cancel_btn": "Hủy",
+      "cancel_confirm": "Bạn có chắc chắn hủy chỉnh sửa sự kiện này không?",
+      "success_alert": "Thành công!!"
     }
   },
   "login": {

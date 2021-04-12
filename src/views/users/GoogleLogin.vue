@@ -2,7 +2,9 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card">
-        <div class="card-header text-center font-weight-bold">{{$t('login.signin')}}</div>
+        <div class="card-header text-center font-weight-bold">
+          {{ $t("login.signin") }}
+        </div>
         <div class="card-body">
           <div class="text-center">
             <a
@@ -15,9 +17,9 @@
                 width="20px"
                 style="margin-bottom: 3px; margin-right: 5px"
                 alt="Google sign-in"
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
+                src="@/assets/GoogleLogo.png"
               />
-              {{$t('login.signin_google')}}
+              {{ $t("login.signin_google") }}
             </a>
             <p class="text-danger small mt-3" v-if="authError">
               {{ authError }}
@@ -51,7 +53,7 @@ export default {
 </script>
 
 <style scoped>
-body{
+body {
   background: pink;
 }
 </style>

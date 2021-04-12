@@ -13,10 +13,10 @@
     "intro": {
       "calendar": {
         "title": "Calendar",
-        "text": "Google Calendar lets you sync your calendar across multiple devices."
+        "text": "Link with Google Calendar to let you sync your calendar across multiple devices."
       },
-      "note": {
-        "title": "Note",
+      "diary": {
+        "title": "Diary",
         "text": "Keep note of your plan or taskes so you won't miss a thing."
       },
       "organizer": {
@@ -48,11 +48,13 @@
     "calendar": {
       "month": "Month",
       "week": "Week",
-      "list": "Schedule"
+      "list": "Schedule",
+      "select_date": "Select a date to show the events in the month of that date"
     },
     "create_event": "Create new Event",
     "event_form": {
       "title": "Title",
+      "title_help": "Please enter Event Title",
       "begin": "Begin",
       "end": "End",
       "attendees": "Attendees",
@@ -83,7 +85,9 @@
       "delete_btn": "Delete",
       "delete_confirm": "Are you sure delete this event?",
       "ok_btn": "Ok",
-      "cancel_btn": "Cancel"
+      "cancel_btn": "Cancel",
+      "cancel_confirm": "Are you sure cancel edit this event?",
+      "success_alert": "Success!!"
     }
   },
   "login": {

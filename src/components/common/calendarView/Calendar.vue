@@ -35,13 +35,8 @@ export default {
           dayGridPlugin,
           timeGridPlugin,
           interactionPlugin, // needed for dateClick
-          listPlugin
+          listPlugin,
         ],
-        buttonText:{
-            month: this.$i18n.t("calendar_page.calendar.month"),
-            week: this.$i18n.t("calendar_page.calendar.week"),
-            listMonth: this.$i18n.t("calendar_page.calendar.list"),
-        },
         headerToolbar: {
           left: "prev,next datepicker",
           center: "title",
@@ -127,6 +122,11 @@ export default {
           ...calendarOptions,
           events: getEvents,
           locale: this.$i18n.locale,
+          buttonText: {
+            month: this.$i18n.t('calendar_page.calendar.month'),
+            week: this.$i18n.t('calendar_page.calendar.week'),
+            listMonth: this.$i18n.t('calendar_page.calendar.list'),
+          },
         }"
       >
         <template v-slot:eventContent="arg">
@@ -138,7 +138,7 @@ export default {
       </FullCalendar>
       <a-modal v-model="modal1" title="Select date" @ok="handleOk">
         <div style="margin-bottom: 10px">
-          Select a date to show the events in the month of that date
+          {{ $t("calendar_page.calendar.select_date") }}
         </div>
         <a-date-picker
           inputReadOnly

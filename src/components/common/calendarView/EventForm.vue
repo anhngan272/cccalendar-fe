@@ -93,16 +93,36 @@
       <a-button type="danger" style="margin-left: 10px" @click="resetForm">
         {{ $t("calendar_page.event_form.reset_btn") }}
       </a-button>
-      <a-button
-        type="button"
-        style="margin-left: 10px"
-        @click="$emit('cancel')"
-        v-if="isUpdate == true"
+      <a-popconfirm
+        :title="$t('calendar_page.event_form.cancel_confirm')"
+        placement="top"
+        :ok-text="$t('calendar_page.event_form.ok_btn')"
+        :cancel-text="$t('calendar_page.event_form.cancel_btn')"
+        @confirm="$emit('cancel')"
       >
-        {{ $t("calendar_page.event_form.cancel_btn") }}
-      </a-button>
+        <a-button
+          type="button"
+          style="margin-left: 10px"
+          v-if="isUpdate == true"
+        >
+          {{ $t("calendar_page.event_form.cancel_btn") }}
+        </a-button>
+      </a-popconfirm>
     </a-form-model-item>
-    <!-- <code>{{ form }}</code> -->
+    <a-modal
+      :dialog-style="{ top: '20vh' }"
+      :visible="submitModal"
+      :closable="false"
+      :maskClosable="false"
+      @ok="hideSuccessAlert"
+      :cancel-button-props="{ style: { display: 'none' } }"
+    >
+      <a-alert
+        :message="$t('calendar_page.event_form.success_alert')"
+        type="success"
+        show-icon
+      />
+    </a-modal>
   </a-form-model>
 </template>
 <script>
@@ -129,6 +149,7 @@ export default {
       other: "",
       isValidated: false,
       allowClear: false,
+      submitModal: false,
       form: {
         title: "",
         date1: moment(new Date()).add(7, "hours"),
@@ -148,7 +169,7 @@ export default {
         title: [
           {
             required: true,
-            message: "Please input Event Title",
+            message: this.$i18n.t("calendar_page.event_form.title_help"),
             trigger: "submit",
           },
         ],
@@ -162,6 +183,20 @@ export default {
   },
   created() {
     if (this.isUpdate == true) {
+      this.setUpdateInfo();
+    }
+  },
+  methods: {
+    ...mapActions(["addEvent", "updateEvent"]),
+    moment,
+    hideSuccessAlert() {
+      this.submitModal = false;
+      this.$emit("updated");
+    },
+    showSuccessAlert() {
+      this.submitModal = true;
+    },
+    setUpdateInfo() {
       this.form.title = this.updateEventInfo.title;
       this.form.date1 = moment(this.updateEventInfo.start);
       this.form.time1 = moment(this.updateEventInfo.start);
@@ -172,12 +207,7 @@ export default {
       this.form.description = this.updateEventModalExtend.description;
       this.form.colorId = this.updateEventModalExtend.colorId;
       this.form.backgroundColor = this.updateEventInfo.backgroundColor;
-      // console.log(this.form.attendees);
-    }
-  },
-  methods: {
-    ...mapActions(["addEvent", "updateEvent"]),
-    moment,
+    },
     onUpdateEvent() {
       this.validateForm();
       if (this.isValidated == true) {
@@ -205,6 +235,7 @@ export default {
           description: this.form.description,
           backgroundColor: this.form.backgroundColor,
           colorId: this.form.colorId,
+          borderColor: this.form.backgroundColor,
           textColor: "#fff",
           allDay: false,
           attendees: this.form.attendees,
@@ -213,7 +244,6 @@ export default {
 
         //call vuex store action to update event
         this.updateEvent(event);
-        this.$emit("updated");
       } else {
         console.log("error update!!");
         return false;
@@ -255,7 +285,7 @@ export default {
     validateForm() {
       this.$refs.ruleForm.validate((valid) => {
         if (valid && this.form.attendeeSubmited) {
-          alert("ok!");
+          this.showSuccessAlert();
           this.isValidated = true;
         } else {
           console.log("error validate!!");
@@ -282,7 +312,9 @@ export default {
           start: this.form.start,
           end: this.form.end,
           description: this.form.description,
-          backgroundColor: this.form.colorId,
+          backgroundColor: this.form.backgroundColor,
+          colorId: this.form.colorId,
+          borderColor: this.form.backgroundColor,
           textColor: "#fff",
           allDay: false,
           attendees: this.form.attendees,
@@ -322,13 +354,17 @@ export default {
       return minutes;
     },
     resetForm() {
-      this.$refs.ruleForm.resetFields();
-      this.$refs.attendeePicker.resetForm();
-      this.$refs.tagPicker.resetForm();
-      this.$refs.colorPicker.resetForm();
-      this.form.time1 = moment.utc("12:00", "HH:mm");
-      this.form.time2 = moment.utc("13:30", "HH:mm");
-      this.colorId = "#039BE5";
+      if (this.isUpdate == true) {
+        this.setUpdateInfo();
+      } else {
+        this.$refs.ruleForm.resetFields();
+        this.$refs.attendeePicker.resetForm();
+        this.$refs.tagPicker.resetForm();
+        this.$refs.colorPicker.resetForm();
+        this.form.time1 = moment.utc("12:00", "HH:mm");
+        this.form.time2 = moment.utc("13:30", "HH:mm");
+        this.colorId = "#039BE5";
+      }
     },
     changeDateTime(value) {
       // console.log(this.form.time1.toISOString())

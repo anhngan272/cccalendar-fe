@@ -53,7 +53,8 @@
     </div>
     <div>
       <b>{{ $t("calendar_page.event_form.description") }}: </b>
-      {{ eventModalExtend.description }}
+      <!-- {{ eventModalExtend.description }} -->
+      <span v-html="eventModalExtend.description"></span>
     </div>
     <!-- <div>color: {{ eventModalExtend }}</div> -->
     <div>

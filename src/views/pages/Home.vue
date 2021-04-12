@@ -1,6 +1,6 @@
 <template>
   <div class="home-container">
-    <h2 class="">{{$t('homepage.title.web_name')}}</h2>
+    <h1 class="font-weight-bold">{{$t('homepage.title.web_name')}}</h1>
     <h4>{{$t('homepage.title.title')}}</h4>
     <div class="site">
       <div class="container center">
@@ -16,10 +16,12 @@
           </div>
 
           <div class="col-sm-6 col-md-4">
+            <a :href="$router.resolve({ name: 'DiaryView' }).href">
             <i class="fa fa-clipboard"></i>
-            <h4><i>{{$t('homepage.intro.note.title')}}</i></h4>
+            <h4><i>{{$t('homepage.intro.diary.title')}}</i></h4>
+            </a>
             <p class="">
-              {{$t('homepage.intro.note.text')}}
+              {{$t('homepage.intro.diary.text')}}
             </p>
           </div>
 

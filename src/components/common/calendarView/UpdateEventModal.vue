@@ -7,6 +7,8 @@
     @ok="handleOk"
     centered
     footer=""
+    :maskClosable="false"
+    :closable="false"
   >
     <EventForm
       ref="updateEventForm"

@@ -4,7 +4,7 @@
       <CardForm />
     </div>
     <div class="calendar">
-      <Calendar ref="calendarWrap" />
+      <Calendar />
     </div>
   </div>
 </template>
