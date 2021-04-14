@@ -35,12 +35,23 @@
     "title": "Diary",
     "searchPlaceholder": "Input Search Text",
     "addDiaryBtn": "Create new diary",
-    "addDiaryModal": {
+    "diary_form": {
       "header": "Create new Diary",
       "title": "Title",
+      "title_help": "Please enter Diary Title",
       "date": "Date Time",
-      "resetBtn": "Reset",
-      "cancelBtn": "Cancel"
+      "tags": "Tags",
+      "content":"Content",
+      "reset_btn": "Reset",
+      "ok_btn": "Ok",
+      "cancel_btn": "Cancel",
+      "cancel_confirm": "Are you sure to cancel?",
+      "create_btn": "Create",
+      "update_btn": "Update",
+      "edit_btn": "Edit",
+      "delete_btn": "Delete",
+      "delete_confirm": "Are you sure delete this diary?",
+      "success_alert": "Thành công!!"
     }
   },
   "calendar_page": {

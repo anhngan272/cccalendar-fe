@@ -1,12 +1,13 @@
 <template>
   <a-modal
-    v-model="visible"
-    :title="$t('diary_page.addDiaryModal.header')"
-    @ok="handleOk"
+    :destroyOnClose="true"
+    v-model="$parent.textEditorVisible"
+    :title="$t('diary_page.diary_form.header')"
     :bodyStyle="modaleStyle"
-    :centered="true"
-    :cancelText="$t('diary_page.addDiaryModal.cancelBtn')"
+    centered
     width="90vw"
+    :maskClosable="true"
+    :closable="false"
   >
     <a-form-model
       ref="form"
@@ -15,13 +16,19 @@
       :rules="rules"
       :label-col="labelCol"
       :wrapper-col="wrapperCol"
-      style="width:80vw;"
+      style="width: 80vw"
     >
-      <a-form-model-item :label="$t('diary_page.addDiaryModal.title')" prop="title" >
+      <a-form-model-item
+        :label="$t('diary_page.diary_form.title')"
+        prop="title"
+      >
         <a-input v-model="form.title" ref="title" />
       </a-form-model-item>
 
-      <a-form-model-item :label="$t('diary_page.addDiaryModal.date')" prop="date">
+      <a-form-model-item
+        :label="$t('diary_page.diary_form.date')"
+        prop="date"
+      >
         <a-date-picker
           inputReadOnly
           :allowClear="false"
@@ -37,9 +44,19 @@
           style="margin-left: 15px"
         />
       </a-form-model-item>
+      <a-form-model-item
+        :label="$t('diary_page.diary_form.tags')"
+        prop="tags"
+      >
+        <TagPicker
+          ref="tagPicker"
+          :eventTags="form.tags"
+          @tagsPicked="setTags"
+        />
+      </a-form-model-item>
 
       <a-form-model-item
-        style="height: 50vh"
+        style="height: 45vh"
         prop="content"
         :wrapper-col="{ span: 24, offset: 1 }"
       >
@@ -52,12 +69,49 @@
         >
         </vue-editor>
       </a-form-model-item>
-      <a-form-model-item :wrapper-col="{ span: 14, offset: 12 }">
-        <a-button type="danger" style="margin-left: 10px" @click="resetForm">
-          {{$t('diary_page.addDiaryModal.resetBtn')}}
-        </a-button>
-      </a-form-model-item>
     </a-form-model>
+    <div slot="footer">
+      <div style="text-align: center">
+        <a-button
+          type="primary"
+          @click="handleCreate"
+          v-if="this.isUpdate != true"
+        >
+          {{ $t("diary_page.diary_form.create_btn") }}
+        </a-button>
+        <a-button type="primary" @click="handleUpdate" v-else>
+          {{ $t("diary_page.diary_form.update_btn") }}
+        </a-button>
+        <a-button type="danger" @click="resetForm">
+          {{ $t("diary_page.diary_form.reset_btn") }}
+        </a-button>
+        <a-popconfirm
+          :title="$t('diary_page.diary_form.cancel_confirm')"
+          placement="top"
+          :ok-text="$t('diary_page.diary_form.ok_btn')"
+          :cancel-text="$t('diary_page.diary_form.cancel_btn')"
+          @confirm="handelCancel"
+        >
+          <a-button>
+            {{ $t("diary_page.diary_form.cancel_btn") }}
+          </a-button>
+        </a-popconfirm>
+      </div>
+    </div>
+    <a-modal
+      :dialog-style="{ top: '20vh' }"
+      :visible="submitModal"
+      :closable="false"
+      :maskClosable="false"
+      @ok="hideSuccessAlert"
+      :cancel-button-props="{ style: { display: 'none' } }"
+    >
+      <a-alert
+        :message="$t('diary_page.diary_form.success_alert')"
+        type="success"
+        show-icon
+      />
+    </a-modal>
   </a-modal>
 </template>
 
@@ -65,28 +119,41 @@
 import { VueEditor } from "vue2-editor";
 import axios from "axios";
 import moment from "moment";
+import TagPicker from "../TagPicker.vue";
+import { mapActions } from "vuex";
 
 export default {
   name: "TextEditor",
+  props: {
+    isUpdate: Boolean,
+    diary: Object,
+  },
   components: {
     VueEditor,
+    TagPicker,
+  },
+  created() {
+    this.setDiaryInfo();
   },
 
   data() {
     return {
       htmlForEditor: "",
       visible: false,
+      isValidated: false,
+      submitModal: false,
       form: {
         title: "",
         date: moment(new Date()),
         time: moment.utc("12:00", "HH:mm"),
+        tags: [],
         content: "",
       },
       modaleStyle: {
         height: "80vh",
         width: "900px",
       },
-      labelCol: { span: 2,offset:2 },
+      labelCol: { span: 2, offset: 2 },
       wrapperCol: { span: 20 },
 
       rules: {
@@ -110,28 +177,87 @@ export default {
 
   methods: {
     moment,
-    showModal() {
-      // console.log(this.form.date);
-      this.visible = true;
-    },
-    handleOk(e) {
-      console.log(e);
+    ...mapActions(["createDiary", "updateDiary"]),
+    hideSuccessAlert() {
+      this.submitModal = false;
+      // this.$emit("updated");
+      this.$parent.textEditorVisible = false
 
+    },
+    showSuccessAlert() {
+      this.submitModal = true;
+    },
+    setDiaryInfo() {
+      if (this.isUpdate == true) {
+        this.form.title = this.diary.title;
+        this.form.date = moment(this.diary.date, "DD-MM-YYYY");
+        this.form.tags = this.diary.tags;
+        this.form.content = this.diary.content;
+        // console.log(this.diary)
+      }
+    },
+    setTags(tags) {
+      this.form = {
+        ...this.form,
+        tags: tags,
+      };
+    },
+    validateForm() {
       this.$refs.form.validate((valid) => {
         if (valid) {
-          this.visible = false;
-          alert("submit!");
+          this.isValidated = true;
         } else {
-          console.log("error submit!!");
-          return false;
+          console.log("error validate!!");
+          this.isValidated = false;
         }
       });
-      // this.visible = false;
+    },
+    handelCancel() {
+      this.$parent.textEditorVisible = false;
+      this.$parent.diary = null;
+      this.resetForm();
+    },
+    handleUpdate() {
+      this.validateForm();
+      if (this.isValidated == true) {
+        var diary = {
+          // id: createEventId(),
+          title: this.form.title,
+          date: this.form.date,
+          tags: this.form.tags,
+          content: this.form.content,
+        };
+        this.updateDiary(diary);
+        this.showSuccessAlert();
+      } else {
+        console.log("error update");
+      }
+    },
+    handleCreate() {
+      this.validateForm();
+      if (this.isValidated == true) {
+        var diary = {
+          // id: createEventId(),
+          title: this.form.title,
+          date: this.form.date,
+          tags: this.form.tags,
+          content: this.form.content,
+        };
+        this.createDiary(diary);
+        this.showSuccessAlert();
+      } else {
+        console.log("error create");
+      }
     },
     resetForm() {
-      this.$refs.form.resetFields();
-      this.form.time = moment.utc("12:00", "HH:mm");
-      console.log("reset");
+      if (this.isUpdate == true) {
+        this.setDiaryInfo();
+      } else {
+        this.$refs.form.resetFields();
+        this.$refs.tagPicker.resetForm();
+        this.form.time = moment.utc("12:00", "HH:mm");
+      }
+      // console.log("reset");
     },
     handleImageAdded: function (file, Editor, cursorLocation, resetUploader) {
       // An example of using FormData
@@ -166,5 +292,9 @@ export default {
 
 #editor {
   height: 50vh;
+}
+
+.ant-form-item {
+  margin-bottom: 5px;
 }
 </style>

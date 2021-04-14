@@ -3,12 +3,12 @@
     <div class="header">
       <a-input-search
         :placeholder="$t('diary_page.searchPlaceholder')"
-        style="width: 40%"
+        enter-button
         @search="onSearch"
       />
     </div>
     <div>
-      <ListView />
+      <DiaryList />
     </div>
     <div class="addBtn">
       <TextEditor ref="textEditor" />
@@ -16,24 +16,24 @@
         <i class="fa fa-plus my-float"></i>
       </a>
       <div class="label-container">
-        <div class="label-text">{{$t('diary_page.addDiaryBtn')}}</div>
+        <div class="label-text">{{ $t("diary_page.addDiaryBtn") }}</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import ListView from "./ListView";
+import DiaryList from "./DiaryList";
 import TextEditor from "./TextEditor";
 export default {
-  name: "DiaryEntries",
+  name: "Diary",
   data() {
     return {
-      
+      textEditorVisible:false,
     };
   },
   components: {
-    ListView,
+    DiaryList,
     TextEditor,
   },
   methods: {
@@ -41,8 +41,7 @@ export default {
       console.log(value);
     },
     addDiary() {
-      this.$refs.textEditor.showModal();
-      // alert("add diary");
+      this.textEditorVisible=true
     },
   },
 };

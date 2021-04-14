@@ -1,0 +1,109 @@
+ <template>
+  <a-modal
+    :destroyOnClose="true"
+    class="diaryModal"
+    v-model="$parent.diaryModal"
+    :title="diary.title"
+    @ok="handleOk"
+    width="30vw"
+  >
+    <div slot="footer">
+      <div style="text-align: center">
+        <a-popconfirm
+          :title="$t('diary_page.diary_form.delete_confirm')"
+          placement="top"
+          :ok-text="$t('diary_page.diary_form.ok_btn')"
+          :cancel-text="$t('diary_page.diary_form.cancel_btn')"
+          @confirm="handleDelete"
+        >
+          <a-button key="delete" type="danger">
+            {{ $t("diary_page.diary_form.delete_btn") }}
+          </a-button>
+        </a-popconfirm>
+        <a-button key="edit" type="primary" @click="showUpdateModal">
+          {{ $t("diary_page.diary_form.edit_btn") }}
+        </a-button>
+        <a-button key="ok" type="primary" @click="handleOk">
+          {{ $t("diary_page.diary_form.ok_btn") }}
+        </a-button>
+      </div>
+    </div>
+
+    <div>
+      <b>{{$t('diary_page.diary_form.date')}}: </b>
+      <!-- {{
+        moment(diary.date)
+          .locale(this.$i18n.locale)
+          .format("HH:mm a dddd DD-MM-yyyy")
+      }} -->
+      {{ diary.date }}
+    </div>
+
+    <div class="tags">
+      <b>{{$t('diary_page.diary_form.tags')}}: </b>
+      <span v-for="(tag, i) in diary.tags" :key="i">#{{ tag }}</span>
+    </div>
+
+    <div>
+      <b>{{$t('diary_page.diary_form.content')}}: </b>
+      <span v-html="diary.content"></span>
+    </div>
+  </a-modal>
+</template>
+ 
+ <script>
+import moment from "moment";
+import { mapActions } from "vuex";
+export default {
+  name: "DiaryDetail",
+  props: {
+    diary: Object,
+  },
+  data: function () {
+    return {
+      updateModal: false,
+    };
+  },
+  components: {},
+  methods: {
+    moment,
+    ...mapActions(["deleteDiary"]),
+    handleDelete() {
+      console.log("delete");
+      this.deleteDiary(this.diary.id);
+      this.$parent.diaryModal = false;
+    },
+    showUpdateModal() {
+      this.$parent.textEditorVisible = true;
+      console.log("update");
+    },
+    handleOk() {
+      this.$parent.diaryModal = false;
+    },
+  },
+  computed: {},
+};
+</script>
+ 
+ <style scoped>
+.diaryModal div {
+  padding: 10px;
+}
+.attendeeWrapper {
+  margin-left: 10px;
+  vertical-align: top;
+  display: inline-block;
+  max-width: fit-content;
+  min-width: 100px;
+  max-height: 70px;
+  overflow-y: scroll;
+  padding: 0 5px 5px 5px !important;
+}
+.attendeeWrapper span {
+  display: block;
+}
+.tags span {
+  color: #1890ff;
+  margin-right: 10px;
+}
+</style>

@@ -2,12 +2,12 @@
   <div id="app">
     <Header />
     <a-layout id="components-layout-demo-top" class="layout">
-      <a-layout-content :style="{ background: '#fff' }">
-        <div :style="{ padding: '5px 24px', height: '80vh' }">
+      <a-layout-content :style="{ background: '#fff', }">
+        <div :style="{ padding: '5px 24px', minHeight: '78vh' }">
           <router-view />
         </div>
       </a-layout-content>
-      <a-layout-footer style="text-align: center; background: #fff;">
+      <a-layout-footer style="text-align: center; background: #fff; ">
         <Footer />
       </a-layout-footer>
     </a-layout>

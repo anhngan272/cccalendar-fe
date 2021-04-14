@@ -35,12 +35,23 @@
     "title": "Nhật ký",
     "searchPlaceholder": "Nhập từ khóa tìm kiếm",
     "addDiaryBtn": "Thêm nhật ký",
-    "addDiaryModal": {
+    "diary_form": {
       "header": "Thêm nhật ký",
       "title": "Tiêu đề",
+      "title_help": "Hãy nhập tiêu đề nhật ký",
       "date": "Ngày giờ",
-      "resetBtn": "Làm mới",
-      "cancelBtn": "Hủy"
+      "tags": "Thẻ",
+      "content":"Nội dung",
+      "reset_btn": "Làm mới",
+      "ok_btn": "Ok",
+      "cancel_btn": "Hủy",
+      "cancel_confirm": "Bạn có chắc muốn hủy?",
+      "create_btn": "Tạo mới",
+      "update_btn": "Cập nhật",
+      "edit_btn": "Chỉnh sửa",
+      "delete_btn": "Xóa",
+      "delete_confirm": "Bạn có chắc muốn xóa?",
+      "success_alert": "Thành công!!"
     }
   },
   "calendar_page": {

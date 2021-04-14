@@ -130,7 +130,7 @@ import { mapActions } from "vuex";
 import moment from "moment";
 import AttendeePicker from "./AttendeePicker.vue";
 import ThemePicker from "./ThemePicker.vue";
-import TagPicker from "./TagPicker.vue";
+import TagPicker from "../TagPicker.vue";
 import { createEventId } from "@/store/modules/calendarEvent/";
 
 export default {
