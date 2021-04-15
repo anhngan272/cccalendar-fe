@@ -41,7 +41,7 @@
       "title_help": "Hãy nhập tiêu đề nhật ký",
       "date": "Ngày giờ",
       "tags": "Thẻ",
-      "content":"Nội dung",
+      "content": "Nội dung",
       "reset_btn": "Làm mới",
       "ok_btn": "Ok",
       "cancel_btn": "Hủy",
@@ -52,6 +52,13 @@
       "delete_btn": "Xóa",
       "delete_confirm": "Bạn có chắc muốn xóa?",
       "success_alert": "Thành công!!"
+    },
+    "diary_list": {
+      "sort_by": "Lọc theo",
+      "newest_date": "Ngày gần nhất",
+      "oldest_date": "Ngày cũ nhất",
+      "select_date": "Chọn ngày",
+      "select_tags": "Chọn thẻ"
     }
   },
   "calendar_page": {

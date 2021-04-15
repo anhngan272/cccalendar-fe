@@ -7,6 +7,45 @@
         enter-button
         @search="onSearch"
       />
+      <div class="sort-header">
+        <a-tooltip placement="right">
+          <template slot="title">
+            <span>{{ $t("diary_page.diary_list.sort_by") }}</span>
+          </template>
+          <a-select
+            default-value="newestDate"
+            style="min-width: fit-content; width: 140px"
+            @change="handleChange"
+          >
+            <a-icon slot="suffixIcon" style="color: #808080" type="filter" />
+            <a-select-option value="newestDate">
+              {{ $t("diary_page.diary_list.newest_date") }}
+            </a-select-option>
+            <a-select-option value="oldestDate">
+              {{ $t("diary_page.diary_list.oldest_date") }}
+            </a-select-option>
+            <a-select-option value="selectDate"
+              >{{ $t("diary_page.diary_list.select_date") }}
+            </a-select-option>
+            <a-select-option value="tags">
+              {{ $t("diary_page.diary_list.select_tags") }}
+            </a-select-option>
+          </a-select>
+        </a-tooltip>
+        <div style="margin-left: 20px">
+          <a-date-picker
+            inputReadOnly
+            :allowClear="true"
+            v-model="selectedDate"
+            format="DD-MM-YYYY"
+            @change="selectDate"
+            :locale="this.$i18n.locale == 'vi' ? vi : en"
+          />
+        </div>
+        <div class="tag-picker">
+          <TagPicker />
+        </div>
+      </div>
     </div>
     <div>
       <DiaryList />
@@ -26,18 +65,52 @@
 <script>
 import DiaryList from "./DiaryList";
 import TextEditor from "./TextEditor";
+import TagPicker from "../TagPicker";
+import moment from "moment";
+require("moment/locale/vi.js");
+import vi from "ant-design-vue/es/date-picker/locale/vi_VN";
+import en from "ant-design-vue/es/date-picker/locale/en_US";
+
 export default {
   name: "Diary",
   data() {
     return {
       textEditorVisible: false,
+      filterTag: false,
+      filterDate: false,
+      selectedDate: moment(new Date()),
+      locale: this.$i18n.locale,
+      vi: vi,
+      en: en,
     };
   },
   components: {
     DiaryList,
     TextEditor,
+    TagPicker,
+  },
+  beforeCreate() {
+    moment.locale(this.$i18n.locale);
+  },
+  updated() {
+    moment.locale(this.$i18n.locale);
   },
   methods: {
+    moment,
+    selectDate(value) {
+      console.log(value);
+    },
+    handleChange(value) {
+      // if (value == "tags") {
+
+      // } else if (value == "selectDate") {
+
+      // } else {
+      //   this.filterTag = false;
+      //   this.filterDate = false;
+      // }
+      console.log(`selected ${value}`);
+    },
     onSearch(value) {
       console.log(value);
     },
@@ -51,15 +124,51 @@ export default {
 <style>
 .header {
   position: sticky;
-  top: 0;
-  padding: 0px 20px;
+  top: 0px;
+  padding: 10px 20px;
   z-index: 1;
+  background: white;
 }
 
 body {
   font-family: Verdana, Geneva, sans-serif;
   background-color: #ccc;
   font-size: 12px;
+}
+
+.tag-picker {
+  min-width: 20%;
+  height: 40px;
+  margin-left: 20px;
+}
+
+.sort-header {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  vertical-align: middle;
+  min-height: 45px;
+}
+
+.sort {
+  z-index: 2;
+  line-height: 25px;
+  font-size: 15px;
+  color: #808080;
+}
+
+.sort div {
+  padding: 5px;
+  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.fa-sort {
+  font-size: 20px;
+  margin-right: 5px;
 }
 
 .label-container {

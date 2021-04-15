@@ -41,7 +41,7 @@
       "title_help": "Please enter Diary Title",
       "date": "Date Time",
       "tags": "Tags",
-      "content":"Content",
+      "content": "Content",
       "reset_btn": "Reset",
       "ok_btn": "Ok",
       "cancel_btn": "Cancel",
@@ -52,6 +52,13 @@
       "delete_btn": "Delete",
       "delete_confirm": "Are you sure delete this diary?",
       "success_alert": "Thành công!!"
+    },
+    "diary_list": {
+      "sort_by": "Sort By",
+      "newest_date": "Newest Date",
+      "oldest_date": "Oldest Date",
+      "select_date": "Select Date",
+      "select_tags": "Select Tags"
     }
   },
   "calendar_page": {

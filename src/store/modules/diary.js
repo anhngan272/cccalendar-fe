@@ -22,20 +22,62 @@ const state = {
             tags: ['ha', 'huu'],
             content:'hii'
         },
-        // {
-        //     id: 0,
-        //     title: 'Event 1',
-        //     backgroundColor: '#D50000',
-        //     borderColor: '#fff',
-        //     colorId: '11',
-        //     textColor: '#fff',
-        //     description: "<b>hello world</b><br/>hehe",
-        //     attendees: ["ngannnnnnnn@gmail.com", 'huy@gmail.com'],
-        //     tags: ['diary', 'work'],
-        //     start: new Date('2021-04-21').toISOString().replace(/T.*$/, '') + 'T01:00',
-        //     end: new Date('2021-04-23').toISOString().replace(/T.*$/, '') + 'T01:01',
-        //     allDay: false,
-        // },
+        {
+            id: createDiaryId(),
+            title: "Ant Design Title 3",
+            date: "6/4/2021",
+            tags: ['huu'],
+            content:'hii'
+        },
+        {
+            id: createDiaryId(),
+            title: "Ant Design Title 3",
+            date: "6/4/2021",
+            tags: ['huu'],
+            content:'hii'
+        },
+        {
+            id: createDiaryId(),
+            title: "Ant Design Title 3",
+            date: "6/4/2021",
+            tags: ['huu'],
+            content:'hii'
+        },
+        {
+            id: createDiaryId(),
+            title: "Ant Design Title 3",
+            date: "6/4/2021",
+            tags: ['huu'],
+            content:'hii'
+        },
+        {
+            id: createDiaryId(),
+            title: "Ant Design Title 3",
+            date: "6/4/2021",
+            tags: ['huu'],
+            content:'hii'
+        },
+        {
+            id: createDiaryId(),
+            title: "Ant Design Title 3",
+            date: "6/4/2021",
+            tags: ['huu'],
+            content:'hii'
+        },
+        {
+            id: createDiaryId(),
+            title: "Ant Design Title 3",
+            date: "6/4/2021",
+            tags: ['huu'],
+            content:'hii'
+        },
+        {
+            id: createDiaryId(),
+            title: "Ant Design Title 3",
+            date: "6/4/2021",
+            tags: ['huu'],
+            content:'hii'
+        },
     ],
 }
 

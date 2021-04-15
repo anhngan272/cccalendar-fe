@@ -20,7 +20,7 @@
         <a-list-item-meta style="color: pink">
           <a slot="description" style="margin-right: 10px">{{ item.date }}</a>
           <a slot="description" class="diary-tag">{{ getTags(item) }}</a>
-          <a slot="title" @click="showDiaryModal(item)"
+          <a slot="title" class="diary-title" @click="showDiaryModal(item)"
             ><h4 class="font-weight-bold">{{ item.title }}</h4></a
           >
         </a-list-item-meta>
@@ -95,10 +95,13 @@ export default {
 .action {
   color: #1890ff !important;
 }
+.action:hover {
+  color: pink !important;
+}
 
 a h4:hover {
   color: #1890ff;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .diary-tag {
