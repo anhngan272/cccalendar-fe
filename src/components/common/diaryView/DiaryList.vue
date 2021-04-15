@@ -19,8 +19,10 @@
         </a>
         <a-list-item-meta style="color: pink">
           <a slot="description" style="margin-right: 10px">{{ item.date }}</a>
-          <a slot="description" style="color: #1890ff">{{ getTags(item) }}</a>
-          <a slot="title" @click="showDiaryModal(item)">{{ item.title }}</a>
+          <a slot="description" class="diary-tag">{{ getTags(item) }}</a>
+          <a slot="title" @click="showDiaryModal(item)"
+            ><h4 class="font-weight-bold">{{ item.title }}</h4></a
+          >
         </a-list-item-meta>
       </a-list-item>
     </a-list>
@@ -32,6 +34,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import { mapActions, mapGetters } from "vuex";
 import TextEditor from "./TextEditor";
@@ -42,22 +45,24 @@ export default {
   name: "DiaryList",
   components: {
     TextEditor,
-    DiaryDetail
+    DiaryDetail,
   },
   data() {
     return {
       diary: null,
       textEditorVisible: false,
-      diaryModal:false,
+      diaryModal: false,
     };
   },
   methods: {
     ...mapActions(["fetchDiaries", "deleteDiary"]),
     getTags(diary) {
       let tags = "";
+
       for (let i = 0; i < diary.tags.length; i++) {
         tags += "#" + diary.tags[i] + " ";
       }
+
       return tags;
     },
     handelDelete(diary) {
@@ -80,14 +85,31 @@ export default {
   },
 };
 </script>
+
 <style scoped>
 .wrapper {
   /* background: pink; */
   padding: 20px;
 }
 
-.action{
+.action {
   color: #1890ff !important;
+}
 
+a h4:hover {
+  color: #1890ff;
+  text-decoration: underline;
+}
+
+.diary-tag {
+  color: #1890ff !important;
+  background: #e6e6e6;
+  padding: 0px 5px;
+  border-radius: 0.3em;
+}
+
+.diary-tag:hover {
+  text-decoration: none;
+  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.28);
 }
 </style>

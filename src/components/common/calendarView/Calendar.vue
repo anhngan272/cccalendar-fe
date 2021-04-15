@@ -3,6 +3,7 @@ import FullCalendar from "@fullcalendar/vue";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
+import bootstrapPlugin from "@fullcalendar/bootstrap";
 import interactionPlugin from "@fullcalendar/interaction";
 import EventModal from "@/components/common/calendarView/EventModal";
 import { mapActions, mapGetters } from "vuex";
@@ -25,7 +26,7 @@ export default {
         eventColor: "#039BE5", // Pacific Blue
         customButtons: {
           datepicker: {
-            text: "select a date",
+            text: "Pick a date",
             click: () => {
               this.showModal();
             },
@@ -36,6 +37,7 @@ export default {
           timeGridPlugin,
           interactionPlugin, // needed for dateClick
           listPlugin,
+          bootstrapPlugin,
         ],
         headerToolbar: {
           left: "prev,next datepicker",
@@ -54,6 +56,7 @@ export default {
         eventDisplay: "block",
         showNonCurrentDates: false,
         fixedWeekCount: false,
+        themeSystem: "bootstrap",
         //  timeFormat: 'h:mm',
         /* you can update a remote database when these fire:
         eventAdd:

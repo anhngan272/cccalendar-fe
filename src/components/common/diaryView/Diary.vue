@@ -1,7 +1,8 @@
 <template>
-  <div>
+  <div class="container">
     <div class="header">
       <a-input-search
+        class="search-box"
         :placeholder="$t('diary_page.searchPlaceholder')"
         enter-button
         @search="onSearch"
@@ -29,7 +30,7 @@ export default {
   name: "Diary",
   data() {
     return {
-      textEditorVisible:false,
+      textEditorVisible: false,
     };
   },
   components: {
@@ -41,7 +42,7 @@ export default {
       console.log(value);
     },
     addDiary() {
-      this.textEditorVisible=true
+      this.textEditorVisible = true;
     },
   },
 };
@@ -49,10 +50,9 @@ export default {
 
 <style>
 .header {
-  background-color: #333;
   position: sticky;
   top: 0;
-  padding: 20px;
+  padding: 0px 20px;
   z-index: 1;
 }
 
@@ -117,5 +117,9 @@ a.float + div.label-container {
 a.float:hover + div.label-container {
   visibility: visible;
   opacity: 1;
+}
+
+.search-box {
+  box-shadow: 0px 0px 20px #e6e6e6;
 }
 </style>

@@ -1,35 +1,41 @@
 <template>
   <div class="home-container">
-    <h1 class="font-weight-bold">{{$t('homepage.title.web_name')}}</h1>
-    <h4>{{$t('homepage.title.title')}}</h4>
+    <h1 class="font-weight-bold">{{ $t("homepage.title.web_name") }}</h1>
+    <h4>{{ $t("homepage.title.title") }}</h4>
     <div class="site">
       <div class="container center">
         <div class="row">
           <div class="col-sm-6 col-md-4">
-            <a :href="$router.resolve({ name: 'CalendarView' }).href">
-            <i class="fa fa-calendar"></i>
-            <h4 class=""><i>{{$t('homepage.intro.calendar.title')}}</i></h4>
+            <a :href="$router.resolve({ name: 'Calendar' }).href">
+              <i class="fa fa-calendar"></i>
+              <h4 class="">
+                <i>{{ $t("homepage.intro.calendar.title") }}</i>
+              </h4>
             </a>
             <p class="">
-              {{$t('homepage.intro.calendar.text')}}
+              {{ $t("homepage.intro.calendar.text") }}
             </p>
           </div>
 
           <div class="col-sm-6 col-md-4">
-            <a :href="$router.resolve({ name: 'DiaryView' }).href">
-            <i class="fa fa-clipboard"></i>
-            <h4><i>{{$t('homepage.intro.diary.title')}}</i></h4>
+            <a :href="$router.resolve({ name: 'Diary' }).href">
+              <i class="fa fa-clipboard"></i>
+              <h4>
+                <i>{{ $t("homepage.intro.diary.title") }}</i>
+              </h4>
             </a>
             <p class="">
-              {{$t('homepage.intro.diary.text')}}
+              {{ $t("homepage.intro.diary.text") }}
             </p>
           </div>
 
           <div class="col-sm-6 col-md-4">
             <i class="fa fa-cogs"></i>
-            <h4><i>{{$t('homepage.intro.organizer.title')}}</i></h4>
+            <h4>
+              <i>{{ $t("homepage.intro.organizer.title") }}</i>
+            </h4>
             <p class="">
-              {{$t('homepage.intro.organizer.text')}}
+              {{ $t("homepage.intro.organizer.text") }}
             </p>
           </div>
         </div>

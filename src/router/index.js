@@ -1,12 +1,12 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '../views/pages/Home';
-import About from '../views/pages/About';
-import CalendarView from '../views/pages/calendarView/CalendarView';
-import DiaryView from '../views/pages/diaryView/DiaryView';
-import NotFound from '../views/pages/NotFound';
-import GoogleLogin from '../views/users/GoogleLogin';
-import GoogleCallback from '../views/users/GoogleCallback';
+import Home from '@/views/pages/Home';
+import About from '@/views/pages/About';
+import Calendar from '@/views/calendars/Calendar';
+import Diary from '@/views/diaries/Diary';
+import NotFound from '@/views/pages/NotFound';
+import GoogleLogin from '@/views/users/GoogleLogin';
+import GoogleCallback from '@/views/users/GoogleCallback';
 
 Vue.use(VueRouter);
 
@@ -35,15 +35,15 @@ const routes = [{
     component: GoogleCallback
 }, {
     path: '/calendar',
-    name: 'CalendarView',
-    component: CalendarView,
+    name: 'Calendar',
+    component: Calendar,
     // meta: {
     //     requiresAuth: true,
     //   },
 }, {
     path: '/diary',
-    name: 'DiaryView',
-    component: DiaryView
+    name: 'Diary',
+    component: Diary
 }, ];
 
 const router = new VueRouter({

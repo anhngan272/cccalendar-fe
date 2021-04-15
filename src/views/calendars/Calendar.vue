@@ -27,8 +27,6 @@ export default {
 </script>
 
 <style scoped>
-.calendarView {
-}
 .calendar {
   width: 67%;
   float: left;
