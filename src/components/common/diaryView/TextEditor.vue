@@ -6,7 +6,7 @@
     :bodyStyle="modaleStyle"
     centered
     width="90vw"
-    :maskClosable="true"
+    :maskClosable="false"
     :closable="false"
   >
     <a-form-model
@@ -25,15 +25,13 @@
         <a-input v-model="form.title" ref="title" />
       </a-form-model-item>
 
-      <a-form-model-item
-        :label="$t('diary_page.diary_form.date')"
-        prop="date"
-      >
+      <a-form-model-item :label="$t('diary_page.diary_form.date')" prop="date">
         <a-date-picker
           inputReadOnly
           :allowClear="false"
           v-model="form.date"
           format="DD-MM-YYYY"
+          :locale="this.$i18n.locale == 'vi' ? vi : en"
         />
         <a-time-picker
           inputReadOnly
@@ -44,10 +42,7 @@
           style="margin-left: 15px"
         />
       </a-form-model-item>
-      <a-form-model-item
-        :label="$t('diary_page.diary_form.tags')"
-        prop="tags"
-      >
+      <a-form-model-item :label="$t('diary_page.diary_form.tags')" prop="tags">
         <TagPicker
           ref="tagPicker"
           :eventTags="form.tags"
@@ -121,7 +116,9 @@ import axios from "axios";
 import moment from "moment";
 import TagPicker from "../TagPicker.vue";
 import { mapActions } from "vuex";
-
+require("moment/locale/vi.js");
+import vi from "ant-design-vue/es/date-picker/locale/vi_VN";
+import en from "ant-design-vue/es/date-picker/locale/en_US";
 export default {
   name: "TextEditor",
   props: {
@@ -149,6 +146,8 @@ export default {
         tags: [],
         content: "",
       },
+      vi: vi,
+      en: en,
       modaleStyle: {
         height: "80vh",
         width: "900px",
@@ -174,15 +173,16 @@ export default {
       },
     };
   },
-
+  beforeCreate() {
+    moment.locale(this.$i18n.locale);
+  },
   methods: {
     moment,
     ...mapActions(["createDiary", "updateDiary"]),
     hideSuccessAlert() {
       this.submitModal = false;
       // this.$emit("updated");
-      this.$parent.textEditorVisible = false
-
+      this.$parent.textEditorVisible = false;
     },
     showSuccessAlert() {
       this.submitModal = true;

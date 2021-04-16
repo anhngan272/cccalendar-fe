@@ -79,7 +79,6 @@ export default {
       filterTag: false,
       filterDate: false,
       selectedDate: moment(new Date()),
-      locale: this.$i18n.locale,
       vi: vi,
       en: en,
     };
@@ -90,9 +89,6 @@ export default {
     TagPicker,
   },
   beforeCreate() {
-    moment.locale(this.$i18n.locale);
-  },
-  updated() {
     moment.locale(this.$i18n.locale);
   },
   methods: {
@@ -226,6 +222,9 @@ a.float + div.label-container {
 a.float:hover + div.label-container {
   visibility: visible;
   opacity: 1;
+}
+.sort-header {
+  border-bottom: 1px solid #e6e6e6;
 }
 
 .search-box {

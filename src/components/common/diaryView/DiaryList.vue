@@ -2,11 +2,11 @@
   <div class="wrapper">
     <a-list item-layout="horizontal" :data-source="getDiaries" :bordered="true">
       <a-list-item slot="renderItem" slot-scope="item">
-        <a class="action" slot="actions" @click="showUpdateModal(item)">{{
+        <a class="edit" slot="actions" @click="showUpdateModal(item)"><span><a-icon type="edit" theme="twoTone" /></span>{{
           $t("diary_page.diary_form.edit_btn")
         }}</a>
 
-        <a slot="actions" class="action">
+        <a slot="actions" class="delete">
           <a-popconfirm
             :title="$t('diary_page.diary_form.delete_confirm')"
             placement="top"
@@ -14,7 +14,7 @@
             :cancel-text="$t('diary_page.diary_form.cancel_btn')"
             @confirm="handelDelete(item)"
           >
-            <a>{{ $t("diary_page.diary_form.delete_btn") }}</a>
+            <a><span><a-icon type="delete"/></span>{{ $t("diary_page.diary_form.delete_btn") }}</a>
           </a-popconfirm>
         </a>
         <a-list-item-meta style="color: pink">
@@ -91,12 +91,20 @@ export default {
   /* background: pink; */
   padding: 20px;
 }
+.delete{
+  color:#dc3545 !important;
+}
 
-.action {
+.delete span , .action span{
+  margin-right: 5px;
+}
+
+.edit {
   color: #1890ff !important;
 }
-.action:hover {
-  color: pink !important;
+.edit:hover , .delete:hover {
+ text-shadow: 1px 1px 3px #808080;
+ /* text-decoration: underline !important; */
 }
 
 a h4:hover {
