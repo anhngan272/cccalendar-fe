@@ -113,6 +113,7 @@
   "login": {
     "signin": "Đăng nhập",
     "signout": "Đăng xuất",
+    "signout_confirm": "Bạn có muốn đăng xuất?",
     "signin_google": "Đăng nhập bằng tài khoản google",
     "signin_loading": "Đang đăng nhập..."
   }

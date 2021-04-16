@@ -7,50 +7,28 @@ export function createEventId() {
 const state = {
     event: {},
     events: [
-        {
-            id: createEventId(),
-            title: 'Event 1',
-            backgroundColor: '#D50000',
-            borderColor :'#fff',
-            colorId: '11',
-            textColor: '#fff',
-            description: "<b>hello world</b><br/>hehe",
-            attendees: ["ngannnnnnnn@gmail.com", 'huy@gmail.com'],
-            tags: ['event', 'work'],
-            start: new Date('2021-04-21').toISOString().replace(/T.*$/, '') + 'T01:00',
-            end: new Date('2021-04-23').toISOString().replace(/T.*$/, '') + 'T01:01',
-            allDay: false,
-        },
         // {
         //     id: createEventId(),
-        //     title: 'Event 2',
+        //     title: 'Event 1',
         //     backgroundColor: '#D50000',
+        //     borderColor: '#000',
+        //     colorId: 11,
         //     textColor: '#fff',
-        //     description: "hello world",
+        //     description: "<b>hello world</b><br/>hehe",
         //     attendees: ["ngannnnnnnn@gmail.com", 'huy@gmail.com'],
         //     tags: ['event', 'work'],
-        //     start: new Date('2021-04-21').toISOString().replace(/T.*$/, '') + 'T12:30',
-        //     end: new Date('2021-04-21').toISOString().replace(/T.*$/, '') + 'T13:00',
-        //     allDay: false,
-        // },
-        // {
-        //     id: createEventId(),
-        //     title: 'Event 3',
-        //     backgroundColor: '#D50000',
-        //     textColor: '#fff',
-        //     description: "hello world",
-        //     attendees: ["ngannnnnnnn@gmail.com", 'huy@gmail.com'],
-        //     tags: ['event', 'work'],
-        //     start: new Date('2021-04-22').toISOString().replace(/T.*$/, '') + 'T12:30',
-        //     end: new Date('2021-04-22').toISOString().replace(/T.*$/, '') + 'T13:00',
+        //     start: new Date('2021-04-21').toISOString().replace(/T.*$/, '') + 'T01:00',
+        //     end: new Date('2021-04-23').toISOString().replace(/T.*$/, '') + 'T01:01',
         //     allDay: false,
         // },
     ],
+    error: 'hi',
 }
 
 const getters = {
     getEvent: state => state.event,
-    getEvents: state => state.events
+    getEvents: state => state.events,
+    getError: state => state.error
 }
 
 const actions = {
@@ -66,6 +44,8 @@ const actions = {
 
         if (response.status === 200) {
             commit('addEvent', event);
+        }else {
+            console.log(response.status)
         }
     },
     async deleteEvent({ commit }, eventId) {
@@ -97,6 +77,10 @@ const mutations = {
         const eventIndex = state.events.findIndex(e => e.id === event.id)
         state.events.splice(eventIndex, 1, event)
         console.log(event)
+    },
+    setError: (state, error) => {
+        state.error = error
+        console.log(error)
     }
 }
 

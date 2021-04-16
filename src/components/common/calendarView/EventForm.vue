@@ -132,9 +132,15 @@ import AttendeePicker from "./AttendeePicker.vue";
 import ThemePicker from "./ThemePicker.vue";
 import TagPicker from "../TagPicker.vue";
 import { createEventId } from "@/store/modules/calendarEvent/";
+// import {mapstate} from 'vuex'
 
 export default {
   name: "EventForm",
+  computed: {
+    test() {
+      return this.$store.state.error;
+    },
+  },
   props: {
     updateEventModalExtend: Object,
     updateEventInfo: Object,
@@ -162,7 +168,7 @@ export default {
         attendees: [],
         tags: [],
         attendeeSubmited: true,
-        colorId: "7",
+        colorId: 7,
         backgroundColor: "46d6db",
       },
       rules: {
@@ -195,6 +201,7 @@ export default {
     },
     showSuccessAlert() {
       this.submitModal = true;
+      this.resetForm();
     },
     setUpdateInfo() {
       this.form.title = this.updateEventInfo.title;
@@ -285,7 +292,6 @@ export default {
     validateForm() {
       this.$refs.ruleForm.validate((valid) => {
         if (valid && this.form.attendeeSubmited) {
-          this.showSuccessAlert();
           this.isValidated = true;
         } else {
           console.log("error validate!!");
@@ -324,6 +330,7 @@ export default {
 
         //call vuex store action to add event
         this.addEvent(event);
+        // this.showSuccessAlert();
       } else {
         console.log("error submit!!");
         return false;

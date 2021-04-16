@@ -113,6 +113,7 @@
   "login": {
     "signin": "SIGN IN",
     "signout": "SIGN OUT",
+    "signout_confirm": "Are you sure to sign out?",
     "signin_google": "Sign in with Google",
     "signin_loading": "Signing in..."
   }
