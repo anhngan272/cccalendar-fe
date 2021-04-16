@@ -79,7 +79,7 @@
       "select_attendees": "Nhập thêm khách",
       "attendees_help": " không phải là một email hợp lệ",
       "tags": "Thẻ",
-      "select_tags": "Thêm thẻ",
+      "select_tags": "Chọn thẻ",
       "description": "Miêu tả",
       "theme": "Chủ đề",
       "theme_name": {

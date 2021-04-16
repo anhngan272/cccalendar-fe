@@ -45,6 +45,9 @@
         <div class="tag-picker">
           <TagPicker />
         </div>
+        <div class="pagination">
+          <a-pagination simple :default-current="2" :total="50" />
+        </div>
       </div>
     </div>
     <div>
@@ -132,8 +135,18 @@ body {
   font-size: 12px;
 }
 
+.pagination{
+  /* background: pink; */
+  flex-grow: 1;
+  min-width: 25%;
+  margin-left: 20px;
+  display: inline-block;
+  text-align: right;
+}
+
 .tag-picker {
-  min-width: 20%;
+  width: 20%;
+  min-width: 150px;
   height: 40px;
   margin-left: 20px;
 }

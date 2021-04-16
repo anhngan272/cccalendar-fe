@@ -95,7 +95,7 @@ export default {
   color:#dc3545 !important;
 }
 
-.delete span , .action span{
+.delete span , .edit span{
   margin-right: 5px;
 }
 
