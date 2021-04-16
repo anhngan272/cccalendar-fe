@@ -58,7 +58,9 @@
       "newest_date": "Ngày gần nhất",
       "oldest_date": "Ngày cũ nhất",
       "select_date": "Chọn ngày",
-      "select_tags": "Chọn thẻ"
+      "select_tags": "Chọn thẻ",
+      "content":"Nội dung",
+      "show_detail":"Xem chi tiết"
     }
   },
   "calendar_page": {

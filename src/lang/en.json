@@ -58,7 +58,9 @@
       "newest_date": "Newest Date",
       "oldest_date": "Oldest Date",
       "select_date": "Select Date",
-      "select_tags": "Select Tags"
+      "select_tags": "Select Tags",
+      "content":"Content",
+      "show_detail":"Show detail"
     }
   },
   "calendar_page": {

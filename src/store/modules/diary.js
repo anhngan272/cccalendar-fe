@@ -13,14 +13,14 @@ const state = {
             title: "Ant Design Title 1",
             date: "6/4/2021",
             tags: ['ha', 'hi'],
-            content:'ha'
+            content:'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
         },
         {
             id: createDiaryId(),
             title: "Ant Design Title 2",
             date: "6/4/2021",
             tags: ['ha', 'huu'],
-            content:'hii'
+            content:'<b>12345678901234567890</b>'
         },
         {
             id: createDiaryId(),
