@@ -33,14 +33,6 @@
           format="DD-MM-YYYY"
           :locale="this.$i18n.locale == 'vi' ? vi : en"
         />
-        <a-time-picker
-          inputReadOnly
-          :allowClear="false"
-          v-model="form.time"
-          format="HH:mm"
-          :default-value="moment('12:00', 'HH:mm')"
-          style="margin-left: 15px"
-        />
       </a-form-model-item>
       <a-form-model-item :label="$t('diary_page.diary_form.tags')" prop="tags">
         <TagPicker
@@ -142,7 +134,6 @@ export default {
       form: {
         title: "",
         date: moment(new Date()),
-        time: moment.utc("12:00", "HH:mm"),
         tags: [],
         content: "",
       },
@@ -255,7 +246,6 @@ export default {
       } else {
         this.$refs.form.resetFields();
         this.$refs.tagPicker.resetForm();
-        this.form.time = moment.utc("12:00", "HH:mm");
       }
       // console.log("reset");
     },

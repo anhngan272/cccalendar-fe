@@ -39,7 +39,7 @@
       "header": "Create new Diary",
       "title": "Title",
       "title_help": "Please enter Diary Title",
-      "date": "Date Time",
+      "date": "Date",
       "tags": "Tags",
       "content": "Content",
       "reset_btn": "Reset",

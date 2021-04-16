@@ -17,10 +17,12 @@
           @confirm="handleDelete"
         >
           <a-button key="delete" type="danger">
+            <span style="margin-right:5px"><a-icon type="delete"/></span>
             {{ $t("diary_page.diary_form.delete_btn") }}
           </a-button>
         </a-popconfirm>
         <a-button key="edit" type="primary" @click="showUpdateModal">
+          <span style="margin-right:5px"><a-icon type="edit"/></span>
           {{ $t("diary_page.diary_form.edit_btn") }}
         </a-button>
         <a-button key="ok" type="primary" @click="handleOk">

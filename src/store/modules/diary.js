@@ -133,10 +133,7 @@ const mutations = {
     createDiary: (state, diary) => {
         state.diaries.push(diary)
     },
-    deleteDiary: (state, diaryId) => {
-        const diaryIndex = state.diaries.findIndex(diary => diary.id === diaryId)
-        state.diaries.splice(diaryIndex, 1);
-    },
+    deleteDiary:(state, diaryId) => state.diaries = state.diaries.filter(diary => diary.id !== diaryId),
     updateDiary: (state, diary) => {
         const diaryIndex = state.diaries.findIndex(x => x.id === diary.id)
         state.diaries.splice(diaryIndex, 1, diary)
