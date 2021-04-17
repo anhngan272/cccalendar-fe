@@ -1,83 +1,27 @@
 import axios from 'axios';
 import { API_URL } from '@/assets/config';
 
-let diaryId = 0
+let diaryId = 100
 export function createDiaryId() {
     return String(diaryId++)
 }
 
 const state = {
     diaries: [
-        {
-            id: createDiaryId(),
-            title: "Ant Design Title 1",
-            date: "6/4/2021",
-            tags: ['ha', 'hi'],
-            content:'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
-        },
-        {
-            id: createDiaryId(),
-            title: "Ant Design Title 2",
-            date: "6/4/2021",
-            tags: ['ha', 'huu'],
-            content:'<b>12345678901234567890</b>'
-        },
-        {
-            id: createDiaryId(),
-            title: "Ant Design Title 3",
-            date: "6/4/2021",
-            tags: ['huu'],
-            content:'hii'
-        },
-        {
-            id: createDiaryId(),
-            title: "Ant Design Title 3",
-            date: "6/4/2021",
-            tags: ['huu'],
-            content:'hii'
-        },
-        {
-            id: createDiaryId(),
-            title: "Ant Design Title 3",
-            date: "6/4/2021",
-            tags: ['huu'],
-            content:'hii'
-        },
-        {
-            id: createDiaryId(),
-            title: "Ant Design Title 3",
-            date: "6/4/2021",
-            tags: ['huu'],
-            content:'hii'
-        },
-        {
-            id: createDiaryId(),
-            title: "Ant Design Title 3",
-            date: "6/4/2021",
-            tags: ['huu'],
-            content:'hii'
-        },
-        {
-            id: createDiaryId(),
-            title: "Ant Design Title 3",
-            date: "6/4/2021",
-            tags: ['huu'],
-            content:'hii'
-        },
-        {
-            id: createDiaryId(),
-            title: "Ant Design Title 3",
-            date: "6/4/2021",
-            tags: ['huu'],
-            content:'hii'
-        },
-        {
-            id: createDiaryId(),
-            title: "Ant Design Title 3",
-            date: "6/4/2021",
-            tags: ['huu'],
-            content:'hii'
-        },
+        // {
+        //     id: createDiaryId(),
+        //     title: "Ant Design Title 1",
+        //     date: "6/4/2021",
+        //     tags: ['ha', 'hi'],
+        //     content:'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+        // },
+        // {
+        //     id: createDiaryId(),
+        //     title: "Ant Design Title 2",
+        //     date: "6/4/2021",
+        //     tags: ['ha', 'huu'],
+        //     content:'<b>12345678901234567890</b>'
+        // },
     ],
 }
 
@@ -95,13 +39,20 @@ const actions = {
         }
     },
     async createDiary({ commit }, diary) {
-        const response = await axios.post(API_URL + '/diary', diary, {
+        var formDataDiary = new FormData()
+        formDataDiary.append('title', diary.title);
+        formDataDiary.append('content', diary.content);
+        for (let i = 0; i < diary.tags.length; i++) {
+            formDataDiary.append('tags[]', diary.tags[i]);
+        }
+
+        const response = await axios.post(API_URL + '/diary', formDataDiary, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
         });
         if (response.status === 200) {
-            commit('createDiary', diary);
+            commit('createDiary', response.data);
         }
     },
     // createDiary({ commit }, diary) {
@@ -133,7 +84,7 @@ const mutations = {
     createDiary: (state, diary) => {
         state.diaries.push(diary)
     },
-    deleteDiary:(state, diaryId) => state.diaries = state.diaries.filter(diary => diary.id !== diaryId),
+    deleteDiary: (state, diaryId) => state.diaries = state.diaries.filter(diary => diary.id !== diaryId),
     updateDiary: (state, diary) => {
         const diaryIndex = state.diaries.findIndex(x => x.id === diary.id)
         state.diaries.splice(diaryIndex, 1, diary)

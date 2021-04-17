@@ -228,9 +228,9 @@ export default {
       this.validateForm();
       if (this.isValidated == true) {
         var diary = {
-          // id: createEventId(),
+          id: 100,
           title: this.form.title,
-          date: this.form.date,
+          // date: this.form.date,
           tags: this.form.tags,
           content: this.form.content,
         };

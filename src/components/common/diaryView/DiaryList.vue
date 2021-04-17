@@ -21,7 +21,7 @@
           <a slot="description" style="margin-right: 10px">{{ item.date }}</a>
           <a slot="description" class="diary-tag">{{ getTags(item) }}</a>
           <a slot="description" style="display:block" @click="showDiaryModal(item)">
-           {{ $t("diary_page.diary_list.content") }}:  <span v-html="shortDiaryContent(item.content)"></span>
+           <span v-html="shortDiaryContent(item.content)"></span>
            <span style="color:#1890ff">{{ $t("diary_page.diary_list.show_detail") }}</span>
            </a>
           <a slot="title" class="diary-title" @click="showDiaryModal(item)"
