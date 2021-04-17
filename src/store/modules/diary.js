@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { API_URL } from '@/assets/config';
+import { showMessage } from '@/helpers/index';
 
 let diaryId = 100
 export function createDiaryId() {
@@ -27,7 +28,7 @@ const state = {
 
 const getters = {
     getDiary: state => state.diary,
-    getDiaries: state => state.diaries
+    getDiaries: state => state.diaries,
 }
 
 const actions = {
@@ -46,30 +47,38 @@ const actions = {
             formDataDiary.append('tags[]', diary.tags[i]);
         }
 
+        showMessage('loading', true)
+
         const response = await axios.post(API_URL + '/diary', formDataDiary, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
         });
-        if (response.status === 200) {
+        if (response.status === 200 || response.status === 201) {
+            showMessage('success', false)
             commit('createDiary', response.data);
+        } else {
+            showMessage('error', false)
         }
     },
     // createDiary({ commit }, diary) {
     //     commit('createDiary', diary);
     // },
 
-    // async deleteDiary({ commit }, diaryId) {
-    //     const response = await axios.delete(API_URL + `/diary/${diaryId}`);
+    async deleteDiary({ commit }, diaryId) {
+        showMessage('loading', true)
 
-    //     if (response.status === 200) {
-    //         commit('deleteDiary', diaryId);
-    //     }
-    // },
-    deleteDiary({ commit }, diaryId) {
-        commit('deleteDiary', diaryId);
-
+        const response = await axios.delete(API_URL + `/diary/${diaryId}`);
+        if (response.status === 200 || response.status === 201) {
+            showMessage('success', false)
+            commit('deleteDiary', diaryId);
+        } else {
+            showMessage('error', false)
+        }
     },
+    // deleteDiary({ commit }, diaryId) {
+    //     commit('deleteDiary', diaryId);
+    // },
     async updateDiary({ commit }, diary) {
         const response = await axios.put(API_URL + `/calendar/${diary.id}`, diary);
 
@@ -82,6 +91,7 @@ const actions = {
 const mutations = {
     setDiaries: (state, diaries) => (state.diaries = diaries),
     createDiary: (state, diary) => {
+        state.isSuccess = true
         state.diaries.push(diary)
     },
     deleteDiary: (state, diaryId) => state.diaries = state.diaries.filter(diary => diary.id !== diaryId),

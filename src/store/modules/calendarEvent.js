@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { API_URL } from '@/assets/config';
+import { showMessage } from '@/helpers/index';
+
 let eventGuid = 0
 export function createEventId() {
     return String(eventGuid++)
@@ -11,7 +13,6 @@ const state = {
         //     id: createEventId(),
         //     title: 'Event 1',
         //     backgroundColor: '#D50000',
-        //     borderColor: '#000',
         //     colorId: 11,
         //     textColor: '#fff',
         //     description: "<b>hello world</b><br/>hehe",
@@ -22,13 +23,11 @@ const state = {
         //     allDay: false,
         // },
     ],
-    error: 'hi',
 }
 
 const getters = {
     getEvent: state => state.event,
     getEvents: state => state.events,
-    getError: state => state.error
 }
 
 const actions = {
@@ -40,25 +39,34 @@ const actions = {
         }
     },
     async addEvent({ commit }, event) {
+        showMessage('loading', true)
+
         const response = await axios.post(API_URL + '/calendar', event);
 
         if (response.status === 200) {
+            showMessage('success', false)
             commit('addEvent', event);
-        }else {
+        } else {
             console.log(response.status)
         }
     },
     async deleteEvent({ commit }, eventId) {
+        showMessage('loading', true)
+
         const response = await axios.delete(API_URL + `/calendar/${eventId}`);
 
         if (response.status === 200) {
+            showMessage('success', false)
             commit('deleteEvent', eventId);
         }
     },
     async updateEvent({ commit }, event) {
+        showMessage('loading', true)
+
         const response = await axios.put(API_URL + `/calendar/${event.id}`, event);
 
         if (response.status === 200) {
+            showMessage('success', false)
             commit('updateEvent', event);
         }
     }

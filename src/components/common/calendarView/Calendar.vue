@@ -57,6 +57,7 @@ export default {
         showNonCurrentDates: false,
         fixedWeekCount: false,
         themeSystem: "bootstrap",
+        eventBorderColor: "rgb(0,0,0,0)",
         //  timeFormat: 'h:mm',
         /* you can update a remote database when these fire:
         eventAdd:

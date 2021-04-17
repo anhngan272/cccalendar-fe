@@ -2,8 +2,23 @@ import Vue from 'vue';
 import axios from 'axios';
 import VueCookies from 'vue-cookies';
 import { setAuthorization, isLoggedIn } from '@/helpers/auth';
+import { message } from 'ant-design-vue'
 
 Vue.use(VueCookies);
+
+const showMessage = (status, isLoading) => {
+    const key = 'updatable';
+    if (isLoading) {
+        message.loading({ content: 'Loading...', key });
+    } else switch (status) {
+        case 'success':
+            message.success({ content: 'Success!', key, duration: 2 });
+            break;
+        case 'error':
+            message.error({ content: 'Error occurred. Please refresh your browser!', key, duration: 2 });
+            break;
+    }
+}
 
 /**
  * Get cookie
@@ -79,4 +94,4 @@ const initialize = (store, router) => {
     setAcceptHeader('application/json');
 }
 
-export { setCookie, getCookie, checkCookie, initialize, removeCookie };
+export { setCookie, getCookie, checkCookie, initialize, removeCookie, showMessage };

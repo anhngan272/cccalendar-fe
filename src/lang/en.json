@@ -54,6 +54,7 @@
       "success_alert": "Thành công!!"
     },
     "diary_list": {
+      "no_data": "No data",
       "sort_by": "Sort By",
       "newest_date": "Newest Date",
       "oldest_date": "Oldest Date",

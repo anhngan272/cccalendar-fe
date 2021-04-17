@@ -22,7 +22,7 @@
         :label="$t('diary_page.diary_form.title')"
         prop="title"
       >
-        <a-input v-model="form.title" ref="title" />
+        <a-input autoFocus v-model="form.title" ref="title" />
       </a-form-model-item>
 
       <a-form-model-item :label="$t('diary_page.diary_form.date')" prop="date">
@@ -111,6 +111,7 @@ import { mapActions } from "vuex";
 require("moment/locale/vi.js");
 import vi from "ant-design-vue/es/date-picker/locale/vi_VN";
 import en from "ant-design-vue/es/date-picker/locale/en_US";
+
 export default {
   name: "TextEditor",
   props: {
@@ -124,6 +125,8 @@ export default {
   created() {
     this.setDiaryInfo();
   },
+  computed: {},
+  updated() {},
 
   data() {
     return {
@@ -228,14 +231,17 @@ export default {
       this.validateForm();
       if (this.isValidated == true) {
         var diary = {
-          id: 100,
+          // id: 100,
           title: this.form.title,
           // date: this.form.date,
           tags: this.form.tags,
           content: this.form.content,
         };
-        this.createDiary(diary);
-        this.showSuccessAlert();
+        // this.createDiary(diary)
+        if (this.createDiary(diary)) {
+          this.$parent.textEditorVisible = false;
+        }
+        // this.showSuccessAlert();
       } else {
         console.log("error create");
       }

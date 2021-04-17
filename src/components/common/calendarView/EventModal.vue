@@ -40,7 +40,7 @@
       {{
         moment(event.start)
           .locale(this.$i18n.locale)
-          .format("HH:mm a dddd DD-MM-yyyy")
+          .format("dddd, DD-MM-yyyy - HH:mm")
       }}
     </div>
     <div>
@@ -48,7 +48,7 @@
       {{
         moment(event.end)
           .locale(this.$i18n.locale)
-          .format("HH:mm a dddd DD-MM-yyyy")
+          .format("dddd, DD-MM-yyyy - HH:mm")
       }}
     </div>
     <div>

@@ -9,6 +9,10 @@
   >
     <div slot="footer">
       <div style="text-align: center">
+        <a-button key="edit" type="primary" @click="showUpdateModal">
+          <span style="margin-right:5px"><a-icon type="edit"/></span>
+          {{ $t("diary_page.diary_form.edit_btn") }}
+        </a-button>
         <a-popconfirm
           :title="$t('diary_page.diary_form.delete_confirm')"
           placement="top"
@@ -21,10 +25,6 @@
             {{ $t("diary_page.diary_form.delete_btn") }}
           </a-button>
         </a-popconfirm>
-        <a-button key="edit" type="primary" @click="showUpdateModal">
-          <span style="margin-right:5px"><a-icon type="edit"/></span>
-          {{ $t("diary_page.diary_form.edit_btn") }}
-        </a-button>
         <a-button key="ok" type="primary" @click="handleOk">
           {{ $t("diary_page.diary_form.ok_btn") }}
         </a-button>

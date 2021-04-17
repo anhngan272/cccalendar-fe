@@ -250,7 +250,10 @@ export default {
         };
 
         //call vuex store action to update event
-        this.updateEvent(event);
+        if (this.updateEvent(event)) {
+          this.submitModal = false;
+          this.$emit("updated");
+        }
       } else {
         console.log("error update!!");
         return false;
@@ -329,7 +332,10 @@ export default {
         console.log(event);
 
         //call vuex store action to add event
-        this.addEvent(event);
+        if (this.addEvent(event)) {
+          this.submitModal = false;
+          this.$emit("updated");
+        }
         // this.showSuccessAlert();
       } else {
         console.log("error submit!!");

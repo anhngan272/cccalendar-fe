@@ -1,10 +1,16 @@
 <template>
   <div class="wrapper">
-    <a-list item-layout="horizontal" :data-source="getDiaries" :bordered="true">
+    <a-list
+      :locale="locale"
+      item-layout="horizontal"
+      :data-source="getDiaries"
+      :bordered="true"
+    >
       <a-list-item slot="renderItem" slot-scope="item">
-        <a class="edit" slot="actions" @click="showUpdateModal(item)"><span><a-icon type="edit" theme="twoTone" /></span>{{
-          $t("diary_page.diary_form.edit_btn")
-        }}</a>
+        <a class="edit" slot="actions" @click="showUpdateModal(item)"
+          ><span><a-icon type="edit" theme="twoTone" /></span
+          >{{ $t("diary_page.diary_form.edit_btn") }}</a
+        >
 
         <a slot="actions" class="delete">
           <a-popconfirm
@@ -14,16 +20,25 @@
             :cancel-text="$t('diary_page.diary_form.cancel_btn')"
             @confirm="handelDelete(item)"
           >
-            <a><span><a-icon type="delete"/></span>{{ $t("diary_page.diary_form.delete_btn") }}</a>
+            <a
+              ><span><a-icon type="delete" /></span
+              >{{ $t("diary_page.diary_form.delete_btn") }}</a
+            >
           </a-popconfirm>
         </a>
         <a-list-item-meta style="color: pink">
           <a slot="description" style="margin-right: 10px">{{ item.date }}</a>
+          <a
+            slot="description"
+            style="display: block"
+            @click="showDiaryModal(item)"
+          >
+            <span v-html="shortDiaryContent(item.content)"></span>
+            <span style="color: #1890ff">{{
+              $t("diary_page.diary_list.show_detail")
+            }}</span>
+          </a>
           <a slot="description" class="diary-tag">{{ getTags(item) }}</a>
-          <a slot="description" style="display:block" @click="showDiaryModal(item)">
-           <span v-html="shortDiaryContent(item.content)"></span>
-           <span style="color:#1890ff">{{ $t("diary_page.diary_list.show_detail") }}</span>
-           </a>
           <a slot="title" class="diary-title" @click="showDiaryModal(item)"
             ><h4 class="font-weight-bold">{{ item.title }}</h4></a
           >
@@ -43,7 +58,6 @@
 import { mapActions, mapGetters } from "vuex";
 import TextEditor from "./TextEditor";
 import DiaryDetail from "./DiaryDetail";
-// const data = getDiaries
 
 export default {
   name: "DiaryList",
@@ -56,12 +70,16 @@ export default {
       diary: null,
       textEditorVisible: false,
       diaryModal: false,
+      locale: {
+        emptyText: this.$t("diary_page.diary_list.no_data"),
+      },
     };
   },
   methods: {
     ...mapActions(["fetchDiaries", "deleteDiary"]),
-    shortDiaryContent(content){
-      return content.substring(0,20) + " ..."
+    shortDiaryContent(content) {
+      let contentToRender = content ? content.substring(0, 20) + "... " : "";
+      return contentToRender;
     },
     getTags(diary) {
       let tags = "";
@@ -98,20 +116,22 @@ export default {
   /* background: pink; */
   padding: 20px;
 }
-.delete{
-  color:#dc3545 !important;
+.delete {
+  color: #dc3545 !important;
 }
 
-.delete span , .edit span{
+.delete span,
+.edit span {
   margin-right: 5px;
 }
 
 .edit {
   color: #1890ff !important;
 }
-.edit:hover , .delete:hover {
- text-shadow: 1px 1px 3px #808080;
- /* text-decoration: underline !important; */
+.edit:hover,
+.delete:hover {
+  text-shadow: 1px 1px 3px #808080;
+  /* text-decoration: underline !important; */
 }
 
 a h4:hover {
