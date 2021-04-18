@@ -8,6 +8,9 @@ import interactionPlugin from "@fullcalendar/interaction";
 import EventModal from "@/components/common/calendarView/EventModal";
 import { mapActions, mapGetters } from "vuex";
 import moment from "moment";
+require("moment/locale/vi.js");
+import vi from "ant-design-vue/es/date-picker/locale/vi_VN";
+import en from "ant-design-vue/es/date-picker/locale/en_US";
 
 export default {
   components: {
@@ -17,6 +20,8 @@ export default {
 
   data: function () {
     return {
+      vi: vi,
+      en: en,
       date: moment(new Date()),
       modal1: false,
       modal2: false,
@@ -26,8 +31,7 @@ export default {
         eventColor: "#039BE5", // Pacific Blue
         customButtons: {
           datepicker: {
-            // text: "Pick a date",
-            icon:'fa fa fa-glide',
+            text: "Pick a date",
             click: () => {
               this.showModal();
             },
@@ -68,6 +72,9 @@ export default {
       },
       currentEvents: [],
     };
+  },
+  beforeCreate() {
+    moment.locale(this.$i18n.locale);
   },
   created() {
     this.fetchEvents();
@@ -151,6 +158,7 @@ export default {
           placeholder="select"
           v-model="date"
           format="DD-MM-YYYY"
+          :locale="this.$i18n.locale == 'vi' ? vi : en"
         />
         <a-button style="margin-left: 10px" type="primary" @click="today()"
           >Today</a-button

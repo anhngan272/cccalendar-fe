@@ -24,6 +24,7 @@
         v-model="form.date1"
         format="DD-MM-YYYY"
         @change="changeDateTime"
+        :locale="this.$i18n.locale == 'vi' ? vi : en"
       />
       <a-time-picker
         inputReadOnly
@@ -42,6 +43,7 @@
         v-model="form.date2"
         format="DD-MM-YYYY"
         :disabled-date="disabledDate"
+        :locale="this.$i18n.locale == 'vi' ? vi : en"
       />
       <a-time-picker
         inputReadOnly
@@ -132,7 +134,9 @@ import AttendeePicker from "./AttendeePicker.vue";
 import ThemePicker from "./ThemePicker.vue";
 import TagPicker from "../TagPicker.vue";
 import { createEventId } from "@/store/modules/calendarEvent/";
-// import {mapstate} from 'vuex'
+require("moment/locale/vi.js");
+import vi from "ant-design-vue/es/date-picker/locale/vi_VN";
+import en from "ant-design-vue/es/date-picker/locale/en_US";
 
 export default {
   name: "EventForm",
@@ -150,6 +154,8 @@ export default {
   },
   data() {
     return {
+      vi: vi,
+      en: en,
       labelCol: { span: 4 },
       wrapperCol: { span: 20 },
       other: "",
@@ -186,6 +192,9 @@ export default {
     ThemePicker,
     TagPicker,
     AttendeePicker,
+  },
+  beforeCreate() {
+    moment.locale(this.$i18n.locale);
   },
   created() {
     if (this.isUpdate == true) {

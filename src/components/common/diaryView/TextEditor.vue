@@ -221,7 +221,7 @@ export default {
           tags: this.form.tags,
           content: this.form.content,
         };
-        if(this.updateDiary(diary)){
+        if (this.updateDiary(diary)) {
           this.$parent.textEditorVisible = false;
         }
       } else {
