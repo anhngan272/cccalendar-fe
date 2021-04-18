@@ -221,8 +221,9 @@ export default {
           tags: this.form.tags,
           content: this.form.content,
         };
-        this.updateDiary(diary);
-        this.showSuccessAlert();
+        if(this.updateDiary(diary)){
+          this.$parent.textEditorVisible = false;
+        }
       } else {
         console.log("error update");
       }

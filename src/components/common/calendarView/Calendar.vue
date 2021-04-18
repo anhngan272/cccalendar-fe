@@ -26,7 +26,8 @@ export default {
         eventColor: "#039BE5", // Pacific Blue
         customButtons: {
           datepicker: {
-            text: "Pick a date",
+            // text: "Pick a date",
+            icon:'fa fa fa-glide',
             click: () => {
               this.showModal();
             },
