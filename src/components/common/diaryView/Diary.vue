@@ -24,34 +24,46 @@
             <a-select-option value="oldestDate">
               {{ $t("diary_page.diary_list.oldest_date") }}
             </a-select-option>
-            <a-select-option value="selectDate"
-              >{{ $t("diary_page.diary_list.select_date") }}
+            <a-select-option value="a-z">
+              <a-icon type="sort-ascending" /> A - Z
             </a-select-option>
-            <a-select-option value="tags">
-              {{ $t("diary_page.diary_list.select_tags") }}
+            <a-select-option value="z-a">
+              <a-icon type="sort-descending" /> Z - A
             </a-select-option>
           </a-select>
         </a-tooltip>
         <div style="margin-left: 20px">
-          <a-date-picker
+          <!-- <a-date-picker
             inputReadOnly
             :allowClear="true"
             v-model="selectedDate"
             format="DD-MM-YYYY"
             @change="selectDate"
             :locale="this.$i18n.locale == 'vi' ? vi : en"
+          /> -->
+          <a-range-picker
+            inputReadOnly
+            :allowClear="true"
+            :show-time="false"
+            format="YYYY-MM-DD"
+            style="width:250px"
           />
         </div>
         <div class="tag-picker">
           <TagPicker />
         </div>
+        <div>
+          <a-button style="margin-left: 20px" @click="refetchDiaries"
+            ><a-icon type="reload"
+          /></a-button>
+        </div>
         <div class="pagination">
-          <a-pagination simple :default-current="2" :total="50" />
+          <a-pagination simple :default-current="1" :total="50" />
         </div>
       </div>
     </div>
     <div>
-      <DiaryList />
+      <DiaryList ref="diaryList" />
     </div>
     <div class="addBtn">
       <TextEditor ref="textEditor" />
@@ -96,18 +108,13 @@ export default {
   },
   methods: {
     moment,
+    refetchDiaries() {
+      this.$refs.diaryList.fetchDiaries();
+    },
     selectDate(value) {
       console.log(value);
     },
     handleChange(value) {
-      // if (value == "tags") {
-
-      // } else if (value == "selectDate") {
-
-      // } else {
-      //   this.filterTag = false;
-      //   this.filterDate = false;
-      // }
       console.log(`selected ${value}`);
     },
     onSearch(value) {
@@ -116,6 +123,25 @@ export default {
     addDiary() {
       this.textEditorVisible = true;
     },
+    // disabledDate(current) {
+    //   // Can not select days before today and today
+    //   return current && current < moment().endOf('day');
+    // },
+
+    // disabledRangeTime(_, type) {
+    //   if (type === 'start') {
+    //     return {
+    //       disabledHours: () => this.range(0, 60).splice(4, 20),
+    //       disabledMinutes: () => this.range(30, 60),
+    //       disabledSeconds: () => [55, 56],
+    //     };
+    //   }
+    //   return {
+    //     disabledHours: () => this.range(0, 60).splice(20, 4),
+    //     disabledMinutes: () => this.range(0, 31),
+    //     disabledSeconds: () => [55, 56],
+    //   };
+    // },
   },
 };
 </script>
@@ -135,7 +161,7 @@ body {
   font-size: 12px;
 }
 
-.pagination{
+.pagination {
   /* background: pink; */
   flex-grow: 1;
   min-width: 25%;

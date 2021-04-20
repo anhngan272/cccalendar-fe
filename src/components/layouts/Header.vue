@@ -1,15 +1,11 @@
 <template>
   <div>
     <div class="head">
-      <a :href="$router.resolve({ name: 'Home' }).href"
+      <a @click="navigate('Home')"
         ><img src="@/assets/cccalendar_logo.png" style="height: 30px"
       /></a>
-      <a :href="$router.resolve({ name: 'Calendar' }).href">
-        {{ $t("calendar_page.title") }}</a
-      >
-      <a :href="$router.resolve({ name: 'Diary' }).href">
-        {{ $t("diary_page.title") }}</a
-      >
+      <a @click="navigate('Calendar')"> {{ $t("calendar_page.title") }}</a>
+      <a @click="navigate('Diary')"> {{ $t("diary_page.title") }}</a>
       <Navbar />
     </div>
   </div>
@@ -18,7 +14,6 @@
 <script>
 import { mapGetters } from "vuex";
 import Navbar from "@/components/layouts/Navbar";
-
 export default {
   name: "Header",
   components: {
@@ -26,6 +21,13 @@ export default {
   },
   computed: {
     ...mapGetters({ user: "getCurrentUser" }),
+  },
+  methods: {
+    navigate(name) {
+      this.$router
+        .push({ name: name, params: { haha: new Date().getUTCMilliseconds() } })
+        .catch((err) => err);
+    },
   },
 };
 </script>

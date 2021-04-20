@@ -37,17 +37,17 @@ const routes = [{
     path: '/calendar',
     name: 'Calendar',
     component: Calendar,
-    meta: {
-        requiresAuth: true,
-      },
+    // meta: {
+    //     requiresAuth: true,
+    // },
 }, {
     path: '/diary',
     name: 'Diary',
     component: Diary,
-    meta: {
-        requiresAuth: true,
-      },
-}, ];
+    // meta: {
+    //     requiresAuth: true,
+    // },
+},];
 
 const router = new VueRouter({
     mode: 'history',

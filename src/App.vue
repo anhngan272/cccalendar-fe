@@ -27,12 +27,15 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 #components-layout-demo-top .logo {
   width: 120px;
   height: fit-content;
   background-color: #fff;
   /* margin: 16px 24px 16px 0; */
   /* float: left; */
+}
+.fc-icon::before {
+  font-family: "FontAwesome" !important;
 }
 </style>

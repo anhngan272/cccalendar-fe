@@ -3,7 +3,7 @@
     <!-- if user logged in -->
     <LangSwitch />
     <template v-if="user != null">
-      <a :href="$router.resolve({ name: '' }).href">{{ user.name }}</a>
+      <a @click="navigate('')">{{ user.name }}</a>
 
       <a-popconfirm
         :title="$t('login.signout_confirm')"
@@ -12,13 +12,13 @@
         :cancel-text="$t('calendar_page.event_form.cancel_btn')"
         @confirm="logout"
       >
-        <a href="#" id="btn-logout" role="button">{{ $t("login.signout") }}</a>
+        <a @click="navigate('Home')" id="btn-logout" role="button">{{
+          $t("login.signout")
+        }}</a>
       </a-popconfirm>
     </template>
     <!-- else -->
-    <a :href="$router.resolve({ name: 'GoogleLogin' }).href" v-else>{{
-      $t("login.signin")
-    }}</a>
+    <a @click="navigate('GoogleLogin')" v-else>{{ $t("login.signin") }}</a>
   </div>
 </template>
 
@@ -37,9 +37,12 @@ export default {
   methods: {
     ...mapActions(["logout"]),
     async logout() {
-      // if (confirm("Logout?")) {
       this.logout();
-      // }
+    },
+    navigate(name) {
+      this.$router
+        .push({ name: name, params: { haha: new Date().getUTCMilliseconds() } })
+        .catch((err) => err);
     },
   },
   created() {},

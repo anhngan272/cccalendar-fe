@@ -31,11 +31,23 @@ export default {
         eventColor: "#039BE5", // Pacific Blue
         customButtons: {
           datepicker: {
-            text: "Pick a date",
+            text:"Pick a date", 
+            icon:'fa fa-calendar',
             click: () => {
               this.showModal();
             },
           },
+          reload: {
+            text: "Reload",
+            icon:'fa fa-refresh',
+            click: () => {
+              this.fetchEvents();
+            },
+          },
+        },
+        buttonIcons:{
+          prev:'fas fa-angle-left',
+          next:'fas fa-angle-right',
         },
         plugins: [
           dayGridPlugin,
@@ -45,7 +57,7 @@ export default {
           bootstrapPlugin,
         ],
         headerToolbar: {
-          left: "prev,next datepicker",
+          left: "prev,next datepicker reload",
           center: "title",
           right: "dayGridMonth,timeGridWeek,listMonth",
         },
@@ -220,5 +232,9 @@ b {
 .fc {
   /* the calendar root */
   margin: 0 auto;
+}
+.fc-icon::before {
+  font-family: "FontAwesome" !important;
+  padding: 0 !important;
 }
 </style>

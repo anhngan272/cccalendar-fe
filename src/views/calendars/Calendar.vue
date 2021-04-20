@@ -30,7 +30,7 @@ export default {
 .calendar {
   width: 67%;
   float: left;
-  height: 76vh;
+  height: 80vh;
   overflow-y: scroll;
 }
 .tabForm {
