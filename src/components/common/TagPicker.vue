@@ -38,9 +38,12 @@ export default {
     setEventTags(tags) {
       this.form.setFieldsValue({ tag: tags });
     },
-    handleChange(value) {
-      console.log(`selected ${value}`);
-      this.$emit("tagsPicked", value);
+    handleChange(values) {
+      for (let i = 0; i < values.length; i++) {
+        values[i] = values[i].replace(/ /g,'')
+      }
+      console.log(`selected ${values}`);
+      this.$emit("tagsPicked", values);
     },
     resetForm() {
       this.$emit("tagsPicked", []);

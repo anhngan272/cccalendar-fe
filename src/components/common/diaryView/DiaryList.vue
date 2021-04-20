@@ -26,7 +26,7 @@
             >
           </a-popconfirm>
         </a>
-        <a-list-item-meta style="color: pink">
+        <a-list-item-meta>
           <a slot="description" style="margin-right: 10px">{{ item.date }}</a>
           <a
             slot="description"

@@ -45,8 +45,9 @@
             inputReadOnly
             :allowClear="true"
             :show-time="false"
-            format="YYYY-MM-DD"
+            format="DD-MM-YYYY"
             style="width:250px"
+            :locale="this.$i18n.locale == 'vi' ? vi : en"
           />
         </div>
         <div class="tag-picker">
@@ -91,8 +92,6 @@ export default {
   data() {
     return {
       textEditorVisible: false,
-      filterTag: false,
-      filterDate: false,
       selectedDate: moment(new Date()),
       vi: vi,
       en: en,
@@ -123,25 +122,6 @@ export default {
     addDiary() {
       this.textEditorVisible = true;
     },
-    // disabledDate(current) {
-    //   // Can not select days before today and today
-    //   return current && current < moment().endOf('day');
-    // },
-
-    // disabledRangeTime(_, type) {
-    //   if (type === 'start') {
-    //     return {
-    //       disabledHours: () => this.range(0, 60).splice(4, 20),
-    //       disabledMinutes: () => this.range(30, 60),
-    //       disabledSeconds: () => [55, 56],
-    //     };
-    //   }
-    //   return {
-    //     disabledHours: () => this.range(0, 60).splice(20, 4),
-    //     disabledMinutes: () => this.range(0, 31),
-    //     disabledSeconds: () => [55, 56],
-    //   };
-    // },
   },
 };
 </script>

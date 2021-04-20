@@ -35,7 +35,7 @@ export default {
   /* margin: 16px 24px 16px 0; */
   /* float: left; */
 }
-.fc-icon::before {
+.ant-layout .fc-icon {
   font-family: "FontAwesome" !important;
 }
 </style>

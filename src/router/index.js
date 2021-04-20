@@ -4,6 +4,7 @@ import Home from '@/views/pages/Home';
 import About from '@/views/pages/About';
 import Calendar from '@/views/calendars/Calendar';
 import Diary from '@/views/diaries/Diary';
+import Organizer from '@/views/organizers/Organizer';
 import NotFound from '@/views/pages/NotFound';
 import GoogleLogin from '@/views/users/GoogleLogin';
 import GoogleCallback from '@/views/users/GoogleCallback';
@@ -47,7 +48,15 @@ const routes = [{
     // meta: {
     //     requiresAuth: true,
     // },
-},];
+}, {
+    path: '/organizer',
+    name: 'Organizer',
+    component: Organizer,
+    // meta: {
+    //     requiresAuth: true,
+    // },
+},
+];
 
 const router = new VueRouter({
     mode: 'history',

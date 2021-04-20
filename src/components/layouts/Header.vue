@@ -6,6 +6,7 @@
       /></a>
       <a @click="navigate('Calendar')"> {{ $t("calendar_page.title") }}</a>
       <a @click="navigate('Diary')"> {{ $t("diary_page.title") }}</a>
+      <a @click="navigate('Organizer')">Organizer</a>
       <Navbar />
     </div>
   </div>
