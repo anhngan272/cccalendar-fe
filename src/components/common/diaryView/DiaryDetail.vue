@@ -2,7 +2,7 @@
   <a-modal
     :destroyOnClose="true"
     class="diaryModal"
-    v-model="$parent.diaryModal"
+    v-model="diaryModal"
     :title="diary.title"
     @ok="handleOk"
     width="30vw"
@@ -64,6 +64,7 @@ export default {
   data: function () {
     return {
       updateModal: false,
+      diaryModal:false,
     };
   },
   components: {},

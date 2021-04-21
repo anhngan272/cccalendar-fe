@@ -6,8 +6,8 @@
       </a-col>
       <a-col :flex="18" style="border: 1px solid black">
           <a-row type="flex">
-              <a-col :span="12"><EventsCard/></a-col>
-              <a-col :span="12"><DiariesCard/></a-col>
+              <a-col :span="12"><Card :type="'events'"/></a-col>
+              <a-col :span="12"><Card :type="'diaries'"/></a-col>
           </a-row>
       </a-col>
     </a-row>
@@ -15,15 +15,13 @@
 </template>
 
 <script>
+import Card from "./Card";
 import FilterCard from "./FilterCard";
-import EventsCard from "./EventsCard";
-import DiariesCard from "./DiariesCard";
 
 export default {
   components: {
+    Card,
     FilterCard,
-    EventsCard,
-    DiariesCard
   },
   name: "Organizer",
   data() {

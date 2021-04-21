@@ -24,7 +24,14 @@
         :locale="this.$i18n.locale == 'vi' ? vi : en"
       />
     </div>
-    <a-divider orientation="left">Tags Filter</a-divider>
+
+    <a-divider orientation="left">Tags Filter </a-divider>
+    <a-input-search
+      class="search-box"
+      :placeholder="$t('diary_page.searchPlaceholder')"
+      enter-button
+      @search="onSearch"
+    />
     <div class="tags-filter">
       <a-list
         :locale="locale"
@@ -98,6 +105,9 @@ export default {
     selectDate(value) {
       console.log(value);
     },
+    onSearch(value) {
+      console.log(value);
+    },
     onChange(checkedValues) {
       console.log("checked = ", checkedValues.value);
       let index = this.tags.indexOf(checkedValues.value);
@@ -121,6 +131,7 @@ export default {
   /* text-align: center; */
   height: 40vh;
   overflow-y: auto;
+  margin-top: 10px;
 }
 .delete {
   color: #dc3545 !important;

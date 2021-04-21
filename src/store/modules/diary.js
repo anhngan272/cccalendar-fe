@@ -33,9 +33,11 @@ const getters = {
 
 const actions = {
     async fetchDiaries({ commit }) {
+        showMessage('loading', true)
         const response = await axios.get(API_URL + '/diary');
 
         if (response.status === 200) {
+            showMessage('success', false)
             commit('setDiaries', response.data);
         }
     },

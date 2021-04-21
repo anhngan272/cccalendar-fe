@@ -32,9 +32,10 @@ const getters = {
 
 const actions = {
     async fetchEvents({ commit }) {
+        showMessage('loading', true)        
         const response = await axios.get(API_URL + '/calendar');
-
         if (response.status === 200) {
+            showMessage('success', false)  
             commit('setEvents', response.data);
         }
     },

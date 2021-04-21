@@ -69,7 +69,7 @@ export default {
     return {
       diary: null,
       textEditorVisible: false,
-      diaryModal: false,
+      // diaryModal: false,
       locale: {
         emptyText: this.$t("diary_page.diary_list.no_data"),
       },
@@ -99,7 +99,7 @@ export default {
     },
     showDiaryModal(diary) {
       this.diary = diary;
-      this.diaryModal = true;
+      this.$refs.diaryDetail.diaryModal = true;
     },
   },
   created() {

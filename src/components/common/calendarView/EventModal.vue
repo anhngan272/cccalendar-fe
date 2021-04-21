@@ -2,7 +2,7 @@
   <a-modal
     :destroyOnClose="true"
     class="eventModal"
-    v-model="$parent.modal2"
+    v-model="eventModal"
     :title="event.title"
     @ok="handleOk"
     width="30vw"
@@ -92,6 +92,7 @@ export default {
   data: function () {
     return {
       updateModal: false,
+      eventModal:false,
     };
   },
   components: {

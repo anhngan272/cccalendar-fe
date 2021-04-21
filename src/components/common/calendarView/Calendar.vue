@@ -92,7 +92,9 @@ export default {
     this.fetchEvents();
   },
   computed: {
-    ...mapGetters(["getEvents"]),
+    ...mapGetters({
+      getEvents: "getEvents"
+    }),
   },
   methods: {
     ...mapActions(["fetchEvents"]),
