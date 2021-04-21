@@ -25,6 +25,7 @@ const state = {
 const getters = {
     getDiary: state => state.diary,
     getDiaries: state => state.diaries,
+    getPagination: state => state.pagination
 }
 
 const actions = {
@@ -59,6 +60,7 @@ const actions = {
         if (response.status === 200) {
             showMessage('success', false);
             commit('setDiaries', response.data);
+            commit('setPagnation',response.data);
         }
     },
     async createDiary({ commit }, diary) {
@@ -121,6 +123,10 @@ const mutations = {
         const diaryIndex = state.diaries.findIndex(x => x.id === diary.id)
         state.diaries.splice(diaryIndex, 1, diary)
         console.log(diary)
+    },
+    setPagnation:(state,pagination) => {
+        state.pagination.currentPage = pagination.meta.current_page;
+        state.pagination.totalPage = pagination.meta.total;
     }
 }
 

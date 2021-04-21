@@ -70,7 +70,7 @@
         </div>
 
         <div class="pagination">
-          <a-pagination simple :total="20" @change="moveToPage" />
+          <a-pagination simple :total="pagination.totalPage" :current="pagination.currentPage" @change="moveToPage" />
         </div>
       </div>
     </div>
@@ -97,7 +97,7 @@ import moment from "moment";
 require("moment/locale/vi.js");
 import vi from "ant-design-vue/es/date-picker/locale/vi_VN";
 import en from "ant-design-vue/es/date-picker/locale/en_US";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "Diary",
@@ -124,6 +124,9 @@ export default {
   },
   beforeCreate() {
     moment.locale(this.$i18n.locale);
+  },
+  computed: {
+    ...mapGetters({ pagination: "getPagination" }),
   },
   methods: {
     moment,
