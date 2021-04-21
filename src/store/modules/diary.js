@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { API_URL } from '@/assets/config';
 import { showMessage } from '@/helpers/index';
+// import moment from 'moment';
 
 let diaryId = 100
 export function createDiaryId() {
@@ -8,22 +9,17 @@ export function createDiaryId() {
 }
 
 const state = {
-    diaries: [
-        {
-            id: createDiaryId(),
-            title: "Ant Design Title 1",
-            date: "6/4/2021",
-            tags: ['ha', 'hi'],
-            content:'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
-        },
-        // {
-        //     id: createDiaryId(),
-        //     title: "Ant Design Title 2",
-        //     date: "6/4/2021",
-        //     tags: ['ha', 'huu'],
-        //     content:'<b>12345678901234567890</b>'
-        // },
-    ],
+    diaries: [{
+        id: createDiaryId(),
+        title: "Ant Design Title 1",
+        date: "6/4/2021",
+        tags: ['ha', 'hi'],
+        content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+    }, ],
+    pagination: {
+        currentPage: 1,
+        totalPage: 1,
+    }
 }
 
 const getters = {
@@ -32,12 +28,36 @@ const getters = {
 }
 
 const actions = {
-    async fetchDiaries({ commit }) {
-        showMessage('loading', true)
-        const response = await axios.get(API_URL + '/diary');
+    async fetchDiaries({ commit }, searchTerms) {
+        let response = null;
+        if (searchTerms) {
+            const searchParams = {...searchTerms };
+
+            // check if date is undefined
+            if (searchTerms.fromDate) {
+                searchParams.fromDate = searchTerms.fromDate.clone().format('YYYY-MM-DD');
+            } else {
+                delete searchParams.fromDate;
+            }
+
+            // check if date is undefined
+            if (searchTerms.toDate) {
+                searchParams.toDate = searchTerms.toDate.clone().format('YYYY-MM-DD');
+            } else {
+                delete searchParams.toDate;
+            }
+
+            showMessage('Loading', true);
+            response = await axios.get(API_URL + '/diary', {
+                params: searchParams
+            });
+        } else {
+            showMessage('Loading', true);
+            response = await axios.get(API_URL + '/diary');
+        }
 
         if (response.status === 200) {
-            showMessage('success', false)
+            showMessage('success', false);
             commit('setDiaries', response.data);
         }
     },
@@ -91,7 +111,7 @@ const actions = {
 }
 
 const mutations = {
-    setDiaries: (state, diaries) => (state.diaries = diaries),
+    setDiaries: (state, diaries) => (state.diaries = diaries.data),
     createDiary: (state, diary) => {
         state.isSuccess = true
         state.diaries.push(diary)

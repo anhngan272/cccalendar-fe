@@ -5,61 +5,72 @@
         class="search-box"
         :placeholder="$t('diary_page.searchPlaceholder')"
         enter-button
-        @search="onSearch"
+        @search="performSearch"
+        v-model="form.title"
       />
+
       <div class="sort-header">
         <a-tooltip placement="right">
           <template slot="title">
             <span>{{ $t("diary_page.diary_list.sort_by") }}</span>
           </template>
+
           <a-select
-            default-value="newestDate"
+            default-value="newest"
             style="min-width: fit-content; width: 140px"
-            @change="handleChange"
+            @change="performSearch"
+            v-model="form.sort"
           >
             <a-icon slot="suffixIcon" style="color: #808080" type="filter" />
-            <a-select-option value="newestDate">
+            <a-select-option value="newest">
               {{ $t("diary_page.diary_list.newest_date") }}
             </a-select-option>
-            <a-select-option value="oldestDate">
+            <a-select-option value="oldest">
               {{ $t("diary_page.diary_list.oldest_date") }}
             </a-select-option>
-            <a-select-option value="a-z">
+            <a-select-option value="a-to-z">
               <a-icon type="sort-ascending" /> A - Z
             </a-select-option>
-            <a-select-option value="z-a">
+            <a-select-option value="z-to-a">
               <a-icon type="sort-descending" /> Z - A
             </a-select-option>
           </a-select>
         </a-tooltip>
+
         <div style="margin-left: 20px">
-          <!-- <a-date-picker
+          <a-date-picker
             inputReadOnly
             :allowClear="true"
-            v-model="selectedDate"
+            v-model="form.fromDate"
             format="DD-MM-YYYY"
-            @change="selectDate"
+            placeholder="from date"
+            style="width: 150px"
             :locale="this.$i18n.locale == 'vi' ? vi : en"
-          /> -->
-          <a-range-picker
+          />
+          -
+          <a-date-picker
             inputReadOnly
             :allowClear="true"
-            :show-time="false"
+            v-model="form.toDate"
             format="DD-MM-YYYY"
-            style="width:250px"
+            placeholder="To date"
+            style="width: 150px"
             :locale="this.$i18n.locale == 'vi' ? vi : en"
           />
         </div>
+
         <div class="tag-picker">
           <TagPicker />
         </div>
+
         <div>
-          <a-button style="margin-left: 20px" @click="refetchDiaries"
+          <a-button style="margin-left: 20px" @click="performEmptySearch"
             ><a-icon type="reload"
           /></a-button>
         </div>
+
         <div class="pagination">
-          <a-pagination simple :default-current="1" :total="50" />
+          <a-pagination simple :total="20" @change="moveToPage" />
         </div>
       </div>
     </div>
@@ -86,6 +97,7 @@ import moment from "moment";
 require("moment/locale/vi.js");
 import vi from "ant-design-vue/es/date-picker/locale/vi_VN";
 import en from "ant-design-vue/es/date-picker/locale/en_US";
+import { mapActions } from "vuex";
 
 export default {
   name: "Diary",
@@ -95,6 +107,14 @@ export default {
       selectedDate: moment(new Date()),
       vi: vi,
       en: en,
+      form: {
+        title: "",
+        fromDate: null,
+        toDate: null,
+        sort: "newest", // ["newest", "oldest", "a-to-z", "z-to-a"]
+        tags: [],
+        page: 1,
+      },
     };
   },
   components: {
@@ -107,8 +127,20 @@ export default {
   },
   methods: {
     moment,
-    refetchDiaries() {
-      this.$refs.diaryList.fetchDiaries();
+    ...mapActions(["fetchDiaries"]),
+    performSearch() {
+      this.fetchDiaries(this.form);
+    },
+    performEmptySearch() {
+      this.form = {
+        title: "",
+        fromDate: null,
+        toDate: null,
+        sort: "newest", // ["newest", "oldest", "a-to-z", "z-to-a"]
+        tags: [],
+      };
+
+      this.fetchDiaries(null);
     },
     selectDate(value) {
       console.log(value);
@@ -116,11 +148,11 @@ export default {
     handleChange(value) {
       console.log(`selected ${value}`);
     },
-    onSearch(value) {
-      console.log(value);
-    },
     addDiary() {
       this.textEditorVisible = true;
+    },
+    moveToPage(page) {
+      this.fetchDiaries({ ...this.form, page: page });
     },
   },
 };
