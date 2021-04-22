@@ -46,7 +46,7 @@ const actions = {
 
         if (response.status === 200) {
             showMessage('success', false)
-            commit('addEvent', event);
+            commit('addEvent', response.data);
         } else {
             console.log(response.status)
         }
@@ -68,7 +68,7 @@ const actions = {
 
         if (response.status === 200) {
             showMessage('success', false)
-            commit('updateEvent', event);
+            commit('updateEvent', response.data);
         }
     }
 }

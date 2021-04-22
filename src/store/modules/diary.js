@@ -118,7 +118,7 @@ const actions = {
         const response = await axios.put(API_URL + `/diary/${diary.id}`, diary);
 
         if (response.status === 200) {
-            commit('updateDiary', diary);
+            commit('updateDiary', response.data);
             showMessage('success', false)
         }
     }
