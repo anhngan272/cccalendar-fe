@@ -133,7 +133,6 @@ import moment from "moment";
 import AttendeePicker from "./AttendeePicker.vue";
 import ThemePicker from "./ThemePicker.vue";
 import TagPicker from "../TagPicker.vue";
-import { createEventId } from "@/store/modules/calendarEvent/";
 require("moment/locale/vi.js");
 import vi from "ant-design-vue/es/date-picker/locale/vi_VN";
 import en from "ant-design-vue/es/date-picker/locale/en_US";
@@ -156,8 +155,8 @@ export default {
     return {
       vi: vi,
       en: en,
-      labelCol: { span: 4 },
-      wrapperCol: { span: 20 },
+      labelCol: { span: 8 },
+      wrapperCol: { span: 24 },
       other: "",
       isValidated: false,
       allowClear: false,
@@ -325,7 +324,7 @@ export default {
 
         //create event object
         var event = {
-          id: createEventId(),
+          // id: createEventId(),
           title: this.form.title,
           start: this.form.start,
           end: this.form.end,

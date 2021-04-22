@@ -1,13 +1,13 @@
 <template>
-  <a-card title="Organizer" style="border: 1px solid black">
-    <a-divider orientation="left">Date Filter</a-divider>
+  <a-card :title="$t('organizer_page.title')" style="border: 1px solid black">
+    <a-divider orientation="left">{{$t('organizer_page.filter.date_filter')}}</a-divider>
     <div class="date-filter">
       <a-date-picker
         inputReadOnly
         :allowClear="true"
         v-model="startDate"
         format="DD-MM-YYYY"
-        placeholder="from date"
+        :placeholder="$t('organizer_page.filter.start_date')"
         style="width: 150px"
         @change="selectDate"
         :locale="this.$i18n.locale == 'vi' ? vi : en"
@@ -18,20 +18,23 @@
         :allowClear="true"
         v-model="endDate"
         format="DD-MM-YYYY"
-        placeholder="To date"
+        :placeholder="$t('organizer_page.filter.end_date')"
         style="width: 150px"
         @change="selectDate"
         :locale="this.$i18n.locale == 'vi' ? vi : en"
       />
     </div>
 
-    <a-divider orientation="left">Tags Filter </a-divider>
-    <a-input-search
-      class="search-box"
-      :placeholder="$t('diary_page.searchPlaceholder')"
-      enter-button
-      @search="onSearch"
-    />
+    <a-divider orientation="left">{{$t('organizer_page.filter.tag_filter')}}</a-divider>
+    <div>
+      <a-button type="primary" ><a-icon type="plus" /></a-button>
+      <a-input-search
+        class="search-box"
+        :placeholder="$t('organizer_page.filter.searchPlaceholder')"
+        enter-button
+        @search="onSearch"
+      />
+    </div>
     <div class="tags-filter">
       <a-list
         :locale="locale"
@@ -59,15 +62,15 @@
               >
             </a-popconfirm>
           </a>
-          <a-checkbox :value="item.value" @change="onChange(item)">
-            {{ item.value }}
+          <a-checkbox :value="item" @change="onChange(item)">
+            {{ item }}
           </a-checkbox>
         </a-list-item>
       </a-list>
     </div>
-    <a-divider orientation="left"></a-divider>
+    <hr />
     <div style="text-align: right">
-      <a-button type="primary">go</a-button>
+      <a-button type="primary"><a-icon type="arrow-right" /></a-button>
     </div>
   </a-card>
 </template>
@@ -109,14 +112,13 @@ export default {
       console.log(value);
     },
     onChange(checkedValues) {
-      console.log("checked = ", checkedValues.value);
-      let index = this.tags.indexOf(checkedValues.value);
+      console.log("checked = ", checkedValues);
+      let index = this.tags.indexOf(checkedValues);
       if (index == -1) {
-        this.tags.push(checkedValues.value);
+        this.tags.push(checkedValues);
       } else {
         this.tags.splice(index, 1);
       }
-
       console.log(this.tags);
     },
   },
@@ -126,6 +128,10 @@ export default {
 <style scoped>
 .date-filter {
   text-align: center;
+}
+.search-box {
+  float: right;
+  width: 70%;
 }
 .tags-filter {
   /* text-align: center; */

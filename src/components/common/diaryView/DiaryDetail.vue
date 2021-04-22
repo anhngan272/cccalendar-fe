@@ -3,14 +3,14 @@
     :destroyOnClose="true"
     class="diaryModal"
     v-model="diaryModal"
-    :title="diary.title"
+    :title="title"
     @ok="handleOk"
     width="30vw"
   >
     <div slot="footer">
       <div style="text-align: center">
         <a-button key="edit" type="primary" @click="showUpdateModal">
-          <span style="margin-right:5px"><a-icon type="edit"/></span>
+          <span style="margin-right: 5px"><a-icon type="edit" /></span>
           {{ $t("diary_page.diary_form.edit_btn") }}
         </a-button>
         <a-popconfirm
@@ -21,7 +21,7 @@
           @confirm="handleDelete"
         >
           <a-button key="delete" type="danger">
-            <span style="margin-right:5px"><a-icon type="delete"/></span>
+            <span style="margin-right: 5px"><a-icon type="delete" /></span>
             {{ $t("diary_page.diary_form.delete_btn") }}
           </a-button>
         </a-popconfirm>
@@ -32,23 +32,23 @@
     </div>
 
     <div>
-      <b>{{$t('diary_page.diary_form.date')}}: </b>
+      <b>{{ $t("diary_page.diary_form.date") }}: </b>
       <!-- {{
         moment(diary.date)
           .locale(this.$i18n.locale)
           .format("HH:mm a dddd DD-MM-yyyy")
       }} -->
-      {{ diary.date }}
+      {{ date }}
     </div>
 
     <div class="tags">
-      <b>{{$t('diary_page.diary_form.tags')}}: </b>
-      <span v-for="(tag, i) in diary.tags" :key="i">#{{ tag }}</span>
+      <b>{{ $t("diary_page.diary_form.tags") }}: </b>
+      <span v-for="(tag, i) in tags" :key="i">#{{ tag }}</span>
     </div>
 
     <div>
-      <b>{{$t('diary_page.diary_form.content')}}: </b>
-      <span v-html="diary.content"></span>
+      <b>{{ $t("diary_page.diary_form.content") }}: </b>
+      <span v-html="content"></span>
     </div>
   </a-modal>
 </template>
@@ -64,24 +64,38 @@ export default {
   data: function () {
     return {
       updateModal: false,
-      diaryModal:false,
+      diaryModal: false,
+      title: "",
+      date: "",
+      tags: [],
+      content: "",
     };
   },
   components: {},
+  updated() {
+    if (this.diary != null) {
+      this.setDiaryInfo(this.diary);
+    }
+  },
   methods: {
     moment,
     ...mapActions(["deleteDiary"]),
+    setDiaryInfo(diary) {
+      this.title = diary.title;
+      this.date = diary.date;
+      this.tags = diary.tags;
+      this.content = diary.content;
+    },
     handleDelete() {
-      console.log("delete");
       this.deleteDiary(this.diary.id);
-      this.$parent.diaryModal = false;
+      this.diaryModal = false;
     },
     showUpdateModal() {
-      this.$parent.textEditorVisible = true;
-      console.log("update");
+      // this.$parent.textEditorVisible = true;
+      this.$emit("showUpdateModal",this.diary);
     },
     handleOk() {
-      this.$parent.diaryModal = false;
+      this.diaryModal = false;
     },
   },
   computed: {},

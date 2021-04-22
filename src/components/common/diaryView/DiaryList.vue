@@ -1,7 +1,9 @@
 <template>
   <div class="wrapper">
     <a-list
-      :locale="locale"
+      :locale="{
+        emptyText: this.$t('diary_page.diary_list.no_data'),
+      }"
       item-layout="horizontal"
       :data-source="getDiaries"
       :bordered="true"
@@ -45,12 +47,20 @@
         </a-list-item-meta>
       </a-list-item>
     </a-list>
-    <div v-if="diary != null">
-      <TextEditor :isUpdate="true" :diary="diary" ref="textEditor" />
+    <div v-if="showText == true">
+      <TextEditor
+        ref="textEditor"
+        :isUpdate="true"
+        :diary="diary"
+        :showText="showText"
+        @closeTextEditor="showText = false"
+      />
     </div>
-    <div v-if="diary != null">
-      <DiaryDetail :diary="diary" ref="diaryDetail" />
-    </div>
+    <DiaryDetail
+      :diary="diary"
+      ref="diaryDetail"
+      @showUpdateModal="showUpdateModal"
+    />
   </div>
 </template>
 
@@ -67,12 +77,9 @@ export default {
   },
   data() {
     return {
-      diary: null,
-      textEditorVisible: false,
-      // diaryModal: false,
-      locale: {
-        emptyText: this.$t("diary_page.diary_list.no_data"),
-      },
+      showText: false,
+      diary: {},
+      diaryModal: false,
     };
   },
   methods: {
@@ -95,7 +102,7 @@ export default {
     },
     showUpdateModal(diary) {
       this.diary = diary;
-      this.textEditorVisible = true;
+      this.showText = true;
     },
     showDiaryModal(diary) {
       this.diary = diary;

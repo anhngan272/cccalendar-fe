@@ -9,6 +9,9 @@
   >
     <div slot="footer">
       <div style="text-align: center">
+        <a-button key="edit" type="primary" @click="showUpdateModal">
+          {{ $t("calendar_page.event_form.edit_btn") }}
+        </a-button>
         <a-popconfirm
           :title="$t('calendar_page.event_form.delete_confirm')"
           placement="top"
@@ -20,9 +23,6 @@
             {{ $t("calendar_page.event_form.delete_btn") }}
           </a-button>
         </a-popconfirm>
-        <a-button key="delete" type="primary" @click="showUpdateModal">
-          {{ $t("calendar_page.event_form.edit_btn") }}
-        </a-button>
         <a-button key="ok" type="primary" @click="handleOk">
           {{ $t("calendar_page.event_form.ok_btn") }}
         </a-button>
@@ -32,7 +32,7 @@
       ref="updateEventModal"
       :updateEventModalExtend="eventModalExtend"
       :updateEvent="event"
-      @updated="$parent.modal2 = false"
+      @updated="eventModal = false"
     />
 
     <div>
@@ -92,7 +92,7 @@ export default {
   data: function () {
     return {
       updateModal: false,
-      eventModal:false,
+      eventModal: false,
     };
   },
   components: {
@@ -103,13 +103,13 @@ export default {
     ...mapActions(["deleteEvent", "updateEvent"]),
     handleDelete() {
       this.deleteEvent(this.event.id);
-      this.$parent.modal2 = false;
+      this.eventModal = false;
     },
     showUpdateModal() {
       this.$refs.updateEventModal.updateModal = true;
     },
     handleOk() {
-      this.$parent.modal2 = false;
+      this.eventModal = false;
     },
   },
   computed: {},

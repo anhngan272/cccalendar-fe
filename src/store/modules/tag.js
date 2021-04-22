@@ -8,18 +8,18 @@ export function createTagId() {
 
 const state = {
     tags: [
-        {
-            label: "Tag1",
-            value: "Tag1"
-        },
-        {
-            label: "Tag2",
-            value: "Tag2"
-        },
-        {
-            label: "Tag3",
-            value: "Tag3"
-        },
+        // {
+        //     label: "Tag1",
+        //     value: "Tag1"
+        // },
+        // {
+        //     label: "Tag2",
+        //     value: "Tag2"
+        // },
+        // {
+        //     label: "Tag3",
+        //     value: "Tag3"
+        // },
     ],
 }
 

@@ -6,7 +6,7 @@
       <div class="container center">
         <div class="row">
           <div class="col-sm-6 col-md-4">
-            <a :href="$router.resolve({ name: 'Calendar' }).href">
+              <a @click="navigate('Calendar')"> 
               <i class="fa fa-calendar"></i>
               <h4 class="">
                 <i>{{ $t("homepage.intro.calendar.title") }}</i>
@@ -18,7 +18,7 @@
           </div>
 
           <div class="col-sm-6 col-md-4">
-            <a :href="$router.resolve({ name: 'Diary' }).href">
+            <a @click="navigate('Diary')">
               <i class="fa fa-clipboard"></i>
               <h4>
                 <i>{{ $t("homepage.intro.diary.title") }}</i>
@@ -30,10 +30,12 @@
           </div>
 
           <div class="col-sm-6 col-md-4">
+            <a @click="navigate('Organizer')">
             <i class="fa fa-cogs"></i>
             <h4>
               <i>{{ $t("homepage.intro.organizer.title") }}</i>
             </h4>
+            </a>
             <p class="">
               {{ $t("homepage.intro.organizer.text") }}
             </p>
@@ -52,6 +54,13 @@ export default {
   components: {},
   computed: {
     ...mapGetters({ user: "getCurrentUser" }),
+  },
+  methods: {
+    navigate(name) {
+      this.$router
+        .push({ name: name, params: { haha: new Date().getUTCMilliseconds() } })
+        .catch((err) => err);
+    },
   },
   created() {},
 };

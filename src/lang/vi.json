@@ -20,7 +20,7 @@
         "text": "Ghi chú lại các kế hoạch và công việc của bạn để bạn không phải bỏ lỡ điều gì."
       },
       "organizer": {
-        "title": "Organizer",
+        "title": "Quản lý",
         "text": "Quản lý các ghi chú và sự kiện của bạn nhằm nâng cao hiệu suất làm việc."
       }
     }
@@ -50,14 +50,15 @@
       "update_btn": "Cập nhật",
       "edit_btn": "Chỉnh sửa",
       "delete_btn": "Xóa",
-      "delete_confirm": "Bạn có chắc muốn xóa?",
-      "success_alert": "Thành công!!"
+      "delete_confirm": "Bạn có chắc muốn xóa?"
     },
     "diary_list": {
       "no_data": "Không có dữ liệu",
       "sort_by": "Lọc theo",
       "newest_date": "Ngày gần nhất",
       "oldest_date": "Ngày cũ nhất",
+      "start_date": "Ngày bắt đầu",
+      "end_date": "Ngày kết thúc",
       "select_date": "Chọn ngày",
       "select_tags": "Chọn thẻ",
       "content": "Nội dung",
@@ -70,7 +71,8 @@
       "month": "Tháng",
       "week": "Tuần",
       "list": "Lịch biểu",
-      "select_date": "Chọn một ngày để hiển thị các sự kiện trong tháng của ngày đó"
+      "select_month": "Chọn tháng",
+      "current_month":"Tháng hiện tại"
     },
     "create_event": "Tạo sự kiện mới",
     "event_form": {
@@ -111,6 +113,24 @@
       "success_alert": "Thành công!!"
     }
   },
+  "organizer_page": {
+    "title": "Quản lý",
+    "filter":{
+      "date_filter":"Lọc theo ngày",
+      "start_date": "Ngày bắt đầu",
+      "end_date": "Ngày kết thúc",
+      "tag_filter":"Lọc theo thẻ",
+      "searchPlaceholder": "Nhập tên thẻ cần tìm"
+    },
+    "events":{
+      "title":"Sự kiện",
+      "searchPlaceholder": "Nhập sự kiện cần tìm"
+    },
+    "diaries":{
+      "title":"Nhật ký",
+      "searchPlaceholder": "Nhập nhật ký cần tìm"
+    }
+  },
   "login": {
     "signin": "Đăng nhập",
     "signout": "Đăng xuất",
@@ -118,4 +138,5 @@
     "signin_google": "Đăng nhập bằng tài khoản google",
     "signin_loading": "Đang đăng nhập..."
   }
+
 }

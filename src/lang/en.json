@@ -50,18 +50,19 @@
       "update_btn": "Update",
       "edit_btn": "Edit",
       "delete_btn": "Delete",
-      "delete_confirm": "Are you sure delete this diary?",
-      "success_alert": "Thành công!!"
+      "delete_confirm": "Are you sure delete this diary?"
     },
     "diary_list": {
       "no_data": "No data",
       "sort_by": "Sort By",
       "newest_date": "Newest Date",
       "oldest_date": "Oldest Date",
+      "start_date": "Start Date",
+      "end_date": "End Date",
       "select_date": "Select Date",
       "select_tags": "Select Tags",
-      "content":"Content",
-      "show_detail":"Show detail"
+      "content": "Content",
+      "show_detail": "Show detail"
     }
   },
   "calendar_page": {
@@ -70,7 +71,8 @@
       "month": "Month",
       "week": "Week",
       "list": "Schedule",
-      "select_date": "Select a date to show the events in the month of that date"
+      "select_month": "Select month",
+      "current_month":"Current month"
     },
     "create_event": "Create new Event",
     "event_form": {
@@ -109,6 +111,24 @@
       "cancel_btn": "Cancel",
       "cancel_confirm": "Are you sure cancel edit this event?",
       "success_alert": "Success!!"
+    }
+  },
+  "organizer_page": {
+    "title": "Organizer",
+    "filter":{
+      "date_filter":"Date Filter",
+      "start_date": "Start Date",
+      "end_date": "End Date",
+      "tag_filter":"Tag Filter",
+      "searchPlaceholder": "Input Search Tag"
+    },
+    "events":{
+      "title":"Events",
+      "searchPlaceholder": "Input Search Event"
+    },
+    "diaries":{
+      "title":"Diaries",
+      "searchPlaceholder": "Input Search Diaries"
     }
   },
   "login": {

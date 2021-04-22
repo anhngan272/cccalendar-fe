@@ -9,13 +9,22 @@ export function createDiaryId() {
 }
 
 const state = {
-    diaries: [{
-        id: createDiaryId(),
-        title: "Ant Design Title 1",
-        date: "6/4/2021",
-        tags: ['ha', 'hi'],
-        content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
-    }, ],
+    diaries: [
+    //     {
+    //     id: createDiaryId(),
+    //     title: "Ant Design Title 1",
+    //     date: "6/4/2021",
+    //     tags: ['ha', 'hi'],
+    //     content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+    //     },
+    //     {
+    //     id: createDiaryId(),
+    //     title: "Ant Design Title 2",
+    //     date: "6/4/2021",
+    //     tags: ['ha', 'hi'],
+    //     content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+    // }, 
+],
     pagination: {
         currentPage: 1,
         totalPage: 1,
@@ -104,10 +113,13 @@ const actions = {
     //     commit('deleteDiary', diaryId);
     // },
     async updateDiary({ commit }, diary) {
-        const response = await axios.put(API_URL + `/calendar/${diary.id}`, diary);
+        showMessage('loading', true)
+        console.log(diary)
+        const response = await axios.put(API_URL + `/diary/${diary.id}`, diary);
 
         if (response.status === 200) {
             commit('updateDiary', diary);
+            showMessage('success', false)
         }
     }
 }
@@ -116,7 +128,7 @@ const mutations = {
     setDiaries: (state, diaries) => (state.diaries = diaries.data),
     createDiary: (state, diary) => {
         state.isSuccess = true
-        state.diaries.push(diary)
+        state.diaries.unshift(diary)
     },
     deleteDiary: (state, diaryId) => state.diaries = state.diaries.filter(diary => diary.id !== diaryId),
     updateDiary: (state, diary) => {

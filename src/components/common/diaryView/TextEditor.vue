@@ -1,13 +1,14 @@
 <template>
   <a-modal
     :destroyOnClose="true"
-    v-model="$parent.textEditorVisible"
+    v-model="showText"
     :title="$t('diary_page.diary_form.header')"
     :bodyStyle="modaleStyle"
     centered
     width="90vw"
     :maskClosable="false"
     :closable="false"
+    :zIndex="1002"
   >
     <a-form-model
       ref="form"
@@ -85,20 +86,6 @@
         </a-popconfirm>
       </div>
     </div>
-    <a-modal
-      :dialog-style="{ top: '20vh' }"
-      :visible="submitModal"
-      :closable="false"
-      :maskClosable="false"
-      @ok="hideSuccessAlert"
-      :cancel-button-props="{ style: { display: 'none' } }"
-    >
-      <a-alert
-        :message="$t('diary_page.diary_form.success_alert')"
-        type="success"
-        show-icon
-      />
-    </a-modal>
   </a-modal>
 </template>
 
@@ -117,6 +104,7 @@ export default {
   props: {
     isUpdate: Boolean,
     diary: Object,
+    showText: Boolean,
   },
   components: {
     VueEditor,
@@ -126,10 +114,9 @@ export default {
     this.setDiaryInfo();
   },
   computed: {},
-  updated() {},
-
   data() {
     return {
+      textEditorVisible: false,
       htmlForEditor: "",
       visible: false,
       isValidated: false,
@@ -173,14 +160,6 @@ export default {
   methods: {
     moment,
     ...mapActions(["createDiary", "updateDiary"]),
-    hideSuccessAlert() {
-      this.submitModal = false;
-      // this.$emit("updated");
-      this.$parent.textEditorVisible = false;
-    },
-    showSuccessAlert() {
-      this.submitModal = true;
-    },
     setDiaryInfo() {
       if (this.isUpdate == true) {
         this.form.title = this.diary.title;
@@ -206,23 +185,28 @@ export default {
         }
       });
     },
+    closeTextEditor() {
+      this.$emit("closeTextEditor");
+    },
     handelCancel() {
-      this.$parent.textEditorVisible = false;
-      this.$parent.diary = null;
+      this.closeTextEditor();
+      // this.textEditorVisible = false;
+      // this.$parent.diary = null;
       this.resetForm();
     },
     handleUpdate() {
       this.validateForm();
       if (this.isValidated == true) {
         var diary = {
-          // id: createEventId(),
+          id: this.diary.id,
           title: this.form.title,
-          date: this.form.date,
+          // date: this.form.date,
           tags: this.form.tags,
           content: this.form.content,
         };
         if (this.updateDiary(diary)) {
-          this.$parent.textEditorVisible = false;
+          // this.textEditorVisible = false;
+          this.closeTextEditor()
         }
       } else {
         console.log("error update");
@@ -234,13 +218,13 @@ export default {
         var diary = {
           // id: 100,
           title: this.form.title,
-          // date: this.form.date,
+          date: this.form.date,
           tags: this.form.tags,
           content: this.form.content,
         };
         // this.createDiary(diary)
         if (this.createDiary(diary)) {
-          this.$parent.textEditorVisible = false;
+          this.closeTextEditor()
         }
         // this.showSuccessAlert();
       } else {

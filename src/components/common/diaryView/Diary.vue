@@ -29,10 +29,10 @@
               {{ $t("diary_page.diary_list.oldest_date") }}
             </a-select-option>
             <a-select-option value="a-to-z">
-              <a-icon type="sort-ascending" /> A - Z
+              <a-icon type="sort-ascending" /> {{ $t("diary_page.diary_form.title") }} A - Z
             </a-select-option>
             <a-select-option value="z-to-a">
-              <a-icon type="sort-descending" /> Z - A
+              <a-icon type="sort-descending" /> {{ $t("diary_page.diary_form.title") }} Z - A
             </a-select-option>
           </a-select>
         </a-tooltip>
@@ -43,7 +43,7 @@
             :allowClear="true"
             v-model="form.fromDate"
             format="DD-MM-YYYY"
-            placeholder="from date"
+            :placeholder="$t('diary_page.diary_list.start_date')"
             style="width: 150px"
             :locale="this.$i18n.locale == 'vi' ? vi : en"
           />
@@ -53,7 +53,7 @@
             :allowClear="true"
             v-model="form.toDate"
             format="DD-MM-YYYY"
-            placeholder="To date"
+            :placeholder="$t('diary_page.diary_list.end_date')"
             style="width: 150px"
             :locale="this.$i18n.locale == 'vi' ? vi : en"
           />
@@ -78,7 +78,7 @@
       <DiaryList ref="diaryList" />
     </div>
     <div class="addBtn">
-      <TextEditor ref="textEditor" />
+      <TextEditor ref="textEditor" :showText="showText" @closeTextEditor="showText=false"/>
       <a role="button" @click="addDiary" href="#" class="float">
         <i class="fa fa-plus my-float"></i>
       </a>
@@ -103,7 +103,7 @@ export default {
   name: "Diary",
   data() {
     return {
-      textEditorVisible: false,
+      showText:false,
       selectedDate: moment(new Date()),
       vi: vi,
       en: en,
@@ -152,7 +152,8 @@ export default {
       console.log(`selected ${value}`);
     },
     addDiary() {
-      this.textEditorVisible = true;
+      this.showText=true;
+      this.$refs.textEditor.textEditorVisible = true;
     },
     moveToPage(page) {
       this.fetchDiaries({ ...this.form, page: page });

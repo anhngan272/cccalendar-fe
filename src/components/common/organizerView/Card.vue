@@ -2,12 +2,14 @@
   <a-card :title="title" style="border: 1px solid black">
     <a-input-search
       slot="extra"
-      :placeholder="$t('diary_page.searchPlaceholder')"
+      :placeholder="$t(`organizer_page.${type}.searchPlaceholder`)"
       enter-button
       @search="onSearch"
     />
     <a-list
-      :locale="locale"
+      :locale="{
+        emptyText: this.$t('diary_page.diary_list.no_data'),
+      }"
       item-layout="horizontal"
       :data-source="type == 'events' ? getEvents : getDiaries"
       :bordered="true"
@@ -17,7 +19,6 @@
           ><span><a-icon type="edit" theme="twoTone" /></span
           >{{ $t("diary_page.diary_form.edit_btn") }}</a
         >
-
         <a slot="actions" class="delete">
           <a-popconfirm
             :title="$t('diary_page.diary_form.delete_confirm')"
@@ -34,21 +35,47 @@
         </a>
         <div @click="showModal(item)">
           {{ item.title }}
-          <EventModal ref="eventModal" :event="item" :eventModalExtend="item" />
-          <DiaryDetail ref="diaryModal" :diary="item" />
         </div>
+
         <!-- <a-list-item-meta>
                   <div slot="title">{{ item.title }}</div>
                 </a-list-item-meta> -->
       </a-list-item>
     </a-list>
+    <EventModal
+      ref="eventModal"
+      :event="currentItem"
+      :eventModalExtend="currentItem"
+    />
+    <UpdateEventModal
+      ref="updateEventModal"
+      :updateEventModalExtend="currentItem"
+      :updateEvent="currentItem"
+      @updated="eventModal = false"
+    />
+    <DiaryDetail
+      ref="diaryModal"
+      :diary="currentItem"
+      @showUpdateModal="showUpdateModal"
+    />
+    <div v-if="showText == true">
+      <TextEditor
+        ref="textEditor"
+        :isUpdate="true"
+        :diary="currentItem"
+        :showText="showText"
+        @closeTextEditor="closeTextEditor"
+      />
+    </div>
   </a-card>
 </template>
 
 <script>
 import { mapActions, mapGetters } from "vuex";
 import EventModal from "../calendarView/EventModal";
+import UpdateEventModal from "../calendarView/UpdateEventModal";
 import DiaryDetail from "../diaryView/DiaryDetail";
+import TextEditor from "../diaryView/TextEditor";
 export default {
   props: {
     type: String,
@@ -56,28 +83,26 @@ export default {
   name: "EventsCard",
   components: {
     EventModal,
+    UpdateEventModal,
     DiaryDetail,
+    TextEditor,
   },
   data() {
     return {
-      //   data: [],
+      showText: false,
+      currentItem: {},
       diaryModal: false,
       title: "",
-      locale: {
-        emptyText: this.$t("diary_page.diary_list.no_data"),
-      },
+      textEditorVisible: false,
     };
   },
   created() {
     if (this.type == "events") {
       this.fetchEvents();
-      //   this.data = this.getEvents;
-      this.title = "Events";
-      console.log(this.data);
+      this.title = this.$t(`organizer_page.${this.type}.title`);
     } else if (this.type == "diaries") {
       this.fetchDiaries();
-      //   this.data = this.getDiaries;
-      this.title = "Diaries";
+      this.title = this.$t(`organizer_page.${this.type}.title`);
     }
   },
   computed: {
@@ -88,19 +113,37 @@ export default {
       "fetchEvents",
       "fetchDiaries",
       "deleteEvent",
-      "updateEvent",
+      "deleteDiary",
     ]),
+    closeTextEditor() {
+      this.showText = false;
+      this.showText == false;
+    },
     onSearch(value) {
       console.log(value);
     },
+    handelDelete(item) {
+      if (this.type == "events") {
+        this.deleteEvent(item.id);
+      } else {
+        this.deleteDiary(item.id);
+      }
+    },
+    showUpdateModal(item) {
+      this.currentItem = item;
+      if (this.type == "events") {
+        this.$refs.updateEventModal.updateModal = true;
+      } else {
+        this.showText = true;
+      }
+    },
     showModal(item) {
+      this.currentItem = item;
       if (this.type == "events") {
         this.$refs.eventModal.eventModal = true;
       } else {
         this.$refs.diaryModal.diaryModal = true;
       }
-      console.log(this.modal2);
-      console.log(item);
     },
   },
 };

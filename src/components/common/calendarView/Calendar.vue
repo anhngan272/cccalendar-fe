@@ -24,30 +24,29 @@ export default {
       en: en,
       date: moment(new Date()),
       modal1: false,
-      modal2: false,
       eventModal: {},
       eventModalExtend: {},
       calendarOptions: {
         eventColor: "#039BE5", // Pacific Blue
         customButtons: {
           datepicker: {
-            text:"Pick a date", 
-            icon:'fa fa-calendar',
+            text: "Pick a date",
+            icon: "fa fa-calendar",
             click: () => {
               this.showModal();
             },
           },
           reload: {
             text: "Reload",
-            icon:'fa fa-refresh',
+            icon: "fa fa-refresh",
             click: () => {
               this.fetchEvents();
             },
           },
         },
-        buttonIcons:{
-          prev:'fas fa-angle-left',
-          next:'fas fa-angle-right',
+        buttonIcons: {
+          prev: "fas fa-angle-left",
+          next: "fas fa-angle-right",
         },
         plugins: [
           dayGridPlugin,
@@ -93,7 +92,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      getEvents: "getEvents"
+      getEvents: "getEvents",
     }),
   },
   methods: {
@@ -108,6 +107,7 @@ export default {
     },
     handleOk() {
       var date = this.date.toISOString().replace(/T.*$/, "");
+      console.log(date)
       this.$refs.calendar.getApi().changeView("dayGridMonth", date);
       this.modal1 = false;
     },
@@ -120,9 +120,10 @@ export default {
     },
 
     handleEventClick(clickInfo) {
-      this.modal2 = true;
       this.eventModal = clickInfo.event;
+      console.log(this.eventModal)
       this.eventModalExtend = clickInfo.event.extendedProps;
+      this.$refs.eventModal.eventModal = true;
     },
     updateEvent() {
       const updatedEvent = this.$refs.calendar
@@ -162,23 +163,25 @@ export default {
           >
         </template>
       </FullCalendar>
-      <a-modal v-model="modal1" title="Select date" @ok="handleOk">
+      <a-modal :cancel-text="$t('calendar_page.event_form.cancel_btn')" v-model="modal1" :title="$t('calendar_page.calendar.select_month')" @ok="handleOk">
         <div style="margin-bottom: 10px">
-          {{ $t("calendar_page.calendar.select_date") }}
+          {{ $t("calendar_page.calendar.select_month") }}
         </div>
-        <a-date-picker
+        <a-month-picker inputReadOnly :allowClear="false" :placeholder="$t('calendar_page.calendar.select_month')" v-model="date"/>
+        <!-- <a-date-picker
           inputReadOnly
           :allowClear="false"
           placeholder="select"
           v-model="date"
           format="DD-MM-YYYY"
           :locale="this.$i18n.locale == 'vi' ? vi : en"
-        />
+        /> -->
         <a-button style="margin-left: 10px" type="primary" @click="today()"
-          >Today</a-button
+          >{{$t('calendar_page.calendar.current_month')}}</a-button
         >
       </a-modal>
       <EventModal
+        ref="eventModal"
         @update="updateEvent"
         :eventModalExtend="eventModalExtend"
         :event="eventModal"
