@@ -37,5 +37,11 @@ export default {
 }
 .ant-layout .fc-icon {
   font-family: "FontAwesome" !important;
+  /* color: #039be5; */
+  
+}
+.fc-button-primary{
+  background-color: #1890ff !important;
+  border-color: #1890ff !important;
 }
 </style>

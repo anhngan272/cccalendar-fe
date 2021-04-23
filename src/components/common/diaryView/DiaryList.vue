@@ -8,7 +8,7 @@
       :data-source="getDiaries"
       :bordered="true"
     >
-      <a-list-item slot="renderItem" slot-scope="item">
+      <a-list-item slot="renderItem" slot-scope="item, index">
         <a class="edit" slot="actions" @click="showUpdateModal(item)"
           ><span><a-icon type="edit" theme="twoTone" /></span
           >{{ $t("diary_page.diary_form.edit_btn") }}</a
@@ -28,6 +28,7 @@
             >
           </a-popconfirm>
         </a>
+
         <a-list-item-meta>
           <a slot="description" style="margin-right: 10px">{{ item.date }}</a>
           <a
@@ -45,6 +46,19 @@
             ><h4 class="font-weight-bold">{{ item.title }}</h4></a
           >
         </a-list-item-meta>
+        <div>{{ index }} {{ createDiaryId }}</div>
+        <a-badge
+          :count="index == createDiaryId ? 'New' : ''"
+          title="New Diary"
+          :number-style="{ backgroundColor: '#007bff' }"
+        >
+        </a-badge>
+        <a-badge
+          :count="item.id == updateDiaryId ? 'Updated' : ''"
+          title="Updated Diary"
+          :number-style="{ backgroundColor: '#52c41a' }"
+        >
+        </a-badge>
       </a-list-item>
     </a-list>
     <div v-if="showText == true">
@@ -54,6 +68,7 @@
         :diary="diary"
         :showText="showText"
         @closeTextEditor="showText = false"
+        @updateDiary="updateDiary"
       />
     </div>
     <DiaryDetail
@@ -80,10 +95,20 @@ export default {
       showText: false,
       diary: {},
       diaryModal: false,
+      createDiaryId: -1,
+      updateDiaryId: "",
     };
   },
   methods: {
     ...mapActions(["fetchDiaries", "deleteDiary"]),
+    createDiary() {
+      this.updateDiaryId = '';
+      this.createDiaryId = 0;
+    },
+    updateDiary(diaryId) {
+      this.updateDiaryId = diaryId;
+      this.createDiaryId = -1;
+    },
     shortDiaryContent(content) {
       let contentToRender = content ? content.substring(0, 20) + "... " : "";
       return contentToRender;
@@ -156,5 +181,12 @@ a h4:hover {
 .diary-tag:hover {
   text-decoration: none;
   box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.28);
+}
+
+.diaryFocus {
+  color: red;
+}
+.diaryNotFocus {
+  display: none;
 }
 </style>

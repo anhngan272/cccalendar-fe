@@ -17,7 +17,7 @@
       <a-list-item slot="renderItem" slot-scope="item">
         <a class="edit" slot="actions" @click="showUpdateModal(item)"
           ><span><a-icon type="edit" theme="twoTone" /></span
-          >{{ $t("diary_page.diary_form.edit_btn") }}</a
+          ></a
         >
         <a slot="actions" class="delete">
           <a-popconfirm
@@ -28,12 +28,11 @@
             @confirm="handelDelete(item)"
           >
             <a
-              ><span><a-icon type="delete" /></span
-              >{{ $t("diary_page.diary_form.delete_btn") }}</a
+              ><a-icon type="delete" /></a
             >
           </a-popconfirm>
         </a>
-        <div @click="showModal(item)">
+        <div class="title" @click="showModal(item)">
           {{ item.title }}
         </div>
 
@@ -154,17 +153,16 @@ export default {
   color: #dc3545 !important;
 }
 
-.delete span,
-.edit span {
-  margin-right: 5px;
-}
-
 .edit {
   color: #1890ff !important;
 }
-.edit:hover,
+.edit span:hover,
 .delete:hover {
-  text-shadow: 1px 1px 3px #808080;
-  /* text-decoration: underline !important; */
+  border-bottom: 1.5px solid;
+}
+
+.title:hover{
+  color:#1890ff;
+  cursor: pointer;
 }
 </style>

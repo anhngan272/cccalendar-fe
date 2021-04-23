@@ -72,7 +72,7 @@
       "week": "Tuần",
       "list": "Lịch biểu",
       "select_month": "Chọn tháng",
-      "current_month":"Tháng hiện tại"
+      "this_month":"Hôm nay"
     },
     "create_event": "Tạo sự kiện mới",
     "event_form": {

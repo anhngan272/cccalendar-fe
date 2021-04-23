@@ -16,7 +16,10 @@
             :value="theme.background"
             :checked="color == theme.colorId"
           />
-          <span class="swatch" :style="{ 'background-color': theme.background }"></span>
+          <span
+            class="swatch"
+            :style="{ 'background-color': theme.background }"
+          ></span>
         </label>
       </div>
     </div>
@@ -24,83 +27,84 @@
 </template>
 
 <script>
-
 export default {
   name: "ThemePicker",
   props: ["color"],
   data() {
     return {
-      colors: [{
-        "colorId": 1,
-        "name": this.$i18n.t('calendar_page.event_form.theme_name.lavender'),
-        "background": "#a4bdfc",
-        "foreground": "#1d1d1d"
-    },
-    {
-        "colorId": 2,
-        "name": this.$i18n.t('calendar_page.event_form.theme_name.sage'),
-        "background": "#7ae7bf",
-        "foreground": "#1d1d1d"
-    },
-    {
-        "colorId": 3,
-        "name": this.$i18n.t('calendar_page.event_form.theme_name.grape'),
-        "background": "#dbadff",
-        "foreground": "#1d1d1d"
-    },
-    {
-        "colorId": 4,
-        "name": this.$i18n.t('calendar_page.event_form.theme_name.flamingo'),
-        "background": "#ff887c",
-        "foreground": "#1d1d1d"
-    },
-    {
-        "colorId": 5,
-        "name": this.$i18n.t('calendar_page.event_form.theme_name.banana'),
-        "background": "#fbd75b",
-        "foreground": "#1d1d1d"
-    },
-    {
-        "colorId": 6,
-        "name": this.$i18n.t('calendar_page.event_form.theme_name.tangerine'),
-        "background": "#ffb878",
-        "foreground": "#1d1d1d"
-    },
-    {
-        "colorId": 7,
-        "name": this.$i18n.t('calendar_page.event_form.theme_name.peacock'),
-        "background": "#46d6db",
-        "foreground": "#1d1d1d"
-    },
-    {
-        "colorId": 8,
-        "name": this.$i18n.t('calendar_page.event_form.theme_name.graphite'),
-        "background": "#e1e1e1",
-        "foreground": "#1d1d1d"
-    },
-    {
-        "colorId": 9,
-        "name": this.$i18n.t('calendar_page.event_form.theme_name.blueberry'),
-        "background": "#5484ed",
-        "foreground": "#1d1d1d"
-    },
-    {
-        "colorId": 10,
-        "name": this.$i18n.t('calendar_page.event_form.theme_name.basil'),
-        "background": "#51b749",
-        "foreground": "#1d1d1d"
-    },
-    {
-        "colorId": 11,
-        "name": this.$i18n.t('calendar_page.event_form.theme_name.tomato'),
-        "background": "#dc2127",
-        "foreground": "#1d1d1d"
-    }],
+      colors: [
+        {
+          colorId: 1,
+          name: this.$i18n.t("calendar_page.event_form.theme_name.lavender"),
+          background: "#a4bdfc",
+          foreground: "#1d1d1d",
+        },
+        {
+          colorId: 2,
+          name: this.$i18n.t("calendar_page.event_form.theme_name.sage"),
+          background: "#7ae7bf",
+          foreground: "#1d1d1d",
+        },
+        {
+          colorId: 3,
+          name: this.$i18n.t("calendar_page.event_form.theme_name.grape"),
+          background: "#dbadff",
+          foreground: "#1d1d1d",
+        },
+        {
+          colorId: 4,
+          name: this.$i18n.t("calendar_page.event_form.theme_name.flamingo"),
+          background: "#ff887c",
+          foreground: "#1d1d1d",
+        },
+        {
+          colorId: 5,
+          name: this.$i18n.t("calendar_page.event_form.theme_name.banana"),
+          background: "#fbd75b",
+          foreground: "#1d1d1d",
+        },
+        {
+          colorId: 6,
+          name: this.$i18n.t("calendar_page.event_form.theme_name.tangerine"),
+          background: "#ffb878",
+          foreground: "#1d1d1d",
+        },
+        {
+          colorId: 7,
+          name: this.$i18n.t("calendar_page.event_form.theme_name.peacock"),
+          background: "#46d6db",
+          foreground: "#1d1d1d",
+        },
+        {
+          colorId: 8,
+          name: this.$i18n.t("calendar_page.event_form.theme_name.graphite"),
+          background: "#e1e1e1",
+          foreground: "#1d1d1d",
+        },
+        {
+          colorId: 9,
+          name: this.$i18n.t("calendar_page.event_form.theme_name.blueberry"),
+          background: "#5484ed",
+          foreground: "#1d1d1d",
+        },
+        {
+          colorId: 10,
+          name: this.$i18n.t("calendar_page.event_form.theme_name.basil"),
+          background: "#51b749",
+          foreground: "#1d1d1d",
+        },
+        {
+          colorId: 11,
+          name: this.$i18n.t("calendar_page.event_form.theme_name.tomato"),
+          background: "#dc2127",
+          foreground: "#1d1d1d",
+        },
+      ],
     };
   },
   methods: {
     selectColor(color) {
-      this.$emit("colorPicked", color.colorId,color.background);
+      this.$emit("colorPicked", color.colorId, color.background);
     },
     resetForm() {
       this.defaultId = "#039BE5";
@@ -120,19 +124,32 @@ export default {
 .color-main input {
   display: none;
 }
-.color-picker {
+/* .color-picker {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+} */
+
+.color-picker {
+  display: flex;
+  flex-wrap: wrap;
 }
+
 .color-main input[type="radio"]:checked + .swatch {
-  /* box-shadow: inset 0 0px 10px 5px #fff; */
-  background: radial-gradient(closest-side, white, transparent 80%);
+  /* background: radial-gradient(closest-side, white, transparent 80%); */
+  background: radial-gradient(transparent 55%, rgb(0, 0, 0, 0.4) 45%);
 }
-.swatch {
+/* .swatch {
   display: inline-block;
   height: 40px;
   width: 40px;
+  border-radius: 50%;
+} */
+
+.swatch {
+  display: inline-block;
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
 }
 

@@ -6,11 +6,12 @@ import { message } from 'ant-design-vue'
 
 Vue.use(VueCookies);
 
-const showMessage = (status, isLoading) => {
+const showMessage = (status) => {
     const key = 'updatable';
-    if (isLoading) {
-        message.loading({ content: 'Loading...', key });
-    } else switch (status) {
+    switch (status) {
+        case 'loading':
+            message.loading({ content: 'Loading...', key });
+            break;
         case 'success':
             message.success({ content: 'Success!', key, duration: 2 });
             break;

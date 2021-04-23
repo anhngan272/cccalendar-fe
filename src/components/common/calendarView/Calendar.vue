@@ -177,7 +177,7 @@ export default {
           :locale="this.$i18n.locale == 'vi' ? vi : en"
         /> -->
         <a-button style="margin-left: 10px" type="primary" @click="today()"
-          >{{$t('calendar_page.calendar.current_month')}}</a-button
+          >{{$t('calendar_page.calendar.this_month')}}</a-button
         >
       </a-modal>
       <EventModal
@@ -237,9 +237,5 @@ b {
 .fc {
   /* the calendar root */
   margin: 0 auto;
-}
-.fc-icon::before {
-  font-family: "FontAwesome" !important;
-  padding: 0 !important;
 }
 </style>

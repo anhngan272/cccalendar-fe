@@ -10,20 +10,20 @@ export function createDiaryId() {
 
 const state = {
     diaries: [
-    //     {
-    //     id: createDiaryId(),
-    //     title: "Ant Design Title 1",
-    //     date: "6/4/2021",
-    //     tags: ['ha', 'hi'],
-    //     content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
-    //     },
-    //     {
-    //     id: createDiaryId(),
-    //     title: "Ant Design Title 2",
-    //     date: "6/4/2021",
-    //     tags: ['ha', 'hi'],
-    //     content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
-    // }, 
+        {
+        id: createDiaryId(),
+        title: "Ant Design Title 1",
+        date: "6/4/2021",
+        tags: ['ha', 'hi'],
+        content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+        },
+        {
+        id: createDiaryId(),
+        title: "Ant Design Title 2",
+        date: "6/4/2021",
+        tags: ['ha', 'hi'],
+        content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+    }, 
 ],
     pagination: {
         currentPage: 1,
@@ -94,9 +94,6 @@ const actions = {
             showMessage('error', false)
         }
     },
-    // createDiary({ commit }, diary) {
-    //     commit('createDiary', diary);
-    // },
 
     async deleteDiary({ commit }, diaryId) {
         showMessage('loading', true)

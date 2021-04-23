@@ -29,10 +29,12 @@
               {{ $t("diary_page.diary_list.oldest_date") }}
             </a-select-option>
             <a-select-option value="a-to-z">
-              <a-icon type="sort-ascending" /> {{ $t("diary_page.diary_form.title") }} A - Z
+              <a-icon type="sort-ascending" />
+              {{ $t("diary_page.diary_form.title") }} A - Z
             </a-select-option>
             <a-select-option value="z-to-a">
-              <a-icon type="sort-descending" /> {{ $t("diary_page.diary_form.title") }} Z - A
+              <a-icon type="sort-descending" />
+              {{ $t("diary_page.diary_form.title") }} Z - A
             </a-select-option>
           </a-select>
         </a-tooltip>
@@ -70,7 +72,12 @@
         </div>
 
         <div class="pagination">
-          <a-pagination simple :total="pagination.totalPage" :current="pagination.currentPage" @change="moveToPage" />
+          <a-pagination
+            simple
+            :total="pagination.totalPage"
+            :current="pagination.currentPage"
+            @change="moveToPage"
+          />
         </div>
       </div>
     </div>
@@ -78,7 +85,13 @@
       <DiaryList ref="diaryList" />
     </div>
     <div class="addBtn">
-      <TextEditor ref="textEditor" :showText="showText" @closeTextEditor="showText=false"/>
+      <TextEditor
+        ref="textEditor"
+        :isUpdate="false"
+        :showText="showText"
+        @closeTextEditor="showText = false"
+        @createDiary="$refs.diaryList.createDiary()"
+      />
       <a role="button" @click="addDiary" href="#" class="float">
         <i class="fa fa-plus my-float"></i>
       </a>
@@ -103,7 +116,7 @@ export default {
   name: "Diary",
   data() {
     return {
-      showText:false,
+      showText: false,
       selectedDate: moment(new Date()),
       vi: vi,
       en: en,
@@ -152,7 +165,7 @@ export default {
       console.log(`selected ${value}`);
     },
     addDiary() {
-      this.showText=true;
+      this.showText = true;
       this.$refs.textEditor.textEditorVisible = true;
     },
     moveToPage(page) {

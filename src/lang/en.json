@@ -72,7 +72,7 @@
       "week": "Week",
       "list": "Schedule",
       "select_month": "Select month",
-      "current_month":"Current month"
+      "this_month":"This month"
     },
     "create_event": "Create new Event",
     "event_form": {

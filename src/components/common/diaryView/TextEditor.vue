@@ -189,25 +189,26 @@ export default {
       this.$emit("closeTextEditor");
     },
     handelCancel() {
+      this.resetForm();
       this.closeTextEditor();
       // this.textEditorVisible = false;
       // this.$parent.diary = null;
-      this.resetForm();
     },
     handleUpdate() {
       this.validateForm();
       if (this.isValidated == true) {
-        var diary = {
-          id: this.diary.id,
-          title: this.form.title,
-          // date: this.form.date,
-          tags: this.form.tags,
-          content: this.form.content,
-        };
+      var diary = {
+        id: this.diary.id,
+        title: this.form.title,
+        // date: this.form.date,
+        tags: this.form.tags,
+        content: this.form.content,
+      };
         if (this.updateDiary(diary)) {
-          // this.textEditorVisible = false;
-          this.closeTextEditor()
-        }
+      this.textEditorVisible = false;
+      this.$emit("updateDiary", diary.id);
+      this.closeTextEditor();
+      }
       } else {
         console.log("error update");
       }
@@ -218,13 +219,15 @@ export default {
         var diary = {
           // id: 100,
           title: this.form.title,
-          date: this.form.date,
+          // date: this.form.date,
           tags: this.form.tags,
           content: this.form.content,
         };
         // this.createDiary(diary)
         if (this.createDiary(diary)) {
-          this.closeTextEditor()
+          this.$refs.form.resetFields();
+          this.$emit('createDiary');
+          this.closeTextEditor();
         }
         // this.showSuccessAlert();
       } else {
