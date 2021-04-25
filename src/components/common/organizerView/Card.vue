@@ -1,5 +1,5 @@
 <template>
-  <a-card :title="title" style="border: 1px solid black">
+  <a-card :title="title">
     <a-input-search
       slot="extra"
       :placeholder="$t(`organizer_page.${type}.searchPlaceholder`)"
@@ -16,8 +16,7 @@
     >
       <a-list-item slot="renderItem" slot-scope="item">
         <a class="edit" slot="actions" @click="showUpdateModal(item)"
-          ><span><a-icon type="edit" theme="twoTone" /></span
-          ></a
+          ><a-button type="primary"> <a-icon style="color:white" type="edit" /></a-button></a
         >
         <a slot="actions" class="delete">
           <a-popconfirm
@@ -27,9 +26,7 @@
             :cancel-text="$t('diary_page.diary_form.cancel_btn')"
             @confirm="handelDelete(item)"
           >
-            <a
-              ><a-icon type="delete" /></a
-            >
+            <a-button type="danger"><a-icon style="color:white" type="delete" /></a-button>
           </a-popconfirm>
         </a>
         <div class="title" @click="showModal(item)">
@@ -41,6 +38,8 @@
                 </a-list-item-meta> -->
       </a-list-item>
     </a-list>
+    <div v-show="type == 'events'">
+
     <EventModal
       ref="eventModal"
       :event="currentItem"
@@ -52,6 +51,9 @@
       :updateEvent="currentItem"
       @updated="eventModal = false"
     />
+    </div>
+
+    <div v-show="type == 'diaries'">
     <DiaryDetail
       ref="diaryModal"
       :diary="currentItem"
@@ -65,6 +67,7 @@
         :showText="showText"
         @closeTextEditor="closeTextEditor"
       />
+    </div>
     </div>
   </a-card>
 </template>
@@ -149,17 +152,6 @@ export default {
 </script>
 
 <style scoped>
-.delete {
-  color: #dc3545 !important;
-}
-
-.edit {
-  color: #1890ff !important;
-}
-.edit span:hover,
-.delete:hover {
-  border-bottom: 1.5px solid;
-}
 
 .title:hover{
   color:#1890ff;

@@ -27,20 +27,31 @@
       </a-form-model-item>
 
       <a-form-model-item :label="$t('diary_page.diary_form.date')" prop="date">
-        <a-date-picker
-          inputReadOnly
-          :allowClear="false"
-          v-model="form.date"
-          format="DD-MM-YYYY"
-          :locale="this.$i18n.locale == 'vi' ? vi : en"
-        />
+        <div style="display: flex">
+          <div>
+            <a-date-picker
+              inputReadOnly
+              :allowClear="false"
+              v-model="form.date"
+              format="DD-MM-YYYY"
+              :locale="this.$i18n.locale == 'vi' ? vi : en"
+              style=""
+            />
+          </div>
+          <div style="flex-grow: 1; margin-left:30px">
+            <TagPicker
+              ref="tagPicker"
+              :eventTags="form.tags"
+              @tagsPicked="setTags"
+            />
+          </div>
+        </div>
       </a-form-model-item>
-      <a-form-model-item :label="$t('diary_page.diary_form.tags')" prop="tags">
-        <TagPicker
-          ref="tagPicker"
-          :eventTags="form.tags"
-          @tagsPicked="setTags"
-        />
+      <!-- <a-form-model-item :label="$t('diary_page.diary_form.tags')" prop="tags">
+      </a-form-model-item> -->
+
+      <a-form-model-item label="Files">
+        <FileUpload />
       </a-form-model-item>
 
       <a-form-model-item
@@ -98,6 +109,7 @@ import { mapActions } from "vuex";
 require("moment/locale/vi.js");
 import vi from "ant-design-vue/es/date-picker/locale/vi_VN";
 import en from "ant-design-vue/es/date-picker/locale/en_US";
+import FileUpload from "./FileUpload";
 
 export default {
   name: "TextEditor",
@@ -109,6 +121,7 @@ export default {
   components: {
     VueEditor,
     TagPicker,
+    FileUpload,
   },
   created() {
     this.setDiaryInfo();
@@ -163,7 +176,7 @@ export default {
     setDiaryInfo() {
       if (this.isUpdate == true) {
         this.form.title = this.diary.title;
-        this.form.date = moment(this.diary.date, "DD-MM-YYYY");
+        this.form.date = this.diary.date;
         this.form.tags = this.diary.tags;
         this.form.content = this.diary.content;
         // console.log(this.diary)
@@ -197,18 +210,18 @@ export default {
     handleUpdate() {
       this.validateForm();
       if (this.isValidated == true) {
-      var diary = {
-        id: this.diary.id,
-        title: this.form.title,
-        // date: this.form.date,
-        tags: this.form.tags,
-        content: this.form.content,
-      };
+        var diary = {
+          id: this.diary.id,
+          title: this.form.title,
+          date: this.form.date.clone().format("YYYY-MM-DD"),
+          tags: this.form.tags,
+          content: this.form.content,
+        };
         if (this.updateDiary(diary)) {
-      this.textEditorVisible = false;
-      this.$emit("updateDiary", diary.id);
-      this.closeTextEditor();
-      }
+          this.textEditorVisible = false;
+          this.$emit("updateDiary", diary.id);
+          this.closeTextEditor();
+        }
       } else {
         console.log("error update");
       }
@@ -219,14 +232,14 @@ export default {
         var diary = {
           // id: 100,
           title: this.form.title,
-          // date: this.form.date,
+          date: this.form.date.clone().format("YYYY-MM-DD"),
           tags: this.form.tags,
           content: this.form.content,
         };
         // this.createDiary(diary)
         if (this.createDiary(diary)) {
           this.$refs.form.resetFields();
-          this.$emit('createDiary');
+          this.$emit("createDiary");
           this.closeTextEditor();
         }
         // this.showSuccessAlert();

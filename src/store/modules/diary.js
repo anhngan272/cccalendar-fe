@@ -75,6 +75,7 @@ const actions = {
     async createDiary({ commit }, diary) {
         var formDataDiary = new FormData()
         formDataDiary.append('title', diary.title);
+        formDataDiary.append('date', diary.date);
         formDataDiary.append('content', diary.content);
         for (let i = 0; i < diary.tags.length; i++) {
             formDataDiary.append('tags[]', diary.tags[i]);

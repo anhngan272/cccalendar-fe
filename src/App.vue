@@ -44,4 +44,8 @@ export default {
   background-color: #1890ff !important;
   border-color: #1890ff !important;
 }
+.fc-day-today {
+    background:#d1dfff !important;
+    font-weight: bold;
+} 
 </style>

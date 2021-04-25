@@ -12,7 +12,7 @@
         :cancel-text="$t('calendar_page.event_form.cancel_btn')"
         @confirm="logout"
       >
-        <a @click="navigate('Home')" id="btn-logout" role="button">{{
+        <a id="btn-logout" role="button">{{
           $t("login.signout")
         }}</a>
       </a-popconfirm>
@@ -36,13 +36,8 @@ export default {
   },
   methods: {
     ...mapActions(["logout"]),
-    async logout() {
+    performLogout() {
       this.logout();
-    },
-    navigate(name) {
-      this.$router
-        .push({ name: name, params: { haha: new Date().getUTCMilliseconds() } })
-        .catch((err) => err);
     },
   },
   created() {},

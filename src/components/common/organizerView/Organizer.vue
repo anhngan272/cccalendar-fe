@@ -4,7 +4,7 @@
       <a-col :flex="1" style="margin-right: 10px"> 
           <FilterCard/>
       </a-col>
-      <a-col :flex="18" style="border: 1px solid black">
+      <a-col :flex="18">
           <a-row type="flex">
               <a-col :span="12"><Card :type="'events'"/></a-col>
               <a-col :span="12"><Card :type="'diaries'"/></a-col>

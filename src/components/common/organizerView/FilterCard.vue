@@ -1,5 +1,5 @@
 <template>
-  <a-card :title="$t('organizer_page.title')" style="border: 1px solid black">
+  <a-card :title="$t('organizer_page.title')">
     <a-divider orientation="left">{{$t('organizer_page.filter.date_filter')}}</a-divider>
     <div class="date-filter">
       <a-date-picker
@@ -62,8 +62,8 @@
               >
             </a-popconfirm>
           </a>
-          <a-checkbox :value="item" @change="onChange(item)">
-            {{ item }}
+          <a-checkbox :value="item" @change="onChange(item.name)">
+            {{ item.name }}
           </a-checkbox>
         </a-list-item>
       </a-list>

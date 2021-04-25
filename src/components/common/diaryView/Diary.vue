@@ -92,7 +92,7 @@
         @closeTextEditor="showText = false"
         @createDiary="$refs.diaryList.createDiary()"
       />
-      <a role="button" @click="addDiary" href="#" class="float">
+      <a role="button" @click="addDiary" class="float">
         <i class="fa fa-plus my-float"></i>
       </a>
       <div class="label-container">

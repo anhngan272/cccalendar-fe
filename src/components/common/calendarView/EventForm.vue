@@ -153,7 +153,7 @@ export default {
         tags: [],
         attendeeSubmited: true,
         colorId: 7,
-        backgroundColor: "46d6db",
+        backgroundColor: "039be5",
       },
       rules: {
         title: [

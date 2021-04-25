@@ -10,8 +10,8 @@
     >
       <a-list-item slot="renderItem" slot-scope="item, index">
         <a class="edit" slot="actions" @click="showUpdateModal(item)"
-          ><span><a-icon type="edit" theme="twoTone" /></span
-          >{{ $t("diary_page.diary_form.edit_btn") }}</a
+          ><a-button type="primary"><a-icon type="edit" />
+          {{ $t("diary_page.diary_form.edit_btn") }}</a-button></a
         >
 
         <a slot="actions" class="delete">
@@ -23,8 +23,7 @@
             @confirm="handelDelete(item)"
           >
             <a
-              ><span><a-icon type="delete" /></span
-              >{{ $t("diary_page.diary_form.delete_btn") }}</a
+              ><a-button type="danger"><a-icon type="delete" />{{ $t("diary_page.diary_form.delete_btn") }}</a-button></a
             >
           </a-popconfirm>
         </a>
@@ -46,7 +45,6 @@
             ><h4 class="font-weight-bold">{{ item.title }}</h4></a
           >
         </a-list-item-meta>
-        <div>{{ index }} {{ createDiaryId }}</div>
         <a-badge
           :count="index == createDiaryId ? 'New' : ''"
           title="New Diary"
@@ -148,22 +146,10 @@ export default {
   /* background: pink; */
   padding: 20px;
 }
-.delete {
-  color: #dc3545 !important;
-}
 
 .delete span,
 .edit span {
   margin-right: 5px;
-}
-
-.edit {
-  color: #1890ff !important;
-}
-.edit:hover,
-.delete:hover {
-  text-shadow: 1px 1px 3px #808080;
-  /* text-decoration: underline !important; */
 }
 
 a h4:hover {
