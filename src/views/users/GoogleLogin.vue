@@ -12,6 +12,7 @@
               class="btn btn-outline-dark"
               role="button"
               style="text-transform: none"
+              :disabled="loginUrl == ''"
             >
               <img
                 width="20px"
