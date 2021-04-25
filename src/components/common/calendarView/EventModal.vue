@@ -1,5 +1,6 @@
  <template>
   <a-modal
+    :keyboard="false"
     :destroyOnClose="true"
     class="eventModal"
     v-model="eventModal"

@@ -14,7 +14,7 @@ const state = {
         id: createDiaryId(),
         title: "Ant Design Title 1",
         date: "6/4/2021",
-        tags: ['ha', 'hi'],
+        tags: [],
         content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
         },
         {

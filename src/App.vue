@@ -36,14 +36,19 @@ export default {
   /* float: left; */
 }
 .ant-layout .fc-icon {
-  font-family: "FontAwesome" !important;
-  /* color: #039be5; */
-  
+  font-family: "FontAwesome" !important; 
 }
+
 .fc-button-primary{
   background-color: #1890ff !important;
   border-color: #1890ff !important;
 }
+
+.fc-button-primary:hover, .fc-button-primary:focus{
+  background-color: #007bff !important;
+  box-shadow: none !important;
+}
+
 .fc-day-today {
     background:#d1dfff !important;
     font-weight: bold;

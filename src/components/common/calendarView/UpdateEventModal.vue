@@ -1,5 +1,6 @@
 <template>
   <a-modal
+    :keyboard="false"
     :destroyOnClose="true"
     width="35vw"
     v-model="updateModal"

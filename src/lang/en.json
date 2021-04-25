@@ -1,9 +1,13 @@
 {
+  "Home":"haha",
   "common": {
     "select_lang": "US",
     "logo": "LOGO",
     "author": "CodingCats",
     "copyrights": "Copyright © 2021 All Rights Reserved by "
+  },
+  "pages":{
+    "Home":"Home"
   },
   "homepage": {
     "title": {

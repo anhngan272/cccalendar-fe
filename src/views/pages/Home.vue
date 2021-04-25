@@ -1,7 +1,9 @@
 <template>
   <div class="home-container">
-    <h1 class="font-weight-bold">{{ $t("homepage.title.web_name") }}</h1>
-    <h4>{{ $t("homepage.title.title") }}</h4>
+    <h1 class="font-weight-bold"><span class="cccalendar">
+      {{ $t("homepage.title.web_name") }}
+      </span></h1>
+    <h4><span class="cccalendar">{{ $t("homepage.title.title") }}</span></h4>
     <div class="site">
       <div class="container center">
         <div class="row">
@@ -54,6 +56,9 @@ export default {
   components: {},
   computed: {
     ...mapGetters({ user: "getCurrentUser" }),
+    title(){
+      return this.$i18n.t("Home");
+    }
   },
   methods: {
     navigate(name) {
@@ -66,13 +71,23 @@ export default {
 };
 </script>
 
-<style >
+<style>
 .home-container {
   font-family: Helvetica, Arial, sans-serif;
   text-align: center;
   color: #808080;
   position: relative;
   margin-top: 10%;
+}
+
+.cccalendar{
+   background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  /* background: linear-gradient(to right, #ef5350, #f48fb1, #7e57c2, #2196f3, #26c6da, #43a047, #eeff41, #f9a825, #ff5722);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
 }
 
 .fa {

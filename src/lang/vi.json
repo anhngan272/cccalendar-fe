@@ -5,6 +5,9 @@
     "author": "CodingCats",
     "copyrights": "Bản quyền © 2021 Mọi quyền được bảo lưu bởi "
   },
+  "pages":{
+    "Home":"Trang chủ"
+  },
   "homepage": {
     "title": {
       "web_name": "CCCalendar",

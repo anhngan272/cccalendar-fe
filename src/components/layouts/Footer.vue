@@ -18,21 +18,15 @@ export default {
 </script>
 
 <style scoped>
-a {
+/* .copyright-text a {
   color: #3366cc;
+} */
+.copyright-text a:hover {
+  color: #3366cc;
+  text-decoration: underline;
 }
 
-a:hover {
-  color: #58b1ec;
-  text-decoration: none;
-}
-/* .copyright-text {
-  clear: both;
-  margin-top: 10px;
-  bottom: 0;
-  position: absolute;
-  text-align: center;
-  width: 100%;
+.copyright-text { 
   color: #808080;
-} */
+}
 </style>

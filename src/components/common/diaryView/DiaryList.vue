@@ -40,7 +40,8 @@
               $t("diary_page.diary_list.show_detail")
             }}</span>
           </a>
-          <a slot="description" class="diary-tag">{{ getTags(item) }}</a>
+          <!-- <a slot="description" class="diary-tag">{{ item.tags }}</a> -->
+          <a slot="description" class="diary-tag" v-for="tag in item.tags" :key="tag" @click="clickTag(tag)">#{{ tag }}</a>
           <a slot="title" class="diary-title" @click="showDiaryModal(item)"
             ><h4 class="font-weight-bold">{{ item.title }}</h4></a
           >
@@ -95,10 +96,14 @@ export default {
       diaryModal: false,
       createDiaryId: -1,
       updateDiaryId: "",
+      filterTags:[],
     };
   },
   methods: {
     ...mapActions(["fetchDiaries", "deleteDiary"]),
+    clickTag(tag){
+      this.$emit('clickTag',tag)
+    },
     createDiary() {
       this.updateDiaryId = '';
       this.createDiaryId = 0;
@@ -110,15 +115,6 @@ export default {
     shortDiaryContent(content) {
       let contentToRender = content ? content.substring(0, 20) + "... " : "";
       return contentToRender;
-    },
-    getTags(diary) {
-      let tags = "";
-
-      for (let i = 0; i < diary.tags.length; i++) {
-        tags += "#" + diary.tags[i] + " ";
-      }
-
-      return tags;
     },
     handelDelete(diary) {
       this.deleteDiary(diary.id);

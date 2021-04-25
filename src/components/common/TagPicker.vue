@@ -16,14 +16,17 @@
   </a-form>
 </template>
 <script>
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "TagPicker",
   props: {
     eventTags: Array,
+    type: String,
   },
   data() {
     return {
       tags: ["school", "work", "todo", "reminder"],
+      filterTags: [],
     };
   },
   created() {
@@ -34,16 +37,26 @@ export default {
     this.form = this.$form.createForm(this, { name: "tagPicker" });
     this.form.getFieldDecorator("tag", { initialValue: [], preserve: true });
   },
+  computed: {
+    ...mapGetters(["getFilterTags"]),
+  },
   methods: {
+    ...mapActions(["setFilterTags"]),
+    setFilterTagPicker() {
+      this.form.setFieldsValue({ tag: this.getFilterTags });
+    },
+
     setEventTags(tags) {
       this.form.setFieldsValue({ tag: tags });
     },
     handleChange(values) {
-      for (let i = 0; i < values.length; i++) {
-        values[i] = values[i].replace(/ /g,'')
+      if (this.type == "filter") {
+        this.setFilterTags(values)
+        this.$emit("changeFilterTags",values)
+      } else {
+        console.log(`selected ${values}`);
+        this.$emit("tagsPicked", values);
       }
-      console.log(`selected ${values}`);
-      this.$emit("tagsPicked", values);
     },
     resetForm() {
       this.$emit("tagsPicked", []);

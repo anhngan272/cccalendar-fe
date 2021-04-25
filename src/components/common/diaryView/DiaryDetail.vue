@@ -1,5 +1,6 @@
  <template>
   <a-modal
+    :keyboard="false"
     :destroyOnClose="true"
     class="diaryModal"
     v-model="diaryModal"
@@ -92,7 +93,7 @@ export default {
     },
     showUpdateModal() {
       // this.$parent.textEditorVisible = true;
-      this.$emit("showUpdateModal",this.diary);
+      this.$emit("showUpdateModal", this.diary);
     },
     handleOk() {
       this.diaryModal = false;

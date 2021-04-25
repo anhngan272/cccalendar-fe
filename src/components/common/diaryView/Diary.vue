@@ -62,7 +62,12 @@
         </div>
 
         <div class="tag-picker">
-          <TagPicker />
+          <TagPicker
+            ref="tagPicker"
+            @tagsPicked="setTags"
+            @changeFilterTags="changeFilterTags"
+            type="filter"
+          />
         </div>
 
         <div>
@@ -82,7 +87,7 @@
       </div>
     </div>
     <div>
-      <DiaryList ref="diaryList" />
+      <DiaryList ref="diaryList" @clickTag="clickTag" />
     </div>
     <div class="addBtn">
       <TextEditor
@@ -125,7 +130,7 @@ export default {
         fromDate: null,
         toDate: null,
         sort: "newest", // ["newest", "oldest", "a-to-z", "z-to-a"]
-        tags: [],
+        tags: [], 
         page: 1,
       },
     };
@@ -139,11 +144,36 @@ export default {
     moment.locale(this.$i18n.locale);
   },
   computed: {
-    ...mapGetters({ pagination: "getPagination" }),
+    ...mapGetters({
+      pagination: "getPagination",
+      getFilterTags: "getFilterTags",
+    }),
   },
   methods: {
     moment,
-    ...mapActions(["fetchDiaries"]),
+    ...mapActions(["fetchDiaries", "setFilterTags"]),
+
+    changeFilterTags(tags) {
+      this.form.tags = tags;
+    },
+
+    clickTag(tag) {
+      let tags = this.getFilterTags;
+      if (!tags.includes(tag)) {
+        tags.push(tag);
+      }
+      this.setFilterTags(tags);
+      this.$refs.tagPicker.setFilterTagPicker();
+      this.form.tags = tags;
+    },
+
+    setTags(tags) {
+      this.form = {
+        ...this.form,
+        tags: tags,
+      };
+    },
+
     performSearch() {
       this.fetchDiaries(this.form);
     },

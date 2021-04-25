@@ -1,5 +1,6 @@
 <template>
   <a-modal
+    :keyboard="false"
     :destroyOnClose="true"
     v-model="showText"
     :title="$t('diary_page.diary_form.header')"
@@ -38,22 +39,15 @@
               style=""
             />
           </div>
-          <div style="flex-grow: 1; margin-left:30px">
-            <TagPicker
-              ref="tagPicker"
-              :eventTags="form.tags"
-              @tagsPicked="setTags"
-            />
-          </div>
         </div>
       </a-form-model-item>
-      <!-- <a-form-model-item :label="$t('diary_page.diary_form.tags')" prop="tags">
-      </a-form-model-item> -->
-
-      <a-form-model-item label="Files">
-        <FileUpload />
+      <a-form-model-item :label="$t('diary_page.diary_form.tags')" prop="tags">
+        <TagPicker
+          ref="tagPicker"
+          :eventTags="form.tags"
+          @tagsPicked="setTags"
+        />
       </a-form-model-item>
-
       <a-form-model-item
         style="height: 45vh"
         prop="content"
@@ -109,7 +103,6 @@ import { mapActions } from "vuex";
 require("moment/locale/vi.js");
 import vi from "ant-design-vue/es/date-picker/locale/vi_VN";
 import en from "ant-design-vue/es/date-picker/locale/en_US";
-import FileUpload from "./FileUpload";
 
 export default {
   name: "TextEditor",
@@ -121,7 +114,6 @@ export default {
   components: {
     VueEditor,
     TagPicker,
-    FileUpload,
   },
   created() {
     this.setDiaryInfo();

@@ -21,11 +21,13 @@ const state = {
         //     value: "Tag3"
         // },
     ],
+    filterTags: [],
 }
 
 const getters = {
     getTag: state => state.tag,
-    getTags: state => state.tags
+    getTags: state => state.tags,
+    getFilterTags: state => state.filterTags
 }
 
 const actions = {
@@ -66,6 +68,10 @@ const actions = {
     updateTag({ commit }, tag) {
         commit('updateTag', tag);
     },
+
+    setFilterTags({ commit }, tags) {
+        commit('setFilterTag', tags)
+    }
 }
 
 const mutations = {
@@ -81,6 +87,9 @@ const mutations = {
         }
         console.log(tag)
     },
+    setFilterTag: (state, tags) => {
+        state.filterTags = tags
+    }
 }
 
 export default {
