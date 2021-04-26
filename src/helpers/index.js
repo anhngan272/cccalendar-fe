@@ -18,6 +18,9 @@ const showMessage = (status) => {
         case 'error':
             message.error({ content: 'Error occurred. Please refresh your browser!', key, duration: 2 });
             break;
+        default:
+            message.error({ content: status, key, duration: 2 });
+            break;
     }
 }
 

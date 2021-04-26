@@ -2,13 +2,11 @@
   <div class="copyright-text">
     <p class="">
       {{ $t("common.copyrights") }}
-      <a @click="$router.push({ name: 'About' }).catch((err) => err)">{{
-        $t("common.author")
-      }}</a
-      >.
+      <a :href="$router.resolve({ name: 'About' }).href"
+        >{{ $t("common.author") }}.</a
+      >
     </p>
   </div>
-  
 </template>
 
 <script>
@@ -26,7 +24,7 @@ export default {
   text-decoration: underline;
 }
 
-.copyright-text { 
+.copyright-text {
   color: #808080;
 }
 </style>

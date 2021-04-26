@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { API_URL } from '@/assets/config';
+import { showMessage } from '@/helpers/index';
 
 let tagId = 0
 export function createTagId() {
@@ -32,42 +33,56 @@ const getters = {
 
 const actions = {
     async fetchTags({ commit }) {
+        showMessage('loading');
         const response = await axios.get(API_URL + '/tag');
 
         if (response.status === 200) {
             commit('setTags', response.data);
+            showMessage('success');
         }
     },
-    // async createTag({ commit }, tag) {
-    //     const response = await axios.post(API_URL + '/tag', tag);
-    //     if (response.status === 200) {
-    //         commit('createTag', tag);
-    //     }
+
+    async createTag({ commit }, tag) {
+        showMessage('loading');
+        const response = await axios.post(API_URL + '/tag', tag);
+
+        if (response.status === 200) {
+            commit('createTag', response.data);
+            showMessage('success');
+        }
+    },
+    // createTag({ commit }, tag) {
+    //     commit('createTag', tag);
     // },
-    createTag({ commit }, tag) {
-        commit('createTag', tag);
+
+    async deleteTag({ commit }, tagId) {
+        showMessage('loading');
+        const response = await axios.delete(API_URL + `/tag/${tagId}`);
+
+        if (response.status === 200) {
+            commit('deleteTag', tagId);
+            showMessage('success');
+        }
     },
 
-    // async deleteTag({ commit }, tagId) {
-    //     const response = await axios.delete(API_URL + `/tag/${tagId}`);
-
-    //     if (response.status === 200) {
-    //         commit('deleteTag', tagId);
-    //     }
+    // deleteTag({ commit }, tagId) {
+    //     commit('deleteTag', tagId);
     // },
-    deleteTag({ commit }, tagId) {
-        commit('deleteTag', tagId);
-    },
-    // async updateTag({ commit }, tag) {
-    //     const response = await axios.put(API_URL + `/calendar/${tag.id}`, tag);
 
-    //     if (response.status === 200) {
-    //         commit('updateTag', tag);
-    //     }
-    // },
-    updateTag({ commit }, tag) {
-        commit('updateTag', tag);
+    async updateTag({ commit }, tag) {
+        showMessage('loading');
+        const response = await axios.put(API_URL + `/tag/${tag.id}`, tag);
+
+        if (response.status === 200) {
+            commit('updateTag', response.data);
+            showMessage('success');
+        } else if (response.status === 400) {
+            showMessage('already exist')
+        }
     },
+    // updateTag({ commit }, tag) {
+    //     commit('updateTag', tag);
+    // },
 
     setFilterTags({ commit }, tags) {
         commit('setFilterTag', tags)

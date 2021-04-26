@@ -84,6 +84,7 @@ img {
   font-size: 15px;
   color: #808080;
   background: white;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
 .dropdown-content div {

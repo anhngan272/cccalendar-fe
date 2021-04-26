@@ -3,6 +3,7 @@ import { API_URL, COOKIE_PATH } from '@/assets/config';
 import { setAuthorization, getUser } from '@/helpers/auth';
 import { setCookie, removeCookie } from '@/helpers';
 import router from '@/router';
+import { showMessage } from '@/helpers/index';
 
 const user = getUser();
 
@@ -21,8 +22,10 @@ const getters = {
 
 const actions = {
     async fetchLoginUrl({ commit }) {
+        showMessage('loading')
         const response = await axios.get(API_URL + '/auth/google/url');
         commit('setLoginUrl', response.data.url);
+        showMessage('success')
         // console.log(response.data.url);
     },
     async fetchGoogleCallback({ commit }, query) {

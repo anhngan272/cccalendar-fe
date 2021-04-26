@@ -1,6 +1,8 @@
 <template>
   <a-card :title="$t('organizer_page.title')">
-    <a-divider orientation="left">{{$t('organizer_page.filter.date_filter')}}</a-divider>
+    <a-divider orientation="left">{{
+      $t("organizer_page.filter.date_filter")
+    }}</a-divider>
     <div class="date-filter">
       <a-date-picker
         inputReadOnly
@@ -25,9 +27,10 @@
       />
     </div>
 
-    <a-divider orientation="left">{{$t('organizer_page.filter.tag_filter')}}</a-divider>
+    <a-divider orientation="left">{{
+      $t("organizer_page.filter.tag_filter")
+    }}</a-divider>
     <div>
-      <a-button type="primary" ><a-icon type="plus" /></a-button>
       <a-input-search
         class="search-box"
         :placeholder="$t('organizer_page.filter.searchPlaceholder')"
@@ -54,7 +57,7 @@
               placement="top"
               :ok-text="$t('diary_page.diary_form.ok_btn')"
               :cancel-text="$t('diary_page.diary_form.cancel_btn')"
-              @confirm="handelDelete(item)"
+              @confirm="handelDelete(item.id)"
             >
               <a
                 ><span><a-icon type="delete" /></span
@@ -72,6 +75,37 @@
     <div style="text-align: right">
       <a-button type="primary"><a-icon type="arrow-right" /></a-button>
     </div>
+    <a-modal
+      :keyboard="false"
+      :destroyOnClose="true"
+      v-model="tagUpdateModal"
+      :title="$t('calendar_page.calendar.select_month')"
+      :maskClosable="false"
+      :closable="false"
+    >
+      <div>
+        New Tag's Name:
+        <a-input autoFocus v-model="updatedTag" placeholder="New Tag's Name" />
+      </div>
+      <div slot="footer">
+        <div style="text-align: center">
+          <a-button key="update" type="primary" @click="handleOk">
+            {{ $t("calendar_page.event_form.ok_btn") }}
+          </a-button>
+          <a-popconfirm
+            :title="$t('diary_page.diary_form.cancel_confirm')"
+            placement="top"
+            :ok-text="$t('diary_page.diary_form.ok_btn')"
+            :cancel-text="$t('diary_page.diary_form.cancel_btn')"
+            @confirm="tagUpdateModal = false"
+          >
+            <a-button>
+              {{ $t("diary_page.diary_form.cancel_btn") }}
+            </a-button>
+          </a-popconfirm>
+        </div>
+      </div>
+    </a-modal>
   </a-card>
 </template>
 
@@ -94,6 +128,9 @@ export default {
         emptyText: this.$t("diary_page.diary_list.no_data"),
       },
       tags: [],
+      tagUpdateModal: false,
+      updatedTag: "",
+      updatedTagId: "",
     };
   },
   created() {
@@ -104,7 +141,27 @@ export default {
   },
   methods: {
     moment,
-    ...mapActions(["fetchTags", "deleteTags", "updateTags"]),
+    ...mapActions(["fetchTags", "deleteTag", "updateTag"]),
+
+    handleOk() {
+      let updateTag = {
+        id: this.updatedTagId,
+        name: this.updatedTag,
+      };
+      this.tagUpdateModal = false;
+      this.updateTag(updateTag);
+    },
+
+    showUpdateModal(tag) {
+      this.updatedTag = tag.name;
+      this.updatedTagId = tag.id;
+      this.tagUpdateModal = true;
+    },
+
+    handelDelete(tagId) {
+      this.deleteTag(tagId);
+    },
+
     selectDate(value) {
       console.log(value);
     },
@@ -130,8 +187,8 @@ export default {
   text-align: center;
 }
 .search-box {
-  float: right;
-  width: 70%;
+  /* float: right;
+  width: 70%; */
 }
 .tags-filter {
   /* text-align: center; */

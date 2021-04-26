@@ -8,53 +8,72 @@ import Organizer from '@/views/organizers/Organizer';
 import NotFound from '@/views/pages/NotFound';
 import GoogleLogin from '@/views/users/GoogleLogin';
 import GoogleCallback from '@/views/users/GoogleCallback';
+import { DEFAULT_TITLE } from '@/assets/config.js';
 
 Vue.use(VueRouter);
 
 const routes = [{
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: {
+        title: 'Home',
+    }
 }, {
     path: '/404',
     alias: '*',
-    component: NotFound
+    component: NotFound,
+    meta: {
+        title: 'Not found',
+    }
 }, {
     path: '*',
     redirect: '/404'
 }, {
     path: '/about',
     name: 'About',
-    component: About
+    component: About,
+    meta: {
+        title: 'About',
+    }
 }, {
     path: '/login',
     name: 'GoogleLogin',
-    component: GoogleLogin
+    component: GoogleLogin,
+    meta: {
+        title: 'Login',
+    }
 }, {
     path: '/auth/google',
     name: 'GoogleCallback',
-    component: GoogleCallback
+    component: GoogleCallback,
+    meta: {
+        title: 'Auth',
+    }
 }, {
     path: '/calendar',
     name: 'Calendar',
     component: Calendar,
-    // meta: {
-    //     requiresAuth: true,
-    // },
+    meta: {
+        requiresAuth: true,
+        title: 'Calendar',
+    },
 }, {
     path: '/diary',
     name: 'Diary',
     component: Diary,
-    // meta: {
-    //     requiresAuth: true,
-    // },
+    meta: {
+        requiresAuth: true,
+        title: 'Diary',
+    },
 }, {
     path: '/organizer',
     name: 'Organizer',
     component: Organizer,
-    // meta: {
-    //     requiresAuth: true,
-    // },
+    meta: {
+        requiresAuth: true,
+        title: 'Organizer',
+    },
 },
 ];
 
@@ -65,14 +84,20 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-    document.title = to.name + " | CCCalendar" 
     next();
 })
 
-router.afterEach(() => {
+router.afterEach((to) => {
     // NProgress.done()
     // setTimeout(() => console.log('after'), 1500); // timeout for demo purposes;
     // console.log('after');
+    Vue.nextTick(() => {
+        if (to.meta.title) {
+            document.title = to.meta.title + ` | ${DEFAULT_TITLE}`;
+        } else {
+            document.title = DEFAULT_TITLE;
+        }
+    });
 })
 
 export default router

@@ -10,20 +10,20 @@ export function createDiaryId() {
 
 const state = {
     diaries: [
-        {
-        id: createDiaryId(),
-        title: "Ant Design Title 1",
-        date: "6/4/2021",
-        tags: [],
-        content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
-        },
-        {
-        id: createDiaryId(),
-        title: "Ant Design Title 2",
-        date: "6/4/2021",
-        tags: ['ha', 'hi'],
-        content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
-    }, 
+    //     {
+    //     id: createDiaryId(),
+    //     title: "Ant Design Title 1",
+    //     date: "6/4/2021",
+    //     tags: [],
+    //     content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+    //     },
+    //     {
+    //     id: createDiaryId(),
+    //     title: "Ant Design Title 2",
+    //     date: "6/4/2021",
+    //     tags: ['ha', 'hi'],
+    //     content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+    // }, 
 ],
     pagination: {
         currentPage: 1,
@@ -57,17 +57,17 @@ const actions = {
                 delete searchParams.toDate;
             }
 
-            showMessage('Loading', true);
+            showMessage('loading');
             response = await axios.get(API_URL + '/diary', {
                 params: searchParams
             });
         } else {
-            showMessage('Loading', true);
+            showMessage('loading');
             response = await axios.get(API_URL + '/diary');
         }
 
         if (response.status === 200) {
-            showMessage('success', false);
+            showMessage('success');
             commit('setDiaries', response.data);
             commit('setPagnation',response.data);
         }
@@ -81,7 +81,7 @@ const actions = {
             formDataDiary.append('tags[]', diary.tags[i]);
         }
 
-        showMessage('loading', true)
+        showMessage('loading')
 
         const response = await axios.post(API_URL + '/diary', formDataDiary, {
             headers: {
@@ -89,35 +89,35 @@ const actions = {
             }
         });
         if (response.status === 200 || response.status === 201) {
-            showMessage('success', false)
+            showMessage('success')
             commit('createDiary', response.data);
         } else {
-            showMessage('error', false)
+            showMessage('error')
         }
     },
 
     async deleteDiary({ commit }, diaryId) {
-        showMessage('loading', true)
+        showMessage('loading')
 
         const response = await axios.delete(API_URL + `/diary/${diaryId}`);
         if (response.status === 200 || response.status === 201) {
-            showMessage('success', false)
+            showMessage('success')
             commit('deleteDiary', diaryId);
         } else {
-            showMessage('error', false)
+            showMessage('error')
         }
     },
     // deleteDiary({ commit }, diaryId) {
     //     commit('deleteDiary', diaryId);
     // },
     async updateDiary({ commit }, diary) {
-        showMessage('loading', true)
+        showMessage('loading')
         console.log(diary)
         const response = await axios.put(API_URL + `/diary/${diary.id}`, diary);
 
         if (response.status === 200) {
             commit('updateDiary', response.data);
-            showMessage('success', false)
+            showMessage('success')
         }
     }
 }
@@ -132,7 +132,7 @@ const mutations = {
     updateDiary: (state, diary) => {
         const diaryIndex = state.diaries.findIndex(x => x.id === diary.id)
         state.diaries.splice(diaryIndex, 1, diary)
-        console.log(diary)
+        // console.log(diary)
     },
     setPagnation:(state,pagination) => {
         state.pagination.currentPage = pagination.meta.current_page;

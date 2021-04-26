@@ -107,7 +107,7 @@ export default {
     },
     handleOk() {
       var date = this.date.toISOString().replace(/T.*$/, "");
-      console.log(date)
+      console.log(date);
       this.$refs.calendar.getApi().changeView("dayGridMonth", date);
       this.modal1 = false;
     },
@@ -121,7 +121,7 @@ export default {
 
     handleEventClick(clickInfo) {
       this.eventModal = clickInfo.event;
-      console.log(this.eventModal)
+      console.log(this.eventModal);
       this.eventModalExtend = clickInfo.event.extendedProps;
       this.$refs.eventModal.eventModal = true;
     },
@@ -163,22 +163,24 @@ export default {
           >
         </template>
       </FullCalendar>
-      <a-modal :cancel-text="$t('calendar_page.event_form.cancel_btn')" v-model="modal1" :title="$t('calendar_page.calendar.select_month')" @ok="handleOk">
+      <a-modal
+        :cancel-text="$t('calendar_page.event_form.cancel_btn')"
+        v-model="modal1"
+        :title="$t('calendar_page.calendar.select_month')"
+        @ok="handleOk"
+      >
         <div style="margin-bottom: 10px">
           {{ $t("calendar_page.calendar.select_month") }}
         </div>
-        <a-month-picker inputReadOnly :allowClear="false" :placeholder="$t('calendar_page.calendar.select_month')" v-model="date"/>
-        <!-- <a-date-picker
+        <a-month-picker
           inputReadOnly
           :allowClear="false"
-          placeholder="select"
+          :placeholder="$t('calendar_page.calendar.select_month')"
           v-model="date"
-          format="DD-MM-YYYY"
-          :locale="this.$i18n.locale == 'vi' ? vi : en"
-        /> -->
-        <a-button style="margin-left: 10px" type="primary" @click="today()"
-          >{{$t('calendar_page.calendar.this_month')}}</a-button
-        >
+        />
+        <a-button style="margin-left: 10px" type="primary" @click="today()">{{
+          $t("calendar_page.calendar.this_month")
+        }}</a-button>
       </a-modal>
       <EventModal
         ref="eventModal"

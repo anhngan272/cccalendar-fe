@@ -1,9 +1,26 @@
 <template>
   <div class="header-right">
-    <!-- if user logged in -->
     <LangSwitch />
+    <!-- if user logged in -->
     <template v-if="user != null">
-      <a @click="navigate('')">{{ user.name }}</a>
+
+      <a-dropdown placement="bottomCenter" :trigger="['click','hover']">
+        <template slot="overlay">
+          <div class="dropdown-content">
+            <div><i class="fa fa-sign-out"></i>logout</div>
+          </div>
+        </template>
+        <a class="ant-dropdown-link">
+      <img class="avatar" :src="user.avatar" alt="" /> 
+      {{ user.name }}
+      <a-icon type="down" />
+    </a>
+      </a-dropdown>
+
+      <!-- <a>{{ user.name }}</a> -->
+      <!-- <a href="">{{user.avatar}}</a> -->
+      <!-- {{avatar}} -->
+      <!-- <img class="avatar" :src="user.avatar" /> -->
 
       <a-popconfirm
         :title="$t('login.signout_confirm')"
@@ -12,13 +29,13 @@
         :cancel-text="$t('calendar_page.event_form.cancel_btn')"
         @confirm="logout"
       >
-        <a id="btn-logout" role="button">{{
-          $t("login.signout")
-        }}</a>
+        <a id="btn-logout" role="button">{{ $t("login.signout") }}</a>
       </a-popconfirm>
     </template>
     <!-- else -->
-    <a @click="navigate('GoogleLogin')" v-else>{{ $t("login.signin") }}</a>
+    <a :href="$router.resolve({ name: 'GoogleLogin' }).href" v-else>{{
+      $t("login.signin")
+    }}</a>
   </div>
 </template>
 
@@ -45,4 +62,47 @@ export default {
 </script>
 
 <style scoped>
+.avatar {
+  width: 35px;
+  margin-right: 5px;
+  border-radius: 50%;
+}
+
+.fa{
+  font-size: 17px;
+  margin-right: 5px;
+}
+
+.dropBtn {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 15px;
+  border: 1 px solid #808080;
+}
+
+.dropdown-content {
+  width: 100%;
+  z-index: 3;
+  font-weight: bold;
+  line-height: 25px;
+  font-size: 15px;
+  color: #808080;
+  background: white;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.dropdown-content div {
+  padding: 5px;
+  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+}
+
+.dropdown-content div:hover {
+  background-color: #ddd;
+  color: black;
+}
 </style>
