@@ -67,7 +67,7 @@
       />
     </a-form-model-item>
     <a-form-model-item :label="$t('calendar_page.event_form.tags')" prop="tag">
-      <TagPicker ref="tagPicker" :eventTags="form.tags" @tagsPicked="setTags" />
+      <TagPicker ref="tagPicker" :eventTags="form.tags" @tagsPicked="setTags" @tagsSubmitted="setTagSubmit" />
     </a-form-model-item>
     <a-form-model-item
       :label="$t('calendar_page.event_form.description')"
@@ -152,6 +152,7 @@ export default {
         attendees: [],
         tags: [],
         attendeeSubmited: true,
+        tagSubmited:true,
         colorId: 7,
         backgroundColor: "039be5",
       },
@@ -243,6 +244,13 @@ export default {
       };
     },
 
+    setTagSubmit(bool) {
+      this.form = {
+        ...this.form,
+        tagSubmited: bool,
+      };
+    },
+
     setAttendeeSubmit(bool) {
       this.form = {
         ...this.form,
@@ -267,7 +275,7 @@ export default {
 
     validateForm() {
       this.$refs.ruleForm.validate((valid) => {
-        if (valid && this.form.attendeeSubmited) {
+        if (valid && this.form.attendeeSubmited && this.form.tagSubmited) {
           this.isValidated = true;
         } else {
           console.log("error validate!!");

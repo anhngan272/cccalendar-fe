@@ -88,6 +88,7 @@
       "select_attendees": "Enter Attendee",
       "attendees_help": " is not a valid email",
       "tags": "Tags",
+      "tags_help": " Invalid. Tag can only cantain letters, '-', '_' and spaces",
       "select_tags": "Select Tag",
       "description": "Description",
       "theme": "Theme",
