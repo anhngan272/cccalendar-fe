@@ -10,38 +10,40 @@ export function createDiaryId() {
 
 const state = {
     diaries: [
-    //     {
-    //     id: createDiaryId(),
-    //     title: "Ant Design Title 1",
-    //     date: "6/4/2021",
-    //     tags: [],
-    //     content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
-    //     },
-    //     {
-    //     id: createDiaryId(),
-    //     title: "Ant Design Title 2",
-    //     date: "6/4/2021",
-    //     tags: ['ha', 'hi'],
-    //     content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
-    // }, 
-],
+        {
+            id: createDiaryId(),
+            title: "Ant Design Title 1",
+            date: "6/4/2021",
+            tags: [],
+            content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+        },
+        {
+            id: createDiaryId(),
+            title: "Ant Design Title 2",
+            date: "6/4/2021",
+            tags: ['ha', 'hi'],
+            content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+        },
+    ],
     pagination: {
         currentPage: 1,
         totalPage: 1,
-    }
+    },
+    searchKey: '',
 }
 
 const getters = {
     getDiary: state => state.diary,
     getDiaries: state => state.diaries,
-    getPagination: state => state.pagination
+    getPagination: state => state.pagination,
+    getSearchKey: state => state.searchKey
 }
 
 const actions = {
     async fetchDiaries({ commit }, searchTerms) {
         let response = null;
         if (searchTerms) {
-            const searchParams = {...searchTerms };
+            const searchParams = { ...searchTerms };
 
             // check if date is undefined
             if (searchTerms.fromDate) {
@@ -69,7 +71,7 @@ const actions = {
         if (response.status === 200) {
             showMessage('success');
             commit('setDiaries', response.data);
-            commit('setPagnation',response.data);
+            commit('setPagnation', response.data);
         }
     },
     async createDiary({ commit }, diary) {
@@ -112,14 +114,14 @@ const actions = {
     // },
     async updateDiary({ commit }, diary) {
         showMessage('loading')
-        console.log(diary)
+        // console.log(diary)
         const response = await axios.put(API_URL + `/diary/${diary.id}`, diary);
 
         if (response.status === 200) {
             commit('updateDiary', response.data);
             showMessage('success')
         }
-    }
+    },
 }
 
 const mutations = {
@@ -134,10 +136,10 @@ const mutations = {
         state.diaries.splice(diaryIndex, 1, diary)
         // console.log(diary)
     },
-    setPagnation:(state,pagination) => {
+    setPagnation: (state, pagination) => {
         state.pagination.currentPage = pagination.meta.current_page;
         state.pagination.totalPage = pagination.meta.total;
-    }
+    },
 }
 
 export default {

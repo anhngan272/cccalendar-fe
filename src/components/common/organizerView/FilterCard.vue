@@ -34,15 +34,15 @@
       <a-input-search
         class="search-box"
         :placeholder="$t('organizer_page.filter.searchPlaceholder')"
-        enter-button
-        @search="onSearch"
+        @change="onSearch"
+        v-model="searchKey"
       />
     </div>
     <div class="tags-filter">
       <a-list
         :locale="locale"
         item-layout="horizontal"
-        :data-source="getTags"
+        :data-source="tagsData"
         :bordered="true"
       >
         <a-list-item slot="renderItem" slot-scope="item">
@@ -84,8 +84,7 @@
       :closable="false"
     >
       <div>
-        New Tag's Name:
-        <a-input autoFocus v-model="updatedTag" placeholder="New Tag's Name" />
+        <a-input addonBefore="New Tag's Name" autoFocus v-model="updatedTag" />
       </div>
       <div slot="footer">
         <div style="text-align: center">
@@ -131,6 +130,8 @@ export default {
       tagUpdateModal: false,
       updatedTag: "",
       updatedTagId: "",
+      searchKey:'',
+      tagsData:[],
     };
   },
   created() {
@@ -138,6 +139,9 @@ export default {
   },
   computed: {
     ...mapGetters(["getTags"]),
+  },
+  mounted(){
+this.tagsData = this.getTags
   },
   methods: {
     moment,
@@ -165,8 +169,11 @@ export default {
     selectDate(value) {
       console.log(value);
     },
-    onSearch(value) {
-      console.log(value);
+    onSearch() {
+      this.tagsData = this.getTags;
+        this.tagsData = this.tagsData.filter((tag) => {
+          return tag.name.toLowerCase().includes(this.searchKey);
+        });
     },
     onChange(checkedValues) {
       console.log("checked = ", checkedValues);
@@ -185,10 +192,6 @@ export default {
 <style scoped>
 .date-filter {
   text-align: center;
-}
-.search-box {
-  /* float: right;
-  width: 70%; */
 }
 .tags-filter {
   /* text-align: center; */

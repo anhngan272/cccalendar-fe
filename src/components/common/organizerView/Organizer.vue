@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <a-row type="flex">
+    <!-- <a-row type="flex">
       <a-col :flex="1" style="margin-right: 10px">
         <div class="myCard">
           <FilterCard />
@@ -9,12 +9,22 @@
       <a-col :flex="18">
         <a-row type="flex">
           <div class="myCard">
-            <a-col :span="12"><Card :type="'events'" /></a-col>
-            <a-col :span="12"><Card :type="'diaries'" /></a-col>
+            <a-col :flex="1"><Card :type="'events'" /></a-col>
+            <a-col :span="12" ><Card :type="'diaries'" /></a-col>
           </div>
         </a-row>
       </a-col>
-    </a-row>
+    </a-row> -->
+
+      <div class="row">
+        <div class="col-md-auto myCard"><FilterCard /></div>
+        <div class="col myCard">
+          <div class="row">
+            <div class="col"><Card :type="'events'" /></div>
+            <div class="col"><Card :type="'diaries'" /></div>
+          </div>
+        </div>
+      </div>
   </div>
 </template>
 
@@ -38,5 +48,21 @@ export default {
 <style scoped>
 .myCard {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+>>>.search-box {
+  box-shadow: 0px 0px 20px #e6e6e6;
+}
+
+.col{
+  padding-right: 10px !important;
+  padding-left: 10px !important;
+  /* margin-right: 5px; */
+}
+
+.col-md-auto{
+  padding-right: 5px !important;
+  padding-left: 5px !important;
+  margin-right: 20px;
 }
 </style>

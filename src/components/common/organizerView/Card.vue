@@ -1,23 +1,25 @@
 <template>
-  <a-card :title="title">
+  <a-card :title="title" :bodyStyle="{ height: '75vh' }">
     <a-input-search
       slot="extra"
       :placeholder="$t(`organizer_page.${type}.searchPlaceholder`)"
-      enter-button
-      @search="onSearch"
+      class="search-box"
+      v-model="searchKey"
+      @change="onChange"
     />
     <a-list
       :locale="{
         emptyText: this.$t('diary_page.diary_list.no_data'),
       }"
       item-layout="horizontal"
-      :data-source="type == 'events' ? getEvents : getDiaries"
+      :data-source="type == 'events' ? eventsData : diariesData"
       :bordered="true"
     >
       <a-list-item slot="renderItem" slot-scope="item">
         <a class="edit" slot="actions" @click="showUpdateModal(item)"
-          ><a-button type="primary"> <a-icon style="color:white" type="edit" /></a-button></a
-        >
+          ><a-button type="primary">
+            <a-icon style="color: white" type="edit" /></a-button
+        ></a>
         <a slot="actions" class="delete">
           <a-popconfirm
             :title="$t('diary_page.diary_form.delete_confirm')"
@@ -26,7 +28,9 @@
             :cancel-text="$t('diary_page.diary_form.cancel_btn')"
             @confirm="handelDelete(item)"
           >
-            <a-button type="danger"><a-icon style="color:white" type="delete" /></a-button>
+            <a-button type="danger"
+              ><a-icon style="color: white" type="delete"
+            /></a-button>
           </a-popconfirm>
         </a>
         <div class="title" @click="showModal(item)">
@@ -39,35 +43,34 @@
       </a-list-item>
     </a-list>
     <div v-show="type == 'events'">
-
-    <EventModal
-      ref="eventModal"
-      :event="currentItem"
-      :eventModalExtend="currentItem"
-    />
-    <UpdateEventModal
-      ref="updateEventModal"
-      :updateEventModalExtend="currentItem"
-      :updateEvent="currentItem"
-      @updated="eventModal = false"
-    />
+      <EventModal
+        ref="eventModal"
+        :event="currentItem"
+        :eventModalExtend="currentItem"
+      />
+      <UpdateEventModal
+        ref="updateEventModal"
+        :updateEventModalExtend="currentItem"
+        :updateEvent="currentItem"
+        @updated="eventModal = false"
+      />
     </div>
 
     <div v-show="type == 'diaries'">
-    <DiaryDetail
-      ref="diaryModal"
-      :diary="currentItem"
-      @showUpdateModal="showUpdateModal"
-    />
-    <div v-if="showText == true">
-      <TextEditor
-        ref="textEditor"
-        :isUpdate="true"
+      <DiaryDetail
+        ref="diaryModal"
         :diary="currentItem"
-        :showText="showText"
-        @closeTextEditor="closeTextEditor"
+        @showUpdateModal="showUpdateModal"
       />
-    </div>
+      <div v-if="showText == true">
+        <TextEditor
+          ref="textEditor"
+          :isUpdate="true"
+          :diary="currentItem"
+          :showText="showText"
+          @closeTextEditor="closeTextEditor"
+        />
+      </div>
     </div>
   </a-card>
 </template>
@@ -96,7 +99,14 @@ export default {
       diaryModal: false,
       title: "",
       textEditorVisible: false,
+      searchKey: "",
+      diariesData: [],
+      eventsData: [],
     };
+  },
+  mounted() {
+    this.diariesData = this.getDiaries;
+    this.eventsData = this.getEvents;
   },
   created() {
     if (this.type == "events") {
@@ -116,13 +126,25 @@ export default {
       "fetchDiaries",
       "deleteEvent",
       "deleteDiary",
+      "setSearchResult",
     ]),
+    onChange() {
+      // console.log(this.searchKey);
+      if (this.type == "events") {
+        this.eventsData = this.getEvents;
+        this.eventsData = this.eventsData.filter((event) => {
+          return event.title.toLowerCase().includes(this.searchKey);
+        });
+      } else {
+        this.diariesData = this.getDiaries;
+        this.diariesData = this.diariesData.filter((diary) => {
+          return diary.title.toLowerCase().includes(this.searchKey);
+        });
+      }
+    },
     closeTextEditor() {
       this.showText = false;
       this.showText == false;
-    },
-    onSearch(value) {
-      console.log(value);
     },
     handelDelete(item) {
       if (this.type == "events") {
@@ -152,10 +174,8 @@ export default {
 </script>
 
 <style scoped>
-
-.title:hover{
-  color:#1890ff;
+.title:hover {
+  color: #1890ff;
   cursor: pointer;
 }
-
 </style>

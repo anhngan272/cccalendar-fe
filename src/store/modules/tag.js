@@ -9,18 +9,14 @@ export function createTagId() {
 
 const state = {
     tags: [
-        // {
-        //     label: "Tag1",
-        //     value: "Tag1"
-        // },
-        // {
-        //     label: "Tag2",
-        //     value: "Tag2"
-        // },
-        // {
-        //     label: "Tag3",
-        //     value: "Tag3"
-        // },
+        {
+            name: "Tag0",
+            id: 0
+        },
+        {
+            name: "Tag1",
+            id: 1
+        },
     ],
     filterTags: [],
 }

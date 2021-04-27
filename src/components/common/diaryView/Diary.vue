@@ -1,11 +1,9 @@
 <template>
   <div class="container">
     <div class="header">
-      <a-input-search
+      <a-input
         class="search-box"
-        :placeholder="$t('diary_page.searchPlaceholder')"
-        enter-button
-        @search="performSearch"
+        :addonBefore="$t('diary_page.searchPlaceholder')"
         v-model="form.title"
       />
 
@@ -39,14 +37,14 @@
           </a-select>
         </a-tooltip>
 
-        <div style="margin-left: 20px">
+        <div class="datePickerWrapper">
           <a-date-picker
             inputReadOnly
             :allowClear="true"
             v-model="form.fromDate"
             format="DD-MM-YYYY"
             :placeholder="$t('diary_page.diary_list.start_date')"
-            style="width: 150px"
+            class="datePicker"
             :locale="this.$i18n.locale == 'vi' ? vi : en"
           />
           -
@@ -56,7 +54,7 @@
             v-model="form.toDate"
             format="DD-MM-YYYY"
             :placeholder="$t('diary_page.diary_list.end_date')"
-            style="width: 150px"
+            class="datePicker"
             :locale="this.$i18n.locale == 'vi' ? vi : en"
           />
         </div>
@@ -71,8 +69,11 @@
         </div>
 
         <div>
-          <a-button style="margin-left: 20px" @click="performEmptySearch"
+          <a-button style="margin: 0 15px" @click="performEmptySearch"
             ><a-icon type="reload"
+          /></a-button>
+          <a-button style="width:60px" type="primary" @click="performSearch"
+            ><a-icon type="search"
           /></a-button>
         </div>
 
@@ -130,7 +131,7 @@ export default {
         fromDate: null,
         toDate: null,
         sort: "newest", // ["newest", "oldest", "a-to-z", "z-to-a"]
-        tags: [], 
+        tags: [],
         page: 1,
       },
     };
@@ -205,7 +206,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .header {
   position: sticky;
   top: 0px;
@@ -220,6 +221,17 @@ body {
   font-size: 12px;
 }
 
+.datePickerWrapper {
+  /* min-width: 30%; */
+  width: fit-content;
+  margin-left: 15px;
+}
+
+.datePicker {
+  /* min-width: 45%; */
+  width: 120px;
+}
+
 .pagination {
   /* background: pink; */
   flex-grow: 1;
@@ -231,9 +243,9 @@ body {
 
 .tag-picker {
   width: 20%;
-  min-width: 150px;
+  min-width: 100px;
   height: 40px;
-  margin-left: 20px;
+  margin-left: 15px;
 }
 
 .sort-header {
