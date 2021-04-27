@@ -8,9 +8,10 @@ import interactionPlugin from "@fullcalendar/interaction";
 import EventModal from "@/components/common/calendarView/EventModal";
 import { mapActions, mapGetters } from "vuex";
 import moment from "moment";
-require("moment/locale/vi.js");
 import vi from "ant-design-vue/es/date-picker/locale/vi_VN";
 import en from "ant-design-vue/es/date-picker/locale/en_US";
+
+require("moment/locale/vi.js");
 
 export default {
   components: {
@@ -28,6 +29,13 @@ export default {
       eventModalExtend: {},
       calendarOptions: {
         eventColor: "#039BE5", // Pacific Blue
+        height: "80vh",
+        expandRows: true,
+        firstDay: 1,
+        validRange: {
+          start: "1970-01-01",
+          end: "2099-12-31",
+        },
         customButtons: {
           datepicker: {
             text: "Pick a date",
@@ -214,14 +222,14 @@ b {
 }
 
 .demo-app {
-  display: flex;
-  min-height: 100%;
+  /* display: flex; */
+  /* min-height: 100%; */
   font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
   font-size: 14px;
 }
 
 .demo-app-sidebar {
-  width: 300px;
+  /* width: 300px; */
   line-height: 1.5;
   background: #eaf9ff;
   border-right: 1px solid #d3e2e8;
@@ -232,7 +240,7 @@ b {
 }
 
 .demo-app-main {
-  flex-grow: 1;
+  /* flex-grow: 1; */
   padding: 0 1em;
 }
 
