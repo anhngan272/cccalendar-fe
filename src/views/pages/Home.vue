@@ -1,17 +1,21 @@
 <template>
   <div class="home-container">
-    <h1 class="font-weight-bold"><span class="cccalendar">
-      {{ $t("homepage.title.web_name") }}
-      </span></h1>
-    <h4><span class="cccalendar">{{ $t("homepage.title.title") }}</span></h4>
+    <h1 class="font-weight-bold">
+      <span class="cccalendar">
+        {{ $t("homepage.title.web_name") }}
+      </span>
+    </h1>
+    <h4>
+      <span class="">{{ $t("homepage.title.title") }}</span>
+    </h4>
     <div class="site">
       <div class="container center">
         <div class="row">
-          <div class="col-sm-6 col-md-4 homeTitle">
-              <a @click="navigate('Calendar')"> 
+          <div class="col-sm-6 col-md-4">
+            <a @click="navigate('Calendar')">
               <i class="myIcon fa fa-calendar"></i>
               <h4 class="">
-                <i>{{ $t("homepage.intro.calendar.title") }}</i>
+                <strong>{{ $t("homepage.intro.calendar.title") }}</strong>
               </h4>
             </a>
             <p class="">
@@ -23,7 +27,7 @@
             <a @click="navigate('Diary')">
               <i class="myIcon fa fa-clipboard"></i>
               <h4>
-                <i>{{ $t("homepage.intro.diary.title") }}</i>
+                <strong>{{ $t("homepage.intro.diary.title") }}</strong>
               </h4>
             </a>
             <p class="">
@@ -33,10 +37,10 @@
 
           <div class="col-sm-6 col-md-4">
             <a @click="navigate('Organizer')">
-            <i class="myIcon fa fa-edit"></i>
-            <h4>
-              <i>{{ $t("homepage.intro.organizer.title") }}</i>
-            </h4>
+              <i class="myIcon fa fa-edit"></i>
+              <h4>
+                <strong>{{ $t("homepage.intro.organizer.title") }}</strong>
+              </h4>
             </a>
             <p class="">
               {{ $t("homepage.intro.organizer.text") }}
@@ -56,9 +60,9 @@ export default {
   components: {},
   computed: {
     ...mapGetters({ user: "getCurrentUser" }),
-    title(){
+    title() {
       return this.$i18n.t("Home");
-    }
+    },
   },
   methods: {
     navigate(name) {
@@ -80,36 +84,40 @@ export default {
   margin-top: 10%;
 }
 
-.cccalendar{
-   background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+.cccalendar {
+  background-image: linear-gradient(#1d2671, #c33764);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  
+
   /* background: linear-gradient(to right, #ef5350, #f48fb1, #7e57c2, #2196f3, #26c6da, #43a047, #eeff41, #f9a825, #ff5722);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; */
 }
 
-.homeTitle{
-   background: -webkit-linear-gradient(#9c47fc, #356ad2);
+.homeTitle {
+  background-image: linear-gradient(to right, #c33764, #1d2671);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.myIcon{
+.myIcon {
   font-size: 32px;
-  color: #9c47fc;
+  /* color: #9c47fc; */
   display: block;
-  background: -webkit-linear-gradient(#9c47fc, #356ad2);
+  background: -webkit-linear-gradient(#1d2671, #c33764);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 10px 0 10px;
   font-size: 50px;
+}
 
+.myIcon:hover {
+  background: gray;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .fa {
-  
 }
 .heading-line {
   overflow: hidden;

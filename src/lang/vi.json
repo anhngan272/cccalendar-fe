@@ -11,12 +11,12 @@
   "homepage": {
     "title": {
       "web_name": "CCCalendar",
-      "title": "Quản lý thời khóa biểu của bạn như một chuyên gia"
+      "title": "Quản lý lịch trình của bạn một cách chuyên nghiệp"
     },
     "intro": {
       "calendar": {
         "title": "Lịch",
-        "text": "Liên kết với Google Calendar nhằm giúp bạn đồng bộ hóa lịch của mình trên nhiều thiết bị ."
+        "text": "Liên kết với Google Calendar nhằm giúp bạn đồng bộ hóa lịch của mình trên nhiều thiết bị."
       },
       "diary": {
         "title": "Nhật ký",
