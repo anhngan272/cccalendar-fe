@@ -22,11 +22,14 @@ const getters = {
 
 const actions = {
     async fetchLoginUrl({ commit }) {
-        showMessage('loading')
         const response = await axios.get(API_URL + '/auth/google/url');
-        commit('setLoginUrl', response.data.url);
-        showMessage('success')
-        // console.log(response.data.url);
+        if (response.status == 200) {
+
+            commit('setLoginUrl', response.data.url);
+        } else {
+            showMessage('error');
+        }
+
     },
     async fetchGoogleCallback({ commit }, query) {
         if (!query.includes('error')) {
@@ -50,7 +53,7 @@ const actions = {
 const mutations = {
     setLoginUrl: (state, loginUrl) => (state.loginUrl = loginUrl),
     loginSuccess: (state, payload) => {
-        const data = { ...payload };
+        const data = {...payload };
         state.authError = null;
         state.currentUser = data.user;
 

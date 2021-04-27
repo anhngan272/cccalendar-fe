@@ -3,18 +3,17 @@
     <LangSwitch />
     <!-- if user logged in -->
     <template v-if="user != null">
-
-      <a-dropdown placement="bottomCenter" :trigger="['click','hover']">
+      <a-dropdown placement="bottomCenter" :trigger="['click', 'hover']">
         <template slot="overlay">
           <div class="dropdown-content">
             <div><i class="fa fa-sign-out"></i>logout</div>
           </div>
         </template>
         <a class="ant-dropdown-link">
-      <img class="avatar" :src="user.avatar" alt="" /> 
-      {{ user.name }}
-      <a-icon type="down" />
-    </a>
+          <img class="avatar" :src="user.avatar" alt="" />
+          {{ user.name }}
+          <a-icon type="down" />
+        </a>
       </a-dropdown>
 
       <!-- <a>{{ user.name }}</a> -->
@@ -33,9 +32,9 @@
       </a-popconfirm>
     </template>
     <!-- else -->
-    <a :href="$router.resolve({ name: 'GoogleLogin' }).href" v-else>{{
+    <router-link :to="{ name: 'GoogleLogin' }" v-else>{{
       $t("login.signin")
-    }}</a>
+    }}</router-link>
   </div>
 </template>
 
@@ -68,7 +67,7 @@ export default {
   border-radius: 50%;
 }
 
-.fa{
+.fa {
   font-size: 17px;
   margin-right: 5px;
 }
@@ -89,7 +88,7 @@ export default {
   font-size: 15px;
   color: #808080;
   background: white;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .dropdown-content div {

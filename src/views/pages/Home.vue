@@ -12,36 +12,36 @@
       <div class="container center">
         <div class="row">
           <div class="col-sm-6 col-md-4">
-            <a @click="navigate('Calendar')">
+            <router-link :to="{ name: 'Calendar' }">
               <i class="myIcon fa fa-calendar"></i>
               <h4 class="">
                 <strong>{{ $t("homepage.intro.calendar.title") }}</strong>
               </h4>
-            </a>
+            </router-link>
             <p class="">
               {{ $t("homepage.intro.calendar.text") }}
             </p>
           </div>
 
           <div class="col-sm-6 col-md-4">
-            <a @click="navigate('Diary')">
+            <router-link :to="{ name: 'Diary' }">
               <i class="myIcon fa fa-clipboard"></i>
               <h4>
                 <strong>{{ $t("homepage.intro.diary.title") }}</strong>
               </h4>
-            </a>
+            </router-link>
             <p class="">
               {{ $t("homepage.intro.diary.text") }}
             </p>
           </div>
 
           <div class="col-sm-6 col-md-4">
-            <a @click="navigate('Organizer')">
+            <router-link :to="{ name: 'Organizer' }">
               <i class="myIcon fa fa-edit"></i>
               <h4>
                 <strong>{{ $t("homepage.intro.organizer.title") }}</strong>
               </h4>
-            </a>
+            </router-link>
             <p class="">
               {{ $t("homepage.intro.organizer.text") }}
             </p>
@@ -64,13 +64,7 @@ export default {
       return this.$i18n.t("Home");
     },
   },
-  methods: {
-    navigate(name) {
-      this.$router
-        .push({ name: name, params: { haha: new Date().getUTCMilliseconds() } })
-        .catch((err) => err);
-    },
-  },
+  methods: {},
   created() {},
 };
 </script>

@@ -1,31 +1,36 @@
 <template>
-  <div>
-    <div class="head">
-      <router-link :to="{ name: 'Home' }"
-        ><img src="@/assets/cccalendar_logo.png" style="height: 30px"
-      /></router-link>
-      <router-link :to="{ name: 'Calendar' }">{{
-        $t("calendar_page.title")
-      }}</router-link>
-      <router-link :to="{ name: 'Diary' }">{{
-        $t("diary_page.title")
-      }}</router-link>
-      <router-link :to="{ name: 'Organizer' }">{{
-        $t("organizer_page.title")
-      }}</router-link>
-      <Navbar />
-    </div>
-  </div>
+  <a-layout-sider v-model="collapsed" collapsible>
+    <router-link :to="{ name: 'Home' }"
+      ><img src="@/assets/cccalendar_logo.png" style="height: 30px"
+    /></router-link>
+    <a-menu mode="inline">
+      <a-menu-item key="1">
+        <a-icon type="user" />
+        <router-link :to="{ name: 'Calendar' }">{{
+          $t("calendar_page.title")
+        }}</router-link>
+      </a-menu-item>
+      <a-menu-item key="2">
+        <a-icon type="video-camera" />
+        <router-link :to="{ name: 'Diary' }">{{
+          $t("diary_page.title")
+        }}</router-link>
+      </a-menu-item>
+      <a-menu-item key="3">
+        <a-icon type="upload" />
+        <router-link :to="{ name: 'Organizer' }">{{
+          $t("organizer_page.title")
+        }}</router-link>
+      </a-menu-item>
+    </a-menu>
+  </a-layout-sider>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import Navbar from "@/components/layouts/Navbar";
 export default {
-  name: "Header",
-  components: {
-    Navbar,
-  },
+  name: "Sider",
+  components: {},
   computed: {
     ...mapGetters({ user: "getCurrentUser" }),
   },

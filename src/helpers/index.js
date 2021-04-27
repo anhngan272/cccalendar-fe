@@ -13,10 +13,10 @@ const showMessage = (status) => {
             message.loading({ content: 'Loading...', key });
             break;
         case 'success':
-            message.success({ content: 'Success!', key, duration: 2 });
+            message.success({ content: 'Success', key, duration: 2 });
             break;
         case 'error':
-            message.error({ content: 'Error occurred. Please refresh your browser!', key, duration: 2 });
+            message.error({ content: 'Error occurred. Please try again later.', key, duration: 2 });
             break;
         default:
             message.error({ content: status, key, duration: 2 });
@@ -63,8 +63,8 @@ const setAcceptHeader = (type) => {
 
 /**
  * Check if route require logged in user.
- * @param {*} store 
- * @param {*} router 
+ * @param {*} store
+ * @param {*} router
  */
 const initialize = (store, router) => {
     router.beforeEach((to, from, next) => {

@@ -2,8 +2,8 @@
   <div class="copyright-text">
     <p class="">
       {{ $t("common.copyrights") }}
-      <a :href="$router.resolve({ name: 'About' }).href"
-        >{{ $t("common.author") }}.</a
+      <router-link :to="{ name: 'About' }"
+        >{{ $t("common.author") }}.</router-link
       >
     </p>
   </div>

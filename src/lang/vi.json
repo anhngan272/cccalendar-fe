@@ -2,16 +2,16 @@
   "common": {
     "select_lang": "VN",
     "logo": "LOGO",
-    "author": "CodingCats",
+    "author": "Coding Cats",
     "copyrights": "Bản quyền © 2021 Mọi quyền được bảo lưu bởi "
   },
-  "pages":{
-    "Home":"Trang chủ"
+  "pages": {
+    "Home": "Trang chủ"
   },
   "homepage": {
     "title": {
       "web_name": "CCCalendar",
-      "title": "Quản lý lịch trình của bạn một cách chuyên nghiệp"
+      "title": "Quản lý thời gian biểu của bạn một cách chuyên nghiệp"
     },
     "intro": {
       "calendar": {
@@ -75,7 +75,7 @@
       "week": "Tuần",
       "list": "Lịch biểu",
       "select_month": "Chọn tháng",
-      "this_month":"Hôm nay"
+      "this_month": "Hôm nay"
     },
     "create_event": "Tạo sự kiện mới",
     "event_form": {
@@ -119,19 +119,19 @@
   },
   "organizer_page": {
     "title": "Quản lý",
-    "filter":{
-      "date_filter":"Lọc theo ngày",
+    "filter": {
+      "date_filter": "Lọc theo ngày",
       "start_date": "Ngày bắt đầu",
       "end_date": "Ngày kết thúc",
-      "tag_filter":"Lọc theo thẻ",
+      "tag_filter": "Lọc theo thẻ",
       "searchPlaceholder": "Nhập tên thẻ cần tìm"
     },
-    "events":{
-      "title":"Sự kiện",
+    "events": {
+      "title": "Sự kiện",
       "searchPlaceholder": "Nhập sự kiện cần tìm"
     },
-    "diaries":{
-      "title":"Nhật ký",
+    "diaries": {
+      "title": "Nhật ký",
       "searchPlaceholder": "Nhập nhật ký cần tìm"
     }
   },
@@ -142,5 +142,4 @@
     "signin_google": "Đăng nhập bằng tài khoản google",
     "signin_loading": "Đang đăng nhập..."
   }
-
 }
