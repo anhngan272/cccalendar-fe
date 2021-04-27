@@ -46,7 +46,7 @@
       "tags": "Thẻ",
       "content": "Nội dung",
       "reset_btn": "Làm mới",
-      "ok_btn": "Ok",
+      "ok_btn": "Đóng",
       "cancel_btn": "Hủy",
       "cancel_confirm": "Bạn có chắc muốn hủy?",
       "create_btn": "Tạo mới",
@@ -111,7 +111,7 @@
       "reset_btn": "Làm mới",
       "delete_btn": "Xóa",
       "delete_confirm": "Bạn có chắc chắn xóa sự kiện này không?",
-      "ok_btn": "Ok",
+      "ok_btn": "Đóng",
       "cancel_btn": "Hủy",
       "cancel_confirm": "Bạn có chắc chắn hủy chỉnh sửa sự kiện này không?",
       "success_alert": "Thành công!!"

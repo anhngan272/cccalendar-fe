@@ -47,7 +47,7 @@
       "tags": "Tags",
       "content": "Content",
       "reset_btn": "Reset",
-      "ok_btn": "Ok",
+      "ok_btn": "Close",
       "cancel_btn": "Cancel",
       "cancel_confirm": "Are you sure to cancel?",
       "create_btn": "Create",
@@ -112,7 +112,7 @@
       "reset_btn": "Reset",
       "delete_btn": "Delete",
       "delete_confirm": "Are you sure delete this event?",
-      "ok_btn": "Ok",
+      "ok_btn": "Close",
       "cancel_btn": "Cancel",
       "cancel_confirm": "Are you sure cancel edit this event?",
       "success_alert": "Success!!"

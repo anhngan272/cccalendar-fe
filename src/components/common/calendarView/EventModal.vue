@@ -6,7 +6,7 @@
     v-model="eventModal"
     :title="event.title"
     @ok="handleOk"
-    width="30vw"
+    width="80vw"
   >
     <div slot="footer">
       <div style="text-align: center">
@@ -24,7 +24,7 @@
             {{ $t("calendar_page.event_form.delete_btn") }}
           </a-button>
         </a-popconfirm>
-        <a-button key="ok" type="primary" @click="handleOk">
+        <a-button key="ok" @click="handleOk">
           {{ $t("calendar_page.event_form.ok_btn") }}
         </a-button>
       </div>
@@ -79,7 +79,7 @@
     </div>
   </a-modal>
 </template>
- 
+
  <script>
 import moment from "moment";
 import { mapActions } from "vuex";
@@ -116,7 +116,7 @@ export default {
   computed: {},
 };
 </script>
- 
+
  <style scoped>
 .eventModal div {
   padding: 10px;

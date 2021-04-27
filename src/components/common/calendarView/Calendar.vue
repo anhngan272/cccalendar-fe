@@ -74,7 +74,7 @@ export default {
         selectMirror: true,
         dayMaxEvents: true,
         weekends: true,
-        select: this.handleDateSelect,
+        // select: this.handleDateSelect,
         eventClick: this.handleEventClick,
         eventsSet: this.handleEvents,
         eventDisplay: "block",
@@ -123,13 +123,13 @@ export default {
       this.calendarOptions.weekends = !this.calendarOptions.weekends; // update a property
     },
 
-    handleDateSelect(selectInfo) {
-      console.log(selectInfo);
-    },
+    // handleDateSelect(selectInfo) {
+    // console.log(selectInfo);
+    // },
 
     handleEventClick(clickInfo) {
       this.eventModal = clickInfo.event;
-      console.log(this.eventModal);
+      // console.log(this.eventModal);
       this.eventModalExtend = clickInfo.event.extendedProps;
       this.$refs.eventModal.eventModal = true;
     },

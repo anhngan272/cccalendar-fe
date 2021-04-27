@@ -2,7 +2,7 @@
   <a-modal
     :keyboard="false"
     :destroyOnClose="true"
-    width="35vw"
+    width="70vw"
     v-model="updateModal"
     :title="$t('calendar_page.event_form.edit_header')"
     @ok="handleOk"
