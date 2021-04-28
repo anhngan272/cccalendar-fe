@@ -124,11 +124,6 @@ export default {
 .color-main input {
   display: none;
 }
-/* .color-picker {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-} */
 
 .color-picker {
   display: flex;
@@ -136,16 +131,8 @@ export default {
 }
 
 .color-main input[type="radio"]:checked + .swatch {
-  /* background: radial-gradient(closest-side, white, transparent 80%); */
-  /* background: pink; */
   background: radial-gradient(white 25%, transparent 35%);
 }
-/* .swatch {
-  display: inline-block;
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-} */
 
 .swatch {
   display: inline-block;
@@ -177,7 +164,7 @@ export default {
   /* Position the tooltip */
   position: absolute;
   z-index: 1;
-  bottom: 100%;
+  bottom: 105%;
   margin-left: -25px;
 }
 

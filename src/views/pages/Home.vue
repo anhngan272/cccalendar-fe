@@ -1,5 +1,17 @@
 <template>
   <div class="home-container">
+    <!-- <ul>
+      <li>
+        <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i></a>
+      </li>
+      <li>
+        <a href="#"><i class="fa fa-clipboard" aria-hidden="true"></i></a>
+      </li>
+      <li>
+        <a href="#"><i class="fa fa-edit" aria-hidden="true"></i></a>
+      </li>
+    </ul> -->
+
     <h1 class="font-weight-bold">
       <span class="cccalendar">
         {{ $t("homepage.title.web_name") }}
@@ -13,7 +25,13 @@
         <div class="row">
           <div class="col-sm-6 col-md-4">
             <router-link :to="{ name: 'Calendar' }">
-              <i class="myIcon fa fa-calendar"></i>
+              <ul>
+                <li class="calendarIcon">
+                  <a class="calendarIcon" href="#"
+                    ><i class="fa fa-calendar" aria-hidden="true"></i
+                  ></a>
+                </li>
+              </ul>
               <h4 class="">
                 <strong>{{ $t("homepage.intro.calendar.title") }}</strong>
               </h4>
@@ -25,7 +43,13 @@
 
           <div class="col-sm-6 col-md-4">
             <router-link :to="{ name: 'Diary' }">
-              <i class="myIcon fa fa-clipboard"></i>
+              <ul>
+                <li class="diaryIcon">
+                  <a href="#" class="diaryIcon"
+                    ><i class="fa fa-clipboard" aria-hidden="true"></i
+                  ></a>
+                </li>
+              </ul>
               <h4>
                 <strong>{{ $t("homepage.intro.diary.title") }}</strong>
               </h4>
@@ -37,7 +61,13 @@
 
           <div class="col-sm-6 col-md-4">
             <router-link :to="{ name: 'Organizer' }">
-              <i class="myIcon fa fa-edit"></i>
+              <ul>
+                <li class="organizerIcon">
+                  <a class="organizerIcon" href="#"
+                    ><i class="fa fa-edit" aria-hidden="true"></i
+                  ></a>
+                </li>
+              </ul>
               <h4>
                 <strong>{{ $t("homepage.intro.organizer.title") }}</strong>
               </h4>
@@ -69,7 +99,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .home-container {
   font-family: Helvetica, Arial, sans-serif;
   text-align: center;
@@ -82,10 +112,6 @@ export default {
   background-image: linear-gradient(#1d2671, #c33764);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-
-  /* background: linear-gradient(to right, #ef5350, #f48fb1, #7e57c2, #2196f3, #26c6da, #43a047, #eeff41, #f9a825, #ff5722);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; */
 }
 
 .homeTitle {
@@ -160,5 +186,94 @@ h4 {
 h6 {
   margin-top: 5px;
   letter-spacing: 1px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+ul li {
+  position: relative;
+  list-style: none;
+  width: 100px;
+  height: 100px;
+  margin: 0px 10px;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+ul li:before,
+ul li:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  border-radius: 50%;
+  filter: blur(20px);
+  opacity: 0;
+  transition: 1s;
+  z-index: -1;
+}
+
+ul li:after {
+  filter: blur(40px);
+}
+
+ul li:hover:before,
+ul li:hover:after {
+  opacity: 1;
+  z-index: 2;
+}
+
+ul li a {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  justify-content: center;
+  text-align: center;
+  line-height: 100px;
+  color: white;
+  background: black;
+  font-size: 36px;
+  border-radius: 50%;
+  text-decoration: none;
+  transform: scale(1.2);
+  z-index: 10;
+}
+
+ul li .calendarIcon,
+ul .calendarIcon:before,
+ul .calendarIcon:after {
+  background: linear-gradient(45deg, #ff0057, #e64a19);
+}
+
+ul li .diaryIcon,
+ul .diaryIcon:before,
+ul .diaryIcon:after {
+  background: linear-gradient(45deg, #89ff00, #00bcd4);
+}
+
+ul li .organizerIcon,
+ul .organizerIcon:before,
+ul .organizerIcon:after {
+  background: linear-gradient(45deg, #e91e63, #5d02ff);
 }
 </style>

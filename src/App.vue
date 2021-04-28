@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header />
+    <!-- <Header />
     <a-layout id="components-layout-demo-top" class="layout">
       <a-layout-content :style="{ background: '#fff' }">
         <div :style="{ padding: '5px 24px', minHeight: '78vh' }">
@@ -10,7 +10,17 @@
       <a-layout-footer style="text-align: center; background: #fff">
         <Footer />
       </a-layout-footer>
-    </a-layout>
+    </a-layout> -->
+
+    <div class="header">
+      <Header />
+    </div>
+    <div class="body">
+      <router-view />
+    </div>
+    <div class="footer">
+      <Footer />
+    </div>
   </div>
 </template>
 
@@ -28,6 +38,20 @@ export default {
 </script>
 
 <style>
+.header {
+}
+
+.body {
+  padding: 5px 24px;
+  min-height: 80vh;
+}
+
+.footer {
+  text-align: center;
+  background: #fff;
+  padding: 20px 0 10px;
+}
+
 #components-layout-demo-top .logo {
   width: 120px;
   height: fit-content;
