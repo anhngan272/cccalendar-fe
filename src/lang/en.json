@@ -125,6 +125,7 @@
       "start_date": "Start Date",
       "end_date": "End Date",
       "tag_filter":"Tag Filter",
+      "edit_tag":"Edit Tag's Name",
       "searchPlaceholder": "Input Search Tag"
     },
     "events":{

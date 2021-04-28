@@ -124,6 +124,7 @@
       "start_date": "Ngày bắt đầu",
       "end_date": "Ngày kết thúc",
       "tag_filter": "Lọc theo thẻ",
+      "edit_tag":"Cập nhật tên thẻ",
       "searchPlaceholder": "Nhập tên thẻ cần tìm"
     },
     "events": {

@@ -19,21 +19,57 @@ const state = {
         //     allDay: false,
         // },
     ],
+    filterEvents: [],
 }
 
 const getters = {
     getEvent: state => state.event,
     getEvents: state => state.events,
+    getFilterEvents: state => state.filterEvents,
 }
 
 const actions = {
-    async fetchEvents({ commit }) {
-        showMessage('loading')        
-        const response = await axios.get(API_URL + '/calendar');
-        if (response.status === 200) {
-            showMessage('success')  
-            commit('setEvents', response.data);
+    async fetchEvents({ commit }, searchTerms) {
+        let response = null;
+        if (searchTerms) {
+            const searchParams = { ...searchTerms };
+
+            // check if date is undefined
+            if (searchTerms.fromDate) {
+                searchParams.fromDate = searchTerms.fromDate.clone().format('YYYY-MM-DD');
+            } else {
+                delete searchParams.fromDate;
+            }
+
+            // check if date is undefined
+            if (searchTerms.toDate) {
+                searchParams.toDate = searchTerms.toDate.clone().format('YYYY-MM-DD');
+            } else {
+                delete searchParams.toDate;
+            }
+
+            showMessage('loading');
+            response = await axios.get(API_URL + '/calendar', {
+                params: searchParams
+            });
+        } else {
+            showMessage('loading');
+            response = await axios.get(API_URL + '/calendar');
         }
+
+        if (response.status === 200) {
+            showMessage('success');
+            commit('setEvents', response.data);
+            commit('setFilterEvents');
+        }
+
+
+        // showMessage('loading')        
+        // const response = await axios.get(API_URL + '/calendar');
+        // if (response.status === 200) {
+        //     showMessage('success')  
+        //     commit('setEvents', response.data);
+        // }
     },
     async addEvent({ commit }, event) {
         showMessage('loading')
@@ -66,6 +102,11 @@ const actions = {
             showMessage('success')
             commit('updateEvent', response.data);
         }
+    },
+
+    filterEvents({ commit }, key) {
+        commit("filterEvents", key)
+
     }
 }
 
@@ -82,6 +123,14 @@ const mutations = {
         const eventIndex = state.events.findIndex(e => e.id === event.id)
         state.events.splice(eventIndex, 1, event)
     },
+    setFilterEvents: (state) => {
+        state.filterEvents = state.events
+    },
+    filterEvents: (state, key) => {
+        state.filterEvents = state.events.filter((event) => {
+            return event.title.toLowerCase().includes(key);
+        });
+    }
 }
 
 export default {

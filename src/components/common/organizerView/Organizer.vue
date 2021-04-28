@@ -17,7 +17,7 @@
     </a-row> -->
 
       <div class="row">
-        <div class="col-md-auto myCard"><FilterCard /></div>
+        <div class="col-md-auto tagCard"><FilterCard /></div>
         <div class="col myCard">
           <div class="row">
             <div class="col"><Card :type="'events'" /></div>
@@ -46,7 +46,7 @@ export default {
 </script>
 
 <style scoped>
-.myCard {
+.myCard, .tagCard {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
@@ -64,5 +64,9 @@ export default {
   padding-right: 5px !important;
   padding-left: 5px !important;
   margin-right: 20px;
+}
+
+>>> .tagCard .ant-card-body {
+  padding-top: 0px !important;
 }
 </style>

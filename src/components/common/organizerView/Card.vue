@@ -1,5 +1,5 @@
 <template>
-  <a-card :title="title" :bodyStyle="{ height: '75vh',overflow:'auto' }">
+  <a-card :title="title" :bodyStyle="{ height: '75vh', overflow: 'auto' }">
     <a-input-search
       slot="extra"
       :placeholder="$t(`organizer_page.${type}.searchPlaceholder`)"
@@ -12,7 +12,7 @@
         emptyText: this.$t('diary_page.diary_list.no_data'),
       }"
       item-layout="horizontal"
-      :data-source="type == 'events' ? eventsData : diariesData"
+      :data-source="type == 'events' ? getFilterEvents : getFilterDiaries"
       :bordered="true"
     >
       <a-list-item slot="renderItem" slot-scope="item">
@@ -100,13 +100,9 @@ export default {
       title: "",
       textEditorVisible: false,
       searchKey: "",
-      diariesData: [],
-      eventsData: [],
     };
   },
   mounted() {
-    this.diariesData = this.getDiaries;
-    this.eventsData = this.getEvents;
   },
   created() {
     if (this.type == "events") {
@@ -118,7 +114,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["getEvents", "getDiaries"]),
+    ...mapGetters(["getEvents", "getDiaries", "getFilterEvents","getFilterDiaries"]),
   },
   methods: {
     ...mapActions([
@@ -126,20 +122,14 @@ export default {
       "fetchDiaries",
       "deleteEvent",
       "deleteDiary",
-      "setSearchResult",
+      "filterEvents",
+      "filterDiaries",
     ]),
     onChange() {
-      // console.log(this.searchKey);
       if (this.type == "events") {
-        this.eventsData = this.getEvents;
-        this.eventsData = this.eventsData.filter((event) => {
-          return event.title.toLowerCase().includes(this.searchKey);
-        });
+        this.filterEvents(this.searchKey);
       } else {
-        this.diariesData = this.getDiaries;
-        this.diariesData = this.diariesData.filter((diary) => {
-          return diary.title.toLowerCase().includes(this.searchKey);
-        });
+        this.filterDiaries(this.searchKey);
       }
     },
     closeTextEditor() {

@@ -29,12 +29,14 @@ const state = {
         currentPage: 1,
         totalPage: 1,
     },
+    filterDiaries: [],
     searchKey: '',
 }
 
 const getters = {
     getDiary: state => state.diary,
     getDiaries: state => state.diaries,
+    getFilterDiaries: state => state.filterDiaries,
     getPagination: state => state.pagination,
     getSearchKey: state => state.searchKey
 }
@@ -72,6 +74,7 @@ const actions = {
             showMessage('success');
             commit('setDiaries', response.data);
             commit('setPagnation', response.data);
+            commit('setFilterDiaries');
         }
     },
     async createDiary({ commit }, diary) {
@@ -109,9 +112,7 @@ const actions = {
             showMessage('error')
         }
     },
-    // deleteDiary({ commit }, diaryId) {
-    //     commit('deleteDiary', diaryId);
-    // },
+    
     async updateDiary({ commit }, diary) {
         showMessage('loading')
         // console.log(diary)
@@ -122,6 +123,11 @@ const actions = {
             showMessage('success')
         }
     },
+
+    filterDiaries({ commit }, key) {
+        commit("filterDiaries", key)
+
+    }
 }
 
 const mutations = {
@@ -140,6 +146,16 @@ const mutations = {
         state.pagination.currentPage = pagination.meta.current_page;
         state.pagination.totalPage = pagination.meta.total;
     },
+
+    setFilterDiaries: (state) => {
+        state.filterDiaries = state.diaries
+    },
+
+    filterDiaries: (state, key) => {
+        state.filterDiaries = state.diaries.filter((diary) => {
+            return diary.title.toLowerCase().includes(key);
+        });
+    }
 }
 
 export default {

@@ -72,7 +72,7 @@
           <a-button style="margin: 0 15px" @click="performEmptySearch"
             ><a-icon type="reload"
           /></a-button>
-          <a-button style="width:60px" type="primary" @click="performSearch"
+          <a-button style="width: 60px" type="primary" @click="performSearch"
             ><a-icon type="search"
           /></a-button>
         </div>
@@ -99,7 +99,7 @@
         @createDiary="$refs.diaryList.createDiary()"
       />
       <a role="button" @click="addDiary" class="float">
-        <i class="fa fa-plus my-float"></i>
+        <i style="color: #fff" class="fa fa-plus my-float"></i>
       </a>
       <div class="label-container">
         <div class="label-text">{{ $t("diary_page.addDiaryBtn") }}</div>
@@ -184,8 +184,9 @@ export default {
         fromDate: null,
         toDate: null,
         sort: "newest", // ["newest", "oldest", "a-to-z", "z-to-a"]
-        tags: [],
+        // tags: [],
       };
+      this.$refs.tagPicker.resetForm();
 
       this.fetchDiaries(null);
     },

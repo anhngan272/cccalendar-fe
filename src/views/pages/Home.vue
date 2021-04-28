@@ -109,7 +109,8 @@ export default {
 }
 
 .cccalendar {
-  background-image: linear-gradient(#1d2671, #c33764);
+  /* background-image: linear-gradient(#1d2671, #c33764); */
+  background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #1de840, #2b1de8,  #5d02ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -225,7 +226,7 @@ ul li:after {
   border-radius: 50%;
   filter: blur(20px);
   opacity: 0;
-  transition: 1s;
+  transition: 0.5s;
   z-index: -1;
 }
 
@@ -256,7 +257,7 @@ ul li a {
   border-radius: 50%;
   text-decoration: none;
   transform: scale(1.2);
-  z-index: 10;
+  z-index: 3;
 }
 
 ul li .calendarIcon,

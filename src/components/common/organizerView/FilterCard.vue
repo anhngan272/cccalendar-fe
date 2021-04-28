@@ -1,5 +1,9 @@
 <template>
   <a-card :title="$t('organizer_page.title')">
+    <a-button slot="extra" type="primary" @click="performEmptySearch">
+      <!-- <a-icon type="reload"/> -->
+      Reset
+    </a-button>
     <a-divider orientation="left">{{
       $t("organizer_page.filter.date_filter")
     }}</a-divider>
@@ -7,7 +11,7 @@
       <a-date-picker
         inputReadOnly
         :allowClear="true"
-        v-model="startDate"
+        v-model="form.fromDate"
         format="DD-MM-YYYY"
         :placeholder="$t('organizer_page.filter.start_date')"
         style="width: 150px"
@@ -18,7 +22,7 @@
       <a-date-picker
         inputReadOnly
         :allowClear="true"
-        v-model="endDate"
+        v-model="form.toDate"
         format="DD-MM-YYYY"
         :placeholder="$t('organizer_page.filter.end_date')"
         style="width: 150px"
@@ -42,7 +46,7 @@
       <a-list
         :locale="locale"
         item-layout="horizontal"
-        :data-source="tagsData"
+        :data-source="searching == true ? tagsData : getTags"
         :bordered="true"
       >
         <a-list-item slot="renderItem" slot-scope="item">
@@ -73,13 +77,15 @@
     </div>
     <hr />
     <div style="text-align: right">
-      <a-button type="primary"><a-icon type="arrow-right" /></a-button>
+      <a-button type="primary" @click="performSearch"
+        ><a-icon type="arrow-right"
+      /></a-button>
     </div>
     <a-modal
       :keyboard="false"
       :destroyOnClose="true"
       v-model="tagUpdateModal"
-      :title="$t('calendar_page.calendar.select_month')"
+      :title="$t('organizer_page.filter.edit_tag')"
       :maskClosable="false"
       :closable="false"
     >
@@ -89,7 +95,8 @@
       <div slot="footer">
         <div style="text-align: center">
           <a-button key="update" type="primary" @click="handleOk">
-            {{ $t("calendar_page.event_form.ok_btn") }}
+            <!-- {{ $t("calendar_page.event_form.ok_btn") }} -->
+            Ok
           </a-button>
           <a-popconfirm
             :title="$t('diary_page.diary_form.cancel_confirm')"
@@ -119,19 +126,22 @@ export default {
   name: "FilterCard",
   data() {
     return {
-      startDate: null,
-      endDate: null,
+      form: {
+        fromDate: null,
+        toDate: null,
+        tags: [],
+      },
       vi: vi,
       en: en,
       locale: {
         emptyText: this.$t("diary_page.diary_list.no_data"),
       },
-      tags: [],
       tagUpdateModal: false,
       updatedTag: "",
       updatedTagId: "",
-      searchKey:'',
-      tagsData:[],
+      searchKey: "",
+      tagsData: [],
+      searching: false,
     };
   },
   created() {
@@ -140,12 +150,34 @@ export default {
   computed: {
     ...mapGetters(["getTags"]),
   },
-  mounted(){
-this.tagsData = this.getTags
+  mounted() {
+    this.tagsData = this.getTags;
   },
   methods: {
     moment,
-    ...mapActions(["fetchTags", "deleteTag", "updateTag"]),
+    ...mapActions([
+      "fetchTags",
+      "deleteTag",
+      "updateTag",
+      "fetchDiaries",
+      "fetchEvents",
+    ]),
+
+    performSearch() {
+      this.fetchEvents(this.form);
+      this.fetchDiaries(this.form);
+    },
+
+    performEmptySearch() {
+      this.form = {
+        fromDate: null,
+        toDate: null,
+      };
+      this.$refs.tagPicker.resetForm();
+
+      this.fetchEvents(null);
+      this.fetchDiaries(null);
+    },
 
     handleOk() {
       let updateTag = {
@@ -170,20 +202,21 @@ this.tagsData = this.getTags
       console.log(value);
     },
     onSearch() {
+      this.searching = true;
       this.tagsData = this.getTags;
-        this.tagsData = this.tagsData.filter((tag) => {
-          return tag.name.toLowerCase().includes(this.searchKey);
-        });
+      this.tagsData = this.tagsData.filter((tag) => {
+        return tag.name.toLowerCase().includes(this.searchKey);
+      });
     },
     onChange(checkedValues) {
-      console.log("checked = ", checkedValues);
-      let index = this.tags.indexOf(checkedValues);
+      // console.log("checked = ", checkedValues);
+      let index = this.form.tags.indexOf(checkedValues);
       if (index == -1) {
-        this.tags.push(checkedValues);
+        this.form.tags.push(checkedValues);
       } else {
-        this.tags.splice(index, 1);
+        this.form.tags.splice(index, 1);
       }
-      console.log(this.tags);
+      console.log(this.form.tags);
     },
   },
 };
