@@ -49,7 +49,7 @@ export default {
       var emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       if (values.length == 0) {
         this.isEmpty = true;
-        this.$emit("attendeeSubmited", true);
+        // this.$emit("attendeeSubmited", true);
         this.status = "";
         this.help = "";
       } else {
@@ -66,9 +66,9 @@ export default {
           }
         }
 
+      }
         this.$emit("attendeePicked", values);
         this.$emit("attendeeSubmited", true);
-      }
     },
   },
 };

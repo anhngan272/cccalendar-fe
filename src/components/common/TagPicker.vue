@@ -54,7 +54,7 @@ export default {
     handleChange(values) {
       var tagPattern = /^[a-zA-Z0-9_ -]*$/;
       if (values.length == 0) {
-        this.$emit("tagsSubmitted", true);
+        // this.$emit("tagsSubmitted", true);
         this.status = "";
         this.help = "";
       } else {
