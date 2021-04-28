@@ -2,21 +2,16 @@ import axios from 'axios';
 import { API_URL } from '@/assets/config';
 import { showMessage } from '@/helpers/index';
 
-let tagId = 0
-export function createTagId() {
-    return String(tagId++)
-}
-
 const state = {
     tags: [
-        {
-            name: "Tag0",
-            id: 0
-        },
-        {
-            name: "Tag1",
-            id: 1
-        },
+        // {
+        //     name: "Tag0",
+        //     id: 0
+        // },
+        // {
+        //     name: "Tag1",
+        //     id: 1
+        // },
     ],
     filterTags: [],
 }

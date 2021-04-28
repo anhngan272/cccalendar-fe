@@ -154,6 +154,10 @@ export default {
   border-radius: 50%;
 }
 
+.swatch:hover{
+  box-shadow: 2px 2px 2px grey;
+}
+
 .color {
   height: 40px;
   width: 40px;

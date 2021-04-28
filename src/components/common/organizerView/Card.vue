@@ -1,5 +1,5 @@
 <template>
-  <a-card :title="title" :bodyStyle="{ height: '75vh' }">
+  <a-card :title="title" :bodyStyle="{ height: '75vh',overflow:'auto' }">
     <a-input-search
       slot="extra"
       :placeholder="$t(`organizer_page.${type}.searchPlaceholder`)"
