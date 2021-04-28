@@ -68,7 +68,6 @@
     </a-form-model-item>
     <a-form-model-item :label="$t('calendar_page.event_form.tags')" prop="tag">
       <TagPicker ref="tagPicker" :eventTags="form.tags" @tagsPicked="setTags" @tagsSubmitted="setTagSubmit" />
-      <code>{{form.tags + form.tagSubmitted}}</code>
     </a-form-model-item>
     <a-form-model-item
       :label="$t('calendar_page.event_form.description')"
