@@ -128,6 +128,7 @@
       "edit_tag":"Edit Tag's Name",
       "new_name":"New Name",
       "new_name_warning":"Warning: Will affect all the events and diaries that use this tag!",
+      "tag_already_exist":"Tag already exist", 
       "searchPlaceholder": "Input Search Tag",
       "delete_btn": "Delete",
       "delete_confirm": "Are you sure delete this tag? Cannot undo",

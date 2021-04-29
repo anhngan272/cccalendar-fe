@@ -62,14 +62,12 @@ const actions = {
 
     async updateTag({ commit }, tag) {
         showMessage('loading');
-        const response = await axios.put(API_URL + `/tag/${tag.id}`, tag);
 
+        const response = await axios.put(API_URL + `/tag/${tag.id}`, tag);
         if (response.status === 200) {
-            commit('updateTag', response.data);
+            commit('updateTag', tag);
             showMessage('success');
-        } else if (response.status === 400) {
-            showMessage('already exist')
-        }
+        } 
     },
     // updateTag({ commit }, tag) {
     //     commit('updateTag', tag);
@@ -91,7 +89,7 @@ const mutations = {
         if (tagIndex !== -1) {
             state.tags.splice(tagIndex, 1, tag)
         }
-        console.log(tag)
+        // console.log(tag)
     },
     setFilterTag: (state, tags) => {
         state.filterTags = tags

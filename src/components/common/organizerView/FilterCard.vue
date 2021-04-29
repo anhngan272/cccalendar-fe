@@ -51,9 +51,7 @@
       >
         <a-list-item slot="renderItem" slot-scope="item">
           <a class="edit" slot="actions" @click="showUpdateModal(item)">
-            <a-button type="primary">
-              <a-icon type="edit"
-            /></a-button>
+            <a-button type="primary"> <a-icon type="edit" /></a-button>
             <!-- <span><a-icon type="edit" theme="twoTone" /></span
             >{{ $t("diary_page.diary_form.edit_btn") }} -->
           </a>
@@ -67,9 +65,7 @@
               @confirm="handelDelete(item.id)"
             >
               <a>
-                <a-button type="danger"
-                  ><a-icon type="delete"
-                /></a-button>
+                <a-button type="danger"><a-icon type="delete" /></a-button>
                 <!-- <span><a-icon type="delete" /></span
                 >{{ $t("diary_page.diary_form.delete_btn") }} -->
               </a>
@@ -96,8 +92,14 @@
       :closable="false"
     >
       <div>
-        <a-input :addonBefore="$t('organizer_page.filter.new_name')" autoFocus v-model="updatedTag" />
-        <div class="warning" style="color:#fd7e14;padding:5px">{{$t('organizer_page.filter.new_name_warning')}}</div>
+        <a-input
+          :addonBefore="$t('organizer_page.filter.new_name')"
+          autoFocus
+          v-model="updatedTag"
+        />
+        <div class="warning" style="color: #fd7e14; padding: 5px">
+          {{ $t("organizer_page.filter.new_name_warning") }}
+        </div>
       </div>
       <div slot="footer">
         <div style="text-align: center">
@@ -129,6 +131,8 @@ import moment from "moment";
 require("moment/locale/vi.js");
 import vi from "ant-design-vue/es/date-picker/locale/vi_VN";
 import en from "ant-design-vue/es/date-picker/locale/en_US";
+import { showMessage } from "@/helpers/index";
+
 export default {
   name: "FilterCard",
   data() {
@@ -187,14 +191,21 @@ export default {
     },
 
     handleOk() {
-      let updateTag = {
-        id: this.updatedTagId,
-        name: this.updatedTag,
-      };
-      this.tagUpdateModal = false;
-      this.updateTag(updateTag);
-      this.fetchEvents(null);
-      this.fetchDiaries(null);
+      let tagIndex = this.getTags.findIndex(
+        (tags) => tags.name === this.updatedTag
+      );
+      if (tagIndex == -1) {
+        let updateTag = {
+          id: this.updatedTagId,
+          name: this.updatedTag,
+        };
+        this.tagUpdateModal = false;
+        this.updateTag(updateTag);
+        this.fetchEvents(null);
+        this.fetchDiaries(null);
+      } else {
+        showMessage(this.$t("organizer_page.filter.tag_already_exist"));
+      }
     },
 
     showUpdateModal(tag) {
