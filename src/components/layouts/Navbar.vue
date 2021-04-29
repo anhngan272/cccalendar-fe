@@ -6,7 +6,7 @@
       <a-dropdown placement="bottomCenter" :trigger="['click', 'hover']">
         <template slot="overlay">
           <div class="dropdown-content">
-            <div><i class="fa fa-sign-out"></i>logout</div>
+            <div><i class="fa fa-sign-out"></i>{{ $t("login.signout") }}</div>
           </div>
         </template>
         <a class="ant-dropdown-link">
@@ -21,7 +21,7 @@
       <!-- {{avatar}} -->
       <!-- <img class="avatar" :src="user.avatar" /> -->
 
-      <a-popconfirm
+      <!-- <a-popconfirm
         :title="$t('login.signout_confirm')"
         placement="bottomRight"
         :ok-text="$t('calendar_page.event_form.ok_btn')"
@@ -29,7 +29,7 @@
         @confirm="logout"
       >
         <a id="btn-logout" role="button">{{ $t("login.signout") }}</a>
-      </a-popconfirm>
+      </a-popconfirm> -->
     </template>
     <!-- else -->
     <router-link :to="{ name: 'GoogleLogin' }" v-else>{{

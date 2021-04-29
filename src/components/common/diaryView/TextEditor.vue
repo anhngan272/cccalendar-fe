@@ -168,7 +168,7 @@ export default {
     setDiaryInfo() {
       if (this.isUpdate == true) {
         this.form.title = this.diary.title;
-        this.form.date = this.diary.date;
+        this.form.date = moment(this.diary.date);
         this.form.tags = this.diary.tags;
         this.form.content = this.diary.content;
         // console.log(this.diary)
@@ -205,7 +205,7 @@ export default {
         var diary = {
           id: this.diary.id,
           title: this.form.title,
-          date: this.form.date.clone().format("YYYY-MM-DD"),
+          date: this.form.date.clone().format('YYYY-MM-DD'),
           tags: this.form.tags,
           content: this.form.content,
         };
