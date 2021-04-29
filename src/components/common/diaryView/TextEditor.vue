@@ -59,6 +59,7 @@
           useCustomImageHandler
           @imageAdded="handleImageAdded"
           v-model="form.content"
+          :editorToolbar="customToolbar"
         >
         </vue-editor>
       </a-form-model-item>
@@ -121,6 +122,20 @@ export default {
   computed: {},
   data() {
     return {
+      customToolbar: [
+        [{ header: [false, 1, 2, 3, 4, 5, 6] }],
+        ["bold", "italic", "underline", "strike"], // toggled buttons
+        [
+          { align: "" },
+          { align: "center" },
+          { align: "right" },
+          { align: "justify" },
+        ],
+        ["blockquote", "code-block"],
+        [{ list: "ordered" }, { list: "bullet" }, { list: "check" }],
+        [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
+        [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+      ],
       textEditorVisible: false,
       htmlForEditor: "",
       visible: false,
@@ -205,7 +220,7 @@ export default {
         var diary = {
           id: this.diary.id,
           title: this.form.title,
-          date: this.form.date.clone().format('YYYY-MM-DD'),
+          date: this.form.date.clone().format("YYYY-MM-DD"),
           tags: this.form.tags,
           content: this.form.content,
         };

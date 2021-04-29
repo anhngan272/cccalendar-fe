@@ -186,6 +186,8 @@ export default {
       };
       this.tagUpdateModal = false;
       this.updateTag(updateTag);
+      this.fetchEvents(null);
+      this.fetchDiaries(null);
     },
 
     showUpdateModal(tag) {
