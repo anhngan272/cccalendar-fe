@@ -82,7 +82,7 @@
         <a-popconfirm
           :title="$t('diary_page.diary_form.cancel_confirm')"
           placement="top"
-          :ok-text="$t('diary_page.diary_form.ok_btn')"
+          ok-text="Ok"
           :cancel-text="$t('diary_page.diary_form.cancel_btn')"
           @confirm="handelCancel"
         >

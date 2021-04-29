@@ -54,7 +54,7 @@
       "update_btn": "Update",
       "edit_btn": "Edit",
       "delete_btn": "Delete",
-      "delete_confirm": "Are you sure delete this diary?"
+      "delete_confirm": "Are you sure delete this diary? Cannot undo"
     },
     "diary_list": {
       "no_data": "No data",
@@ -111,7 +111,7 @@
       "edit_btn": "Edit",
       "reset_btn": "Reset",
       "delete_btn": "Delete",
-      "delete_confirm": "Are you sure delete this event?",
+      "delete_confirm": "Are you sure delete this event? Cannot undo",
       "ok_btn": "Close",
       "cancel_btn": "Cancel",
       "cancel_confirm": "Are you sure cancel edit this event?",
@@ -126,7 +126,12 @@
       "end_date": "End Date",
       "tag_filter":"Tag Filter",
       "edit_tag":"Edit Tag's Name",
-      "searchPlaceholder": "Input Search Tag"
+      "new_tag":"New Name",
+      "new_tag_warning":"Warning: Will affect all the events and diaries that use this tag!",
+      "searchPlaceholder": "Input Search Tag",
+      "delete_btn": "Delete",
+      "delete_confirm": "Are you sure delete this tag? Cannot undo",
+      "cancel_btn": "Cancel"
     },
     "events":{
       "title":"Events",

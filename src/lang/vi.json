@@ -53,7 +53,7 @@
       "update_btn": "Cập nhật",
       "edit_btn": "Chỉnh sửa",
       "delete_btn": "Xóa",
-      "delete_confirm": "Bạn có chắc muốn xóa?"
+      "delete_confirm": "Bạn có chắc muốn xóa nhật ký này? Không thể hoàn tác"
     },
     "diary_list": {
       "no_data": "Không có dữ liệu",
@@ -110,7 +110,7 @@
       "edit_btn": "Chỉnh sửa",
       "reset_btn": "Làm mới",
       "delete_btn": "Xóa",
-      "delete_confirm": "Bạn có chắc chắn xóa sự kiện này không?",
+      "delete_confirm": "Bạn có chắc chắn xóa sự kiện này không? Không thể hoàn tác",
       "ok_btn": "Đóng",
       "cancel_btn": "Hủy",
       "cancel_confirm": "Bạn có chắc chắn hủy chỉnh sửa sự kiện này không?",
@@ -125,7 +125,12 @@
       "end_date": "Ngày kết thúc",
       "tag_filter": "Lọc theo thẻ",
       "edit_tag":"Cập nhật tên thẻ",
-      "searchPlaceholder": "Nhập tên thẻ cần tìm"
+      "new_tag":"Tên mới",
+      "new_tag_warning":"Lưu ý: Sẽ ảnh hưởng đến các sự kiện và nhật ký sử dụng thẻ này!",
+      "searchPlaceholder": "Nhập tên thẻ cần tìm",
+      "delete_btn": "Xóa",
+      "delete_confirm": "Bạn có chắc muốn xóa thẻ này? Không thể hoàn tác",
+      "cancel_btn": "Hủy"
     },
     "events": {
       "title": "Sự kiện",

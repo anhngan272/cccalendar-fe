@@ -17,20 +17,21 @@
     >
       <a-list-item slot="renderItem" slot-scope="item">
         <a class="edit" slot="actions" @click="showUpdateModal(item)"
-          ><a-button type="primary">
-            <a-icon style="color: white" type="edit" /></a-button
+          ><a-button type="primary"> <a-icon type="edit" /></a-button
         ></a>
         <a slot="actions" class="delete">
           <a-popconfirm
-            :title="$t('diary_page.diary_form.delete_confirm')"
+            :title="
+              type == 'events'
+                ? $t('calendar_page.event_form.delete_confirm')
+                : $t('diary_page.diary_form.delete_confirm')
+            "
             placement="top"
-            :ok-text="$t('diary_page.diary_form.ok_btn')"
+            :ok-text="$t('diary_page.diary_form.delete_btn')"
             :cancel-text="$t('diary_page.diary_form.cancel_btn')"
             @confirm="handelDelete(item)"
           >
-            <a-button type="danger"
-              ><a-icon style="color: white" type="delete"
-            /></a-button>
+            <a-button type="danger"><a-icon type="delete" /></a-button>
           </a-popconfirm>
         </a>
         <div class="title" @click="showModal(item)">
@@ -102,8 +103,7 @@ export default {
       searchKey: "",
     };
   },
-  mounted() {
-  },
+  mounted() {},
   created() {
     if (this.type == "events") {
       this.fetchEvents();
@@ -114,7 +114,12 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["getEvents", "getDiaries", "getFilterEvents","getFilterDiaries"]),
+    ...mapGetters([
+      "getEvents",
+      "getDiaries",
+      "getFilterEvents",
+      "getFilterDiaries",
+    ]),
   },
   methods: {
     ...mapActions([

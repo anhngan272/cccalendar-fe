@@ -50,23 +50,29 @@
         :bordered="true"
       >
         <a-list-item slot="renderItem" slot-scope="item">
-          <a class="edit" slot="actions" @click="showUpdateModal(item)"
-            ><span><a-icon type="edit" theme="twoTone" /></span
-            >{{ $t("diary_page.diary_form.edit_btn") }}</a
-          >
+          <a class="edit" slot="actions" @click="showUpdateModal(item)">
+            <a-button type="primary">
+              <a-icon type="edit"
+            /></a-button>
+            <!-- <span><a-icon type="edit" theme="twoTone" /></span
+            >{{ $t("diary_page.diary_form.edit_btn") }} -->
+          </a>
 
           <a slot="actions" class="delete">
             <a-popconfirm
-              :title="$t('diary_page.diary_form.delete_confirm')"
+              :title="$t('organizer_page.filter.delete_confirm')"
               placement="top"
-              :ok-text="$t('diary_page.diary_form.ok_btn')"
-              :cancel-text="$t('diary_page.diary_form.cancel_btn')"
+              :ok-text="$t('organizer_page.filter.delete_btn')"
+              :cancel-text="$t('organizer_page.filter.cancel_btn')"
               @confirm="handelDelete(item.id)"
             >
-              <a
-                ><span><a-icon type="delete" /></span
-                >{{ $t("diary_page.diary_form.delete_btn") }}</a
-              >
+              <a>
+                <a-button type="danger"
+                  ><a-icon type="delete"
+                /></a-button>
+                <!-- <span><a-icon type="delete" /></span
+                >{{ $t("diary_page.diary_form.delete_btn") }} -->
+              </a>
             </a-popconfirm>
           </a>
           <a-checkbox :value="item" @change="onChange(item.name)">
@@ -90,7 +96,8 @@
       :closable="false"
     >
       <div>
-        <a-input addonBefore="New Tag's Name" autoFocus v-model="updatedTag" />
+        <a-input :addonBefore="$t('organizer_page.filter.new_tag')" autoFocus v-model="updatedTag" />
+        <div class="warning" style="color:#fd7e14;padding:5px">{{$t('organizer_page.filter.new_tag_warning')}}</div>
       </div>
       <div slot="footer">
         <div style="text-align: center">

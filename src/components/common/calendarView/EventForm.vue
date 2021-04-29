@@ -98,7 +98,7 @@
       <a-popconfirm
         :title="$t('calendar_page.event_form.cancel_confirm')"
         placement="top"
-        :ok-text="$t('calendar_page.event_form.ok_btn')"
+        ok-text="Ok"
         :cancel-text="$t('calendar_page.event_form.cancel_btn')"
         @confirm="$emit('cancel')"
       >

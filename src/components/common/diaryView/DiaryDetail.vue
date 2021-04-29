@@ -17,7 +17,7 @@
         <a-popconfirm
           :title="$t('diary_page.diary_form.delete_confirm')"
           placement="top"
-          :ok-text="$t('diary_page.diary_form.ok_btn')"
+          :ok-text="$t('diary_page.diary_form.delete_btn')"
           :cancel-text="$t('diary_page.diary_form.cancel_btn')"
           @confirm="handleDelete"
         >
