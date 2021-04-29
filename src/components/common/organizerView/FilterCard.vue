@@ -96,8 +96,8 @@
       :closable="false"
     >
       <div>
-        <a-input :addonBefore="$t('organizer_page.filter.new_tag')" autoFocus v-model="updatedTag" />
-        <div class="warning" style="color:#fd7e14;padding:5px">{{$t('organizer_page.filter.new_tag_warning')}}</div>
+        <a-input :addonBefore="$t('organizer_page.filter.new_name')" autoFocus v-model="updatedTag" />
+        <div class="warning" style="color:#fd7e14;padding:5px">{{$t('organizer_page.filter.new_name_warning')}}</div>
       </div>
       <div slot="footer">
         <div style="text-align: center">
