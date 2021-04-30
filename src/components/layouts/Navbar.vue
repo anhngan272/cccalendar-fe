@@ -6,7 +6,7 @@
       <a-dropdown placement="bottomCenter" :trigger="['click', 'hover']">
         <template slot="overlay">
           <div class="dropdown-content">
-            <div><i class="fa fa-sign-out"></i>{{ $t("login.signout") }}</div>
+            <div @click="performLogout"><i class="fa fa-sign-out"></i>{{ $t("login.signout") }}</div>
           </div>
         </template>
         <a class="ant-dropdown-link">

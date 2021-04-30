@@ -71,7 +71,11 @@
               </a>
             </a-popconfirm>
           </a>
-          <a-checkbox :value="item" @change="onChange(item.name)">
+          <a-checkbox
+            :value="item"
+            @change="onChange(item.name)"
+            :checked="check(item.name)"
+          >
             {{ item.name }}
           </a-checkbox>
         </a-list-item>
@@ -183,11 +187,14 @@ export default {
       this.form = {
         fromDate: null,
         toDate: null,
+        tags: [],
       };
-      this.$refs.tagPicker.resetForm();
-
       this.fetchEvents(null);
       this.fetchDiaries(null);
+    },
+
+    check(value) {
+      return this.form.tags.includes(value);
     },
 
     handleOk() {
