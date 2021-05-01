@@ -35,17 +35,17 @@ const actions = {
             const searchParams = { ...searchTerms };
 
             // check if date is undefined
-            if (searchTerms.fromDate) {
-                searchParams.fromDate = searchTerms.fromDate.clone().format('YYYY-MM-DD');
+            if (searchTerms.start) {
+                searchParams.start = searchTerms.start.clone().format('YYYY-MM-DD');
             } else {
-                delete searchParams.fromDate;
+                delete searchParams.start;
             }
 
             // check if date is undefined
-            if (searchTerms.toDate) {
-                searchParams.toDate = searchTerms.toDate.clone().format('YYYY-MM-DD');
+            if (searchTerms.end) {
+                searchParams.end = searchTerms.end.clone().format('YYYY-MM-DD');
             } else {
-                delete searchParams.toDate;
+                delete searchParams.end;
             }
 
             showMessage('loading');

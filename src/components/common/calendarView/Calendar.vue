@@ -115,7 +115,7 @@ export default {
     },
     handleOk() {
       var date = this.date.toISOString().replace(/T.*$/, "");
-      console.log(date);
+      // console.log(date);
       this.$refs.calendar.getApi().changeView("dayGridMonth", date);
       this.modal1 = false;
     },

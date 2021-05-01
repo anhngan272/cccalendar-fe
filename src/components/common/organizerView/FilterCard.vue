@@ -1,8 +1,7 @@
 <template>
   <a-card :title="$t('organizer_page.title')">
     <a-button slot="extra" type="primary" @click="performEmptySearch">
-      <!-- <a-icon type="reload"/> -->
-      Reset
+      <a-icon type="reload"/>
     </a-button>
     <a-divider orientation="left">{{
       $t("organizer_page.filter.date_filter")
@@ -15,7 +14,6 @@
         format="DD-MM-YYYY"
         :placeholder="$t('organizer_page.filter.start_date')"
         style="width: 150px"
-        @change="selectDate"
         :locale="this.$i18n.locale == 'vi' ? vi : en"
       />
       -
@@ -26,7 +24,6 @@
         format="DD-MM-YYYY"
         :placeholder="$t('organizer_page.filter.end_date')"
         style="width: 150px"
-        @change="selectDate"
         :locale="this.$i18n.locale == 'vi' ? vi : en"
       />
     </div>
@@ -179,7 +176,12 @@ export default {
     ]),
 
     performSearch() {
-      this.fetchEvents(this.form);
+      let eventSearchTerm = {
+        start: this.form.fromDate,
+        end: this.form.toDate,
+        tags:this.form.tags
+      }
+      this.fetchEvents(eventSearchTerm);
       this.fetchDiaries(this.form);
     },
 
@@ -243,7 +245,7 @@ export default {
       } else {
         this.form.tags.splice(index, 1);
       }
-      console.log(this.form.tags);
+      // console.log(this.form.tags);
     },
   },
 };
