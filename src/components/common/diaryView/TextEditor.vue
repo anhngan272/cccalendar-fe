@@ -54,7 +54,7 @@
         :wrapper-col="{ span: 24, offset: 1 }"
       >
         <vue-editor
-          style="height: 45vh"
+          style="height: 45vh;overflow:auto"
           id="editor"
           useCustomImageHandler
           @imageAdded="handleImageAdded"

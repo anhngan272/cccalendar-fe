@@ -10,8 +10,10 @@
     >
       <a-list-item slot="renderItem" slot-scope="item, index">
         <a class="edit" slot="actions" @click="showUpdateModal(item)"
-          ><a-button type="primary"><a-icon type="edit" />
-          {{ $t("diary_page.diary_form.edit_btn") }}</a-button></a
+          ><a-button type="primary"
+            ><a-icon type="edit" />
+            {{ $t("diary_page.diary_form.edit_btn") }}</a-button
+          ></a
         >
 
         <a slot="actions" class="delete">
@@ -23,7 +25,11 @@
             @confirm="handelDelete(item)"
           >
             <a
-              ><a-button type="danger"><a-icon type="delete" />{{ $t("diary_page.diary_form.delete_btn") }}</a-button></a
+              ><a-button type="danger"
+                ><a-icon type="delete" />{{
+                  $t("diary_page.diary_form.delete_btn")
+                }}</a-button
+              ></a
             >
           </a-popconfirm>
         </a>
@@ -41,7 +47,14 @@
             }}</span>
           </a>
           <!-- <a slot="description" class="diary-tag">{{ item.tags }}</a> -->
-          <a slot="description" class="diary-tag" v-for="tag in item.tags" :key="tag" @click="clickTag(tag)">#{{ tag }}</a>
+          <a
+            slot="description"
+            class="diary-tag"
+            v-for="tag in item.tags"
+            :key="tag"
+            @click="clickTag(tag)"
+            >#{{ tag }}</a
+          >
           <a slot="title" class="diary-title" @click="showDiaryModal(item)"
             ><h4 class="font-weight-bold">{{ item.title }}</h4></a
           >
@@ -95,17 +108,22 @@ export default {
       diary: {},
       diaryModal: false,
       createDiaryId: -1,
-      updateDiaryId: "",
-      filterTags:[],
+      updateDiaryId: -1,
     };
   },
   methods: {
     ...mapActions(["fetchDiaries", "deleteDiary"]),
-    clickTag(tag){
-      this.$emit('clickTag',tag)
+
+    resetFields() {
+      this.createDiaryId = -1;
+      this.updateDiaryId = -1;
+    },
+
+    clickTag(tag) {
+      this.$emit("clickTag", tag);
     },
     createDiary() {
-      this.updateDiaryId = '';
+      this.updateDiaryId = "";
       this.createDiaryId = 0;
     },
     updateDiary(diaryId) {

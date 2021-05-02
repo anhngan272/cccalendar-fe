@@ -187,6 +187,7 @@ export default {
         // tags: [],
       };
       this.$refs.tagPicker.resetForm();
+      this.$refs.diaryList.resetFields();
 
       this.fetchDiaries(null);
     },

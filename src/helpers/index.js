@@ -6,20 +6,20 @@ import { message } from 'ant-design-vue'
 
 Vue.use(VueCookies);
 
-const showMessage = (status) => {
+const showMessage = (status, messages) => {
     const key = 'updatable';
     switch (status) {
         case 'loading':
-            message.loading({ content: 'Loading...', key });
+            message.loading({ content: messages, key });
             break;
         case 'success':
-            message.success({ content: 'Success', key, duration: 2 });
+            message.success({ content: messages, key, duration: 2 });
             break;
         case 'error':
-            message.error({ content: 'Error occurred. Please try again later.', key, duration: 2 });
+            message.error({ content: messages, key, duration: 2 });
             break;
         default:
-            message.error({ content: status, key, duration: 2 });
+            message.error({ content: messages, key, duration: 2 });
             break;
     }
 }

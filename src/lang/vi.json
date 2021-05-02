@@ -1,4 +1,17 @@
 {
+  "title":{
+    "Home":"Trang chủ",
+    "About":"Giới thiệu"
+
+  },
+  "notification":{
+    "loading":"Đang tải...",
+    "success":"Thành công!",
+    "error":"Có lỗi!!",
+    "update_error":"Lỗi cập nhật!!",
+    "validate_error":"Lỗi xác nhận!!",
+    "submit_error":"Lỗi gửi đi!!"
+  },
   "common": {
     "select_lang": "VN",
     "logo": "LOGO",

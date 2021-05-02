@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { API_URL } from '@/assets/config';
 import { showMessage } from '@/helpers/index';
+import i18n from '@/lang/i18n.js'
 
 const state = {
     tags: [
@@ -24,22 +25,22 @@ const getters = {
 
 const actions = {
     async fetchTags({ commit }) {
-        showMessage('loading');
+        showMessage('loading',i18n.t('notification.loading'));
         const response = await axios.get(API_URL + '/tag');
 
         if (response.status === 200) {
             commit('setTags', response.data);
-            showMessage('success');
+            showMessage('success',i18n.t('notification.success'));
         }
     },
 
     async createTag({ commit }, tag) {
-        showMessage('loading');
+        showMessage('loading',i18n.t('notification.loading'));
         const response = await axios.post(API_URL + '/tag', tag);
 
         if (response.status === 200) {
             commit('createTag', response.data);
-            showMessage('success');
+            showMessage('success',i18n.t('notification.success'));
         }
     },
     // createTag({ commit }, tag) {
@@ -47,12 +48,12 @@ const actions = {
     // },
 
     async deleteTag({ commit }, tagId) {
-        showMessage('loading');
+        showMessage('loading',i18n.t('notification.loading'));
         const response = await axios.delete(API_URL + `/tag/${tagId}`);
 
         if (response.status === 200) {
             commit('deleteTag', tagId);
-            showMessage('success');
+            showMessage('success',i18n.t('notification.success'));
         }
     },
 
@@ -61,12 +62,12 @@ const actions = {
     // },
 
     async updateTag({ commit }, tag) {
-        showMessage('loading');
+        showMessage('loading',i18n.t('notification.loading'));
 
         const response = await axios.put(API_URL + `/tag/${tag.id}`, tag);
         if (response.status === 200) {
             commit('updateTag', tag);
-            showMessage('success');
+            showMessage('success',i18n.t('notification.success'));
         } 
     },
     // updateTag({ commit }, tag) {

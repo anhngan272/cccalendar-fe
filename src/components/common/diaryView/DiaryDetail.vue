@@ -6,7 +6,7 @@
     v-model="diaryModal"
     :title="title"
     @ok="handleOk"
-    width="30vw"
+    width="80vw"
   >
     <div slot="footer">
       <div style="text-align: center">

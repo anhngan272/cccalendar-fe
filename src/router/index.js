@@ -17,14 +17,14 @@ const routes = [{
     name: 'Home',
     component: Home,
     meta: {
-        title: 'Home',
+        title: "Home",
     }
 }, {
     path: '/404',
     alias: '*',
     component: NotFound,
     meta: {
-        title: 'Not found',
+        title: 'Not_found',
     }
 }, {
     path: '*',

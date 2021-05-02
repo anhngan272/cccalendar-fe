@@ -1,5 +1,5 @@
 <template>
-  <a-card :title="title" :bodyStyle="{ height: '75vh', overflow: 'auto' }">
+  <a-card :title="title" :bodyStyle="{ height: '77vh', overflow: 'auto' }">
     <a-input-search
       slot="extra"
       :placeholder="$t(`organizer_page.${type}.searchPlaceholder`)"
@@ -8,6 +8,7 @@
       @change="onChange"
     />
     <a-list
+    :pagination="pagination"
       :locale="{
         emptyText: this.$t('diary_page.diary_list.no_data'),
       }"
@@ -101,6 +102,9 @@ export default {
       title: "",
       textEditorVisible: false,
       searchKey: "",
+      pagination: {
+        pageSize: 8,
+      },
     };
   },
   mounted() {},

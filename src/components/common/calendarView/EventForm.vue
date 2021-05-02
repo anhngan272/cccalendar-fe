@@ -233,7 +233,7 @@ export default {
           this.$emit("updated");
         }
       } else {
-        showMessage("error update!!")
+        showMessage(this.$i18n.t('notification.update_error'))
         // console.log("error update!!");
         return false;
       }

@@ -1,22 +1,19 @@
 import axios from 'axios';
 import { API_URL } from '@/assets/config';
 import { showMessage } from '@/helpers/index';
-// import moment from 'moment';
+import i18n from '@/lang/i18n.js'
 
-let diaryId = 0
-export function createDiaryId() {
-    return String(diaryId++)
-}
+// import moment from 'moment';
 
 const state = {
     diaries: [
-        // {
-        //     id: createDiaryId(),
-        //     title: "Ant Design Title 1",
-        //     date: "6/4/2021",
-        //     tags: [],
-        //     content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
-        // },
+        {
+            id: 0,
+            title: "Ant Design Title 1",
+            date: "6/4/2021",
+            tags: [],
+            content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>vsdvdsvdsvsdvs<br/>f<br/>'
+        },
         // {
         //     id: createDiaryId(),
         //     title: "Ant Design Title 2",
@@ -29,7 +26,61 @@ const state = {
         currentPage: 1,
         totalPage: 1,
     },
-    filterDiaries: [],
+    filterDiaries: [{
+        id: 0,
+        title: "Ant Design Title 1",
+        date: "6/4/2021",
+        tags: [],
+        content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>vsdvdsvdsvsdvs<br/>f<br/>'
+    },{
+        id: 0,
+        title: "Ant Design Title 1",
+        date: "6/4/2021",
+        tags: [],
+        content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>vsdvdsvdsvsdvs<br/>f<br/>'
+    },{
+        id: 0,
+        title: "Ant Design Title 1",
+        date: "6/4/2021",
+        tags: [],
+        content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>vsdvdsvdsvsdvs<br/>f<br/>'
+    },{
+        id: 0,
+        title: "Ant Design Title 1",
+        date: "6/4/2021",
+        tags: [],
+        content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>vsdvdsvdsvsdvs<br/>f<br/>'
+    },{
+        id: 0,
+        title: "Ant Design Title 1",
+        date: "6/4/2021",
+        tags: [],
+        content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>vsdvdsvdsvsdvs<br/>f<br/>'
+    },{
+        id: 0,
+        title: "Ant Design Title 1",
+        date: "6/4/2021",
+        tags: [],
+        content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>vsdvdsvdsvsdvs<br/>f<br/>'
+    },{
+        id: 0,
+        title: "Ant Design Title 1",
+        date: "6/4/2021",
+        tags: [],
+        content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>vsdvdsvdsvsdvs<br/>f<br/>'
+    },{
+        id: 0,
+        title: "Ant Design Title 1",
+        date: "6/4/2021",
+        tags: [],
+        content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>vsdvdsvdsvsdvs<br/>f<br/>'
+    },{
+        id: 0,
+        title: "Ant Design Title 1",
+        date: "6/4/2021",
+        tags: [],
+        content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>vsdvdsvdsvsdvs<br/>f<br/>'
+    },],
     searchKey: '',
 }
 
@@ -61,17 +112,17 @@ const actions = {
                 delete searchParams.toDate;
             }
 
-            showMessage('loading');
+            showMessage('loading', i18n.t('notification.loading'));
             response = await axios.get(API_URL + '/diary', {
                 params: searchParams
             });
         } else {
-            showMessage('loading');
+            showMessage('loading', i18n.t('notification.loading'));
             response = await axios.get(API_URL + '/diary');
         }
 
         if (response.status === 200) {
-            showMessage('success');
+            showMessage('success', i18n.t('notification.success'));
             commit('setDiaries', response.data);
             commit('setPagnation', response.data);
             commit('setFilterDiaries');
@@ -86,7 +137,7 @@ const actions = {
             formDataDiary.append('tags[]', diary.tags[i]);
         }
 
-        showMessage('loading')
+        showMessage('loading', i18n.t('notification.loading'));
 
         const response = await axios.post(API_URL + '/diary', formDataDiary, {
             headers: {
@@ -94,33 +145,34 @@ const actions = {
             }
         });
         if (response.status === 200 || response.status === 201) {
-            showMessage('success')
+            showMessage('success', i18n.t('notification.success'));
             commit('createDiary', response.data);
         } else {
-            showMessage('error')
+            showMessage('error', i18n.t('notification.error'));
         }
     },
 
     async deleteDiary({ commit }, diaryId) {
-        showMessage('loading')
+        showMessage('loading', i18n.t('notification.loading'));
 
         const response = await axios.delete(API_URL + `/diary/${diaryId}`);
         if (response.status === 200 || response.status === 201) {
-            showMessage('success')
+            showMessage('success', i18n.t('notification.success'));
             commit('deleteDiary', diaryId);
+            commit('deleteFilterDiary', diaryId);
         } else {
-            showMessage('error')
+            showMessage('error', i18n.t('notification.error'));
         }
     },
-    
+
     async updateDiary({ commit }, diary) {
-        showMessage('loading')
+        showMessage('loading', i18n.t('notification.loading'));
         // console.log(diary)
         const response = await axios.put(API_URL + `/diary/${diary.id}`, diary);
 
         if (response.status === 200) {
             commit('updateDiary', response.data);
-            showMessage('success')
+            showMessage('success', i18n.t('notification.success'));
         }
     },
 
@@ -137,6 +189,7 @@ const mutations = {
         state.diaries.unshift(diary)
     },
     deleteDiary: (state, diaryId) => state.diaries = state.diaries.filter(diary => diary.id !== diaryId),
+    deleteFilterDiary: (state, diaryId) => state.filterDiaries = state.filterDiaries.filter(diary => diary.id !== diaryId),
     updateDiary: (state, diary) => {
         const diaryIndex = state.diaries.findIndex(x => x.id === diary.id)
         state.diaries.splice(diaryIndex, 1, diary)
