@@ -84,7 +84,7 @@
       "begin": "Bắt đầu",
       "end": "Kết thúc",
       "attendees": "Khách",
-      "select_attendees": "Nhập thêm khách",
+      "select_attendees": "Vd: abc@gmail.com",
       "attendees_help": " không phải là một email hợp lệ",
       "tags": "Thẻ",
       "tags_help": " Không hợp lệ. Thẻ chỉ có thể chứa chữ cái, '-', '_' và khoảng cách",

@@ -80,7 +80,7 @@ const actions = {
             showMessage('success')
             commit('addEvent', response.data);
         } else {
-            console.log(response.status)
+            showMessage('error')
         }
     },
     async deleteEvent({ commit }, eventId) {

@@ -190,12 +190,6 @@ export default {
 
       this.fetchDiaries(null);
     },
-    selectDate(value) {
-      console.log(value);
-    },
-    handleChange(value) {
-      console.log(`selected ${value}`);
-    },
     addDiary() {
       this.showText = true;
       this.$refs.textEditor.textEditorVisible = true;

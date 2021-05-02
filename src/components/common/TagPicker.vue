@@ -75,7 +75,7 @@ export default {
         this.setFilterTags(values);
         this.$emit("changeFilterTags", values);
       } else {
-        console.log(`selected ${values}`);
+        // console.log(`selected ${values}`);
         this.$emit("tagsPicked", values);
         this.$emit("tagsSubmitted", true);
       }

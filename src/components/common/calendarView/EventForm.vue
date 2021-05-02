@@ -319,6 +319,7 @@ export default {
         //call vuex store action to add event
         if (this.addEvent(event)) {
           this.$emit("updated");
+          this.resetForm();
         }
       } else {
         showMessage("error submit!!")
@@ -364,7 +365,7 @@ export default {
         this.$refs.colorPicker.resetForm();
         this.form.time1 = moment.utc("12:00", "HH:mm");
         this.form.time2 = moment.utc("13:30", "HH:mm");
-        this.colorId = "#039BE5";
+        this.form.colorId = 7;
       }
     },
 

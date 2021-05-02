@@ -227,9 +227,6 @@ export default {
       this.deleteTag(tagId);
     },
 
-    selectDate(value) {
-      console.log(value);
-    },
     onSearch() {
       this.searching = true;
       this.tagsData = this.getTags;

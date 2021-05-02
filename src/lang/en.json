@@ -85,7 +85,7 @@
       "begin": "Begin",
       "end": "End",
       "attendees": "Attendees",
-      "select_attendees": "Enter Attendee",
+      "select_attendees": "Ex: abc@gmail.com",
       "attendees_help": " is not a valid email",
       "tags": "Tags",
       "tags_help": " Invalid. Tag can only cantain letters, '-', '_' and spaces",
