@@ -59,6 +59,10 @@
     </div>
     <!-- <div>color: {{ eventModalExtend }}</div> -->
     <div>
+      <b>{{ $t("calendar_page.event_form.creator") }}: </b>
+      {{ eventModalExtend.creator }}
+    </div>
+    <div>
       <b>{{ $t("calendar_page.event_form.attendees") }}: </b>
       <div class="attendeeWrapper">
         <span v-for="(attendee, i) in eventModalExtend.attendees" :key="i"

@@ -101,6 +101,8 @@
       "attendees": "Attendees",
       "select_attendees": "Ex: abc@gmail.com",
       "attendees_help": " is not a valid email",
+      "attendees_cant_modified":"Attendees (You can't modify this field)",
+      "creator": "Creator",
       "tags": "Tags",
       "tags_help": " Invalid. Tag can only cantain letters, '-', '_' and spaces",
       "select_tags": "Select Tag",
@@ -146,7 +148,9 @@
       "searchPlaceholder": "Input Search Tag",
       "delete_btn": "Delete",
       "delete_confirm": "Are you sure delete this tag? Cannot undo",
-      "cancel_btn": "Cancel"
+      "cancel_btn": "Cancel",
+      "all_tag":"All",
+      "contain_all_tag":"Contain all chosen tags"
     },
     "events":{
       "title":"Events",

@@ -99,6 +99,8 @@
       "attendees": "Khách",
       "select_attendees": "Vd: abc@gmail.com",
       "attendees_help": " không phải là một email hợp lệ",
+      "attendees_cant_modified":"Khách (Bạn không thể sửa phần này)",
+      "creator": "Người tạo",
       "tags": "Thẻ",
       "tags_help": " Không hợp lệ. Thẻ chỉ có thể chứa chữ cái, '-', '_' và khoảng cách",
       "select_tags": "Chọn thẻ",
@@ -144,7 +146,9 @@
       "searchPlaceholder": "Nhập tên thẻ cần tìm",
       "delete_btn": "Xóa",
       "delete_confirm": "Bạn có chắc muốn xóa thẻ này? Không thể hoàn tác",
-      "cancel_btn": "Hủy"
+      "cancel_btn": "Hủy",
+      "all_tag":"Tất cả",
+      "contain_all_tag":"Chứa tất cả thẻ đã chọn"
     },
     "events": {
       "title": "Sự kiện",

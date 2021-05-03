@@ -82,10 +82,16 @@ const initialize = (store, router) => {
         }
     });
 
+    // axios.defaults.timeout = 10000;
+
     axios.interceptors.response.use(null, (error) => {
         if (error.response.status == 401) {
             store.commit('logout');
             router.push({ name: 'GoogleLogin' });
+        }
+
+        if (error.response.status == 500) {
+            showMessage('error','cant_connect')
         }
 
         return Promise.reject(error);

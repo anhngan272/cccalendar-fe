@@ -7,80 +7,19 @@ import i18n from '@/lang/i18n.js'
 
 const state = {
     diaries: [
-        {
-            id: 0,
-            title: "Ant Design Title 1",
-            date: "6/4/2021",
-            tags: [],
-            content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>vsdvdsvdsvsdvs<br/>f<br/>'
-        },
         // {
-        //     id: createDiaryId(),
-        //     title: "Ant Design Title 2",
+        //     id: 0,
+        //     title: "Ant Design Title 1",
         //     date: "6/4/2021",
-        //     tags: ['ha', 'hi'],
-        //     content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+        //     tags: [],
+        //     content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>vsdvdsvdsvsdvs<br/>f<br/>'
         // },
     ],
     pagination: {
         currentPage: 1,
         totalPage: 1,
     },
-    filterDiaries: [{
-        id: 0,
-        title: "Ant Design Title 1",
-        date: "6/4/2021",
-        tags: [],
-        content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>vsdvdsvdsvsdvs<br/>f<br/>'
-    },{
-        id: 0,
-        title: "Ant Design Title 1",
-        date: "6/4/2021",
-        tags: [],
-        content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>vsdvdsvdsvsdvs<br/>f<br/>'
-    },{
-        id: 0,
-        title: "Ant Design Title 1",
-        date: "6/4/2021",
-        tags: [],
-        content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>vsdvdsvdsvsdvs<br/>f<br/>'
-    },{
-        id: 0,
-        title: "Ant Design Title 1",
-        date: "6/4/2021",
-        tags: [],
-        content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>vsdvdsvdsvsdvs<br/>f<br/>'
-    },{
-        id: 0,
-        title: "Ant Design Title 1",
-        date: "6/4/2021",
-        tags: [],
-        content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>vsdvdsvdsvsdvs<br/>f<br/>'
-    },{
-        id: 0,
-        title: "Ant Design Title 1",
-        date: "6/4/2021",
-        tags: [],
-        content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>vsdvdsvdsvsdvs<br/>f<br/>'
-    },{
-        id: 0,
-        title: "Ant Design Title 1",
-        date: "6/4/2021",
-        tags: [],
-        content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>vsdvdsvdsvsdvs<br/>f<br/>'
-    },{
-        id: 0,
-        title: "Ant Design Title 1",
-        date: "6/4/2021",
-        tags: [],
-        content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>vsdvdsvdsvsdvs<br/>f<br/>'
-    },{
-        id: 0,
-        title: "Ant Design Title 1",
-        date: "6/4/2021",
-        tags: [],
-        content: 'haaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<br/>vsdvdsvdsvsdvs<br/>f<br/>'
-    },],
+    filterDiaries: [],
     searchKey: '',
 }
 

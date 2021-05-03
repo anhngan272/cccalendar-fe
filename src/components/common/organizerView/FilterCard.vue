@@ -1,7 +1,7 @@
 <template>
   <a-card :title="$t('organizer_page.title')">
     <a-button slot="extra" type="primary" @click="performEmptySearch">
-      <a-icon type="reload"/>
+      <a-icon type="reload" />
     </a-button>
     <a-divider orientation="left">{{
       $t("organizer_page.filter.date_filter")
@@ -71,7 +71,7 @@
           <a-checkbox
             :value="item"
             @change="onChange(item.name)"
-            :checked="check(item.name)"
+            :checked="isCheckAll == true ? true : check(item.name)"
           >
             {{ item.name }}
           </a-checkbox>
@@ -79,8 +79,16 @@
       </a-list>
     </div>
     <hr />
-    <div style="text-align: right">
-      <a-button type="primary" @click="performSearch"
+    <div>
+      <a-checkbox @change="checkAll" :checked="isCheckAll">
+        {{ $t("organizer_page.filter.all_tag") }}
+      </a-checkbox>
+      <a-divider type="vertical" />
+      <a-checkbox @change="containAll" :checked="containAllTag"
+        >{{ $t("organizer_page.filter.contain_all_tag") }}
+      </a-checkbox>
+      <a-divider type="vertical" />
+      <a-button style="float: right" type="primary" @click="performSearch"
         ><a-icon type="arrow-right"
       /></a-button>
     </div>
@@ -154,6 +162,8 @@ export default {
       searchKey: "",
       tagsData: [],
       searching: false,
+      isCheckAll: false,
+      containAllTag: false,
     };
   },
   created() {
@@ -175,12 +185,32 @@ export default {
       "fetchEvents",
     ]),
 
+    containAll() {
+      if (this.containAllTag == false) {
+        this.containAllTag = true;
+      } else {
+        this.containAllTag = false;
+      }
+      console.log(this.containAllTag)
+    },
+
+    checkAll() {
+      if (this.isCheckAll == true) {
+        this.isCheckAll = false;
+        this.form.tags = [];
+      } else {
+        this.isCheckAll = true;
+        this.form.tags = this.getTags;
+      }
+      // console.log(this.form.tags);
+    },
+
     performSearch() {
       let eventSearchTerm = {
         start: this.form.fromDate,
         end: this.form.toDate,
-        tags:this.form.tags
-      }
+        tags: this.form.tags,
+      };
       this.fetchEvents(eventSearchTerm);
       this.fetchDiaries(this.form);
     },

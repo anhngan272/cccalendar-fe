@@ -48,6 +48,7 @@ export default {
 <style scoped>
 .myCard, .tagCard {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  padding-top: 5px !important;
 }
 
 >>>.search-box {
@@ -57,12 +58,13 @@ export default {
 .col{
   padding-right: 10px !important;
   padding-left: 10px !important;
-  /* margin-right: 5px; */
+  /* padding-top: 5px !important; */
 }
 
 .col-md-auto{
   padding-right: 5px !important;
   padding-left: 5px !important;
+  padding-top: 5px !important;
   margin-right: 20px;
 }
 

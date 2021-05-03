@@ -56,7 +56,11 @@
       />
     </a-form-model-item>
     <a-form-model-item
-      :label="$t('calendar_page.event_form.attendees')"
+      :label="
+        isCreator == true
+          ? $t('calendar_page.event_form.attendees')
+          : $t('calendar_page.event_form.attendees_cant_modified')
+      "
       prop="attendees"
     >
       <AttendeePicker
@@ -64,10 +68,16 @@
         :eventAttendees="form.attendees"
         @attendeePicked="setAttendees"
         @attendeeSubmitted="setAttendeeSubmit"
+        :isCreator="isCreator"
       />
     </a-form-model-item>
     <a-form-model-item :label="$t('calendar_page.event_form.tags')" prop="tag">
-      <TagPicker ref="tagPicker" :eventTags="form.tags" @tagsPicked="setTags" @tagsSubmitted="setTagSubmit" />
+      <TagPicker
+        ref="tagPicker"
+        :eventTags="form.tags"
+        @tagsPicked="setTags"
+        @tagsSubmitted="setTagSubmit"
+      />
     </a-form-model-item>
     <a-form-model-item
       :label="$t('calendar_page.event_form.description')"
@@ -114,7 +124,7 @@
   </a-form-model>
 </template>
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import moment from "moment";
 import AttendeePicker from "./AttendeePicker.vue";
 import ThemePicker from "./ThemePicker.vue";
@@ -122,7 +132,7 @@ import TagPicker from "../TagPicker.vue";
 require("moment/locale/vi.js");
 import vi from "ant-design-vue/es/date-picker/locale/vi_VN";
 import en from "ant-design-vue/es/date-picker/locale/en_US";
-import { showMessage } from '@/helpers/index';
+import { showMessage } from "@/helpers/index";
 
 export default {
   name: "EventForm",
@@ -141,6 +151,7 @@ export default {
       wrapperCol: { span: 24 },
       isValidated: false,
       allowClear: false,
+      isCreator: true,
       form: {
         title: "",
         date1: moment(new Date()).utc("vi_VN"),
@@ -153,7 +164,7 @@ export default {
         attendees: [],
         tags: [],
         attendeeSubmitted: true,
-        tagSubmitted:true,
+        tagSubmitted: true,
         colorId: 7,
         backgroundColor: "039be5",
       },
@@ -181,6 +192,9 @@ export default {
       this.setUpdateInfo();
     }
   },
+  computed: {
+    ...mapGetters({ user: "getCurrentUser" }),
+  },
   methods: {
     moment,
 
@@ -193,6 +207,11 @@ export default {
       this.form.date2 = moment(this.updateEventInfo.end);
       this.form.time2 = moment(this.updateEventInfo.end);
       this.form.attendees = this.eventAttendees;
+      if (this.user.email == this.updateEventModalExtend.creator) {
+        this.isCreator = true;
+      } else {
+        this.isCreator = false;
+      }
       this.form.tags = this.eventTags;
       this.form.description = this.updateEventModalExtend.description;
       this.form.colorId = this.updateEventModalExtend.colorId;
@@ -233,7 +252,7 @@ export default {
           this.$emit("updated");
         }
       } else {
-        showMessage(this.$i18n.t('notification.update_error'))
+        showMessage(this.$i18n.t("notification.update_error"));
         // console.log("error update!!");
         return false;
       }
@@ -280,7 +299,7 @@ export default {
         if (valid && this.form.attendeeSubmitted && this.form.tagSubmitted) {
           this.isValidated = true;
         } else {
-          showMessage("error validate!!")
+          showMessage("error validate!!");
           // console.log("error validate!!");
           this.isValidated = false;
         }
@@ -322,7 +341,7 @@ export default {
           this.resetForm();
         }
       } else {
-        showMessage("error submit!!")
+        showMessage("error submit!!");
         // console.log("error submit!!");
         return false;
       }

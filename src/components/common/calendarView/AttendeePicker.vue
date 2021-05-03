@@ -7,6 +7,7 @@
         :placeholder="$t('calendar_page.event_form.select_attendees')"
         @change="handleChange"
         v-decorator="['attendee']"
+        :disabled="!isCreator"
       >
       </a-select>
     </a-form-item>
@@ -17,6 +18,7 @@ export default {
   name: "AttendeePicker",
   props: {
     eventAttendees: Array,
+    isCreator: Boolean,
   },
   data() {
     return {
@@ -57,7 +59,11 @@ export default {
         for (let i = 0; i < values.length; i++) {
           if (!emailPattern.test(values[i])) {
             this.status = "error";
-            this.help = '"' + values[i] + '"' + this.$i18n.t('calendar_page.event_form.attendees_help');
+            this.help =
+              '"' +
+              values[i] +
+              '"' +
+              this.$i18n.t("calendar_page.event_form.attendees_help");
             this.$emit("attendeeSubmited", false);
             return;
           } else {
@@ -65,10 +71,9 @@ export default {
             this.help = "";
           }
         }
-
       }
-        this.$emit("attendeePicked", values);
-        this.$emit("attendeeSubmited", true);
+      this.$emit("attendeePicked", values);
+      this.$emit("attendeeSubmited", true);
     },
   },
 };

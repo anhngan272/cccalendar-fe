@@ -129,7 +129,6 @@ export default {
 
     handleEventClick(clickInfo) {
       this.eventModal = clickInfo.event;
-      // console.log(this.eventModal);
       this.eventModalExtend = clickInfo.event.extendedProps;
       this.$refs.eventModal.eventModal = true;
     },
