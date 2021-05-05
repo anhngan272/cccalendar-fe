@@ -1,42 +1,60 @@
 <template>
   <div class="container">
     <div class="header">
-      <a-input
-        class="search-box"
-        :addonBefore="$t('diary_page.searchPlaceholder')"
-        v-model="form.title"
-      />
+      <div class="row">
+        <div class="col-sm-8">
+          <a-input
+            class="search-box"
+            :addonBefore="$t('diary_page.searchPlaceholder')"
+            v-model="form.title"
+          />
+        </div>
+        <div class="col-sm-4">
+          <div>
+            <a-button
+              style="width: 50px; margin-right: 20px"
+              @click="performEmptySearch"
+              ><a-icon type="reload"
+            /></a-button>
+            <div style="display: inline">
+              <a-tooltip placement="right">
+                <template slot="title">
+                  <span>{{ $t("diary_page.diary_list.sort_by") }}</span>
+                </template>
+
+                <a-select
+                  default-value="newest"
+                  style="min-width: fit-content; width: 140px"
+                  @change="performSearch"
+                  v-model="form.sort"
+                >
+                  <a-icon
+                    slot="suffixIcon"
+                    style="color: #808080"
+                    type="filter"
+                  />
+                  <a-select-option value="newest">
+                    {{ $t("diary_page.diary_list.newest_date") }}
+                  </a-select-option>
+                  <a-select-option value="oldest">
+                    {{ $t("diary_page.diary_list.oldest_date") }}
+                  </a-select-option>
+                  <a-select-option value="a-to-z">
+                    <a-icon type="sort-ascending" />
+                    {{ $t("diary_page.diary_form.title") }} A - Z
+                  </a-select-option>
+                  <a-select-option value="z-to-a">
+                    <a-icon type="sort-descending" />
+                    {{ $t("diary_page.diary_form.title") }} Z - A
+                  </a-select-option>
+                </a-select>
+              </a-tooltip>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div class="sort-header">
-        <a-tooltip placement="right">
-          <template slot="title">
-            <span>{{ $t("diary_page.diary_list.sort_by") }}</span>
-          </template>
-
-          <a-select
-            default-value="newest"
-            style="min-width: fit-content; width: 140px"
-            @change="performSearch"
-            v-model="form.sort"
-          >
-            <a-icon slot="suffixIcon" style="color: #808080" type="filter" />
-            <a-select-option value="newest">
-              {{ $t("diary_page.diary_list.newest_date") }}
-            </a-select-option>
-            <a-select-option value="oldest">
-              {{ $t("diary_page.diary_list.oldest_date") }}
-            </a-select-option>
-            <a-select-option value="a-to-z">
-              <a-icon type="sort-ascending" />
-              {{ $t("diary_page.diary_form.title") }} A - Z
-            </a-select-option>
-            <a-select-option value="z-to-a">
-              <a-icon type="sort-descending" />
-              {{ $t("diary_page.diary_form.title") }} Z - A
-            </a-select-option>
-          </a-select>
-        </a-tooltip>
-
         <div class="datePickerWrapper">
           <a-date-picker
             inputReadOnly
@@ -69,9 +87,12 @@
         </div>
 
         <div>
-          <a-button style="margin: 0 15px" @click="performEmptySearch"
-            ><a-icon type="reload"
-          /></a-button>
+          <a-checkbox
+            @change="containAll"
+            :checked="containAllTag"
+            style="margin-right: 15px"
+            >{{ $t("diary_page.diary_list.contain_all_tag") }}</a-checkbox
+          >
           <a-button style="width: 60px" type="primary" @click="performSearch"
             ><a-icon type="search"
           /></a-button>
@@ -126,6 +147,7 @@ export default {
       selectedDate: moment(new Date()),
       vi: vi,
       en: en,
+      containAllTag: false,
       form: {
         title: "",
         fromDate: null,
@@ -153,6 +175,14 @@ export default {
   methods: {
     moment,
     ...mapActions(["fetchDiaries", "setFilterTags"]),
+
+    containAll() {
+      if (this.containAllTag == false) {
+        this.containAllTag = true;
+      } else {
+        this.containAllTag = false;
+      }
+    },
 
     changeFilterTags(tags) {
       this.form.tags = tags;
@@ -220,7 +250,7 @@ body {
 .datePickerWrapper {
   /* min-width: 30%; */
   width: fit-content;
-  margin-left: 15px;
+  margin-right: 15px;
 }
 
 .datePicker {
@@ -241,7 +271,7 @@ body {
   width: 20%;
   min-width: 100px;
   height: 40px;
-  margin-left: 15px;
+  margin-right: 15px;
 }
 
 .sort-header {

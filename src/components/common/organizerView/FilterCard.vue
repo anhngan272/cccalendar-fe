@@ -191,7 +191,6 @@ export default {
       } else {
         this.containAllTag = false;
       }
-      console.log(this.containAllTag)
     },
 
     checkAll() {

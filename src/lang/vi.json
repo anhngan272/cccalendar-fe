@@ -77,6 +77,7 @@
       "end_date": "Kết thúc",
       "select_date": "Chọn ngày",
       "select_tags": "Chọn thẻ",
+      "contain_all_tag":"Chứa tất cả thẻ đã chọn",
       "content": "Nội dung",
       "show_detail": "Xem chi tiết"
     }

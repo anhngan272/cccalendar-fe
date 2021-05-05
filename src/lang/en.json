@@ -79,6 +79,7 @@
       "end_date": "End Date",
       "select_date": "Select Date",
       "select_tags": "Select Tags",
+      "contain_all_tag":"Contain all chosen tags",
       "content": "Content",
       "show_detail": "Show detail"
     }
