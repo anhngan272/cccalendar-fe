@@ -1,17 +1,17 @@
 <template>
-  <div>
-        <div class="row" style="padding: 0 80px">
-      <div class="col">
+  <div class="container-fluid">
+    <div class="row" style="padding: 0 80px">
+      <div class="col-lg-6 col-md-12">
         <a-divider style="font-size: 25px">Our Mission</a-divider>
-        <h4 style="text-align:center">bla bla bla</h4>
+        <h4 style="text-align: center">bla bla bla</h4>
       </div>
-      <div class="col">
+      <div class="col-lg-6 col-md-12">
         <a-divider style="font-size: 25px">Special Thanks</a-divider>
         <div class="row">
-          <div class="col-sm-5">
+          <div class="col-md-5">
             <img src="@/assets/avatar.png" class="avatar dang" />
           </div>
-          <div class="col-sm-7 info">
+          <div class="col-md-7 info">
             <span> <h4>PGS. TS. Nguyễn Tuấn Đăng</h4> </span>
             <div>
               <h5 style="color: #808080; font-weight: 500">
@@ -32,7 +32,7 @@
       <a-divider style="font-size: 25px">Our Team</a-divider>
     </div>
     <div class="row" style="padding: 0 80px">
-      <div class="col">
+      <div class="col-lg-6 col-md-12">
         <div class="row">
           <div class="col-sm-5">
             <img src="@/assets/avatar.png" class="avatar huy" />
@@ -59,7 +59,7 @@
           </div>
         </div>
       </div>
-      <div class="col">
+      <div class="col-lg-6 col-md-12">
         <div class="row">
           <div class="col-sm-5">
             <img src="@/assets/avatar.png" class="avatar ngan" />
@@ -89,7 +89,6 @@
     </div>
 
     <hr />
-
   </div>
 </template>
 
