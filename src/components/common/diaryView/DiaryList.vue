@@ -79,7 +79,7 @@
         :isUpdate="true"
         :diary="diary"
         :showText="showText"
-        @closeTextEditor="showText = false"
+        @closeTextEditor="closeTextEditor"
         @updateDiary="updateDiary"
       />
     </div>
@@ -113,6 +113,11 @@ export default {
   },
   methods: {
     ...mapActions(["fetchDiaries", "deleteDiary"]),
+
+    closeTextEditor() {
+      this.showText = false;
+      this.$refs.diaryDetail.diaryModal = false;
+    },
 
     resetFields() {
       this.createDiaryId = -1;

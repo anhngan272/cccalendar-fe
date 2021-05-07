@@ -84,7 +84,7 @@
         {{ $t("organizer_page.filter.all_tag") }}
       </a-checkbox>
       <a-divider type="vertical" />
-      <a-checkbox @change="containAll" :checked="containAllTag"
+      <a-checkbox @change="containAll" :checked="form.containAllTag"
         >{{ $t("organizer_page.filter.contain_all_tag") }}
       </a-checkbox>
       <a-divider type="vertical" />
@@ -150,6 +150,7 @@ export default {
         fromDate: null,
         toDate: null,
         tags: [],
+        containAllTag: false,
       },
       vi: vi,
       en: en,
@@ -163,7 +164,7 @@ export default {
       tagsData: [],
       searching: false,
       isCheckAll: false,
-      containAllTag: false,
+      
     };
   },
   created() {
@@ -186,10 +187,10 @@ export default {
     ]),
 
     containAll() {
-      if (this.containAllTag == false) {
-        this.containAllTag = true;
+      if (this.form.containAllTag == false) {
+        this.form.containAllTag = true;
       } else {
-        this.containAllTag = false;
+        this.form.containAllTag = false;
       }
     },
 
@@ -209,6 +210,7 @@ export default {
         start: this.form.fromDate,
         end: this.form.toDate,
         tags: this.form.tags,
+        containAllTag: this.form.containAllTag,
       };
       this.fetchEvents(eventSearchTerm);
       this.fetchDiaries(this.form);
@@ -219,6 +221,7 @@ export default {
         fromDate: null,
         toDate: null,
         tags: [],
+        containAllTag: false,
       };
       this.fetchEvents(null);
       this.fetchDiaries(null);

@@ -11,11 +11,6 @@
         </div>
         <div class="col-sm-4">
           <div>
-            <a-button
-              style="width: 50px; margin-right: 20px"
-              @click="performEmptySearch"
-              ><a-icon type="reload"
-            /></a-button>
             <div style="display: inline">
               <a-tooltip placement="right">
                 <template slot="title">
@@ -50,6 +45,11 @@
                 </a-select>
               </a-tooltip>
             </div>
+            <a-button
+              style="width: 50px; margin-left: 20px"
+              @click="performEmptySearch"
+              ><a-icon type="reload"
+            /></a-button>
           </div>
         </div>
       </div>
@@ -89,7 +89,7 @@
         <div>
           <a-checkbox
             @change="containAll"
-            :checked="containAllTag"
+            :checked="form.containAllTag"
             style="margin-right: 15px"
             >{{ $t("diary_page.diary_list.contain_all_tag") }}</a-checkbox
           >
@@ -147,7 +147,6 @@ export default {
       selectedDate: moment(new Date()),
       vi: vi,
       en: en,
-      containAllTag: false,
       form: {
         title: "",
         fromDate: null,
@@ -155,6 +154,7 @@ export default {
         sort: "newest", // ["newest", "oldest", "a-to-z", "z-to-a"]
         tags: [],
         page: 1,
+        containAllTag: false,
       },
     };
   },
@@ -177,10 +177,10 @@ export default {
     ...mapActions(["fetchDiaries", "setFilterTags"]),
 
     containAll() {
-      if (this.containAllTag == false) {
-        this.containAllTag = true;
+      if (this.form.containAllTag == false) {
+        this.form.containAllTag = true;
       } else {
-        this.containAllTag = false;
+        this.form.containAllTag = false;
       }
     },
 
@@ -215,6 +215,7 @@ export default {
         toDate: null,
         sort: "newest", // ["newest", "oldest", "a-to-z", "z-to-a"]
         // tags: [],
+        containAllTag: false,
       };
       this.$refs.tagPicker.resetForm();
       this.$refs.diaryList.resetFields();
