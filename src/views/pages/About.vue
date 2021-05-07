@@ -5,10 +5,10 @@
         <a-divider style="font-size: 25px">Our Mission</a-divider>
         <h4 style="text-align: center">bla bla bla</h4>
       </div>
-      <div class="col-lg-6 col-md-12">
+      <div class="col-lg-6 col-md-12 col-sm-12">
         <a-divider style="font-size: 25px">Special Thanks</a-divider>
         <div class="row">
-          <div class="col-md-5">
+          <div class="col-lg-5 col-md-12 col-sm-12">
             <img src="@/assets/avatar.png" class="avatar dang" />
           </div>
           <div class="col-md-7 info">
@@ -20,7 +20,7 @@
             </div>
             <div class="contact">
               <span class="mail"
-                ><i class="fa fa-envelope"></i>: dangnt@sgu.edu.vn</span
+                ><i class="fa fa-envelope"></i> dangnt@sgu.edu.vn</span
               >
             </div>
           </div>
@@ -41,11 +41,11 @@
             <span> <h4>VÕ HOÀNG HUY</h4> </span>
             <div>
               <h5 style="color: #808080; font-weight: 500">Back-end</h5>
-              <h6 style="color: #808080; font-weight: 500">Class: DCT1172</h6>
+              <h6 style="color: #808080; font-weight: 500">Class: DCT1173</h6>
             </div>
             <div class="contact">
               <span class="mail"
-                ><i class="fa fa-envelope"></i>: jaysgh@gmail.com</span
+                ><i class="fa fa-envelope"></i> huysgh94@gmail.com</span
               >
               <ul>
                 <li class="facebook">
@@ -72,7 +72,7 @@
             </div>
             <div class="contact">
               <span class="mail"
-                ><i class="fa fa-envelope"></i>: anhngan272@gmail.com</span
+                ><i class="fa fa-envelope"></i> anhngan272@gmail.com</span
               >
               <ul>
                 <li class="facebook">
