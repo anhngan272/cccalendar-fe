@@ -8,7 +8,7 @@
       @change="onChange"
     />
     <a-list
-    :pagination="pagination"
+      :pagination="pagination"
       :locale="{
         emptyText: this.$t('diary_page.diary_list.no_data'),
       }"
@@ -35,13 +35,19 @@
             <a-button type="danger"><a-icon type="delete" /></a-button>
           </a-popconfirm>
         </a>
-        <div class="title" @click="showModal(item)">
-          {{ item.title }}
-        </div>
-
-        <!-- <a-list-item-meta>
-                  <div slot="title">{{ item.title }}</div>
-                </a-list-item-meta> -->
+        <a-list-item-meta>
+          <div class="title" @click="showModal(item)" slot="title">
+            {{ item.title }}
+          </div>
+          <a
+            class="tag"
+            slot="description"
+            v-for="tag in item.tags"
+            :key="tag"
+            @click="clickTag(tag)"
+            >#{{ tag }}</a
+          >
+        </a-list-item-meta>
       </a-list-item>
     </a-list>
     <div v-show="type == 'events'">
@@ -173,6 +179,18 @@ export default {
 </script>
 
 <style scoped>
+.tag {
+  color: #1890ff !important;
+  background: #e6e6e6;
+  padding: 0px 5px;
+  border-radius: 0.3em;
+}
+
+.tag:hover {
+  text-decoration: none;
+  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.28);
+}
+
 .title:hover {
   color: #1890ff;
   cursor: pointer;
