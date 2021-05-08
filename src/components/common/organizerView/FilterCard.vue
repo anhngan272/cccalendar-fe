@@ -249,6 +249,8 @@ export default {
 
     handelDelete(tagId) {
       this.deleteTag(tagId);
+      this.fetchEvents(null);
+      this.fetchDiaries(null);
     },
 
     onSearch() {

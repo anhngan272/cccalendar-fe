@@ -71,7 +71,7 @@ const routes = [{
     name: 'Organizer',
     component: Organizer,
     meta: {
-        requiresAuth: true,
+        // requiresAuth: true,
         title: 'Organizer',
     },
 },
