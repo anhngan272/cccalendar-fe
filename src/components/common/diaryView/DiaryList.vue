@@ -56,7 +56,7 @@
             >#{{ tag }}</a
           >
           <a slot="title" class="diary-title" @click="showDiaryModal(item)"
-            ><h4 class="font-weight-bold">{{ item.title }}</h4></a
+            ><h5 class="font-weight-bold">{{ item.title }}</h5></a
           >
         </a-list-item-meta>
         <a-badge

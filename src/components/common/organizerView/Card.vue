@@ -149,7 +149,7 @@ export default {
     },
     closeTextEditor() {
       this.showText = false;
-      this.showText == false;
+      this.$refs.diaryModal.diaryModal = false;
     },
     handelDelete(item) {
       if (this.type == "events") {
