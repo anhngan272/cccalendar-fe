@@ -102,6 +102,7 @@ body {
   padding-right: 0;
   position: relative;
   z-index: 0;
+  height: 100%;
 }
 
 .team-item:after,
