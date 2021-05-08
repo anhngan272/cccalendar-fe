@@ -151,6 +151,7 @@ export default {
         toDate: null,
         tags: [],
         containAllTag: false,
+        all: true,
       },
       vi: vi,
       en: en,
@@ -245,7 +246,7 @@ export default {
       this.updatedTagId = tag.id;
       this.tagUpdateModal = true;
     },
-  
+
     handelDelete(tag) {
       this.deleteTag(tag.id);
       this.performEmptySearch();
@@ -253,7 +254,7 @@ export default {
 
     deleteTagInArray(tag) {
       this.form.tags = this.form.tags.filter((t) => t !== tag.name);
-      this.performSearch()
+      this.performSearch();
     },
 
     onSearch() {

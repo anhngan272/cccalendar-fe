@@ -103,6 +103,7 @@ const actions = {
         if (response.status === 200) {
             showMessage('success',i18n.t('notification.success'));
             commit('updateEvent', response.data);
+            commit('updateFilterEvent', response.data);
         }
     },
 
@@ -122,6 +123,10 @@ const mutations = {
     updateEvent: (state, event) => {
         const eventIndex = state.events.findIndex(e => e.id === event.id)
         state.events.splice(eventIndex, 1, event)
+    },
+    updateFilterEvent: (state, event) => {
+        const eventIndex = state.filterEvents.findIndex(e => e.id === event.id)
+        state.filterEvents.splice(eventIndex, 1, event)
     },
     setFilterEvents: (state) => {
         state.filterEvents = state.events

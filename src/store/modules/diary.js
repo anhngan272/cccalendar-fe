@@ -111,6 +111,7 @@ const actions = {
 
         if (response.status === 200) {
             commit('updateDiary', response.data);
+            commit('updateFilterDiary', response.data);
             showMessage('success', i18n.t('notification.success'));
         }
     },
@@ -134,6 +135,12 @@ const mutations = {
         state.diaries.splice(diaryIndex, 1, diary)
         // console.log(diary)
     },
+    updateFilterDiary: (state, diary) => {
+        const diaryIndex = state.filterDiaries.findIndex(x => x.id === diary.id)
+        state.filterDiaries.splice(diaryIndex, 1, diary)
+        // console.log(diary)
+    },
+
     setPagnation: (state, pagination) => {
         state.pagination.currentPage = pagination.meta.current_page;
         state.pagination.totalPage = pagination.meta.total;

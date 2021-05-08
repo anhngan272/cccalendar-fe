@@ -119,7 +119,10 @@ export default {
       this.fetchEvents();
       this.title = this.$t(`organizer_page.${this.type}.title`);
     } else if (this.type == "diaries") {
-      this.fetchDiaries();
+      let searchTerm ={
+        all : true
+      }
+      this.fetchDiaries(searchTerm);
       this.title = this.$t(`organizer_page.${this.type}.title`);
     }
   },
