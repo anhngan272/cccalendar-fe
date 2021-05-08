@@ -4,12 +4,12 @@
       <div class="row">
         <div class="col-12">
           <div class="section-title title-left text-center text-lg-left">
-            <h3 class="top-sep">Meet Our Team</h3>
-            <p>
+            <h3 class="top-sep">{{$t('about_page.meet_our_team')}}</h3>
+            <!-- <p>
               Lorem ipsum dolor sit amet, consectadetudzdae rcquisc adipiscing
               elit. Aenean socada commodo ligaui egets dolor. Nullam quis ante
               tiam sit ame orci eget erovtiu faucid.
-            </p>
+            </p> -->
           </div>
         </div>
       </div>
@@ -26,8 +26,13 @@
               </span>
             </div>
             <div class="team-content">
-              <h5 class="mb-2">PGS. TS. Nguyễn Tuấn Đăng</h5>
-              <p class="text-uppercase mb-0">Asscociate Professor Ph.D</p>
+              <h5 class="mb-2">Nguyễn Tuấn Đăng</h5>
+              <p class="text-uppercase mb-0">{{$t('about_page.assoc_prof')}}</p>
+            </div>
+            <div class="team-content">
+              <p class="mb-0 email">
+                <i class="fa fa-envelope"></i> dangnt@sgu.edu.vn
+              </p>
             </div>
           </div>
         </div>
@@ -56,6 +61,11 @@
               <h5 class="mb-2">Võ Hoàng Huy</h5>
               <p class="text-uppercase mb-0">Back-end Developer</p>
             </div>
+            <div class="team-content">
+              <p class="mb-0 email">
+                <i class="fa fa-envelope"></i> huysgh94@gmail.com
+              </p>
+            </div>
           </div>
         </div>
         <div class="col-md-6 col-lg-4 mb-30">
@@ -82,6 +92,11 @@
             <div class="team-content">
               <h5 class="mb-2">Hứa Thị Ánh Ngân</h5>
               <p class="text-uppercase mb-0">Front-end Developer</p>
+            </div>
+            <div class="team-content">
+              <p class="mb-0 email">
+                <i class="fa fa-envelope"></i> anhngan272@gmail.com
+              </p>
             </div>
           </div>
         </div>
@@ -176,8 +191,20 @@ body {
   box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.12);
 }
 
+.team-item .socials a:hover {
+  transform: translateY(-7px);
+  filter: brightness(150%);
+  box-shadow: 5px 5px 2px 0 rgba(0, 0, 0, 0.12);
+}
+
 .team-item .socials a:last-of-type {
   margin-bottom: 0;
+}
+
+.team-content .email {
+  margin-top: 30px;
+  text-align: center;
+  color: #000000a6 !important;
 }
 
 .team-item .team-content {
@@ -196,12 +223,13 @@ body {
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .team-item:hover .team-content h5,
-.team-item:hover .team-content p {
-  color: #fff;
+.team-item:hover .team-content p,
+.team-item:hover .email {
+  color: #fff !important;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
@@ -232,7 +260,8 @@ body {
 }
 
 h5 {
-  font-size: 21px;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .mb-30 {

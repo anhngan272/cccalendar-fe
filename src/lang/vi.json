@@ -42,7 +42,9 @@
     }
   },
   "about_page": {
-    "text": "Xin chào! Chúng tôi là Coding Cats"
+    "text": "Xin chào! Chúng tôi là Coding Cats",
+    "meet_our_team":"Nhóm chúng tôi",
+    "assoc_prof":"Phó giáo sư tiến sĩ"
   },
   "notfound_page": {
     "text": "Không tìm thấy trang"
@@ -79,7 +81,11 @@
       "select_tags": "Chọn thẻ",
       "contain_all_tag":"Chứa tất cả thẻ đã chọn",
       "content": "Nội dung",
-      "show_detail": "Xem chi tiết"
+      "show_detail": "Xem chi tiết",
+      "updated":"Cập nhật gần đây",
+      "new":"Mới",
+      "updated_diary":"Nhật ký vừa cập nhật",
+      "new_diary":"Nhật ký mới"
     }
   },
   "calendar_page": {

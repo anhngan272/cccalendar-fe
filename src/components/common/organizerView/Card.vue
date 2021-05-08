@@ -119,9 +119,9 @@ export default {
       this.fetchEvents();
       this.title = this.$t(`organizer_page.${this.type}.title`);
     } else if (this.type == "diaries") {
-      let searchTerm ={
-        all : true
-      }
+      let searchTerm = {
+        all: true,
+      };
       this.fetchDiaries(searchTerm);
       this.title = this.$t(`organizer_page.${this.type}.title`);
     }

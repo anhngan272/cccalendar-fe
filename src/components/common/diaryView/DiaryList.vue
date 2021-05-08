@@ -60,14 +60,14 @@
           >
         </a-list-item-meta>
         <a-badge
-          :count="index == createDiaryId ? 'New' : ''"
-          title="New Diary"
+          :count="index == createDiaryId ? $t('diary_page.diary_list.new') : ''"
+          :title="$t('diary_page.diary_list.new_diary')"
           :number-style="{ backgroundColor: '#007bff' }"
         >
         </a-badge>
         <a-badge
-          :count="item.id == updateDiaryId ? 'Updated' : ''"
-          title="Updated Diary"
+          :count="item.id == updateDiaryId ? $t('diary_page.diary_list.updated') : ''"
+          :title="$t('diary_page.diary_list.updated_diary')"
           :number-style="{ backgroundColor: '#52c41a' }"
         >
         </a-badge>
