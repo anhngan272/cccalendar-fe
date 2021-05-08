@@ -184,11 +184,7 @@ export default {
   background: #e6e6e6;
   padding: 0px 5px;
   border-radius: 0.3em;
-}
-
-.tag:hover {
-  text-decoration: none;
-  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.28);
+  margin-left: 3px;
 }
 
 .title:hover {

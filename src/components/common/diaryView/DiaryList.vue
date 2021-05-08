@@ -181,6 +181,7 @@ a h5:hover {
   background: #e6e6e6;
   padding: 0px 5px;
   border-radius: 0.3em;
+  margin-left: 3px;
 }
 
 .diary-tag:hover {
