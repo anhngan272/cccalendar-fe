@@ -136,7 +136,10 @@ export default {
       this.createDiaryId = -1;
     },
     shortDiaryContent(content) {
-      let contentToRender = content ? content.substring(0, 20) + "... " : "";
+      let contentToRender = content + " ";
+      if (content.length > 40) {
+        contentToRender = content.substring(0, 40) + "... ";
+      }
       return contentToRender;
     },
     handelDelete(diary) {

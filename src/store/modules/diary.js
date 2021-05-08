@@ -35,7 +35,7 @@ const actions = {
     async fetchDiaries({ commit }, searchTerms) {
         let response = null;
         if (searchTerms) {
-            const searchParams = { ...searchTerms };
+            const searchParams = {...searchTerms };
 
             // check if date is undefined
             if (searchTerms.fromDate) {
@@ -133,17 +133,19 @@ const mutations = {
     updateDiary: (state, diary) => {
         const diaryIndex = state.diaries.findIndex(x => x.id === diary.id)
         state.diaries.splice(diaryIndex, 1, diary)
-        // console.log(diary)
+            // console.log(diary)
     },
     updateFilterDiary: (state, diary) => {
         const diaryIndex = state.filterDiaries.findIndex(x => x.id === diary.id)
         state.filterDiaries.splice(diaryIndex, 1, diary)
-        // console.log(diary)
+            // console.log(diary)
     },
 
     setPagnation: (state, pagination) => {
-        state.pagination.currentPage = pagination.meta.current_page;
-        state.pagination.totalPage = pagination.meta.total;
+        if (pagination.meta) {
+            state.pagination.currentPage = pagination.meta.current_page;
+            state.pagination.totalPage = pagination.meta.total;
+        }
     },
 
     setFilterDiaries: (state) => {
