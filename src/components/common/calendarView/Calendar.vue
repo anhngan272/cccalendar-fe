@@ -223,7 +223,8 @@ b {
 .demo-app {
   /* display: flex; */
   /* min-height: 100%; */
-  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+  /* font-family: Arial, Helvetica Neue, Helvetica, sans-serif; */
+  font-family: 'Fira Sans';
   font-size: 14px;
 }
 

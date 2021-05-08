@@ -44,6 +44,7 @@ export default {
 .body {
   padding: 5px 24px;
   min-height: 80vh;
+  font-family: 'Fira Sans';
 }
 
 .footer {

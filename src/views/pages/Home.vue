@@ -101,7 +101,8 @@ export default {
 
 <style scoped>
 .home-container {
-  font-family: Helvetica, Arial, sans-serif;
+  /* font-family: Helvetica, Arial, sans-serif; */
+  font-family: 'Fira Sans';
   text-align: center;
   color: #808080;
   position: relative;

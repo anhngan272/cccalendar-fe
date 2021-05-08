@@ -234,7 +234,8 @@ export default {
 }
 
 body {
-  font-family: Verdana, Geneva, sans-serif;
+  /* font-family: Verdana, Geneva, sans-serif; */
+  font-family: 'Fira Sans';
   background-color: #ccc;
   font-size: 12px;
 }
