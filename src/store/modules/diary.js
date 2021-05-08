@@ -123,7 +123,13 @@ const actions = {
 }
 
 const mutations = {
-    setDiaries: (state, diaries) => (state.diaries = diaries.data),
+    setDiaries: (state, diaries) => {
+        if (diaries.meta) {
+            state.diaries = diaries.data;
+        } else {
+            state.diaries = diaries;
+        }
+    },
     createDiary: (state, diary) => {
         state.isSuccess = true
         state.diaries.unshift(diary)
