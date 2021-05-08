@@ -59,7 +59,7 @@
               placement="top"
               :ok-text="$t('organizer_page.filter.delete_btn')"
               :cancel-text="$t('organizer_page.filter.cancel_btn')"
-              @confirm="handelDelete(item.id)"
+              @confirm="handelDelete(item)"
             >
               <a>
                 <a-button type="danger"><a-icon type="delete" /></a-button>
@@ -164,7 +164,6 @@ export default {
       tagsData: [],
       searching: false,
       isCheckAll: false,
-      
     };
   },
   created() {
@@ -235,8 +234,7 @@ export default {
         };
         this.tagUpdateModal = false;
         this.updateTag(updateTag);
-        this.fetchEvents(null);
-        this.fetchDiaries(null);
+        this.performEmptySearch();
       } else {
         showMessage(this.$t("organizer_page.filter.tag_already_exist"));
       }
@@ -247,11 +245,15 @@ export default {
       this.updatedTagId = tag.id;
       this.tagUpdateModal = true;
     },
+  
+    handelDelete(tag) {
+      this.deleteTag(tag.id);
+      this.performEmptySearch();
+    },
 
-    handelDelete(tagId) {
-      this.deleteTag(tagId);
-      this.fetchEvents(null);
-      this.fetchDiaries(null);
+    deleteTagInArray(tag) {
+      this.form.tags = this.form.tags.filter((t) => t !== tag.name);
+      this.performSearch()
     },
 
     onSearch() {
