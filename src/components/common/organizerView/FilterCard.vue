@@ -215,6 +215,7 @@ export default {
         tags: [],
         containAllTag: false,
       };
+      this.fetchTags();
       this.fetchEvents(null);
       this.fetchDiaries(null);
     },
