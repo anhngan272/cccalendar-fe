@@ -136,9 +136,12 @@ export default {
       this.createDiaryId = -1;
     },
     shortDiaryContent(content) {
-      let contentToRender = content + " ";
-      if (content.length > 40) {
-        contentToRender = content.substring(0, 40) + "... ";
+      let contentToRender = "";
+      if (content) {
+        contentToRender = content + " ";
+        if (content.length > 40) {
+          contentToRender = content.substring(0, 40) + "... ";
+        }
       }
       return contentToRender;
     },
