@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '@/views/pages/Home';
-import About from '@/views/pages/About';
+// import About from '@/views/pages/About';
+import MeetTheTeam from '@/views/pages/MeetTheTeam';
 import Calendar from '@/views/calendars/Calendar';
 import Diary from '@/views/diaries/Diary';
 import Organizer from '@/views/organizers/Organizer';
@@ -32,7 +33,7 @@ const routes = [{
 }, {
     path: '/about',
     name: 'About',
-    component: About,
+    component: MeetTheTeam,
     meta: {
         title: 'About',
     }
@@ -74,8 +75,7 @@ const routes = [{
         requiresAuth: true,
         title: 'Organizer',
     },
-},
-];
+}, ];
 
 const router = new VueRouter({
     mode: 'history',
