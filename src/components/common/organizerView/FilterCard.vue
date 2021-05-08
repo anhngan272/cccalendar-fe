@@ -84,7 +84,7 @@
         {{ $t("organizer_page.filter.all_tag") }}
       </a-checkbox>
       <a-divider type="vertical" />
-      <a-checkbox @change="containAll" :checked="form.containAllTag"
+      <a-checkbox v-model="form.containAllTag"
         >{{ $t("organizer_page.filter.contain_all_tag") }}
       </a-checkbox>
       <a-divider type="vertical" />
@@ -185,14 +185,6 @@ export default {
       "fetchDiaries",
       "fetchEvents",
     ]),
-
-    containAll() {
-      if (this.form.containAllTag == false) {
-        this.form.containAllTag = true;
-      } else {
-        this.form.containAllTag = false;
-      }
-    },
 
     checkAll() {
       if (this.isCheckAll == true) {

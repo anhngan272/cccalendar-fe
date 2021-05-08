@@ -88,8 +88,7 @@
 
         <div>
           <a-checkbox
-            @change="containAll"
-            :checked="form.containAllTag"
+            v-model="form.containAllTag"
             style="margin-right: 15px"
             >{{ $t("diary_page.diary_list.contain_all_tag") }}</a-checkbox
           >
@@ -175,14 +174,6 @@ export default {
   methods: {
     moment,
     ...mapActions(["fetchDiaries", "setFilterTags"]),
-
-    containAll() {
-      if (this.form.containAllTag == false) {
-        this.form.containAllTag = true;
-      } else {
-        this.form.containAllTag = false;
-      }
-    },
 
     changeFilterTags(tags) {
       this.form.tags = tags;
