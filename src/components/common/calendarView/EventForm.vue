@@ -33,7 +33,7 @@
         format="HH:mm"
         :default-value="moment('12:00', 'HH:mm')"
         @change="changeDateTime"
-        style="margin-left: 15px"
+        style="margin-left: 5px;width:100px"
       />
     </a-form-model-item>
     <a-form-model-item :label="$t('calendar_page.event_form.end')" prop="date2">
@@ -50,7 +50,7 @@
         :allowClear="this.allowClear"
         v-model="form.time2"
         format="HH:mm"
-        style="margin-left: 15px"
+        style="margin-left: 5px;width:100px"
         :disabledHours="disabledHours"
         :disabledMinutes="disabledMinutes"
       />
