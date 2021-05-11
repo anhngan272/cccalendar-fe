@@ -33,33 +33,33 @@ const actions = {
     async fetchEvents({ commit }, searchTerms) {
         let response = null;
         if (searchTerms) {
-            const searchParams = { ...searchTerms };
+            const searchParams = {...searchTerms };
 
             // check if date is undefined
             if (searchTerms.start) {
-                searchParams.start = searchTerms.start.clone().format('YYYY-MM-DD');
+                searchParams.start = searchTerms.start.clone().format('YYYY-MM-DD') + " 00:00";
             } else {
                 delete searchParams.start;
             }
 
             // check if date is undefined
             if (searchTerms.end) {
-                searchParams.end = searchTerms.end.clone().format('YYYY-MM-DD');
+                searchParams.end = searchTerms.end.clone().format('YYYY-MM-DD') + " 23:59";
             } else {
                 delete searchParams.end;
             }
 
-            showMessage('loading',i18n.t('notification.loading'));
+            showMessage('loading', i18n.t('notification.loading'));
             response = await axios.get(API_URL + '/calendar', {
                 params: searchParams
             });
         } else {
-            showMessage('loading',i18n.t('notification.loading'));
+            showMessage('loading', i18n.t('notification.loading'));
             response = await axios.get(API_URL + '/calendar');
         }
 
         if (response.status === 200) {
-            showMessage('success',i18n.t('notification.success'));
+            showMessage('success', i18n.t('notification.success'));
             commit('setEvents', response.data);
             commit('setFilterEvents');
         }
@@ -73,35 +73,35 @@ const actions = {
         // }
     },
     async addEvent({ commit }, event) {
-        showMessage('loading',i18n.t('notification.loading'));
+        showMessage('loading', i18n.t('notification.loading'));
 
         const response = await axios.post(API_URL + '/calendar', event);
 
         if (response.status === 200) {
-            showMessage('success',i18n.t('notification.success'));
+            showMessage('success', i18n.t('notification.success'));
             commit('addEvent', response.data);
         } else {
-            showMessage('error',i18n.t('notification.error'));
+            showMessage('error', i18n.t('notification.error'));
         }
     },
     async deleteEvent({ commit }, eventId) {
-        showMessage('loading',i18n.t('notification.loading'));
+        showMessage('loading', i18n.t('notification.loading'));
 
         const response = await axios.delete(API_URL + `/calendar/${eventId}`);
 
         if (response.status === 200) {
-            showMessage('success',i18n.t('notification.success'));
+            showMessage('success', i18n.t('notification.success'));
             commit('deleteEvent', eventId);
             commit('deleteFilterEvent', eventId);
         }
     },
     async updateEvent({ commit }, event) {
-        showMessage('loading',i18n.t('notification.loading'));
+        showMessage('loading', i18n.t('notification.loading'));
 
         const response = await axios.put(API_URL + `/calendar/${event.id}`, event);
 
         if (response.status === 200) {
-            showMessage('success',i18n.t('notification.success'));
+            showMessage('success', i18n.t('notification.success'));
             commit('updateEvent', response.data);
             commit('updateFilterEvent', response.data);
         }
