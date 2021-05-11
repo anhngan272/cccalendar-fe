@@ -38,13 +38,13 @@ export default {
 </script>
 
 <style>
-.header {
+body {
+  font-family: "Fira Sans" !important;
 }
 
 .body {
   padding: 5px 24px;
   min-height: 80vh;
-  font-family: 'Fira Sans';
 }
 
 .footer {
