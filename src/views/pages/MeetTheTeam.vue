@@ -22,7 +22,7 @@
                                 <a href="#" style="background:#1877F2"><i class="fa fa-facebook"></i></a> -->
               </span>
               <span class="img-holder d-inline-block">
-                <img src="@/assets/avatar.png" alt="Team" />
+                <img src="@/assets/images/prof_dang.jpg" alt="Team" />
               </span>
             </div>
             <div class="team-content">
@@ -54,7 +54,7 @@
                 ></a>
               </span>
               <span class="img-holder d-inline-block">
-                <img src="@/assets/member_jaysgh.png" alt="Team" />
+                <img src="@/assets/images/member_jaysgh.png" alt="Team" />
               </span>
             </div>
             <div class="team-content">
@@ -86,7 +86,7 @@
                 ></a>
               </span>
               <span class="img-holder d-inline-block">
-                <img src="@/assets/member_anhngan272.jpg" alt="Team" />
+                <img src="@/assets/images/member_anhngan272.jpg" alt="Team" />
               </span>
             </div>
             <div class="team-content">

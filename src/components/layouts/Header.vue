@@ -2,7 +2,7 @@
   <div>
     <div class="head">
       <router-link :to="{ name: 'Home' }"
-        ><img src="@/assets/cccalendar_logo.png" style="height: 30px"
+        ><img src="@/assets/images/cccalendar_logo.png" style="height: 30px"
       /></router-link>
       <router-link :to="{ name: 'Calendar' }">{{
         $t("calendar_page.title")

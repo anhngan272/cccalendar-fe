@@ -18,7 +18,7 @@
                 width="20px"
                 style="margin-bottom: 3px; margin-right: 5px"
                 alt="Google sign-in"
-                src="@/assets/GoogleLogo.png"
+                src="@/assets/images/GoogleLogo.png"
               />
               {{ $t("login.signin_google") }}
             </a>

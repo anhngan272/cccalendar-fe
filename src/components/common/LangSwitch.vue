@@ -10,13 +10,13 @@
             :key="`lang-${i}`"
             :value="lang.value"
           >
-            <img :src="require(`@/assets/${lang.value}.png`)" alt="" />
+            <img :src="require(`@/assets/images/${lang.value}.png`)" alt="" />
             {{ lang.text }}
           </div>
         </div>
       </template>
       <a-button size="large" class="dropBtn">
-        <img :src="require(`@/assets/${this.$i18n.locale}.png`)" alt="" />
+        <img :src="require(`@/assets/images/${this.$i18n.locale}.png`)" alt="" />
         {{ $t("common.select_lang") }}
         <a-icon :style="{ fontSize: '15px' }" type="down" />
       </a-button>
