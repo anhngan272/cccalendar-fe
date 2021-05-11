@@ -192,7 +192,11 @@ export default {
         this.form.tags = [];
       } else {
         this.isCheckAll = true;
-        this.form.tags = this.getTags;
+        let tags = [];
+        for (let i = 0; i < this.getTags.length; i++) {
+          tags.push(this.getTags[i].name);
+        }
+        this.form.tags = tags;
       }
       // console.log(this.form.tags);
     },
