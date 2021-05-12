@@ -193,7 +193,8 @@ export default {
       } else {
         this.isCheckAll = true;
         let tags = [];
-        for (let i = 0; i < this.getTags.length; i++) {
+        let tagsLength = this.getTags.length;
+        for (let i = 0; i < tagsLength; i++) {
           tags.push(this.getTags[i].name);
         }
         this.form.tags = tags;

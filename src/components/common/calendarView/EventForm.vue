@@ -17,6 +17,7 @@
       :label="$t('calendar_page.event_form.begin')"
       required
       prop="date1"
+      class="row"
     >
       <a-date-picker
         inputReadOnly
@@ -25,6 +26,7 @@
         format="DD-MM-YYYY"
         @change="changeDateTime"
         :locale="this.$i18n.locale == 'vi' ? vi : en"
+        class="col-auto col-xl-6"
       />
       <a-time-picker
         inputReadOnly
@@ -33,7 +35,7 @@
         format="HH:mm"
         :default-value="moment('12:00', 'HH:mm')"
         @change="changeDateTime"
-        style="margin-left: 5px;width:100px"
+        class="col-auto ml-2"
       />
     </a-form-model-item>
     <a-form-model-item :label="$t('calendar_page.event_form.end')" prop="date2">
@@ -44,13 +46,14 @@
         format="DD-MM-YYYY"
         :disabled-date="disabledDate"
         :locale="this.$i18n.locale == 'vi' ? vi : en"
+        class="col-auto col-xl-6"
       />
       <a-time-picker
         inputReadOnly
         :allowClear="this.allowClear"
         v-model="form.time2"
         format="HH:mm"
-        style="margin-left: 5px;width:100px"
+        class="col-auto ml-2"
         :disabledHours="disabledHours"
         :disabledMinutes="disabledMinutes"
       />
