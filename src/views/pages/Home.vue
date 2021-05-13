@@ -27,9 +27,9 @@
             <router-link :to="{ name: 'Calendar' }">
               <ul>
                 <li class="calendarIcon">
-                  <a class="calendarIcon" href="#"
+                  <span class="calendarIcon"
                     ><i class="fa fa-calendar" aria-hidden="true"></i
-                  ></a>
+                  ></span>
                 </li>
               </ul>
               <h4 class="">
@@ -45,9 +45,9 @@
             <router-link :to="{ name: 'Diary' }">
               <ul>
                 <li class="diaryIcon">
-                  <a href="#" class="diaryIcon"
+                  <span class="diaryIcon"
                     ><i class="fa fa-clipboard" aria-hidden="true"></i
-                  ></a>
+                  ></span>
                 </li>
               </ul>
               <h4>
@@ -63,9 +63,9 @@
             <router-link :to="{ name: 'Organizer' }">
               <ul>
                 <li class="organizerIcon">
-                  <a class="organizerIcon" href="#"
+                  <span class="organizerIcon"
                     ><i class="fa fa-edit" aria-hidden="true"></i
-                  ></a>
+                  ></span>
                 </li>
               </ul>
               <h4>
@@ -241,7 +241,7 @@ ul li:hover:after {
   z-index: 2;
 }
 
-ul li a {
+ul li span {
   display: flex;
   align-items: center;
   position: absolute;
