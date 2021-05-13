@@ -155,7 +155,10 @@
             "delete_confirm": "Bạn có chắc muốn xóa thẻ này? Không thể hoàn tác",
             "cancel_btn": "Hủy",
             "all_tag": "Tất cả",
-            "contain_all_tag": "Chứa tất cả thẻ đã chọn"
+            "contain_all_tag": "Chứa tất cả thẻ đã chọn",
+            "kmean":"Tính năng đang phát triển",
+            "event":"Sự kiện",
+            "diary":"Nhật ký"
         },
         "events": {
             "title": "Sự kiện",

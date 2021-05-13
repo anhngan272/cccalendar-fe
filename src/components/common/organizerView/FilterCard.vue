@@ -1,5 +1,40 @@
 <template>
   <a-card :title="$t('organizer_page.title')">
+    <a-button
+      style="margin-right: 10px"
+      slot="extra"
+      type="primary"
+      @click="kmeanModal = true"
+    >
+      Kmean
+    </a-button>
+    <!---Kmean Modal-->
+    <a-modal
+      :keyboard="true"
+      :destroyOnClose="true"
+      v-model="kmeanModal"
+      :title="$t('organizer_page.filter.kmean')"
+      :maskClosable="false"
+      :closable="true"
+    >
+      <div>
+        <a-checkbox v-model="kmeanEvent" @change="log">
+          {{ $t("organizer_page.filter.event") }}
+        </a-checkbox>
+        <div style="padding: 5px"></div>
+        <a-checkbox v-model="kmeanDiary" @change="log">
+          {{ $t("organizer_page.filter.diary") }}
+        </a-checkbox>
+      </div>
+      <div slot="footer">
+        <div style="text-align: right">
+          <a-button key="update" type="primary" @click="performKmean">
+            Ok
+          </a-button>
+        </div>
+      </div>
+    </a-modal>
+    <!---End of Kmean Modal-->
     <a-button slot="extra" type="primary" @click="performEmptySearch">
       <a-icon type="reload" />
     </a-button>
@@ -49,8 +84,6 @@
         <a-list-item slot="renderItem" slot-scope="item">
           <a class="edit" slot="actions" @click="showUpdateModal(item)">
             <a-button type="primary"> <a-icon type="edit" /></a-button>
-            <!-- <span><a-icon type="edit" theme="twoTone" /></span
-            >{{ $t("diary_page.diary_form.edit_btn") }} -->
           </a>
 
           <a slot="actions" class="delete">
@@ -63,8 +96,6 @@
             >
               <a>
                 <a-button type="danger"><a-icon type="delete" /></a-button>
-                <!-- <span><a-icon type="delete" /></span
-                >{{ $t("diary_page.diary_form.delete_btn") }} -->
               </a>
             </a-popconfirm>
           </a>
@@ -113,7 +144,6 @@
       <div slot="footer">
         <div style="text-align: center">
           <a-button key="update" type="primary" @click="handleOk">
-            <!-- {{ $t("calendar_page.event_form.ok_btn") }} -->
             Ok
           </a-button>
           <a-popconfirm
@@ -165,6 +195,9 @@ export default {
       tagsData: [],
       searching: false,
       isCheckAll: false,
+      kmeanModal: false,
+      kmeanEvent: false,
+      kmeanDiary: false,
     };
   },
   created() {
@@ -185,6 +218,13 @@ export default {
       "fetchDiaries",
       "fetchEvents",
     ]),
+
+    performKmean() {},
+
+    log() {
+      console.log(this.kmeanEvent);
+      console.log(this.kmeanDiary);
+    },
 
     checkAll() {
       if (this.isCheckAll == true) {

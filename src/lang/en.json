@@ -1,18 +1,17 @@
 {
-  "title":{
-    "Home":"Home",
-    "About":"About",
-    "Not_found":"",
-    "Login":""
-
+  "title": {
+    "Home": "Home",
+    "About": "About",
+    "Not_found": "",
+    "Login": ""
   },
-  "notification":{
-    "loading":"Loading...",
-    "success":"Success!",
-    "error":"Error!!",
-    "update_error":"Update Error!!",
-    "validate_error":"Validate Error!!",
-    "submit_error":"Submit Error!!"
+  "notification": {
+    "loading": "Loading...",
+    "success": "Success!",
+    "error": "Error!!",
+    "update_error": "Update Error!!",
+    "validate_error": "Validate Error!!",
+    "submit_error": "Submit Error!!"
   },
   "common": {
     "select_lang": "US",
@@ -20,8 +19,8 @@
     "author": "Coding Cats",
     "copyrights": "Copyright © 2021 All Rights Reserved by "
   },
-  "pages":{
-    "Home":"Home"
+  "pages": {
+    "Home": "Home"
   },
   "homepage": {
     "title": {
@@ -45,8 +44,8 @@
   },
   "about_page": {
     "text": "Hey There! We're Coding Cats",
-    "meet_our_team":"Meet Our Team",
-    "assoc_prof":"ASSCOCIATE PROFESSOR, PH.D"
+    "meet_our_team": "Meet Our Team",
+    "assoc_prof": "ASSCOCIATE PROFESSOR, PH.D"
   },
   "notfound_page": {
     "text": "Page Not Found. Please check the link again."
@@ -81,13 +80,13 @@
       "end_date": "End Date",
       "select_date": "Select Date",
       "select_tags": "Select Tags",
-      "contain_all_tag":"Contain all chosen tags",
+      "contain_all_tag": "Contain all chosen tags",
       "content": "Content",
       "show_detail": "Show detail",
-      "updated":"Updated",
-      "new":"New",
-      "updated_diary":"Updated Diary",
-      "new_diary":"New Diary"
+      "updated": "Updated",
+      "new": "New",
+      "updated_diary": "Updated Diary",
+      "new_diary": "New Diary"
     }
   },
   "calendar_page": {
@@ -97,7 +96,7 @@
       "week": "Week",
       "list": "Schedule",
       "select_month": "Select month",
-      "this_month":"This month"
+      "this_month": "This month"
     },
     "create_event": "Create new Event",
     "event_form": {
@@ -108,7 +107,7 @@
       "attendees": "Attendees",
       "select_attendees": "Ex: abc@gmail.com",
       "attendees_help": " is not a valid email",
-      "attendees_cant_modified":"Attendees (You can't modify this field)",
+      "attendees_cant_modified": "Attendees (You can't modify this field)",
       "creator": "Creator",
       "tags": "Tags",
       "tags_help": " Invalid. Tag can only cantain letters, '-', '_' and spaces",
@@ -143,28 +142,31 @@
   },
   "organizer_page": {
     "title": "Organizer",
-    "filter":{
-      "date_filter":"Date Filter",
+    "filter": {
+      "date_filter": "Date Filter",
       "start_date": "Start Date",
       "end_date": "End Date",
-      "tag_filter":"Tag Filter",
-      "edit_tag":"Edit Tag's Name",
-      "new_name":"New Name",
-      "new_name_warning":"Warning: Will affect all the events and diaries that use this tag!",
-      "tag_already_exist":"Tag already exist", 
+      "tag_filter": "Tag Filter",
+      "edit_tag": "Edit Tag's Name",
+      "new_name": "New Name",
+      "new_name_warning": "Warning: Will affect all the events and diaries that use this tag!",
+      "tag_already_exist": "Tag already exist",
       "searchPlaceholder": "Input Search Tag",
       "delete_btn": "Delete",
       "delete_confirm": "Are you sure delete this tag? Cannot undo",
       "cancel_btn": "Cancel",
-      "all_tag":"All",
-      "contain_all_tag":"Contain all chosen tags"
+      "all_tag": "All",
+      "contain_all_tag": "Contain all chosen tags",
+      "kmean": "Developing feature",
+      "event": "Event",
+      "diary": "Diary"
     },
-    "events":{
-      "title":"Events",
+    "events": {
+      "title": "Events",
       "searchPlaceholder": "Input Search Event"
     },
-    "diaries":{
-      "title":"Diaries",
+    "diaries": {
+      "title": "Diaries",
       "searchPlaceholder": "Input Search Diaries"
     }
   },
