@@ -284,7 +284,7 @@ export default {
         this.updateTag(updateTag);
         this.performEmptySearch();
       } else {
-        showMessage(this.$t("organizer_page.filter.tag_already_exist"));
+        showMessage('error', this.$t('organizer_page.filter.tag_already_exist'));
       }
     },
 
