@@ -208,6 +208,7 @@ export default {
         end: this.form.toDate,
         tags: this.form.tags,
         containAllTag: this.form.containAllTag,
+        all: true,
       };
       this.fetchEvents(eventSearchTerm);
       this.fetchDiaries(this.form);
@@ -219,10 +220,11 @@ export default {
         toDate: null,
         tags: [],
         containAllTag: false,
+        all: true,
       };
       this.fetchTags();
       this.fetchEvents(null);
-      this.fetchDiaries(null);
+      this.fetchDiaries({ ...this.form });
     },
 
     check(value) {

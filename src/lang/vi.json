@@ -1,176 +1,176 @@
 {
-  "title":{
-    "Home":"Trang chủ",
-    "About":"Giới thiệu"
-
-  },
-  "notification":{
-    "loading":"Đang tải...",
-    "success":"Thành công!",
-    "error":"Có lỗi!!",
-    "update_error":"Lỗi cập nhật!!",
-    "validate_error":"Lỗi xác nhận!!",
-    "submit_error":"Lỗi gửi đi!!"
-  },
-  "common": {
-    "select_lang": "VN",
-    "logo": "LOGO",
-    "author": "Coding Cats",
-    "copyrights": "Bản quyền © 2021 Mọi quyền được bảo lưu bởi "
-  },
-  "pages": {
-    "Home": "Trang chủ"
-  },
-  "homepage": {
     "title": {
-      "web_name": "CCCalendar",
-      "title": "Quản lý thời gian biểu của bạn một cách chuyên nghiệp"
+        "Home": "Trang chủ",
+        "About": "Giới thiệu"
+
     },
-    "intro": {
-      "calendar": {
-        "title": "Lịch",
-        "text": "Liên kết với Google Calendar nhằm giúp bạn đồng bộ hóa lịch của mình trên nhiều thiết bị."
-      },
-      "diary": {
+    "notification": {
+        "loading": "Đang tải...",
+        "success": "Thành công!",
+        "error": "Có lỗi!!",
+        "update_error": "Lỗi cập nhật!!",
+        "validate_error": "Lỗi xác nhận!!",
+        "submit_error": "Lỗi gửi đi!!"
+    },
+    "common": {
+        "select_lang": "VN",
+        "logo": "LOGO",
+        "author": "Coding Cats",
+        "copyrights": "Bản quyền © 2021 Mọi quyền được bảo lưu bởi "
+    },
+    "pages": {
+        "Home": "Trang chủ"
+    },
+    "homepage": {
+        "title": {
+            "web_name": "CCCalendar",
+            "title": "Quản lý thời gian biểu của bạn một cách chuyên nghiệp"
+        },
+        "intro": {
+            "calendar": {
+                "title": "Lịch",
+                "text": "Liên kết với Google Calendar nhằm giúp bạn đồng bộ hóa lịch của mình trên nhiều thiết bị."
+            },
+            "diary": {
+                "title": "Nhật ký",
+                "text": "Ghi chú lại các kế hoạch và công việc của bạn để bạn không phải bỏ lỡ điều gì."
+            },
+            "organizer": {
+                "title": "Quản lý",
+                "text": "Quản lý các ghi chú và sự kiện của bạn nhằm nâng cao hiệu suất làm việc."
+            }
+        }
+    },
+    "about_page": {
+        "text": "Xin chào! Chúng tôi là Coding Cats",
+        "meet_our_team": "Nhóm chúng tôi",
+        "assoc_prof": "Phó giáo sư, Tiến sĩ"
+    },
+    "notfound_page": {
+        "text": "Không tìm thấy trang. Vui lòng kiểm tra lại đường dẫn."
+    },
+    "diary_page": {
         "title": "Nhật ký",
-        "text": "Ghi chú lại các kế hoạch và công việc của bạn để bạn không phải bỏ lỡ điều gì."
-      },
-      "organizer": {
+        "searchPlaceholder": "Nhập từ khóa tìm kiếm",
+        "addDiaryBtn": "Thêm nhật ký",
+        "diary_form": {
+            "header": "Thêm nhật ký",
+            "title": "Tiêu đề",
+            "title_help": "Hãy nhập tiêu đề nhật ký",
+            "date": "Ngày",
+            "tags": "Thẻ",
+            "content": "Nội dung",
+            "reset_btn": "Làm mới",
+            "ok_btn": "Đóng",
+            "cancel_btn": "Hủy",
+            "cancel_confirm": "Bạn có chắc muốn hủy?",
+            "create_btn": "Tạo mới",
+            "update_btn": "Cập nhật",
+            "edit_btn": "Chỉnh sửa",
+            "delete_btn": "Xóa",
+            "delete_confirm": "Bạn có chắc muốn xóa nhật ký này? Không thể hoàn tác"
+        },
+        "diary_list": {
+            "no_data": "Không có dữ liệu",
+            "sort_by": "Lọc theo",
+            "newest_date": "Ngày gần nhất",
+            "oldest_date": "Ngày cũ nhất",
+            "start_date": "Bắt đầu",
+            "end_date": "Kết thúc",
+            "select_date": "Chọn ngày",
+            "select_tags": "Chọn thẻ",
+            "contain_all_tag": "Chứa tất cả thẻ đã chọn",
+            "content": "Nội dung",
+            "show_detail": "Xem chi tiết",
+            "updated": "Cập nhật gần đây",
+            "new": "Mới",
+            "updated_diary": "Nhật ký vừa cập nhật",
+            "new_diary": "Nhật ký mới"
+        }
+    },
+    "calendar_page": {
+        "title": "Lịch",
+        "calendar": {
+            "month": "Tháng",
+            "week": "Tuần",
+            "list": "Lịch biểu",
+            "select_month": "Chọn tháng",
+            "this_month": "Hôm nay"
+        },
+        "create_event": "Tạo sự kiện mới",
+        "event_form": {
+            "title": "Tiêu đề",
+            "title_help": "Hãy nhập tiêu đề sự kiện",
+            "begin": "Bắt đầu",
+            "end": "Kết thúc",
+            "attendees": "Khách",
+            "select_attendees": "Vd: abc@gmail.com",
+            "attendees_help": " không phải là một email hợp lệ",
+            "attendees_cant_modified": "Khách (Bạn không thể sửa phần này)",
+            "creator": "Người tạo",
+            "tags": "Thẻ",
+            "tags_help": " Không hợp lệ. Thẻ chỉ có thể chứa chữ cái, '-', '_' và khoảng cách",
+            "select_tags": "Chọn thẻ",
+            "description": "Miêu tả",
+            "theme": "Chủ đề",
+            "theme_name": {
+                "lavender": "Lavender",
+                "sage": "Sage",
+                "grape": "Nho",
+                "flamingo": "Hồng Hạc",
+                "banana": "Chuối",
+                "tangerine": "Quýt",
+                "peacock": "Peacock",
+                "graphite": "Than Chì",
+                "blueberry": "Việt Quất",
+                "basil": "Húng Quế",
+                "tomato": "Cà Chua"
+            },
+            "create_btn": "Tạo sự kiện",
+            "update_btn": "Cập nhật",
+            "edit_header": "Chỉnh sửa sự kiện",
+            "edit_btn": "Chỉnh sửa",
+            "reset_btn": "Làm mới",
+            "delete_btn": "Xóa",
+            "delete_confirm": "Bạn có chắc chắn xóa sự kiện này không? Không thể hoàn tác",
+            "ok_btn": "Đóng",
+            "cancel_btn": "Hủy",
+            "cancel_confirm": "Bạn có chắc chắn hủy chỉnh sửa sự kiện này không?",
+            "success_alert": "Thành công!!"
+        }
+    },
+    "organizer_page": {
         "title": "Quản lý",
-        "text": "Quản lý các ghi chú và sự kiện của bạn nhằm nâng cao hiệu suất làm việc."
-      }
-    }
-  },
-  "about_page": {
-    "text": "Xin chào! Chúng tôi là Coding Cats",
-    "meet_our_team":"Nhóm chúng tôi",
-    "assoc_prof":"Phó giáo sư, Tiến sĩ"
-  },
-  "notfound_page": {
-    "text": "Không tìm thấy trang. Vui lòng kiểm tra lại đường dẫn."
-  },
-  "diary_page": {
-    "title": "Nhật ký",
-    "searchPlaceholder": "Nhập từ khóa tìm kiếm",
-    "addDiaryBtn": "Thêm nhật ký",
-    "diary_form": {
-      "header": "Thêm nhật ký",
-      "title": "Tiêu đề",
-      "title_help": "Hãy nhập tiêu đề nhật ký",
-      "date": "Ngày",
-      "tags": "Thẻ",
-      "content": "Nội dung",
-      "reset_btn": "Làm mới",
-      "ok_btn": "Đóng",
-      "cancel_btn": "Hủy",
-      "cancel_confirm": "Bạn có chắc muốn hủy?",
-      "create_btn": "Tạo mới",
-      "update_btn": "Cập nhật",
-      "edit_btn": "Chỉnh sửa",
-      "delete_btn": "Xóa",
-      "delete_confirm": "Bạn có chắc muốn xóa nhật ký này? Không thể hoàn tác"
+        "filter": {
+            "date_filter": "Lọc theo ngày",
+            "start_date": "Ngày bắt đầu",
+            "end_date": "Ngày kết thúc",
+            "tag_filter": "Lọc theo thẻ",
+            "edit_tag": "Cập nhật tên thẻ",
+            "new_name": "Tên mới",
+            "new_name_warning": "Lưu ý: Sẽ ảnh hưởng đến các sự kiện và nhật ký sử dụng thẻ này!",
+            "tag_already_exist": "Thẻ đã tồn tại",
+            "searchPlaceholder": "Nhập tên thẻ cần tìm",
+            "delete_btn": "Xóa",
+            "delete_confirm": "Bạn có chắc muốn xóa thẻ này? Không thể hoàn tác",
+            "cancel_btn": "Hủy",
+            "all_tag": "Tất cả",
+            "contain_all_tag": "Chứa tất cả thẻ đã chọn"
+        },
+        "events": {
+            "title": "Sự kiện",
+            "searchPlaceholder": "Nhập sự kiện cần tìm"
+        },
+        "diaries": {
+            "title": "Nhật ký",
+            "searchPlaceholder": "Nhập nhật ký cần tìm"
+        }
     },
-    "diary_list": {
-      "no_data": "Không có dữ liệu",
-      "sort_by": "Lọc theo",
-      "newest_date": "Ngày gần nhất",
-      "oldest_date": "Ngày cũ nhất",
-      "start_date": "Bắt đầu",
-      "end_date": "Kết thúc",
-      "select_date": "Chọn ngày",
-      "select_tags": "Chọn thẻ",
-      "contain_all_tag":"Chứa tất cả thẻ đã chọn",
-      "content": "Nội dung",
-      "show_detail": "Xem chi tiết",
-      "updated":"Cập nhật gần đây",
-      "new":"Mới",
-      "updated_diary":"Nhật ký vừa cập nhật",
-      "new_diary":"Nhật ký mới"
+    "login": {
+        "signin": "Đăng nhập",
+        "signout": "Đăng xuất",
+        "signout_confirm": "Bạn có muốn đăng xuất?",
+        "signin_google": "Đăng nhập bằng tài khoản Google",
+        "signin_loading": "Đang đăng nhập..."
     }
-  },
-  "calendar_page": {
-    "title": "Lịch",
-    "calendar": {
-      "month": "Tháng",
-      "week": "Tuần",
-      "list": "Lịch biểu",
-      "select_month": "Chọn tháng",
-      "this_month": "Hôm nay"
-    },
-    "create_event": "Tạo sự kiện mới",
-    "event_form": {
-      "title": "Tiêu đề",
-      "title_help": "Hãy nhập tiêu đề sự kiện",
-      "begin": "Bắt đầu",
-      "end": "Kết thúc",
-      "attendees": "Khách",
-      "select_attendees": "Vd: abc@gmail.com",
-      "attendees_help": " không phải là một email hợp lệ",
-      "attendees_cant_modified":"Khách (Bạn không thể sửa phần này)",
-      "creator": "Người tạo",
-      "tags": "Thẻ",
-      "tags_help": " Không hợp lệ. Thẻ chỉ có thể chứa chữ cái, '-', '_' và khoảng cách",
-      "select_tags": "Chọn thẻ",
-      "description": "Miêu tả",
-      "theme": "Chủ đề",
-      "theme_name": {
-        "lavender": "Lavender",
-        "sage": "Sage",
-        "grape": "Nho",
-        "flamingo": "Hồng Hạc",
-        "banana": "Chuối",
-        "tangerine": "Quýt",
-        "peacock": "Peacock",
-        "graphite": "Than Chì",
-        "blueberry": "Việt Quất",
-        "basil": "Húng Quế",
-        "tomato": "Cà Chua"
-      },
-      "create_btn": "Tạo sự kiện",
-      "update_btn": "Cập nhật",
-      "edit_header": "Chỉnh sửa sự kiện",
-      "edit_btn": "Chỉnh sửa",
-      "reset_btn": "Làm mới",
-      "delete_btn": "Xóa",
-      "delete_confirm": "Bạn có chắc chắn xóa sự kiện này không? Không thể hoàn tác",
-      "ok_btn": "Đóng",
-      "cancel_btn": "Hủy",
-      "cancel_confirm": "Bạn có chắc chắn hủy chỉnh sửa sự kiện này không?",
-      "success_alert": "Thành công!!"
-    }
-  },
-  "organizer_page": {
-    "title": "Quản lý",
-    "filter": {
-      "date_filter": "Lọc theo ngày",
-      "start_date": "Ngày bắt đầu",
-      "end_date": "Ngày kết thúc",
-      "tag_filter": "Lọc theo thẻ",
-      "edit_tag":"Cập nhật tên thẻ",
-      "new_name":"Tên mới",
-      "new_name_warning":"Lưu ý: Sẽ ảnh hưởng đến các sự kiện và nhật ký sử dụng thẻ này!",
-      "tag_already_exist":"Thẻ đã tồn tại", 
-      "searchPlaceholder": "Nhập tên thẻ cần tìm",
-      "delete_btn": "Xóa",
-      "delete_confirm": "Bạn có chắc muốn xóa thẻ này? Không thể hoàn tác",
-      "cancel_btn": "Hủy",
-      "all_tag":"Tất cả",
-      "contain_all_tag":"Chứa tất cả thẻ đã chọn"
-    },
-    "events": {
-      "title": "Sự kiện",
-      "searchPlaceholder": "Nhập sự kiện cần tìm"
-    },
-    "diaries": {
-      "title": "Nhật ký",
-      "searchPlaceholder": "Nhập nhật ký cần tìm"
-    }
-  },
-  "login": {
-    "signin": "Đăng nhập",
-    "signout": "Đăng xuất",
-    "signout_confirm": "Bạn có muốn đăng xuất?",
-    "signin_google": "Đăng nhập bằng tài khoản google",
-    "signin_loading": "Đang đăng nhập..."
-  }
 }
