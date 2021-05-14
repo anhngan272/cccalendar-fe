@@ -156,9 +156,9 @@
             "cancel_btn": "Hủy",
             "all_tag": "Tất cả",
             "contain_all_tag": "Chứa tất cả thẻ đã chọn",
-            "kmean":"Tính năng đang phát triển",
-            "event":"Sự kiện",
-            "diary":"Nhật ký"
+            "kmean": "Tự động phân loại và gắn thẻ",
+            "event": "Sự kiện",
+            "diary": "Nhật ký"
         },
         "events": {
             "title": "Sự kiện",
@@ -175,5 +175,9 @@
         "signout_confirm": "Bạn có muốn đăng xuất?",
         "signin_google": "Đăng nhập bằng tài khoản Google",
         "signin_loading": "Đang đăng nhập..."
-    }
+    },
+    "Please input Diary Title": "Vui lòng nhập tiêu đề",
+    "Please select Diary Date": "Vui lòng chọn ngày",
+    "This feature is under beta testing": "Tính năng đang trong giai đoạn thử nghiệm",
+    "Please select which you want to categorize and tag": "Vui lòng chọn mục bạn muốn phân loại và gắn thẻ"
 }

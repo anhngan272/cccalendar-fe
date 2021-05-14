@@ -104,7 +104,6 @@ import { mapActions } from "vuex";
 require("moment/locale/vi.js");
 import vi from "ant-design-vue/es/date-picker/locale/vi_VN";
 import en from "ant-design-vue/es/date-picker/locale/en_US";
-import { showMessage } from '@/helpers/index';
 
 export default {
   name: "TextEditor",
@@ -161,14 +160,14 @@ export default {
         title: [
           {
             required: true,
-            message: "Please input Diary Title",
+            message: this.$t("Please input Diary Title"),
             trigger: "submit",
           },
         ],
         date: [
           {
             required: true,
-            message: "Please input Diary Title",
+            message: this.$t("Please select Diary Date"),
             trigger: "submit",
           },
         ],
@@ -201,8 +200,6 @@ export default {
         if (valid) {
           this.isValidated = true;
         } else {
-          // console.log("error validate!!");
-          showMessage("error validate!!")
           this.isValidated = false;
         }
       });
@@ -232,8 +229,7 @@ export default {
           this.closeTextEditor();
         }
       } else {
-        // console.log("error update");
-        showMessage("error update!!")
+        return;
       }
     },
     handleCreate() {
@@ -254,8 +250,7 @@ export default {
         }
         // this.showSuccessAlert();
       } else {
-        // console.log("error create");
-        showMessage("error create!!")
+        return;
       }
     },
     resetForm() {

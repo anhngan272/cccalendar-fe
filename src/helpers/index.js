@@ -2,11 +2,11 @@ import Vue from 'vue';
 import axios from 'axios';
 import VueCookies from 'vue-cookies';
 import { setAuthorization, isLoggedIn } from '@/helpers/auth';
-import { message } from 'ant-design-vue'
+import { message } from 'ant-design-vue';
 
 Vue.use(VueCookies);
 
-const showMessage = (status, messages) => {
+const showMessage = (status, messages = Vue.$t('Error occurred')) => {
     const key = 'updatable';
     switch (status) {
         case 'loading':
@@ -91,7 +91,7 @@ const initialize = (store, router) => {
         }
 
         if (error.response.status == 500) {
-            showMessage('error','cant_connect')
+            showMessage('error', 'cant_connect')
         }
 
         return Promise.reject(error);

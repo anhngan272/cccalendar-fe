@@ -5,7 +5,7 @@ import lang from './modules/lang';
 import calendarEvent from './modules/calendarEvent';
 import diary from './modules/diary';
 import tag from './modules/tag';
-// import app from '../main.js'
+import kmeans from './modules/kmeans';
 
 Vue.use(Vuex)
 
@@ -16,5 +16,6 @@ export default new Vuex.Store({
         calendarEvent,
         diary,
         tag,
+        kmeans,
     }
 })

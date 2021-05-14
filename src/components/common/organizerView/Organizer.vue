@@ -1,4 +1,5 @@
 <template>
+  <a-spin :spinning="this.spinning">
   <div class="wrapper">
     <!-- <a-row type="flex">
       <a-col :flex="1" style="margin-right: 10px">
@@ -26,11 +27,13 @@
         </div>
       </div>
   </div>
+  </a-spin>
 </template>
 
 <script>
 import Card from "./Card";
 import FilterCard from "./FilterCard";
+import { mapGetters } from "vuex";
 
 export default {
   components: {
@@ -40,6 +43,11 @@ export default {
   name: "Organizer",
   data() {
     return {};
+  },
+  computed: {
+    ...mapGetters({
+      spinning: "getSpinning",
+    }),
   },
   methods: {},
 };

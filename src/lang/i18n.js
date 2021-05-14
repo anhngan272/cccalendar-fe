@@ -8,12 +8,13 @@ Vue.use(VueI18n)
 const messages = {
     en: en,
     vi: vi
-    
-  };
 
-  const i18n = new VueI18n({
-    locale: localStorage.getItem('curLang')|| 'vi',
+};
+
+const i18n = new VueI18n({
+    locale: localStorage.getItem('curLang') || 'vi',
     messages,
-  });
+    silentTranslationWarn: true,
+});
 
-  export default i18n
+export default i18n

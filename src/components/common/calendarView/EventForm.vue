@@ -135,7 +135,6 @@ import TagPicker from "../TagPicker.vue";
 require("moment/locale/vi.js");
 import vi from "ant-design-vue/es/date-picker/locale/vi_VN";
 import en from "ant-design-vue/es/date-picker/locale/en_US";
-import { showMessage } from "@/helpers/index";
 
 export default {
   name: "EventForm",
@@ -255,8 +254,6 @@ export default {
           this.$emit("updated");
         }
       } else {
-        showMessage(this.$i18n.t("notification.update_error"));
-        // console.log("error update!!");
         return false;
       }
     },
@@ -302,8 +299,6 @@ export default {
         if (valid && this.form.attendeeSubmitted && this.form.tagSubmitted) {
           this.isValidated = true;
         } else {
-          showMessage("error validate!!");
-          // console.log("error validate!!");
           this.isValidated = false;
         }
       });
@@ -344,8 +339,6 @@ export default {
           this.resetForm();
         }
       } else {
-        showMessage("error submit!!");
-        // console.log("error submit!!");
         return false;
       }
     },
