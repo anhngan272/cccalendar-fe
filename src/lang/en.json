@@ -151,6 +151,7 @@
             "new_name": "New Name",
             "new_name_warning": "Warning: Will affect all the events and diaries that use this tag!",
             "tag_already_exist": "Tag already exist",
+            "tag_empty": "Tag name cannot be empty",
             "searchPlaceholder": "Input Search Tag",
             "delete_btn": "Delete",
             "delete_confirm": "Are you sure delete this tag? Cannot undo",

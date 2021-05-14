@@ -1,172 +1,177 @@
 <template>
-    <a-card :title="$t('organizer_page.title')">
-      <a-button
-        style="margin-right: 10px"
-        slot="extra"
-        type="primary"
-        @click="kmeanModal = true"
-      >
-        <i class="fa fa-list-ul"></i>
-      </a-button>
-      <!---Kmean Modal-->
-      <a-modal
-        :keyboard="true"
-        :destroyOnClose="true"
-        v-model="kmeanModal"
-        :title="$t('organizer_page.filter.kmean')"
-        :maskClosable="false"
-        :closable="true"
-      >
-        <div>
-          <p class="text-danger">
-            {{ $t("This feature is in beta, tag name will be generate randomly") }}
-          </p>
-          <p>
-            {{ $t("Please select which you want to categorize and tag") }}
-          </p>
-          <a-checkbox v-model="kmeanEvent">
-            {{ $t("organizer_page.filter.event") }}
-          </a-checkbox>
-          <div style="padding: 5px"></div>
-          <a-checkbox v-model="kmeanDiary">
-            {{ $t("organizer_page.filter.diary") }}
-          </a-checkbox>
-        </div>
-        <div slot="footer">
-          <div style="text-align: right">
-            <a-button key="update" type="primary" @click="performKmean">
-              Ok
-            </a-button>
-          </div>
-        </div>
-      </a-modal>
-      <!---End of Kmean Modal-->
-      <a-button slot="extra" type="primary" @click="performEmptySearch">
-        <a-icon type="reload" />
-      </a-button>
-      <a-divider orientation="left">{{
-        $t("organizer_page.filter.date_filter")
-      }}</a-divider>
-      <div class="date-filter">
-        <a-date-picker
-          inputReadOnly
-          :allowClear="true"
-          v-model="form.fromDate"
-          format="DD-MM-YYYY"
-          :placeholder="$t('organizer_page.filter.start_date')"
-          style="width: 150px"
-          :locale="this.$i18n.locale == 'vi' ? vi : en"
-        />
-        -
-        <a-date-picker
-          inputReadOnly
-          :allowClear="true"
-          v-model="form.toDate"
-          format="DD-MM-YYYY"
-          :placeholder="$t('organizer_page.filter.end_date')"
-          style="width: 150px"
-          :locale="this.$i18n.locale == 'vi' ? vi : en"
-        />
-      </div>
-
-      <a-divider orientation="left">{{
-        $t("organizer_page.filter.tag_filter")
-      }}</a-divider>
+  <a-card :title="$t('organizer_page.title')">
+    <a-button
+      style="margin-right: 10px"
+      slot="extra"
+      type="primary"
+      @click="kmeanModal = true"
+    >
+      <i class="fa fa-list-ul"></i>
+    </a-button>
+    <!---Kmean Modal-->
+    <a-modal
+      :keyboard="true"
+      :destroyOnClose="true"
+      v-model="kmeanModal"
+      :title="$t('organizer_page.filter.kmean')"
+      :maskClosable="false"
+      :closable="true"
+    >
       <div>
-        <a-input-search
-          class="search-box"
-          :placeholder="$t('organizer_page.filter.searchPlaceholder')"
-          @change="onSearch"
-          v-model="searchKey"
-        />
+        <p class="text-danger">
+          {{
+            $t("This feature is in beta, tag name will be generate randomly")
+          }}
+        </p>
+        <p>
+          {{ $t("Please select which you want to categorize and tag") }}
+        </p>
+        <a-checkbox v-model="kmeanEvent">
+          {{ $t("organizer_page.filter.event") }}
+        </a-checkbox>
+        <div style="padding: 5px"></div>
+        <a-checkbox v-model="kmeanDiary">
+          {{ $t("organizer_page.filter.diary") }}
+        </a-checkbox>
       </div>
-      <div class="tags-filter">
-        <a-list
-          :locale="locale"
-          item-layout="horizontal"
-          :data-source="searching == true ? tagsData : getTags"
-          :bordered="true"
-        >
-          <a-list-item slot="renderItem" slot-scope="item">
-            <a class="edit" slot="actions" @click="showUpdateModal(item)">
-              <a-button type="primary"> <a-icon type="edit" /></a-button>
-            </a>
+      <div slot="footer">
+        <div style="text-align: right">
+          <a-button key="update" type="primary" @click="performKmean">
+            Ok
+          </a-button>
+        </div>
+      </div>
+    </a-modal>
+    <!---End of Kmean Modal-->
+    <a-button slot="extra" type="primary" @click="performEmptySearch">
+      <a-icon type="reload" />
+    </a-button>
+    <a-divider orientation="left">{{
+      $t("organizer_page.filter.date_filter")
+    }}</a-divider>
+    <div class="date-filter">
+      <a-date-picker
+        inputReadOnly
+        :allowClear="true"
+        v-model="form.fromDate"
+        format="DD-MM-YYYY"
+        :placeholder="$t('organizer_page.filter.start_date')"
+        style="width: 150px"
+        :locale="this.$i18n.locale == 'vi' ? vi : en"
+      />
+      -
+      <a-date-picker
+        inputReadOnly
+        :allowClear="true"
+        v-model="form.toDate"
+        format="DD-MM-YYYY"
+        :placeholder="$t('organizer_page.filter.end_date')"
+        style="width: 150px"
+        :locale="this.$i18n.locale == 'vi' ? vi : en"
+      />
+    </div>
 
-            <a slot="actions" class="delete">
-              <a-popconfirm
-                :title="$t('organizer_page.filter.delete_confirm')"
-                placement="top"
-                :ok-text="$t('organizer_page.filter.delete_btn')"
-                :cancel-text="$t('organizer_page.filter.cancel_btn')"
-                @confirm="handelDelete(item)"
-              >
-                <a>
-                  <a-button type="danger"><a-icon type="delete" /></a-button>
-                </a>
-              </a-popconfirm>
-            </a>
-            <a-checkbox
-              :value="item"
-              @change="onChange(item.name)"
-              :checked="isCheckAll == true ? true : check(item.name)"
+    <a-divider orientation="left">{{
+      $t("organizer_page.filter.tag_filter")
+    }}</a-divider>
+    <div>
+      <a-input-search
+        class="search-box"
+        :placeholder="$t('organizer_page.filter.searchPlaceholder')"
+        @change="onSearch"
+        v-model="searchKey"
+      />
+    </div>
+    <div class="tags-filter">
+      <a-list
+        :locale="locale"
+        item-layout="horizontal"
+        :data-source="searching == true ? tagsData : getTags"
+        :bordered="true"
+      >
+        <a-list-item slot="renderItem" slot-scope="item">
+          <a class="edit" slot="actions" @click="showUpdateModal(item)">
+            <a-button type="primary"> <a-icon type="edit" /></a-button>
+          </a>
+
+          <a slot="actions" class="delete">
+            <a-popconfirm
+              :title="$t('organizer_page.filter.delete_confirm')"
+              placement="top"
+              :ok-text="$t('organizer_page.filter.delete_btn')"
+              :cancel-text="$t('organizer_page.filter.cancel_btn')"
+              @confirm="handelDelete(item)"
             >
-              {{ item.name }}
-            </a-checkbox>
-          </a-list-item>
-        </a-list>
-      </div>
-      <hr />
+              <a>
+                <a-button type="danger"><a-icon type="delete" /></a-button>
+              </a>
+            </a-popconfirm>
+          </a>
+          <a-checkbox
+            :value="item"
+            @change="onChange(item.name)"
+            :checked="isCheckAll == true ? true : check(item.name)"
+          >
+            {{ item.name }}
+          </a-checkbox>
+        </a-list-item>
+      </a-list>
+    </div>
+    <hr />
+    <div>
+      <a-checkbox @change="checkAll" :checked="isCheckAll">
+        {{ $t("organizer_page.filter.all_tag") }}
+      </a-checkbox>
+      <a-divider type="vertical" />
+      <a-checkbox v-model="form.containAllTag"
+        >{{ $t("organizer_page.filter.contain_all_tag") }}
+      </a-checkbox>
+      <a-divider type="vertical" />
+      <a-button style="float: right" type="primary" @click="performSearch"
+        ><a-icon type="arrow-right"
+      /></a-button>
+    </div>
+    <a-modal
+      :keyboard="false"
+      :destroyOnClose="true"
+      v-model="tagUpdateModal"
+      :title="$t('organizer_page.filter.edit_tag')"
+      :maskClosable="false"
+      :closable="false"
+    >
       <div>
-        <a-checkbox @change="checkAll" :checked="isCheckAll">
-          {{ $t("organizer_page.filter.all_tag") }}
-        </a-checkbox>
-        <a-divider type="vertical" />
-        <a-checkbox v-model="form.containAllTag"
-          >{{ $t("organizer_page.filter.contain_all_tag") }}
-        </a-checkbox>
-        <a-divider type="vertical" />
-        <a-button style="float: right" type="primary" @click="performSearch"
-          ><a-icon type="arrow-right"
-        /></a-button>
-      </div>
-      <a-modal
-        :keyboard="false"
-        :destroyOnClose="true"
-        v-model="tagUpdateModal"
-        :title="$t('organizer_page.filter.edit_tag')"
-        :maskClosable="false"
-        :closable="false"
-      >
-        <div>
+        <a-form-item :validate-status="status" :help="help">
           <a-input
             :addonBefore="$t('organizer_page.filter.new_name')"
             autoFocus
             v-model="updatedTag"
+            ref="editTag"
           />
-          <div class="warning" style="color: #fd7e14; padding: 5px">
-            {{ $t("organizer_page.filter.new_name_warning") }}
-          </div>
+        </a-form-item>
+        <div class="warning" style="color: #fd7e14; padding: 5px">
+          {{ $t("organizer_page.filter.new_name_warning") }}
         </div>
-        <div slot="footer">
-          <div style="text-align: center">
-            <a-button key="update" type="primary" @click="handleOk">
-              Ok
+      </div>
+      <div slot="footer">
+        <div style="text-align: center">
+          <a-button key="update" type="primary" @click="handleOk">
+            Ok
+          </a-button>
+          <a-popconfirm
+            :title="$t('diary_page.diary_form.cancel_confirm')"
+            placement="top"
+            :ok-text="$t('diary_page.diary_form.ok_btn')"
+            :cancel-text="$t('diary_page.diary_form.cancel_btn')"
+            @confirm="handleCancel"
+          >
+            <a-button>
+              {{ $t("diary_page.diary_form.cancel_btn") }}
             </a-button>
-            <a-popconfirm
-              :title="$t('diary_page.diary_form.cancel_confirm')"
-              placement="top"
-              :ok-text="$t('diary_page.diary_form.ok_btn')"
-              :cancel-text="$t('diary_page.diary_form.cancel_btn')"
-              @confirm="tagUpdateModal = false"
-            >
-              <a-button>
-                {{ $t("diary_page.diary_form.cancel_btn") }}
-              </a-button>
-            </a-popconfirm>
-          </div>
+          </a-popconfirm>
         </div>
-      </a-modal>
-    </a-card>
+      </div>
+    </a-modal>
+  </a-card>
 </template>
 
 <script>
@@ -204,6 +209,8 @@ export default {
       kmeanModal: false,
       kmeanEvent: false,
       kmeanDiary: false,
+      status: "",
+      help: "",
     };
   },
   created() {
@@ -226,7 +233,10 @@ export default {
       "clustering",
     ]),
     performKmean() {
-      this.clustering({isClusteringEvent: this.kmeanEvent, isClusteringDiary: this.kmeanDiary});
+      this.clustering({
+        isClusteringEvent: this.kmeanEvent,
+        isClusteringDiary: this.kmeanDiary,
+      });
 
       // close modal
       this.kmeanModal = false;
@@ -280,7 +290,21 @@ export default {
       return this.form.tags.includes(value);
     },
 
+    handleCancel() {
+      this.tagUpdateModal = false;
+      this.status = "";
+      this.help = "";
+    },
+
     handleOk() {
+      if (this.updatedTag == "") {
+        this.status = "error";
+        this.help = this.$i18n.t("organizer_page.filter.tag_empty");
+        this.$refs.editTag.focus();
+        return false;
+      }
+      this.status = "";
+      this.help = "";
       let tagIndex = this.getTags.findIndex(
         (tags) => tags.name === this.updatedTag
       );

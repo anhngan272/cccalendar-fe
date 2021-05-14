@@ -192,6 +192,7 @@ export default {
   created() {
     if (this.isUpdate == true) {
       this.setUpdateInfo();
+      this.$refs.title.focus();
     }
   },
   computed: {
@@ -295,11 +296,14 @@ export default {
     },
 
     validateForm() {
-      this.$refs.ruleForm.validate((valid) => {
+      this.$refs.ruleForm.validate((valid, error) => {
         if (valid && this.form.attendeeSubmitted && this.form.tagSubmitted) {
           this.isValidated = true;
         } else {
-          this.isValidated = false;
+          if (error.title[0].field == "title") {
+            this.$refs.title.focus();
+            this.isValidated = false;
+          }
         }
       });
     },

@@ -150,6 +150,7 @@
             "new_name": "Tên mới",
             "new_name_warning": "Lưu ý: Sẽ ảnh hưởng đến các sự kiện và nhật ký sử dụng thẻ này!",
             "tag_already_exist": "Thẻ đã tồn tại",
+            "tag_empty": "Tên thẻ không được để trống",
             "searchPlaceholder": "Nhập tên thẻ cần tìm",
             "delete_btn": "Xóa",
             "delete_confirm": "Bạn có chắc muốn xóa thẻ này? Không thể hoàn tác",

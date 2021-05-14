@@ -56,7 +56,7 @@ const routes = [{
     name: 'Calendar',
     component: Calendar,
     meta: {
-        requiresAuth: true,
+        // requiresAuth: true,
         title: 'Calendar',
     },
 }, {
@@ -64,7 +64,7 @@ const routes = [{
     name: 'Diary',
     component: Diary,
     meta: {
-        requiresAuth: true,
+        // requiresAuth: true,
         title: 'Diary',
     },
 }, {
@@ -72,7 +72,7 @@ const routes = [{
     name: 'Organizer',
     component: Organizer,
     meta: {
-        requiresAuth: true,
+        // requiresAuth: true,
         title: 'Organizer',
     },
 }, ];

@@ -54,7 +54,7 @@
         :wrapper-col="{ span: 24, offset: 1 }"
       >
         <vue-editor
-          style="height: 45vh;overflow:auto"
+          style="height: 45vh; overflow: auto"
           id="editor"
           useCustomImageHandler
           @imageAdded="handleImageAdded"
@@ -196,11 +196,14 @@ export default {
       };
     },
     validateForm() {
-      this.$refs.form.validate((valid) => {
+      this.$refs.form.validate((valid,error) => {
         if (valid) {
           this.isValidated = true;
         } else {
-          this.isValidated = false;
+          if (error.title[0].field == "title") {
+            this.$refs.title.focus();
+            this.isValidated = false;
+          }
         }
       });
     },
