@@ -26,7 +26,7 @@
             {{ $t("diary_page.diary_form.delete_btn") }}
           </a-button>
         </a-popconfirm>
-        <a-button key="ok" type="primary" @click="handleOk">
+        <a-button key="ok" @click="handleOk">
           {{ $t("diary_page.diary_form.ok_btn") }}
         </a-button>
       </div>
