@@ -367,6 +367,14 @@ export default {
       this.tagsData = this.tagsData.filter((tag) => {
         return tag.name.includes(this.searchKey);
       });
+      if(this.isCheckAll){
+        let tags = [];
+        for (let i = 0; i < this.tagsData.length; i++) {
+          tags.push(this.tagsData[i].name);
+        }
+        this.form.tags = tags;
+      }
+      // console.log(this.form.tags);
     },
     onChange(checkedValues) {
       // console.log("checked = ", checkedValues);
