@@ -241,7 +241,6 @@ export default {
     shortTag(content) {
       let contentToRender = "";
       if (content) {
-        console.log(content);
         contentToRender = content + " ";
         if (content.length > 20) {
           contentToRender = content.substring(0, 15) + ". . .";
