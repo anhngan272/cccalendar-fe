@@ -37,16 +37,17 @@
         </a>
         <a-list-item-meta>
           <div class="title" @click="showModal(item)" slot="title">
-            {{ item.title }}
+            <b>{{ item.title }}</b>
           </div>
+          <div class="tag-wrap" slot="description">
           <a
             class="tag"
-            slot="description"
             v-for="tag in item.tags"
             :key="tag"
             @click="clickTag(tag)"
             >#{{ tag }}</a
           >
+          </div>
         </a-list-item-meta>
       </a-list-item>
     </a-list>
@@ -182,6 +183,33 @@ export default {
 </script>
 
 <style scoped>
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #6da3e0 #f1f1f1;
+}
+
+/** For webkit support */
+::-webkit-scrollbar {
+  width: 1px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #c8dbf1;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #6da3e0;
+}
+
+.tag-wrap {
+  width: 15vw;
+  overflow-y: scroll;
+}
+
 .tag {
   color: #1890ff !important;
   background: #e6e6e6;

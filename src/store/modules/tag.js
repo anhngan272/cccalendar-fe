@@ -5,14 +5,14 @@ import i18n from '@/lang/i18n.js'
 
 const state = {
     tags: [
-        {
-            name: "Tag0",
-            id: 0
-        },
-        {
-            name: "Tag1",
-            id: 1
-        },
+        // {
+        //     name: "Tag0",
+        //     id: 0
+        // },
+        // {
+        //     name: "Tag1",
+        //     id: 1
+        // },
     ],
     filterTags: [],
 }

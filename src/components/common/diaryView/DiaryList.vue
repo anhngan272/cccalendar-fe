@@ -35,7 +35,7 @@
         </a>
 
         <a-list-item-meta>
-          <a slot="description" style="margin-right: 10px">{{ item.date }}</a>
+          <!-- <a slot="description" style="margin-right: 10px">{{ item.date }}</a> -->
           <a
             slot="description"
             style="display: block"
@@ -47,14 +47,15 @@
             }}</span>
           </a>
           <!-- <a slot="description" class="diary-tag">{{ item.tags }}</a> -->
-          <a
-            slot="description"
-            class="diary-tag"
-            v-for="tag in item.tags"
-            :key="tag"
-            @click="clickTag(tag)"
-            >#{{ tag }}</a
-          >
+          <div slot="description" class="tag-wrap">
+            <a
+              class="diary-tag"
+              v-for="tag in item.tags"
+              :key="tag"
+              @click="clickTag(tag)"
+              >#{{ tag }}</a
+            >
+          </div>
           <a slot="title" class="diary-title" @click="showDiaryModal(item)"
             ><h5 class="font-weight-bold">{{ item.title }}</h5></a
           >
@@ -66,7 +67,9 @@
         >
         </a-badge>
         <a-badge
-          :count="item.id == updateDiaryId ? $t('diary_page.diary_list.updated') : ''"
+          :count="
+            item.id == updateDiaryId ? $t('diary_page.diary_list.updated') : ''
+          "
           :title="$t('diary_page.diary_list.updated_diary')"
           :number-style="{ backgroundColor: '#52c41a' }"
         >
@@ -170,6 +173,7 @@ export default {
 .wrapper {
   /* background: pink; */
   padding: 20px;
+  /* width: 70vw; */
 }
 
 .delete span,
@@ -180,6 +184,34 @@ export default {
 a h5:hover {
   color: #1890ff;
   text-decoration: none;
+}
+
+/**  For All Browsers */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #6da3e0 #f1f1f1;
+}
+
+/** For webkit support */
+::-webkit-scrollbar {
+  width: 1px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #c8dbf1;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #6da3e0;
+}
+
+.tag-wrap {
+  width: 45vw;
+  overflow-y: scroll;
 }
 
 .diary-tag {
