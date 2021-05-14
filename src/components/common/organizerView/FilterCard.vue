@@ -112,7 +112,12 @@
             @change="onChange(item.name)"
             :checked="isCheckAll == true ? true : check(item.name)"
           >
-            {{ item.name }}
+            <a-tooltip placement="top">
+              <template slot="title">
+                <span>{{ item.name }}</span>
+              </template>
+              {{ shortTag(item.name) }}
+            </a-tooltip>
           </a-checkbox>
         </a-list-item>
       </a-list>
@@ -232,6 +237,19 @@ export default {
       "fetchEvents",
       "clustering",
     ]),
+
+    shortTag(content) {
+      let contentToRender = "";
+      if (content) {
+        console.log(content);
+        contentToRender = content + " ";
+        if (content.length > 20) {
+          contentToRender = content.substring(0, 15) + ". . .";
+        }
+      }
+      return contentToRender;
+    },
+
     performKmean() {
       this.clustering({
         isClusteringEvent: this.kmeanEvent,
