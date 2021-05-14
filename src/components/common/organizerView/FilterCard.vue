@@ -82,6 +82,9 @@
         v-model="searchKey"
       />
     </div>
+      <a-checkbox style="margin:10px 24px 0px " @change="checkAll" :checked="isCheckAll">
+        {{ $t("organizer_page.filter.all_tag") }}
+      </a-checkbox>
     <div class="tags-filter">
       <a-list
         :locale="locale"
@@ -124,9 +127,9 @@
     </div>
     <hr />
     <div>
-      <a-checkbox @change="checkAll" :checked="isCheckAll">
+      <!-- <a-checkbox @change="checkAll" :checked="isCheckAll">
         {{ $t("organizer_page.filter.all_tag") }}
-      </a-checkbox>
+      </a-checkbox> -->
       <a-divider type="vertical" />
       <a-checkbox v-model="form.containAllTag"
         >{{ $t("organizer_page.filter.contain_all_tag") }}
@@ -263,15 +266,16 @@ export default {
       this.kmeanDiary = false;
     },
     checkAll() {
+      // console.log(this.tagsData)
       if (this.isCheckAll == true) {
         this.isCheckAll = false;
         this.form.tags = [];
       } else {
         this.isCheckAll = true;
         let tags = [];
-        let tagsLength = this.getTags.length;
+        let tagsLength = this.tagsData.length;
         for (let i = 0; i < tagsLength; i++) {
-          tags.push(this.getTags[i].name);
+          tags.push(this.tagsData[i].name);
         }
         this.form.tags = tags;
       }
@@ -361,7 +365,7 @@ export default {
       this.searching = true;
       this.tagsData = this.getTags;
       this.tagsData = this.tagsData.filter((tag) => {
-        return tag.name.toLowerCase().includes(this.searchKey);
+        return tag.name.includes(this.searchKey);
       });
     },
     onChange(checkedValues) {
@@ -384,7 +388,7 @@ export default {
 }
 .tags-filter {
   /* text-align: center; */
-  height: 40vh;
+  height: 38vh;
   overflow-y: auto;
   margin-top: 10px;
 }
