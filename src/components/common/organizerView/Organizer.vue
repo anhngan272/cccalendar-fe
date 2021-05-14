@@ -21,8 +21,8 @@
         <div class="col-md-auto tagCard"><FilterCard /></div>
         <div class="col myCard">
           <div class="row">
-            <div class="col"><Card :type="'events'" /></div>
-            <div class="col"><Card :type="'diaries'" /></div>
+            <div class="col-6"><Card :type="'events'" /></div>
+            <div class="col-6"><Card :type="'diaries'" /></div>
           </div>
         </div>
       </div>
