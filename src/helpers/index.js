@@ -91,7 +91,7 @@ const initialize = (store, router) => {
         }
 
         if (error.response.status == 500) {
-            showMessage('error', 'cant_connect')
+            showMessage('error');
         }
 
         return Promise.reject(error);

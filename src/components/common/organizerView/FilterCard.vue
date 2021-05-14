@@ -19,7 +19,7 @@
       >
         <div>
           <p class="text-danger">
-            {{ $t("This feature is under beta testing") }}
+            {{ $t("This feature is in beta, tag name will be generate randomly") }}
           </p>
           <p>
             {{ $t("Please select which you want to categorize and tag") }}
