@@ -71,6 +71,7 @@ export default {
         initialView: "dayGridMonth",
         editable: true,
         eventDrop: this.eventDrop,
+        // eventChange: this.eventChange,
         selectable: true,
         selectMirror: true,
         dayMaxEvents: true,
@@ -111,7 +112,7 @@ export default {
     }),
     moment,
 
-    eventDrop(changeInfo) {
+    eventChange(changeInfo) {
       let start = moment(changeInfo.event.start);
       let end = moment(changeInfo.event.end);
       var event = {
@@ -129,6 +130,14 @@ export default {
         tags: changeInfo.oldEvent.extendedProps.tags,
       };
       this.updateEventDate(event);
+    },
+
+    eventDrop(info) {
+      if (!confirm(this.$t('calendar_page.confirm'))) {
+      info.revert();
+    } else {
+      this.eventChange(info)
+    }
     },
 
     showModal() {

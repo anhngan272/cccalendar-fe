@@ -97,6 +97,7 @@
             "select_month": "Chọn tháng",
             "this_month": "Hôm nay"
         },
+        "confirm":"Bạn có muốn cập nhật sự kiện này?",
         "create_event": "Tạo sự kiện mới",
         "event_form": {
             "title": "Tiêu đề",

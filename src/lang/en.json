@@ -98,6 +98,7 @@
             "select_month": "Select month",
             "this_month": "This month"
         },
+        "confirm":"Are you sure to update this event?",
         "create_event": "Create new Event",
         "event_form": {
             "title": "Title",
