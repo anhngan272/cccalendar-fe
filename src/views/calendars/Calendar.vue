@@ -32,15 +32,33 @@ export default {
 </script>
 
 <style scoped>
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #6da3e0 #f1f1f1;
+}
+
+/** For webkit support */
+::-webkit-scrollbar {
+  width: 5px;
+  /* height: 5px; */
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #c8dbf1;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #6da3e0;
+}
+
 .calendar {
-  /* width: 67%; */
-  /* float: left; */
   height: 80vh;
-  /* overflow-y: scroll; */
 }
 .tabForm {
-  /* width: 32%;
-  float: right; */
   height: 80vh;
   overflow-y: scroll;
 }
