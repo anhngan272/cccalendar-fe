@@ -1,7 +1,7 @@
 <template>
   <div>
     <a-card :title="$t('calendar_page.create_event')">
-      <EventForm />
+      <EventForm ref="eventForm"/>
     </a-card>
   </div>
 </template>
@@ -10,7 +10,12 @@
 import EventForm from "./EventForm.vue";
 export default {
   name: "CardForm",
-  methods: {},
+  methods: {
+    onDateSelect(date){
+       this.$refs.eventForm.onDateSelect(date)
+      
+    }
+  },
   components: {
     EventForm,
   },

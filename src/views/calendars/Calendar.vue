@@ -1,10 +1,10 @@
 <template>
   <div class="calendarView row">
     <div class="tabForm col-lg-3 col-sm-6">
-      <CardForm />
+      <CardForm ref="cardForm"/>
     </div>
     <div class="calendar col-lg-9 col-sm-6">
-      <Calendar />
+      <Calendar @onDateSelect="onDateSelect" />
     </div>
   </div>
 </template>
@@ -14,7 +14,12 @@ import Calendar from "@/components/common/calendarView/Calendar";
 import CardForm from "@/components/common/calendarView/CardForm";
 export default {
   name: "CalendarView",
-  methods: {},
+  methods: {
+    onDateSelect(date){
+      this.$refs.cardForm.onDateSelect(date)
+  
+    }
+  },
   data() {
     return {};
   },

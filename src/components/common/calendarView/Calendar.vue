@@ -70,11 +70,11 @@ export default {
         },
         initialView: "dayGridMonth",
         editable: false,
-        // selectable: true,
+        selectable: true,
         selectMirror: true,
         dayMaxEvents: true,
         weekends: true,
-        // select: this.handleDateSelect,
+        select: this.handleDateSelect,
         eventClick: this.handleEventClick,
         eventsSet: this.handleEvents,
         eventDisplay: "block",
@@ -123,9 +123,14 @@ export default {
       this.calendarOptions.weekends = !this.calendarOptions.weekends; // update a property
     },
 
-    // handleDateSelect(selectInfo) {
-    // console.log(selectInfo);
-    // },
+    handleDateSelect(selectInfo) {
+      let date = {
+        start: selectInfo.startStr,
+        end: selectInfo.endStr,
+      };
+        // console.log(date);
+      this.$emit("onDateSelect", date);
+    },
 
     handleEventClick(clickInfo) {
       this.eventModal = clickInfo.event;
@@ -224,7 +229,7 @@ b {
   /* display: flex; */
   /* min-height: 100%; */
   /* font-family: Arial, Helvetica Neue, Helvetica, sans-serif; */
-  font-family: 'Fira Sans';
+  font-family: "Fira Sans";
   font-size: 14px;
 }
 

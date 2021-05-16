@@ -221,6 +221,13 @@ export default {
       this.form.backgroundColor = this.updateEventInfo.backgroundColor;
     },
 
+    onDateSelect(date){
+      this.$refs.title.focus()
+      this.form.date1 = moment(date.start)
+      this.form.date2 = moment(date.end).add('-1','days')
+      // console.log(date)
+    },
+
     onUpdateEvent() {
       this.validateForm();
       if (this.isValidated == true) {
