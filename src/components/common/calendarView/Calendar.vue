@@ -69,7 +69,8 @@ export default {
           right: "dayGridMonth,timeGridWeek,listMonth",
         },
         initialView: "dayGridMonth",
-        editable: false,
+        editable: true,
+        eventDrop: this.eventDrop,
         selectable: true,
         selectMirror: true,
         dayMaxEvents: true,
@@ -104,8 +105,32 @@ export default {
     }),
   },
   methods: {
-    ...mapActions(["fetchEvents"]),
+    ...mapActions({
+      fetchEvents: "fetchEvents",
+      updateEventDate: "updateEvent",
+    }),
     moment,
+
+    eventDrop(changeInfo) {
+      let start = moment(changeInfo.event.start);
+      let end = moment(changeInfo.event.end);
+      var event = {
+        id: changeInfo.oldEvent.id,
+        title: changeInfo.oldEvent.title,
+        start: start.format("YYYY-MM-DD") + " " + start.format("HH:mm"),
+        end: end.format("YYYY-MM-DD") + " " + end.format("HH:mm"),
+        description: changeInfo.oldEvent.extendedProps.description,
+        backgroundColor: changeInfo.oldEvent.backgroundColor,
+        colorId: changeInfo.oldEvent.extendedProps.colorId,
+        borderColor: changeInfo.oldEvent.backgroundColor,
+        textColor: "#fff",
+        allDay: false,
+        attendees: changeInfo.oldEvent.extendedProps.attendees,
+        tags: changeInfo.oldEvent.extendedProps.tags,
+      };
+      this.updateEventDate(event);
+    },
+
     showModal() {
       this.modal1 = true;
     },
@@ -128,7 +153,7 @@ export default {
         start: selectInfo.startStr,
         end: selectInfo.endStr,
       };
-        // console.log(date);
+      // console.log(date);
       this.$emit("onDateSelect", date);
     },
 

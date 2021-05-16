@@ -259,7 +259,7 @@ export default {
 
         //call vuex store action to update event
         if (this.updateEvent(event)) {
-          this.$emit("updated");
+          // this.$emit("updated");
         }
       } else {
         return false;
@@ -346,7 +346,7 @@ export default {
 
         //call vuex store action to add event
         if (this.addEvent(event)) {
-          this.$emit("updated");
+          // this.$emit("updated");
           this.resetForm();
         }
       } else {
