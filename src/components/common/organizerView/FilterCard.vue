@@ -18,13 +18,18 @@
       :closable="true"
     >
       <div>
+        <p>
+          {{
+            $t("This feature will automatically group events/diaries based on title similarity, then will tag 1 common tag for these event/diary groups.")
+          }}
+        </p>
         <p class="text-danger">
           {{
-            $t("This feature is in beta, tag name will be generate randomly")
+            $t("This feature is in beta, tag name will be generate randomly.")
           }}
         </p>
         <p>
-          {{ $t("Please select which you want to categorize and tag") }}
+          {{ $t("Please select which you want to categorize and tag.") }}
         </p>
         <a-checkbox v-model="kmeanEvent">
           {{ $t("organizer_page.filter.event") }}
