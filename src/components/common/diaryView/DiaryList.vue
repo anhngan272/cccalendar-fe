@@ -56,9 +56,21 @@
               >#{{ tag }}</a
             >
           </div>
-          <a slot="title" class="diary-title" @click="showDiaryModal(item)"
+          <a
+            v-if="item.title.length <= 45"
+            slot="title"
+            class="diary-title"
+            @click="showDiaryModal(item)"
             ><h5 class="font-weight-bold">{{ item.title }}</h5></a
           >
+          <a-tooltip v-else slot="title" placement="top">
+            <template slot="title">
+              <span>{{ item.title }}</span>
+            </template>
+            <a>
+              <h5 class="font-weight-bold">{{ shortTitle(item.title) }}</h5>
+            </a>
+          </a-tooltip>
         </a-list-item-meta>
         <a-badge
           :count="index == createDiaryId ? $t('diary_page.diary_list.new') : ''"
@@ -116,6 +128,17 @@ export default {
   },
   methods: {
     ...mapActions(["fetchDiaries", "deleteDiary"]),
+
+    shortTitle(content) {
+      let contentToRender = "";
+      if (content) {
+        contentToRender = content + " ";
+        if (content.length >= 50) {
+          contentToRender = content.substring(0, 45) + ". . .";
+        }
+      }
+      return contentToRender;
+    },
 
     closeTextEditor() {
       this.showText = false;

@@ -192,7 +192,7 @@ export default {
   created() {
     if (this.isUpdate == true) {
       this.setUpdateInfo();
-      this.$refs.title.focus();
+      // this.$refs.title.focus();
     }
   },
   computed: {
@@ -267,7 +267,7 @@ export default {
 
         //call vuex store action to update event
         if (this.updateEvent(event)) {
-          // this.$emit("updated");
+          this.$emit("updated");
         }
       } else {
         return false;

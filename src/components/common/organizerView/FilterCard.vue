@@ -120,7 +120,7 @@
             @change="onChange(item.name)"
             :checked="isCheckAll == true ? true : check(item.name)"
           >
-            <a-tooltip v-if="item.title.length > 20" placement="top">
+            <a-tooltip v-if="item.name.length > 20" placement="top">
               <template slot="title">
                 <span>{{ item.name }}</span>
               </template>
@@ -252,7 +252,7 @@ export default {
       if (content) {
         contentToRender = content + " ";
         if (content.length > 20) {
-          contentToRender = content.substring(0, 15) + ". . .";
+          contentToRender = content.substring(0, 14) + ". . .";
         }
       }
       return contentToRender;

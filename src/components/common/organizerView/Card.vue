@@ -37,7 +37,7 @@
         </a>
         <a-list-item-meta>
           <div class="title" @click="showModal(item)" slot="title">
-            <a-tooltip v-if="item.title.length >= 70" placement="top">
+            <a-tooltip v-if="item.title.length >= 35" placement="top">
               <template slot="title">
                 <span>{{ item.title }}</span>
               </template>
@@ -154,8 +154,8 @@ export default {
       let contentToRender = "";
       if (content) {
         contentToRender = content + " ";
-        if (content.length >= 70) {
-          contentToRender = content.substring(0, 65) + ". . .";
+        if (content.length >= 35) {
+          contentToRender = content.substring(0, 29) + ". . .";
         }
       }
       return contentToRender;
