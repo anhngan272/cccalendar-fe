@@ -37,16 +37,21 @@
         </a>
         <a-list-item-meta>
           <div class="title" @click="showModal(item)" slot="title">
-            <b>{{ item.title }}</b>
+            <a-tooltip placement="top">
+              <template slot="title">
+                <span>{{ item.title }}</span>
+              </template>
+              <b>{{ item.title }}</b>
+            </a-tooltip>
           </div>
           <div class="tag-wrap" slot="description">
-          <a
-            class="tag"
-            v-for="tag in item.tags"
-            :key="tag"
-            @click="clickTag(tag)"
-            >#{{ tag }}</a
-          >
+            <a
+              class="tag"
+              v-for="tag in item.tags"
+              :key="tag"
+              @click="clickTag(tag)"
+              >#{{ tag }}</a
+            >
           </div>
         </a-list-item-meta>
       </a-list-item>
