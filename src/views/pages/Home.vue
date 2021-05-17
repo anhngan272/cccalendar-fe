@@ -227,7 +227,7 @@ ul li:after {
   border-radius: 50%;
   filter: blur(20px);
   opacity: 0;
-  transition: 0.5s;
+  transition: 0.35s;
   z-index: -1;
 }
 
