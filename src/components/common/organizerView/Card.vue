@@ -37,12 +37,13 @@
         </a>
         <a-list-item-meta>
           <div class="title" @click="showModal(item)" slot="title">
-            <a-tooltip placement="top">
+            <a-tooltip v-if="item.title.length >= 70" placement="top">
               <template slot="title">
                 <span>{{ item.title }}</span>
               </template>
-              <b>{{ item.title }}</b>
+              <b>{{ shortTitle(item.title) }}</b>
             </a-tooltip>
+            <b v-else>{{ item.title }}</b>
           </div>
           <div class="tag-wrap" slot="description">
             <a
@@ -149,6 +150,16 @@ export default {
       "filterEvents",
       "filterDiaries",
     ]),
+    shortTitle(content) {
+      let contentToRender = "";
+      if (content) {
+        contentToRender = content + " ";
+        if (content.length >= 70) {
+          contentToRender = content.substring(0, 65) + ". . .";
+        }
+      }
+      return contentToRender;
+    },
     onChange() {
       if (this.type == "events") {
         this.filterEvents(this.searchKey);

@@ -133,11 +133,11 @@ export default {
     },
 
     eventDrop(info) {
-      if (!confirm(this.$t("calendar_page.confirm"))) {
-        info.revert();
-      } else {
+      // if (!confirm(this.$t("calendar_page.confirm"))) {
+      //   info.revert();
+      // } else {
         this.eventChange(info);
-      }
+      // }
     },
 
     showModal() {

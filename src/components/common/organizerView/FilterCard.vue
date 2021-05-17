@@ -120,12 +120,13 @@
             @change="onChange(item.name)"
             :checked="isCheckAll == true ? true : check(item.name)"
           >
-            <a-tooltip placement="top">
+            <a-tooltip v-if="item.title.length > 20" placement="top">
               <template slot="title">
                 <span>{{ item.name }}</span>
               </template>
               {{ shortTag(item.name) }}
             </a-tooltip>
+            <span v-else>{{ shortTag(item.name) }}</span>
           </a-checkbox>
         </a-list-item>
       </a-list>
