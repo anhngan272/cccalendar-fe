@@ -155,7 +155,7 @@ export default {
       if (content) {
         contentToRender = content + " ";
         if (content.length >= 35) {
-          contentToRender = content.substring(0, 29) + ". . .";
+          contentToRender = content.substring(0, 22) + ". . .";
         }
       }
       return contentToRender;
