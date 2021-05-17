@@ -221,10 +221,18 @@ export default {
       this.form.backgroundColor = this.updateEventInfo.backgroundColor;
     },
 
-    onDateSelect(date){
-      this.$refs.title.focus()
-      this.form.date1 = moment(date.start)
-      this.form.date2 = moment(date.end).add('-1','days')
+    onDateSelect(date) {
+      this.$refs.title.focus();
+        this.form.date1 = moment(date.start);
+      if (date.type == "dayGridMonth") {
+        this.form.date2 = moment(date.end).add("-1", "days");
+        this.form.time1 = moment.utc("12:00", "HH:mm");
+        this.form.time2 = moment.utc("13:30", "HH:mm");
+      } else {
+        this.form.date2 = moment(date.end);
+        this.form.time1 = moment(date.start);
+        this.form.time2 = moment(date.end);
+      }
       // console.log(date)
     },
 

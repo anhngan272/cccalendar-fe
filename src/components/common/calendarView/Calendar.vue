@@ -133,11 +133,11 @@ export default {
     },
 
     eventDrop(info) {
-      if (!confirm(this.$t('calendar_page.confirm'))) {
-      info.revert();
-    } else {
-      this.eventChange(info)
-    }
+      if (!confirm(this.$t("calendar_page.confirm"))) {
+        info.revert();
+      } else {
+        this.eventChange(info);
+      }
     },
 
     showModal() {
@@ -161,8 +161,9 @@ export default {
       let date = {
         start: selectInfo.startStr,
         end: selectInfo.endStr,
+        type: selectInfo.view.type,
       };
-      // console.log(date);
+      // console.log(selectInfo.view.type);
       this.$emit("onDateSelect", date);
     },
 
