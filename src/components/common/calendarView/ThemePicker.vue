@@ -8,7 +8,8 @@
         :key="index"
       >
         <label>
-          <span class="tooltiptext">{{ colors[index].name }}</span>
+          <!-- <span class="tooltiptext">{{ colors[index].name }}</span> -->
+          <span class="tooltiptext">{{ colorName(index) }}</span>
           <input
             class="tooltip"
             type="radio"
@@ -35,67 +36,67 @@ export default {
       colors: [
         {
           colorId: 1,
-          name: this.$i18n.t("calendar_page.event_form.theme_name.lavender"),
+          // name: this.$i18n.t("calendar_page.event_form.theme_name.lavender"),
           background: "#7986cb",
           foreground: "#1d1d1d",
         },
         {
           colorId: 2,
-          name: this.$i18n.t("calendar_page.event_form.theme_name.sage"),
+          // name: this.$i18n.t("calendar_page.event_form.theme_name.sage"),
           background: "#33b679",
           foreground: "#1d1d1d",
         },
         {
           colorId: 3,
-          name: this.$i18n.t("calendar_page.event_form.theme_name.grape"),
+          // name: this.$i18n.t("calendar_page.event_form.theme_name.grape"),
           background: "#8e24aa",
           foreground: "#1d1d1d",
         },
         {
           colorId: 4,
-          name: this.$i18n.t("calendar_page.event_form.theme_name.flamingo"),
+          // name: this.$i18n.t("calendar_page.event_form.theme_name.flamingo"),
           background: "#e67c73",
           foreground: "#1d1d1d",
         },
         {
           colorId: 5,
-          name: this.$i18n.t("calendar_page.event_form.theme_name.banana"),
+          // name: this.$i18n.t("calendar_page.event_form.theme_name.banana"),
           background: "#f6c026",
           foreground: "#1d1d1d",
         },
         {
           colorId: 6,
-          name: this.$i18n.t("calendar_page.event_form.theme_name.tangerine"),
+          // name: this.$i18n.t("calendar_page.event_form.theme_name.tangerine"),
           background: "#f5511d",
           foreground: "#1d1d1d",
         },
         {
           colorId: 7,
-          name: this.$i18n.t("calendar_page.event_form.theme_name.peacock"),
+          // name: this.$i18n.t("calendar_page.event_form.theme_name.peacock"),
           background: "#039be5",
           foreground: "#1d1d1d",
         },
         {
           colorId: 8,
-          name: this.$i18n.t("calendar_page.event_form.theme_name.graphite"),
+          // name: this.$i18n.t("calendar_page.event_form.theme_name.graphite"),
           background: "#616161",
           foreground: "#1d1d1d",
         },
         {
           colorId: 9,
-          name: this.$i18n.t("calendar_page.event_form.theme_name.blueberry"),
+          // name: this.$i18n.t("calendar_page.event_form.theme_name.blueberry"),
           background: "#3f51b5",
           foreground: "#1d1d1d",
         },
         {
           colorId: 10,
-          name: this.$i18n.t("calendar_page.event_form.theme_name.basil"),
+          // name: this.$i18n.t("calendar_page.event_form.theme_name.basil"),
           background: "#0b8043",
           foreground: "#1d1d1d",
         },
         {
           colorId: 11,
-          name: this.$i18n.t("calendar_page.event_form.theme_name.tomato"),
+          // name: this.$i18n.t("calendar_page.event_form.theme_name.tomato"),
           background: "#d60000",
           foreground: "#1d1d1d",
         },
@@ -109,6 +110,28 @@ export default {
     resetForm() {
       this.defaultId = "#039BE5";
       this.$emit("colorPicked", this.defaultId);
+    },
+    colorName(index) {
+      let colors = [
+        this.$i18n.t("calendar_page.event_form.theme_name.lavender"),
+        this.$i18n.t("calendar_page.event_form.theme_name.sage"),
+        this.$i18n.t("calendar_page.event_form.theme_name.grape"),
+        this.$i18n.t("calendar_page.event_form.theme_name.flamingo"),
+        this.$i18n.t("calendar_page.event_form.theme_name.banana"),
+        this.$i18n.t("calendar_page.event_form.theme_name.tangerine"),
+        this.$i18n.t("calendar_page.event_form.theme_name.peacock"),
+        this.$i18n.t("calendar_page.event_form.theme_name.graphite"),
+        this.$i18n.t("calendar_page.event_form.theme_name.blueberry"),
+        this.$i18n.t("calendar_page.event_form.theme_name.basil"),
+        this.$i18n.t("calendar_page.event_form.theme_name.tomato"),
+      ];
+      let name = "";
+      for (let i = 0; i < colors.length; i++) {
+        if (index == i) {
+          name = colors[i];
+          return name;
+        }
+      }
     },
   },
 };
@@ -141,7 +164,7 @@ export default {
   border-radius: 50%;
 }
 
-.swatch:hover{
+.swatch:hover {
   box-shadow: 2px 2px 2px grey;
 }
 

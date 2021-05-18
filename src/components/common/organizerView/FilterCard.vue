@@ -20,7 +20,9 @@
       <div>
         <p>
           {{
-            $t("This feature will automatically group events/diaries based on title similarity, then will tag 1 common tag for these event/diary groups.")
+            $t(
+              "This feature will automatically group events/diaries based on title similarity, then will tag 1 common tag for these event/diary groups."
+            )
           }}
         </p>
         <p class="text-danger">
@@ -87,9 +89,13 @@
         v-model="searchKey"
       />
     </div>
-      <a-checkbox style="margin:10px 24px 0px " @change="checkAll" :checked="isCheckAll">
-        {{ $t("organizer_page.filter.all_tag") }}
-      </a-checkbox>
+    <a-checkbox
+      style="margin: 10px 24px 0px"
+      @change="checkAll"
+      :checked="isCheckAll"
+    >
+      {{ $t("organizer_page.filter.all_tag") }}
+    </a-checkbox>
     <div class="tags-filter">
       <a-list
         :locale="locale"
@@ -120,13 +126,16 @@
             @change="onChange(item.name)"
             :checked="isCheckAll == true ? true : check(item.name)"
           >
-            <a-tooltip v-if="item.name.length > 20" placement="top">
-              <template slot="title">
-                <span>{{ item.name }}</span>
-              </template>
-              {{ shortTag(item.name) }}
-            </a-tooltip>
-            <span v-else>{{ shortTag(item.name) }}</span>
+            <div style="display: inline-flex">
+              <a-tooltip placement="top">
+                <template slot="title">
+                  <span>{{ item.name }}</span>
+                </template>
+                <h6 class="tag">
+                  {{ item.name }}
+                </h6>
+              </a-tooltip>
+            </div>
           </a-checkbox>
         </a-list-item>
       </a-list>
@@ -373,7 +382,7 @@ export default {
       this.tagsData = this.tagsData.filter((tag) => {
         return tag.name.includes(this.searchKey);
       });
-      if(this.isCheckAll){
+      if (this.isCheckAll) {
         let tags = [];
         for (let i = 0; i < this.tagsData.length; i++) {
           tags.push(this.tagsData[i].name);
@@ -422,5 +431,13 @@ export default {
 .delete:hover {
   text-shadow: 1px 1px 3px #808080;
   /* text-decoration: underline !important; */
+}
+
+.tag {
+  white-space: nowrap;
+  max-width: 10vw;
+  width: fit-content;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 </style>

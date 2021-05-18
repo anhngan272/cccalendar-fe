@@ -1,5 +1,12 @@
 <template>
-  <a-card :title="title" :bodyStyle="{ height: '77vh', overflow: 'auto' }">
+  <a-card
+    :title="
+      type == 'events'
+        ? $t('organizer_page.events.title')
+        : $t('organizer_page.diaries.title')
+    "
+    :bodyStyle="{ height: '77vh', overflow: 'auto' }"
+  >
     <a-input-search
       slot="extra"
       :placeholder="$t(`organizer_page.${type}.searchPlaceholder`)"
@@ -36,14 +43,14 @@
           </a-popconfirm>
         </a>
         <a-list-item-meta>
-          <div class="title" @click="showModal(item)" slot="title">
-            <a-tooltip v-if="item.title.length >= 35" placement="top">
+          <div @click="showModal(item)" slot="title">
+            <a-tooltip placement="top">
               <template slot="title">
                 <span>{{ item.title }}</span>
               </template>
-              <b>{{ shortTitle(item.title) }}</b>
+              <h6 class="title">{{ item.title }}</h6>
             </a-tooltip>
-            <b v-else>{{ item.title }}</b>
+            <!-- <b>{{ item.title }}</b> -->
           </div>
           <div class="tag-wrap" slot="description">
             <a
@@ -124,13 +131,13 @@ export default {
   created() {
     if (this.type == "events") {
       this.fetchEvents();
-      this.title = this.$t(`organizer_page.${this.type}.title`);
+      // this.title = this.$t(`organizer_page.${this.type}.title`);
     } else if (this.type == "diaries") {
       let searchTerm = {
         all: true,
       };
       this.fetchDiaries(searchTerm);
-      this.title = this.$t(`organizer_page.${this.type}.title`);
+      // this.title = this.$t(`organizer_page.${this.type}.title`);
     }
   },
   computed: {
@@ -150,16 +157,7 @@ export default {
       "filterEvents",
       "filterDiaries",
     ]),
-    shortTitle(content) {
-      let contentToRender = "";
-      if (content) {
-        contentToRender = content + " ";
-        if (content.length >= 35) {
-          contentToRender = content.substring(0, 22) + ". . .";
-        }
-      }
-      return contentToRender;
-    },
+
     onChange() {
       if (this.type == "events") {
         this.filterEvents(this.searchKey);
@@ -203,6 +201,14 @@ export default {
 ::-webkit-scrollbar {
   /* width: 1px; */
   height: 5px;
+}
+
+.title {
+  white-space: nowrap;
+  max-width: 15vw;
+  width: fit-content;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .tag-wrap {

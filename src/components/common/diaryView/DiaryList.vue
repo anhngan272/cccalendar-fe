@@ -35,7 +35,7 @@
         </a>
 
         <a-list-item-meta>
-          <!-- <a slot="description" style="margin-right: 10px">{{ item.date }}</a> -->
+          <a slot="description" style="margin-right: 10px">{{ item.date }}</a>
           <a
             slot="description"
             style="display: block"
@@ -56,19 +56,12 @@
               >#{{ tag }}</a
             >
           </div>
-          <a
-            v-if="item.title.length <= 45"
-            slot="title"
-            class="diary-title"
-            @click="showDiaryModal(item)"
-            ><h5 class="font-weight-bold">{{ item.title }}</h5></a
-          >
-          <a-tooltip v-else slot="title" placement="top">
+          <a-tooltip slot="title" placement="top">
             <template slot="title">
               <span>{{ item.title }}</span>
             </template>
-            <a>
-              <h5 class="font-weight-bold">{{ shortTitle(item.title) }}</h5>
+            <a @click="showDiaryModal(item)">
+              <h5 class="title-wrap font-weight-bold">{{ item.title }}</h5>
             </a>
           </a-tooltip>
         </a-list-item-meta>
@@ -128,17 +121,6 @@ export default {
   },
   methods: {
     ...mapActions(["fetchDiaries", "deleteDiary"]),
-
-    shortTitle(content) {
-      let contentToRender = "";
-      if (content) {
-        contentToRender = content + " ";
-        if (content.length >= 50) {
-          contentToRender = content.substring(0, 45) + ". . .";
-        }
-      }
-      return contentToRender;
-    },
 
     closeTextEditor() {
       this.showText = false;
@@ -233,8 +215,15 @@ a h5:hover {
 }
 
 .tag-wrap {
-  width: 45vw;
+  width: 44vw;
   overflow-y: scroll;
+}
+
+.title-wrap {
+  white-space: nowrap;
+  max-width: 44vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .diary-tag {
