@@ -30,7 +30,7 @@ const actions = {
             const response = await axios.post(API_URL + '/clustering/diary');
 
             if (response.status == 200) {
-                store.dispatch('fetchDiaries');
+                store.dispatch('fetchDiaries', { all: true });
             }
         }
 

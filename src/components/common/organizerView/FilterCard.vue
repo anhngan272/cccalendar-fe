@@ -268,10 +268,12 @@ export default {
     },
 
     performKmean() {
-      this.clustering({
-        isClusteringEvent: this.kmeanEvent,
-        isClusteringDiary: this.kmeanDiary,
-      });
+      if (this.kmeanEvent != false || this.kmeanDiary != false) {
+        this.clustering({
+          isClusteringEvent: this.kmeanEvent,
+          isClusteringDiary: this.kmeanDiary,
+        });
+      }
 
       // close modal
       this.kmeanModal = false;

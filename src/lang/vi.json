@@ -180,8 +180,8 @@
     },
     "Please input Diary Title": "Vui lòng nhập tiêu đề",
     "Please select Diary Date": "Vui lòng chọn ngày",
-    "This feature is in beta, tag name will be generate randomly.": "Tính năng đang trong giai đoạn thử nghiệm, tên thẻ sẽ được tạo ngẫu nhiên",
-    "This feature will automatically group events/diaries based on title similarity, then will tag 1 common tag for these event/diary groups.": "Tính năng này sẽ tự động phân nhóm các sự kiện/nhật ký dựa trên sự giống nhau của tiêu đề, sau đó sẽ gắn 1 thẻ chung cho các nhóm sự kiện/nhật ký này",
-    "Please select which you want to categorize and tag.": "Vui lòng chọn mục bạn muốn phân loại và gắn thẻ",
+    "This feature is in beta, tag name will be generate randomly.": "Tính năng đang trong giai đoạn thử nghiệm, tên thẻ sẽ được tạo ngẫu nhiên.",
+    "This feature will automatically group events/diaries based on title similarity, then will tag 1 common tag for these event/diary groups.": "Tính năng này sẽ tự động phân nhóm các sự kiện/nhật ký dựa trên sự giống nhau của tiêu đề, sau đó sẽ gắn 1 thẻ chung cho các nhóm sự kiện/nhật ký này.",
+    "Please select which you want to categorize and tag.": "Vui lòng chọn mục bạn muốn phân loại và gắn thẻ.",
     "Error occurred": "Đã xảy ra lỗi"
 }
