@@ -1,103 +1,96 @@
 <template>
   <div class="container">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <div class="section-title title-left text-center text-lg-left">
-            <h3 class="top-sep">{{$t('about_page.meet_our_team')}}</h3>
-            <!-- <p>
-              Lorem ipsum dolor sit amet, consectadetudzdae rcquisc adipiscing
-              elit. Aenean socada commodo ligaui egets dolor. Nullam quis ante
-              tiam sit ame orci eget erovtiu faucid.
-            </p> -->
+    <div class="row">
+      <div class="col-12">
+        <div class="section-title title-left text-center text-lg-left">
+          <h3 class="top-sep">{{ $t("about_page.meet_our_team") }}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-4 mb-30">
+        <div class="team-item">
+          <div class="mb-30 position-relative d-flex align-items-center">
+            <span class="socials d-inline-block">
+              <a
+                href="https://github.com/saidan00"
+                target="_blank"
+                style="background: #181717"
+                ><i class="fa fa-github"></i
+              ></a>
+              <a
+                href="https://facebook.com/huy.sgh"
+                target="_blank"
+                style="background: #1877f2"
+                ><i class="fa fa-facebook"></i
+              ></a>
+            </span>
+            <span class="img-holder d-inline-block">
+              <img src="@/assets/images/member_jaysgh.png" alt="Team" />
+            </span>
+          </div>
+          <div class="team-content">
+            <h5 class="mb-2">Võ Hoàng Huy</h5>
+            <p class="text-uppercase mb-0">Back-end Developer</p>
+          </div>
+          <div class="team-content">
+            <p class="mb-0 email">
+              <i class="fa fa-envelope"></i> huysgh94@gmail.com
+            </p>
           </div>
         </div>
       </div>
-      <div class="row justify-content-center">
-        <div class="col-md-6 col-lg-4 mb-30">
-          <div class="team-item">
-            <div class="mb-30 position-relative d-flex align-items-center">
-              <span class="socials d-inline-block">
-                <!-- <a href="#" style="background:#181717"><i class="fa fa-github"></i></a>
-                                <a href="#" style="background:#1877F2"><i class="fa fa-facebook"></i></a> -->
-              </span>
-              <span class="img-holder d-inline-block">
-                <img src="@/assets/images/prof_dang.jpg" alt="Team" />
-              </span>
-            </div>
-            <div class="team-content">
-              <h5 class="mb-2">Nguyễn Tuấn Đăng</h5>
-              <p class="text-uppercase mb-0">{{$t('about_page.assoc_prof')}}</p>
-            </div>
-            <div class="team-content">
-              <p class="mb-0 email">
-                <i class="fa fa-envelope"></i> dangnt@sgu.edu.vn
-              </p>
-            </div>
+      <div class="col-md-6 col-lg-4 mb-30">
+        <div class="team-item">
+          <div class="mb-30 position-relative d-flex align-items-center">
+            <span class="socials d-inline-block">
+              <a
+                href="https://github.com/anhngan272"
+                target="_blank"
+                style="background: #181717"
+                ><i class="fa fa-github"></i
+              ></a>
+              <a
+                href="https://facebook.com/h.t.anhngan17"
+                target="_blank"
+                style="background: #1877f2"
+                ><i class="fa fa-facebook"></i
+              ></a>
+            </span>
+            <span class="img-holder d-inline-block">
+              <img src="@/assets/images/member_anhngan272.jpg" alt="Team" />
+            </span>
+          </div>
+          <div class="team-content">
+            <h5 class="mb-2">Hứa Thị Ánh Ngân</h5>
+            <p class="text-uppercase mb-0">Front-end Developer</p>
+          </div>
+          <div class="team-content">
+            <p class="mb-0 email">
+              <i class="fa fa-envelope"></i> anhngan272@gmail.com
+            </p>
           </div>
         </div>
-        <div class="col-md-6 col-lg-4 mb-30">
-          <div class="team-item">
-            <div class="mb-30 position-relative d-flex align-items-center">
-              <span class="socials d-inline-block">
-                <a
-                  href="https://github.com/saidan00"
-                  target="_blank"
-                  style="background: #181717"
-                  ><i class="fa fa-github"></i
-                ></a>
-                <a
-                  href="https://facebook.com/huy.sgh"
-                  target="_blank"
-                  style="background: #1877f2"
-                  ><i class="fa fa-facebook"></i
-                ></a>
-              </span>
-              <span class="img-holder d-inline-block">
-                <img src="@/assets/images/member_jaysgh.png" alt="Team" />
-              </span>
-            </div>
-            <div class="team-content">
-              <h5 class="mb-2">Võ Hoàng Huy</h5>
-              <p class="text-uppercase mb-0">Back-end Developer</p>
-            </div>
-            <div class="team-content">
-              <p class="mb-0 email">
-                <i class="fa fa-envelope"></i> huysgh94@gmail.com
-              </p>
-            </div>
-          </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="section-title text-center">
         </div>
-        <div class="col-md-6 col-lg-4 mb-30">
-          <div class="team-item">
-            <div class="mb-30 position-relative d-flex align-items-center">
-              <span class="socials d-inline-block">
-                <a
-                  href="https://github.com/anhngan272"
-                  target="_blank"
-                  style="background: #181717"
-                  ><i class="fa fa-github"></i
-                ></a>
-                <a
-                  href="https://facebook.com/h.t.anhngan17"
-                  target="_blank"
-                  style="background: #1877f2"
-                  ><i class="fa fa-facebook"></i
-                ></a>
-              </span>
-              <span class="img-holder d-inline-block">
-                <img src="@/assets/images/member_anhngan272.jpg" alt="Team" />
-              </span>
-            </div>
-            <div class="team-content">
-              <h5 class="mb-2">Hứa Thị Ánh Ngân</h5>
-              <p class="text-uppercase mb-0">Front-end Developer</p>
-            </div>
-            <div class="team-content">
-              <p class="mb-0 email">
-                <i class="fa fa-envelope"></i> anhngan272@gmail.com
-              </p>
-            </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-9 col-lg-8 mb-30">
+        <div class="team-item">
+          <div class="team-content">
+            <p class="text-uppercase mb-0">{{ $t("about_page.instructor") }}</p>
+            <p class="mb-0 name">{{$t('about_page.assoc_prof')}} Nguyễn Tuấn Đăng</p>
+          </div>
+          <div class="team-content">
+            <p class="mb-0 email">
+              <i class="fa fa-envelope"></i> dangnt@sgu.edu.vn
+            </p>
           </div>
         </div>
       </div>
@@ -201,9 +194,14 @@ body {
   margin-bottom: 0;
 }
 
+.team-content .name {
+  font-size: 17px !important;
+  margin-top: 30px;
+  color: black !important;
+}
+
 .team-content .email {
   margin-top: 30px;
-  text-align: center;
   color: #000000a6 !important;
 }
 
