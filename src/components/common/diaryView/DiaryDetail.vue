@@ -34,11 +34,6 @@
 
     <div>
       <b>{{ $t("diary_page.diary_form.date") }}: </b>
-      <!-- {{
-        moment(diary.date)
-          .locale(this.$i18n.locale)
-          .format("HH:mm a dddd DD-MM-yyyy")
-      }} -->
       {{ date }}
     </div>
 
@@ -49,7 +44,13 @@
 
     <div>
       <b>{{ $t("diary_page.diary_form.content") }}: </b>
-      <span v-html="content"></span>
+      <vue-editor
+        :disabled="true"
+        id="editor"
+        :editorOptions="editorOptions"
+        v-model="content"
+      >
+      </vue-editor>
     </div>
   </a-modal>
 </template>
@@ -57,6 +58,7 @@
  <script>
 import moment from "moment";
 import { mapActions } from "vuex";
+import { VueEditor } from "vue2-editor";
 export default {
   name: "DiaryDetail",
   props: {
@@ -70,9 +72,16 @@ export default {
       date: "",
       tags: [],
       content: "",
+      editorOptions: {
+        modules: {
+          toolbar: false,
+        },
+      },
     };
   },
-  components: {},
+  components: {
+    VueEditor,
+  },
   updated() {
     if (this.diary != null) {
       this.setDiaryInfo(this.diary);
