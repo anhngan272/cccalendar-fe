@@ -3,7 +3,7 @@
     <LangSwitch />
     <!-- if user logged in -->
     <template v-if="user != null">
-      <a-dropdown placement="bottomCenter" :trigger="['click', 'hover']">
+      <a-dropdown placement="bottomCenter" :trigger="['click']">
         <template slot="overlay">
           <div class="dropdown-content">
             <div @click="performLogout"><i class="fa fa-sign-out"></i>{{ $t("login.signout") }}</div>

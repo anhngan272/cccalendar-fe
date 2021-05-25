@@ -1,6 +1,6 @@
 <template>
   <div class="langSwitch">
-    <a-dropdown :trigger="['click', 'hover']">
+    <a-dropdown :trigger="['click']">
       <template slot="overlay">
         <div class="dropdown-content">
           <div

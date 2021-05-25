@@ -12,7 +12,7 @@
       </li>
     </ul> -->
 
-    <h1 class="font-weight-bold">
+    <h1>
       <span class="cccalendar">
         {{ $t("homepage.title.web_name") }}
       </span>
@@ -110,8 +110,11 @@ export default {
 }
 
 .cccalendar {
+  font-size: 70px;
+  font-weight: 900;
+  letter-spacing: 5px;
   /* background-image: linear-gradient(#1d2671, #c33764); */
-  background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #1de840, #2b1de8,  #5d02ff);
+  background: linear-gradient(124deg, #ff2400, #e81d1d, #1de840, #2b1de8,  #1d2671);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

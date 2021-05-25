@@ -7,6 +7,14 @@
     :label-col="labelCol"
     :wrapper-col="wrapperCol"
   >
+  <a-form-model-item
+      :label="$t('calendar_page.event_form.theme')"
+      prop="recurring"
+    >
+      <Recurring/>
+    </a-form-model-item>
+    
+    <code>{{recurring}}</code>
     <a-form-model-item
       :label="$t('calendar_page.event_form.title')"
       prop="title"
@@ -83,12 +91,6 @@
       />
     </a-form-model-item>
     <a-form-model-item
-      :label="$t('calendar_page.event_form.description')"
-      prop="description"
-    >
-      <a-input v-model="form.description" type="textarea" />
-    </a-form-model-item>
-    <a-form-model-item
       :label="$t('calendar_page.event_form.theme')"
       prop="colorId"
     >
@@ -98,6 +100,13 @@
         @colorPicked="setColor"
       />
     </a-form-model-item>
+    <a-form-model-item
+      :label="$t('calendar_page.event_form.description')"
+      prop="description"
+    >
+      <a-input v-model="form.description" type="textarea" />
+    </a-form-model-item>
+    
     <a-form-model-item style="text-align: center">
       <a-button type="primary" @click="onSubmit" v-if="isUpdate != true">
         {{ $t("calendar_page.event_form.create_btn") }}
@@ -131,6 +140,7 @@ import { mapActions, mapGetters } from "vuex";
 import moment from "moment";
 import AttendeePicker from "./AttendeePicker.vue";
 import ThemePicker from "./ThemePicker.vue";
+import Recurring from "./Recurring.vue";
 import TagPicker from "../TagPicker.vue";
 require("moment/locale/vi.js");
 import vi from "ant-design-vue/es/date-picker/locale/vi_VN";
@@ -154,6 +164,7 @@ export default {
       isValidated: false,
       allowClear: false,
       isCreator: true,
+      recurring:'test',
       form: {
         title: "",
         date1: moment(new Date()).utc("vi_VN"),
@@ -185,6 +196,7 @@ export default {
     ThemePicker,
     TagPicker,
     AttendeePicker,
+    Recurring,
   },
   beforeCreate() {
     moment.locale(this.$i18n.locale);
@@ -403,10 +415,10 @@ export default {
       }
     },
 
-    changeDateTime(value) {
+    changeDateTime() {
       //Make sure end date is after or same as start date
-      if (this.form.date2.isBefore(value)) {
-        this.form.date2 = value;
+      if (this.form.date2.isBefore(this.form.date1)) {
+        this.form.date2 = this.form.date1;
       }
       //If start date is same as end date then end time must be after start time (default set 30m after start time)
       if (
