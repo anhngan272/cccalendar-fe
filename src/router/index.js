@@ -56,7 +56,7 @@ const routes = [{
     name: 'Calendar',
     component: Calendar,
     meta: {
-        requiresAuth: true,
+        // requiresAuth: true,
         title: 'Calendar',
     },
 }, {

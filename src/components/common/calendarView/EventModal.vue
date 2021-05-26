@@ -81,6 +81,13 @@
         style="display: inline-block; margin-left: 5px"
       ></div>
     </div>
+    <div>
+      <RecurringOption
+        ref="recurringOption"
+        @ok="optionOk"
+        @cancel="optionCancel"
+      />
+    </div>
   </a-modal>
 </template>
 
@@ -88,6 +95,7 @@
 import moment from "moment";
 import { mapActions } from "vuex";
 import UpdateEventModal from "./UpdateEventModal";
+import RecurringOption from "@/components/common/calendarView/RecurringOption";
 export default {
   name: "EventModal",
   props: {
@@ -102,11 +110,25 @@ export default {
   },
   components: {
     UpdateEventModal,
+    RecurringOption,
   },
   methods: {
     moment,
     ...mapActions(["deleteEvent", "updateEvent"]),
+    optionOk(option) {
+      if (option == "this") {
+        this.delete();
+      }
+    },
+    optionCancel() {
+      this.$refs.recurringOption.optionModal = false;
+    },
     handleDelete() {
+      this.$refs.recurringOption.optionModal = true;
+      // this.deleteEvent(this.event.id);
+      // this.eventModal = false;
+    },
+    delete() {
       this.deleteEvent(this.event.id);
       this.eventModal = false;
     },

@@ -6,6 +6,7 @@ import listPlugin from "@fullcalendar/list";
 import bootstrapPlugin from "@fullcalendar/bootstrap";
 import interactionPlugin from "@fullcalendar/interaction";
 import EventModal from "@/components/common/calendarView/EventModal";
+import RecurringOption from "@/components/common/calendarView/RecurringOption";
 import { mapActions, mapGetters } from "vuex";
 import moment from "moment";
 import vi from "ant-design-vue/es/date-picker/locale/vi_VN";
@@ -17,6 +18,7 @@ export default {
   components: {
     FullCalendar, // make the <FullCalendar> tag available
     EventModal,
+    RecurringOption,
   },
 
   data: function () {
@@ -92,6 +94,11 @@ export default {
         */
       },
       currentEvents: [],
+      currentEvent: {
+        recurringOption: "this",
+        data: "",
+      },
+      optionModal: false,
     };
   },
   beforeCreate() {
@@ -136,7 +143,9 @@ export default {
       // if (!confirm(this.$t("calendar_page.confirm"))) {
       //   info.revert();
       // } else {
-        this.eventChange(info);
+      this.$refs.recurringOption.optionModal = true;
+      this.currentEvent.data = info;
+      // this.eventChange(info);
       // }
     },
 
@@ -171,6 +180,7 @@ export default {
       this.eventModal = clickInfo.event;
       this.eventModalExtend = clickInfo.event.extendedProps;
       this.$refs.eventModal.eventModal = true;
+      // console.log(clickInfo);
     },
     updateEvent() {
       const updatedEvent = this.$refs.calendar
@@ -181,13 +191,30 @@ export default {
     handleEvents(events) {
       this.currentEvents = events;
     },
+    optionOk(option) {
+      //   console.log("ok");
+      if (option == "this") {
+        this.eventChange(this.currentEvent.data);
+      }
+      console.log(option);
+      // this.optionModal = false;
+    },
+    optionCancel() {
+      this.currentEvent.data.revert();
+    },
   },
 };
 </script>
 
 <template>
   <div class="demo-app">
-    <div class=""></div>
+    <div class="">
+      <RecurringOption
+        ref="recurringOption"
+        @ok="optionOk"
+        @cancel="optionCancel"
+      />
+    </div>
     <div class="demo-app-main">
       <FullCalendar
         ref="calendar"

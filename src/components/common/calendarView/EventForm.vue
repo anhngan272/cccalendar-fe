@@ -7,14 +7,12 @@
     :label-col="labelCol"
     :wrapper-col="wrapperCol"
   >
-  <a-form-model-item
+    <a-form-model-item
       :label="$t('calendar_page.event_form.theme')"
       prop="recurring"
     >
-      <Recurring/>
+      <Recurring />
     </a-form-model-item>
-    
-    <code>{{recurring}}</code>
     <a-form-model-item
       :label="$t('calendar_page.event_form.title')"
       prop="title"
@@ -106,12 +104,13 @@
     >
       <a-input v-model="form.description" type="textarea" />
     </a-form-model-item>
-    
+
     <a-form-model-item style="text-align: center">
       <a-button type="primary" @click="onSubmit" v-if="isUpdate != true">
         {{ $t("calendar_page.event_form.create_btn") }}
       </a-button>
-      <a-button type="primary" @click="onUpdateEvent" v-else>
+      <!-- <a-button type="primary" @click="onUpdateEvent" v-else> -->
+      <a-button type="primary" @click="handleUpdate" v-else>
         {{ $t("calendar_page.event_form.update_btn") }}
       </a-button>
       <a-button type="danger" style="margin-left: 10px" @click="resetForm">
@@ -133,6 +132,13 @@
         </a-button>
       </a-popconfirm>
     </a-form-model-item>
+    <div>
+      <RecurringOption
+        ref="recurringOption"
+        @ok="optionOk"
+        @cancel="optionCancel"
+      />
+    </div>
   </a-form-model>
 </template>
 <script>
@@ -141,6 +147,7 @@ import moment from "moment";
 import AttendeePicker from "./AttendeePicker.vue";
 import ThemePicker from "./ThemePicker.vue";
 import Recurring from "./Recurring.vue";
+import RecurringOption from "@/components/common/calendarView/RecurringOption";
 import TagPicker from "../TagPicker.vue";
 require("moment/locale/vi.js");
 import vi from "ant-design-vue/es/date-picker/locale/vi_VN";
@@ -164,7 +171,7 @@ export default {
       isValidated: false,
       allowClear: false,
       isCreator: true,
-      recurring:'test',
+      recurring: "test",
       form: {
         title: "",
         date1: moment(new Date()).utc("vi_VN"),
@@ -197,6 +204,7 @@ export default {
     TagPicker,
     AttendeePicker,
     Recurring,
+    RecurringOption,
   },
   beforeCreate() {
     moment.locale(this.$i18n.locale);
@@ -214,6 +222,16 @@ export default {
     moment,
 
     ...mapActions(["addEvent", "updateEvent"]),
+
+    optionOk(option) {
+      this.validateForm();
+      if (option == "this") {
+        this.onUpdateEvent();
+      }
+    },
+    optionCancel() {
+      this.$refs.recurringOption.optionModal = false;
+    },
 
     setUpdateInfo() {
       this.form.title = this.updateEventInfo.title;
@@ -235,7 +253,7 @@ export default {
 
     onDateSelect(date) {
       this.$refs.title.focus();
-        this.form.date1 = moment(date.start);
+      this.form.date1 = moment(date.start);
       if (date.type == "dayGridMonth") {
         this.form.date2 = moment(date.end).add("-1", "days");
         this.form.time1 = moment.utc("12:00", "HH:mm");
@@ -248,8 +266,11 @@ export default {
       // console.log(date)
     },
 
+    handleUpdate() {
+      this.$refs.recurringOption.optionModal = true;
+    },
+
     onUpdateEvent() {
-      this.validateForm();
       if (this.isValidated == true) {
         this.form.start =
           this.form.date1.format("YYYY-MM-DD") +
