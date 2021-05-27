@@ -131,7 +131,7 @@ export default {
         backgroundColor: changeInfo.oldEvent.backgroundColor,
         colorId: changeInfo.oldEvent.extendedProps.colorId,
         borderColor: changeInfo.oldEvent.backgroundColor,
-        textColor: "#fff",
+        textColor: "#000",
         allDay: false,
         attendees: changeInfo.oldEvent.extendedProps.attendees,
         tags: changeInfo.oldEvent.extendedProps.tags,

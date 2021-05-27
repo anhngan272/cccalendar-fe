@@ -79,4 +79,8 @@ body {
   background: #d1dfff !important;
   font-weight: bold;
 }
+
+.fc-event .fc-event-main {
+    overflow: hidden;
+}
 </style>
