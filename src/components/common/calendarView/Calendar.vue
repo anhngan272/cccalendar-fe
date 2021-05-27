@@ -50,7 +50,22 @@ export default {
             text: "Reload",
             icon: "fa fa-refresh",
             click: () => {
-              this.fetchEvents();
+              let date = this.$refs.calendar.getApi().currentData.currentDate;
+              this.fetchCurrentEvents(date);
+            },
+          },
+          prev: {
+            click: () => {
+              this.$refs.calendar.getApi().prev();
+              let date = this.$refs.calendar.getApi().currentData.currentDate;
+              this.fetchCurrentEvents(date);
+            },
+          },
+          next: {
+            click: () => {
+              this.$refs.calendar.getApi().next();
+              let date = this.$refs.calendar.getApi().currentData.currentDate;
+              this.fetchCurrentEvents(date);
             },
           },
         },
@@ -105,7 +120,7 @@ export default {
     moment.locale(this.$i18n.locale);
   },
   created() {
-    this.fetchEvents();
+    this.fetchCurrentEvents(new Date());
   },
   computed: {
     ...mapGetters({
@@ -119,6 +134,15 @@ export default {
     }),
     moment,
 
+    fetchCurrentEvents(date) {
+      let start = new Date(date.getFullYear(), date.getMonth(), 1);
+      let end = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+      let searchTerm = {
+        start: moment(start),
+        end: moment(end),
+      };
+      this.fetchEvents(searchTerm);
+    },
     eventChange(changeInfo) {
       let start = moment(changeInfo.event.start);
       let end = moment(changeInfo.event.end);
@@ -157,9 +181,10 @@ export default {
       this.handleOk();
     },
     handleOk() {
-      var date = this.date.toISOString().replace(/T.*$/, "");
+      let date = this.date.toISOString().replace(/T.*$/, "");
       // console.log(date);
       this.$refs.calendar.getApi().changeView("dayGridMonth", date);
+      this.fetchCurrentEvents(new Date(date));
       this.modal1 = false;
     },
     handleWeekendsToggle() {
@@ -180,7 +205,7 @@ export default {
       this.eventModal = clickInfo.event;
       this.eventModalExtend = clickInfo.event.extendedProps;
       this.$refs.eventModal.eventModal = true;
-      // console.log(clickInfo.event);
+      // console.log(clickInfo);
     },
     updateEvent() {
       const updatedEvent = this.$refs.calendar

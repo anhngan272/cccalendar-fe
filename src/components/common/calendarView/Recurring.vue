@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a-select :value="recurrent"  @change="handleChange">
+    <a-select v-model="recurrent"  @change="handleChange">
       <a-select-option value="never"> Never </a-select-option>
       <a-select-option value="daily"> Daily </a-select-option>
       <a-select-option value="weekly"> Weekly </a-select-option>
