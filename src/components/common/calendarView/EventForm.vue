@@ -7,12 +7,12 @@
     :label-col="labelCol"
     :wrapper-col="wrapperCol"
   >
-    <a-form-model-item
+    <!-- <a-form-model-item
       :label="$t('calendar_page.event_form.theme')"
       prop="recurring"
     >
       <Recurring />
-    </a-form-model-item>
+    </a-form-model-item> -->
     <a-form-model-item
       :label="$t('calendar_page.event_form.title')"
       prop="title"
@@ -146,7 +146,7 @@ import { mapActions, mapGetters } from "vuex";
 import moment from "moment";
 import AttendeePicker from "./AttendeePicker.vue";
 import ThemePicker from "./ThemePicker.vue";
-import Recurring from "./Recurring.vue";
+// import Recurring from "./Recurring.vue";
 import RecurringOption from "@/components/common/calendarView/RecurringOption";
 import TagPicker from "../TagPicker.vue";
 require("moment/locale/vi.js");
@@ -203,7 +203,7 @@ export default {
     ThemePicker,
     TagPicker,
     AttendeePicker,
-    Recurring,
+    // Recurring,
     RecurringOption,
   },
   beforeCreate() {

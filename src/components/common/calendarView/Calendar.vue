@@ -50,24 +50,25 @@ export default {
             text: "Reload",
             icon: "fa fa-refresh",
             click: () => {
-              let date = this.$refs.calendar.getApi().currentData.currentDate;
-              this.fetchCurrentEvents(date);
+              // let date = this.$refs.calendar.getApi().currentData.currentDate;
+              // this.fetchCurrentEvents(date);
+              this.fetchEvents();
             },
           },
-          prev: {
-            click: () => {
-              this.$refs.calendar.getApi().prev();
-              let date = this.$refs.calendar.getApi().currentData.currentDate;
-              this.fetchCurrentEvents(date);
-            },
-          },
-          next: {
-            click: () => {
-              this.$refs.calendar.getApi().next();
-              let date = this.$refs.calendar.getApi().currentData.currentDate;
-              this.fetchCurrentEvents(date);
-            },
-          },
+          // prev: {
+          //   click: () => {
+          //     this.$refs.calendar.getApi().prev();
+          //     let date = this.$refs.calendar.getApi().currentData.currentDate;
+          //     this.fetchCurrentEvents(date);
+          //   },
+          // },
+          // next: {
+          //   click: () => {
+          //     this.$refs.calendar.getApi().next();
+          //     let date = this.$refs.calendar.getApi().currentData.currentDate;
+          //     this.fetchCurrentEvents(date);
+          //   },
+          // },
         },
         buttonIcons: {
           prev: "fas fa-angle-left",
@@ -120,7 +121,8 @@ export default {
     moment.locale(this.$i18n.locale);
   },
   created() {
-    this.fetchCurrentEvents(new Date());
+    // this.fetchCurrentEvents(new Date());
+    this.fetchEvents();
   },
   computed: {
     ...mapGetters({
@@ -184,7 +186,7 @@ export default {
       let date = this.date.toISOString().replace(/T.*$/, "");
       // console.log(date);
       this.$refs.calendar.getApi().changeView("dayGridMonth", date);
-      this.fetchCurrentEvents(new Date(date));
+      // this.fetchCurrentEvents(new Date(date));
       this.modal1 = false;
     },
     handleWeekendsToggle() {
