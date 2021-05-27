@@ -237,8 +237,12 @@ export default {
       this.form.title = this.updateEventInfo.title;
       this.form.date1 = moment(this.updateEventInfo.start);
       this.form.time1 = moment(this.updateEventInfo.start);
-      this.form.date2 = moment(this.updateEventInfo.end);
-      this.form.time2 = moment(this.updateEventInfo.end);
+      this.form.date2 = moment(
+        this.updateEventInfo.end || this.updateEventInfo.start
+      );
+      this.form.time2 = moment(
+        this.updateEventInfo.end || this.updateEventInfo.start
+      );
       this.form.attendees = this.eventAttendees;
       if (this.user.email == this.updateEventModalExtend.creator) {
         this.isCreator = true;

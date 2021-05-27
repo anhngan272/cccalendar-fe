@@ -47,7 +47,7 @@
     <div>
       <b>{{ $t("calendar_page.event_form.end") }}: </b>
       {{
-        moment(event.end)
+        moment(event.end || event.start)
           .locale(this.$i18n.locale)
           .format("dddd, DD-MM-yyyy - HH:mm")
       }}

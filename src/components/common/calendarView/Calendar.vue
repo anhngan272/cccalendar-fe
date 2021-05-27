@@ -180,7 +180,7 @@ export default {
       this.eventModal = clickInfo.event;
       this.eventModalExtend = clickInfo.event.extendedProps;
       this.$refs.eventModal.eventModal = true;
-      // console.log(clickInfo);
+      // console.log(clickInfo.event);
     },
     updateEvent() {
       const updatedEvent = this.$refs.calendar
