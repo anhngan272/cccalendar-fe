@@ -124,9 +124,9 @@ export default {
       this.$refs.recurringOption.optionModal = false;
     },
     handleDelete() {
-      this.$refs.recurringOption.optionModal = true;
-      // this.deleteEvent(this.event.id);
-      // this.eventModal = false;
+      // this.$refs.recurringOption.optionModal = true;
+      this.deleteEvent(this.event.id);
+      this.eventModal = false;
     },
     delete() {
       this.deleteEvent(this.event.id);

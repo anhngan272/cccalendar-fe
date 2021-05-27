@@ -109,8 +109,8 @@
       <a-button type="primary" @click="onSubmit" v-if="isUpdate != true">
         {{ $t("calendar_page.event_form.create_btn") }}
       </a-button>
-      <!-- <a-button type="primary" @click="onUpdateEvent" v-else> -->
-      <a-button type="primary" @click="handleUpdate" v-else>
+      <a-button type="primary" @click="onUpdateEvent" v-else>
+        <!-- <a-button type="primary" @click="handleUpdate" v-else> -->
         {{ $t("calendar_page.event_form.update_btn") }}
       </a-button>
       <a-button type="danger" style="margin-left: 10px" @click="resetForm">
@@ -275,6 +275,7 @@ export default {
     },
 
     onUpdateEvent() {
+      this.validateForm();
       if (this.isValidated == true) {
         this.form.start =
           this.form.date1.format("YYYY-MM-DD") +

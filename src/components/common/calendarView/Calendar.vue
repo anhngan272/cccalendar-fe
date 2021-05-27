@@ -169,9 +169,9 @@ export default {
       // if (!confirm(this.$t("calendar_page.confirm"))) {
       //   info.revert();
       // } else {
-      this.$refs.recurringOption.optionModal = true;
-      this.currentEvent.data = info;
-      // this.eventChange(info);
+      // this.$refs.recurringOption.optionModal = true;
+      // this.currentEvent.data = info;
+      this.eventChange(info);
       // }
     },
 
