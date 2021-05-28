@@ -106,7 +106,7 @@ export default {
   text-align: center;
   color: #808080;
   position: relative;
-  margin-top: 10%;
+  margin-top: 10vh;
 }
 
 .cccalendar {
