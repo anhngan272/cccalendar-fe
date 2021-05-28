@@ -74,27 +74,20 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-12">
-        <div class="section-title text-center">
-        </div>
-      </div>
-    </div>
-    <div class="row justify-content-center">
-      <div class="col-md-9 col-lg-8 mb-30">
-        <div class="team-item">
-          <div class="team-content">
-            <p class="text-uppercase mb-0">{{ $t("about_page.instructor") }}</p>
-            <p class="mb-0 name">{{$t('about_page.assoc_prof')}} Nguyễn Tuấn Đăng</p>
-          </div>
-          <div class="team-content">
-            <p class="mb-0 email">
-              <i class="fa fa-envelope"></i> dangnt@sgu.edu.vn
-            </p>
+      <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4 mb-30">
+          <div class="team-item">
+            <div class="team-content">
+              <h5 class="mb-2">
+                {{ $t("about_page.assoc_prof") }}<br> Nguyễn Tuấn Đăng
+              </h5>
+              <p class="text-uppercase mb-0">
+                {{ $t("about_page.instructor") }}
+              </p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
   </div>
 </template>
 
@@ -110,7 +103,7 @@ body {
   padding-right: 0;
   position: relative;
   z-index: 0;
-  height: 100%;
+  /* height: 100%; */
 }
 
 .team-item:after,

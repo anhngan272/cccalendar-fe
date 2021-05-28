@@ -46,7 +46,7 @@
         "text": "Hey There! We're Coding Cats",
         "meet_our_team": "Meet Our Team",
         "instructor": "Instructor",
-        "assoc_prof": "ASSCOCIATE PROFESSOR, PH.D"
+        "assoc_prof": "Assoc.Prof.PhD. "
     },
     "notfound_page": {
         "text": "Page Not Found. Please check the link again."
@@ -99,7 +99,7 @@
             "select_month": "Select month",
             "this_month": "This month"
         },
-        "confirm":"Are you sure to update this event?",
+        "confirm": "Are you sure to update this event?",
         "create_event": "Create new Event",
         "event_form": {
             "title": "Title",
