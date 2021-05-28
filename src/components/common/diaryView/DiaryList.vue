@@ -155,6 +155,7 @@ export default {
     },
     handelDelete(diary) {
       this.deleteDiary(diary.id);
+      this.$emit("diaryDeleted");
     },
     showUpdateModal(diary) {
       this.diary = diary;

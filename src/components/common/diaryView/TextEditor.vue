@@ -283,8 +283,8 @@ export default {
           Editor.insertEmbed(cursorLocation, "image", url);
           resetUploader();
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
+          // console.log(err);
         });
     },
   },

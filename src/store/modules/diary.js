@@ -98,7 +98,7 @@ const actions = {
         const response = await axios.delete(API_URL + `/diary/${diaryId}`);
         if (response.status === 200 || response.status === 201) {
             showMessage('success', i18n.t('notification.success'));
-            commit('deleteDiary', diaryId);
+            // commit('deleteDiary', diaryId);
             commit('deleteFilterDiary', diaryId);
         } else {
             showMessage('error', i18n.t('notification.error'));

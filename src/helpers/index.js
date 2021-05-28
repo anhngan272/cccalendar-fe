@@ -51,7 +51,7 @@ const checkCookie = (cname) => {
     let cvalue = getCookie(cname);
     if (cvalue != "") {
         // Cookie exists
-        console.log(cname + " = " + cvalue);
+        // console.log(cname + " = " + cvalue);
     } else {
         // Cookie doesn't exist
     }

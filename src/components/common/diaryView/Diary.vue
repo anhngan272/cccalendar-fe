@@ -108,7 +108,7 @@
       </div>
     </div>
     <div>
-      <DiaryList ref="diaryList" @clickTag="clickTag" />
+      <DiaryList ref="diaryList" @clickTag="clickTag" @diaryDeleted="performSearch"/>
     </div>
     <div class="addBtn">
       <TextEditor
