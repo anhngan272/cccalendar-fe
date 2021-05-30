@@ -33,7 +33,7 @@ const actions = {
     async fetchEvents({ commit }, searchTerms) {
         let response = null;
         if (searchTerms) {
-            const searchParams = { ...searchTerms };
+            const searchParams = {...searchTerms, orderBy: 'startTime' };
 
             // check if date is undefined
             if (searchTerms.start) {
@@ -49,13 +49,21 @@ const actions = {
                 delete searchParams.end;
             }
 
+            searchParams.orderBy = 'startTime';
+
             showMessage('loading', i18n.t('notification.loading'));
             response = await axios.get(API_URL + '/calendar', {
                 params: searchParams
             });
         } else {
+            const searchParams = {
+                orderBy: 'startTime'
+            };
+
             showMessage('loading', i18n.t('notification.loading'));
-            response = await axios.get(API_URL + '/calendar');
+            response = await axios.get(API_URL + '/calendar', {
+                params: searchParams
+            });
         }
 
         if (response.status === 200) {
@@ -131,7 +139,7 @@ const mutations = {
     setFilterEvents: (state) => {
         // state.filterEvents = state.events
         state.filterEvents = state.events.sort((a, b) => (a.start < b.start) ? 1 : ((b.start < a.start) ? -1 : 0))
-        // console.log(state.filterEvents)
+            // console.log(state.filterEvents)
     },
     filterEvents: (state, key) => {
         state.filterEvents = state.events.filter((event) => {

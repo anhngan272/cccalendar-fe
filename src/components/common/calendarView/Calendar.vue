@@ -102,7 +102,6 @@ export default {
         fixedWeekCount: false,
         themeSystem: "bootstrap",
         eventBorderColor: "rgb(0,0,0,0)",
-        nowIndicator: true, 
         //  timeFormat: 'h:mm',
         /* you can update a remote database when these fire:
         eventAdd:
