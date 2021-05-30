@@ -48,7 +48,7 @@
               <template slot="title">
                 <span>{{ item.title }}</span>
               </template>
-              <h6 class="title">{{ item.title }}</h6>
+              <h6 class="title"><div :style="{'background':item.backgroundColor}" v-if="type=='events'" class="theme"></div>{{ item.title }}</h6>
             </a-tooltip>
             <!-- <b>{{ item.title }}</b> -->
           </div>
@@ -197,6 +197,14 @@ export default {
 </script>
 
 <style scoped>
+.theme{
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  margin-right: 5px;
+  border-radius: 50%;
+}
+
 /** For webkit support */
 ::-webkit-scrollbar {
   /* width: 1px; */

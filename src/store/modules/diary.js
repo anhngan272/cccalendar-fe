@@ -161,7 +161,7 @@ const mutations = {
 
     filterDiaries: (state, key) => {
         state.filterDiaries = state.diaries.filter((diary) => {
-            return diary.title.toLowerCase().includes(key);
+            return diary.title.toLowerCase().includes(key.toLowerCase());
         });
     }
 }

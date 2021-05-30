@@ -18,7 +18,7 @@
     </a-row> -->
 
       <div class="row">
-        <div class="col-md-auto tagCard"><FilterCard /></div>
+        <div class="col-lg-auto col-md-12 col-sm-12 tagCard"><FilterCard /></div>
         <div class="col myCard">
           <div class="row">
             <div class="col-lg-6 col-md-12 col-sm-12" ><Card :type="'events'" /></div>

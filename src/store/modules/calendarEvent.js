@@ -33,7 +33,7 @@ const actions = {
     async fetchEvents({ commit }, searchTerms) {
         let response = null;
         if (searchTerms) {
-            const searchParams = {...searchTerms };
+            const searchParams = { ...searchTerms };
 
             // check if date is undefined
             if (searchTerms.start) {
@@ -129,11 +129,13 @@ const mutations = {
         state.filterEvents.splice(eventIndex, 1, event)
     },
     setFilterEvents: (state) => {
-        state.filterEvents = state.events
+        // state.filterEvents = state.events
+        state.filterEvents = state.events.sort((a, b) => (a.start < b.start) ? 1 : ((b.start < a.start) ? -1 : 0))
+        // console.log(state.filterEvents)
     },
     filterEvents: (state, key) => {
         state.filterEvents = state.events.filter((event) => {
-            return event.title.toLowerCase().includes(key);
+            return event.title.toLowerCase().includes(key.toLowerCase());
         });
     }
 }

@@ -102,6 +102,7 @@
         item-layout="horizontal"
         :data-source="searching == true ? tagsData : getTags"
         :bordered="true"
+        class="card"
       >
         <a-list-item slot="renderItem" slot-scope="item">
           <a class="edit" slot="actions" @click="showUpdateModal(item)">
@@ -126,7 +127,7 @@
             @change="onChange(item.name)"
             :checked="isCheckAll == true ? true : check(item.name)"
           >
-            <div style="display: inline-flex">
+            <div style="display: inline-flex;">
               <a-tooltip placement="top">
                 <template slot="title">
                   <span>{{ item.name }}</span>
@@ -414,7 +415,7 @@ export default {
 .tags-filter {
   /* text-align: center; */
   height: 38vh;
-  overflow-y: auto;
+  overflow-y: scroll;
   margin-top: 10px;
 }
 .delete {
@@ -437,9 +438,13 @@ export default {
 
 .tag {
   white-space: nowrap;
-  max-width: 10vw;
-  width: fit-content;
+  width:fit-content;
   overflow: hidden;
   text-overflow: ellipsis;
+  width: 10vw;
+}
+
+.card{
+  min-width: 26vw;
 }
 </style>
